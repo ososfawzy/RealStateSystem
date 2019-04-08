@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.10.8" id="MARSBuildingSearchPGPageDef"
+                Package="RSManagement">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="MARSBuildingSearchVO1" RangeSize="25" DataControl="MARealEstatePropertyAMDataControl"
+              id="MARSBuildingSearchVO1Iterator"/>
+    <searchRegion Criteria="MARSBuildingSearchVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" Binds="MARSBuildingSearchVO1Iterator"
+                  id="MARSBuildingSearchVOCriteriaQuery"/>
+    <iterator Binds="MARSBuildingTableVO1" RangeSize="10" DataControl="MARealEstatePropertyAMDataControl"
+              id="MARSBuildingTableVO1Iterator"/>
+    <iterator Binds="MARealEstatePropertyExportVO1" RangeSize="10" DataControl="MARealEstatePropertyAMDataControl"
+              id="MARealEstatePropertyExportVO1Iterator"/>
+    <iterator Binds="MABuildingRentOptionExportVO1" RangeSize="10" DataControl="MARealEstatePropertyAMDataControl"
+              id="MABuildingRentOptionExportVO1Iterator"/>
+    
+    <iterator Binds="MABuildingAttachmentImportVO1" RangeSize="10" DataControl="MARealEstatePropertyAMDataControl"
+              id="MABuildingAttachmentImportVO1Iterator"/>
+    <iterator Binds="MABuildingOwnerExportVO1" RangeSize="10" DataControl="MARealEstatePropertyAMDataControl"
+              id="MABuildingOwnerExportVO1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="MARSBuildingSearchVO1Iterator" id="MARSBuildingSearchVO1">
+      <nodeDefinition DefName="ma.oracle.apps.cx.realestate.building.views.MARSBuildingSearchVO"
+                      Name="MARSBuildingSearchVO10">
+        <AttrNames>
+          <Item Value="BuildingId"/>
+          <Item Value="BuildingName"/>
+          <Item Value="BuildingType"/>
+          <Item Value="NoOfFloors"/>
+          <Item Value="AvailableForRentFlag"/>
+          <Item Value="Status"/>
+          <Item Value="WestSide"/>
+          <Item Value="NorthSide"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Commit" DataControl="MARealEstatePropertyAMDataControl" RequiresUpdateModel="true"
+            Action="commitTransaction"/>
+    <tree IterBinding="MARSBuildingTableVO1Iterator" id="MARSBuildingTableVO1">
+      <nodeDefinition DefName="ma.oracle.apps.cx.realestate.building.views.MARSBuildingTableVO"
+                      Name="MARSBuildingTableVO10">
+        <AttrNames>
+          <Item Value="BuildingId"/>
+          <Item Value="BuildingName"/>
+          <Item Value="BuildingType"/>
+          <Item Value="NoOfFloors"/>
+          <Item Value="AvailableForRentFlag"/>
+          <Item Value="Status"/>
+          <Item Value="WestSide"/>
+          <Item Value="NorthSide"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="MARealEstatePropertyExportVO1Iterator" id="MARealEstatePropertyExportVO1">
+      <nodeDefinition DefName="ma.oracle.apps.cx.realestate.property.views.MARealEstatePropertyExportVO"
+                      Name="MARealEstatePropertyExportVO10">
+        <AttrNames>
+          <Item Value="PropertyId"/>
+          <Item Value="PropertyName"/>
+          <Item Value="PropertyCode"/>
+          <Item Value="BuildingId"/>
+          <Item Value="BlockBuldingName"/>
+          <Item Value="FloorNumber"/>
+          <Item Value="PropertyStatus"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="MABuildingRentOptionExportVO1Iterator" id="MABuildingRentOptionExportVO1">
+      <nodeDefinition DefName="ma.oracle.apps.cx.realestate.payments.views.MABuildingRentOptionExportVO"
+                      Name="MABuildingRentOptionExportVO10">
+        <AttrNames>
+          <Item Value="BuildingRentId"/>
+          <Item Value="RentPaymentTermId"/>
+          <Item Value="RentAmount"/>
+          <Item Value="StartServiceDate"/>
+          <Item Value="EndServiceDate"/>
+          <Item Value="BuildingId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    
+    <action IterBinding="MARSBuildingTableVO1Iterator" id="CreateInsert"
+            InstanceName="MARealEstatePropertyAMDataControl.MARSBuildingTableVO1"
+            DataControl="MARealEstatePropertyAMDataControl" RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="MARealEstatePropertyExportVO1Iterator" id="CreateInsert1"
+            InstanceName="MARealEstatePropertyAMDataControl.MARealEstatePropertyExportVO1"
+            DataControl="MARealEstatePropertyAMDataControl" RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="MABuildingRentOptionExportVO1Iterator" id="CreateInsert2"
+            InstanceName="MARealEstatePropertyAMDataControl.MABuildingRentOptionExportVO1"
+            DataControl="MARealEstatePropertyAMDataControl" RequiresUpdateModel="true" Action="createInsertRow"/>
+    
+    <tree IterBinding="MABuildingAttachmentImportVO1Iterator" id="MABuildingAttachmentImportVO1">
+      <nodeDefinition DefName="ma.oracle.apps.cx.realestate.building.views.MABuildingAttachmentImportVO"
+                      Name="MABuildingAttachmentImportVO10">
+        <AttrNames>
+          <Item Value="AttachedDocumentId"/>
+          <Item Value="EntityName"/>
+          <Item Value="FileName"/>
+          <Item Value="FileContentType"/>
+          <Item Value="UploadDate"/>
+          <Item Value="BuildingId"/>
+          <Item Value="FileData"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="MABuildingAttachmentImportVO1Iterator" id="CreateInsert4"
+            InstanceName="MARealEstatePropertyAMDataControl.MABuildingAttachmentImportVO1"
+            DataControl="MARealEstatePropertyAMDataControl" RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="MABuildingOwnerExportVO1Iterator" id="CreateInsert3"
+            InstanceName="MARealEstatePropertyAMDataControl.MABuildingOwnerExportVO1"
+            DataControl="MARealEstatePropertyAMDataControl" RequiresUpdateModel="true" Action="createInsertRow"/>
+    <tree IterBinding="MABuildingOwnerExportVO1Iterator" id="MABuildingOwnerExportVO1">
+      <nodeDefinition DefName="ma.oracle.apps.cx.realestate.building.views.MABuildingOwnerExportVO"
+                      Name="MABuildingOwnerExportVO10">
+        <AttrNames>
+          <Item Value="BuildingOwnerId"/>
+          <Item Value="BuildingOwnerName"/>
+          <Item Value="ContractId"/>
+          <Item Value="ContractSubject"/>
+          <Item Value="ContractStartDate"/>
+          <Item Value="ContractEndDate"/>
+          <Item Value="BuildingId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

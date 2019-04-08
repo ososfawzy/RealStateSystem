@@ -1,0 +1,239 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view beforePhase="#{backingBeanScope.MAInstallmentPaymentsBean.beforePhase}">
+        <af:document title="#{bundle.Installment_PaymentPG}" id="d1"
+                     binding="#{backingBeanScope.MAInstallmentPaymentsBean.d1}">
+            <af:messages id="m1" binding="#{backingBeanScope.MAInstallmentPaymentsBean.m1}"/>
+            <af:form id="f1" binding="#{backingBeanScope.MAInstallmentPaymentsBean.f1}">
+                <af:pageTemplate viewId="#{pageFlowScope.Facet}" id="pt1">
+                    <f:facet name="center">
+                        <af:panelGroupLayout layout="scroll" id="pgl1"
+                                             binding="#{backingBeanScope.MAInstallmentPaymentsBean.pgl1}">
+                            <af:panelHeader text="#{bundle.Payments_Search}" id="ph1"
+                                            binding="#{backingBeanScope.MAInstallmentPaymentsBean.ph1}">
+                                <af:query id="qryId1" headerText="#{bundle.Search}" disclosed="true"
+                                          value="#{bindings.MAContractPropertyPaymentVOCriteriaQuery.queryDescriptor}"
+                                          model="#{bindings.MAContractPropertyPaymentVOCriteriaQuery.queryModel}"
+                                          queryListener="#{bindings.MAContractPropertyPaymentVOCriteriaQuery.processQuery}"
+                                          queryOperationListener="#{bindings.MAContractPropertyPaymentVOCriteriaQuery.processQueryOperation}"
+                                          binding="#{backingBeanScope.MAInstallmentPaymentsBean.qryId1}"
+                                          saveQueryMode="hidden" resultComponentId="::pc1"/>
+                                <f:facet name="toolbar">
+                                    <af:toolbar id="t2" binding="#{backingBeanScope.MAInstallmentPaymentsBean.t2}">
+                                        <af:button actionListener="#{bindings.Commit.execute}" text="#{bundle.Save}" id="b1"
+                                                   binding="#{backingBeanScope.MAInstallmentPaymentsBean.b1}"
+                                                   icon="/images/icons/save_ena.png"/>
+                                        <af:button actionListener="#{bindings.Rollback.execute}" text="#{bundle.Cancel}" immediate="true" id="b2"
+                                                   binding="#{backingBeanScope.MAInstallmentPaymentsBean.b2}"
+                                                   icon="/images/icons/rollback.png">
+                                            <af:resetActionListener/>
+                                        </af:button>
+                                    </af:toolbar>
+                                </f:facet>
+                            </af:panelHeader>
+                            <af:panelCollection id="pc1" binding="#{backingBeanScope.MAInstallmentPaymentsBean.pc1}"
+                                                styleClass="AFStretchWidth">
+                                <f:facet name="menus"/>
+                                <f:facet name="toolbar"/>
+                                <f:facet name="statusbar"/>
+                                <af:table value="#{bindings.MAContractPropertyPaymentVO.collectionModel}" var="row"
+                                          rows="#{bindings.MAContractPropertyPaymentVO.rangeSize}"
+                                          emptyText="#{bindings.MAContractPropertyPaymentVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                          rowBandingInterval="0"
+                                          selectedRowKeys="#{bindings.MAContractPropertyPaymentVO.collectionModel.selectedRow}"
+                                          selectionListener="#{bindings.MAContractPropertyPaymentVO.collectionModel.makeCurrent}"
+                                          rowSelection="single"
+                                          fetchSize="#{bindings.MAContractPropertyPaymentVO.rangeSize}" id="t1"
+                                          binding="#{backingBeanScope.MAInstallmentPaymentsBean.t1}" width="100%">
+                                    <?audit suppress oracle.adf.faces.compreqsummary?><?audit suppress oracle.adf.faces.tableneedsrowheader?>
+                                    <af:column headerText="#{bindings.MAContractPropertyPaymentVO.hints.PropertyCode.label}"
+                                               id="c11">
+                                        <af:outputText value="#{row.bindings.PropertyCode.inputValue}"
+                                                       shortDesc="#{bindings.MAContractPropertyPaymentVO.hints.PropertyCode.tooltip}"
+                                                       id="it5"/>
+                                    </af:column>
+                                    <af:column headerText="#{bindings.MAContractPropertyPaymentVO.hints.ContractNumber.label}"
+                                               id="c12">
+                                        <af:outputText value="#{row.ContractNumber}"
+                                                       shortDesc="#{bindings.MAContractPropertyPaymentVO.hints.ContractNumber.tooltip}"
+                                                       id="ot6"/>
+                                    </af:column>
+                                    <af:column headerText="#{bindings.MAContractPropertyPaymentVO.hints.OwnerName.label}"
+                                               id="c13">
+                                        <af:outputText value="#{row.OwnerName}"
+                                                       shortDesc="#{bindings.MAContractPropertyPaymentVO.hints.OwnerName.tooltip}"
+                                                       id="ot7"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.MAContractPropertyPaymentVO.hints.InstallmentNumber.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MAContractPropertyPaymentVO.hints.InstallmentNumber.label}"
+                                               id="c1">
+                                        <af:outputText value="#{row.InstallmentNumber}"
+                                                       shortDesc="#{bindings.MAContractPropertyPaymentVO.hints.InstallmentNumber.tooltip}"
+                                                       id="ot1">
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.MAContractPropertyPaymentVO.hints.InstallmentNumber.format}"/>
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column headerText="#{bindings.MAContractPropertyPaymentVO.hints.Status.label}"
+                                               id="c2">
+                                        <af:outputText value="#{row.Status}"
+                                                       shortDesc="#{bindings.MAContractPropertyPaymentVO.hints.Status.tooltip}"
+                                                       id="ot2"/>
+                                    </af:column>
+                                    <af:column headerText="#{bindings.MAContractPropertyPaymentVO.hints.PaymentType.label}"
+                                               id="c15">
+                                        <af:outputText value="#{row.PaymentType}"
+                                                       shortDesc="#{bindings.MAContractPropertyPaymentVO.hints.PaymentType.tooltip}"
+                                                       id="ot9"/>
+                                    </af:column>
+                                    <af:column headerText="#{bindings.MAContractPropertyPaymentVO.hints.MaturityDate.label}"
+                                               id="c14">
+                                        <af:outputText value="#{row.MaturityDate}"
+                                                       shortDesc="#{bindings.MAContractPropertyPaymentVO.hints.MaturityDate.tooltip}"
+                                                       id="ot8">
+                                            <af:convertDateTime pattern="#{bindings.MAContractPropertyPaymentVO.hints.MaturityDate.format}"/>
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.MAContractPropertyPaymentVO.hints.DueDate.name}"
+                                               sortable="true"
+                                               headerText="#{bundle.Due_Date}"
+                                               id="c3" rendered="false">
+                                        <af:outputText value="#{row.DueDate}"
+                                                       shortDesc="#{bindings.MAContractPropertyPaymentVO.hints.DueDate.tooltip}"
+                                                       id="ot3">
+                                            <af:convertDateTime pattern="#{bindings.MAContractPropertyPaymentVO.hints.DueDate.format}"/>
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.MAContractPropertyPaymentVO.hints.Amount.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MAContractPropertyPaymentVO.hints.Amount.label}"
+                                               id="c4">
+                                        <af:outputText value="#{row.Amount}"
+                                                       shortDesc="#{bindings.MAContractPropertyPaymentVO.hints.Amount.tooltip}"
+                                                       id="ot4">
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.MAContractPropertyPaymentVO.hints.Amount.format}"/>
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.MAContractPropertyPaymentVO.hints.Intrest.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MAContractPropertyPaymentVO.hints.Intrest.label}"
+                                               id="c5">
+                                        <af:outputText value="#{row.Intrest}"
+                                                       shortDesc="#{bindings.MAContractPropertyPaymentVO.hints.Intrest.tooltip}"
+                                                       id="ot5">
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.MAContractPropertyPaymentVO.hints.Intrest.format}"/>
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.MAContractPropertyPaymentVO.hints.PaymentMethod.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MAContractPropertyPaymentVO.hints.PaymentMethod.label}"
+                                               id="c6">
+                                        <af:inputText value="#{row.bindings.PaymentMethod.inputValue}"
+                                                      label="#{bindings.MAContractPropertyPaymentVO.hints.PaymentMethod.label}"
+                                                      required="#{bindings.MAContractPropertyPaymentVO.hints.PaymentMethod.mandatory}"
+                                                      columns="#{bindings.MAContractPropertyPaymentVO.hints.PaymentMethod.displayWidth}"
+                                                      maximumLength="#{bindings.MAContractPropertyPaymentVO.hints.PaymentMethod.precision}"
+                                                      shortDesc="#{bindings.MAContractPropertyPaymentVO.hints.PaymentMethod.tooltip}"
+                                                      id="it1">
+                                            <f:validator binding="#{row.bindings.PaymentMethod.validator}"/>
+                                        </af:inputText>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.MAContractPropertyPaymentVO.hints.ReceiptNumber.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MAContractPropertyPaymentVO.hints.ReceiptNumber.label}"
+                                               id="c7">
+                                        <af:inputText value="#{row.bindings.ReceiptNumber.inputValue}"
+                                                      label="#{bindings.MAContractPropertyPaymentVO.hints.ReceiptNumber.label}"
+                                                      required="#{bindings.MAContractPropertyPaymentVO.hints.ReceiptNumber.mandatory}"
+                                                      columns="#{bindings.MAContractPropertyPaymentVO.hints.ReceiptNumber.displayWidth}"
+                                                      maximumLength="#{bindings.MAContractPropertyPaymentVO.hints.ReceiptNumber.precision}"
+                                                      shortDesc="#{bindings.MAContractPropertyPaymentVO.hints.ReceiptNumber.tooltip}"
+                                                      id="it2">
+                                            <f:validator binding="#{row.bindings.ReceiptNumber.validator}"/>
+                                        </af:inputText>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.MAContractPropertyPaymentVO.hints.Paid.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MAContractPropertyPaymentVO.hints.Paid.label}"
+                                               id="c8">
+                                        <af:inputText value="#{row.bindings.Paid.inputValue}"
+                                                      label="#{bindings.MAContractPropertyPaymentVO.hints.Paid.label}"
+                                                      required="#{bindings.MAContractPropertyPaymentVO.hints.Paid.mandatory}"
+                                                      columns="#{bindings.MAContractPropertyPaymentVO.hints.Paid.displayWidth}"
+                                                      maximumLength="#{bindings.MAContractPropertyPaymentVO.hints.Paid.precision}"
+                                                      shortDesc="#{bindings.MAContractPropertyPaymentVO.hints.Paid.tooltip}"
+                                                      id="it3">
+                                            <f:validator binding="#{row.bindings.Paid.validator}"/>
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.MAContractPropertyPaymentVO.hints.Paid.format}"/>
+                                        </af:inputText>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.MAContractPropertyPaymentVO.hints.PaymentDate.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MAContractPropertyPaymentVO.hints.PaymentDate.label}"
+                                               id="c9">
+                                        <af:inputDate value="#{row.bindings.PaymentDate.inputValue}"
+                                                      label="#{bindings.MAContractPropertyPaymentVO.hints.PaymentDate.label}"
+                                                      required="#{bindings.MAContractPropertyPaymentVO.hints.PaymentDate.mandatory}"
+                                                      columns="#{bindings.MAContractPropertyPaymentVO.hints.PaymentDate.displayWidth}"
+                                                      shortDesc="#{bindings.MAContractPropertyPaymentVO.hints.PaymentDate.tooltip}"
+                                                      id="id1">
+                                            <f:validator binding="#{row.bindings.PaymentDate.validator}"/>
+                                            <af:convertDateTime pattern="#{bindings.MAContractPropertyPaymentVO.hints.PaymentDate.format}"/>
+                                        </af:inputDate>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.MAContractPropertyPaymentVO.hints.Notes.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MAContractPropertyPaymentVO.hints.Notes.label}"
+                                               id="c10">
+                                        <af:inputText value="#{row.bindings.Notes.inputValue}"
+                                                      label="#{bindings.MAContractPropertyPaymentVO.hints.Notes.label}"
+                                                      required="#{bindings.MAContractPropertyPaymentVO.hints.Notes.mandatory}"
+                                                      columns="#{bindings.MAContractPropertyPaymentVO.hints.Notes.displayWidth}"
+                                                      maximumLength="#{bindings.MAContractPropertyPaymentVO.hints.Notes.precision}"
+                                                      shortDesc="#{bindings.MAContractPropertyPaymentVO.hints.Notes.tooltip}"
+                                                      id="it4">
+                                            <f:validator binding="#{row.bindings.Notes.validator}"/>
+                                        </af:inputText>
+                                    </af:column>
+                                </af:table>
+                            </af:panelCollection>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                    <f:facet name="header">
+                        <af:toolbar id="t3" binding="#{backingBeanScope.MAInstallmentPaymentsBean.t3}">
+                            <af:link text="#{bundle.Home}" id="l1" binding="#{backingBeanScope.MAInstallmentPaymentsBean.l1}"
+                                     action="home"/>
+                        </af:toolbar>
+                    </f:facet>
+                    <f:facet name="end"/>
+                    <f:facet name="start"/>
+                    <f:facet name="branding"/>
+                    <f:facet name="copyright"/>
+                    <f:facet name="status">
+                        <af:toolbar id="t4" binding="#{backingBeanScope.MAInstallmentPaymentsBean.t4}">
+                            <af:button id="b4"
+                                       binding="#{backingBeanScope.MAInstallmentPaymentsBean.b4}"
+                                       actionListener="#{bindings.en_lang.execute}"
+                                       disabled="#{!bindings.en_lang.enabled}" icon="/images/icons/english.png"
+                                       shortDesc="#{bundle.English}" partialSubmit="false"/>
+                            <af:button id="b3"
+                                       binding="#{backingBeanScope.MAInstallmentPaymentsBean.b3}"
+                                       actionListener="#{bindings.ar_lang.execute}"
+                                       disabled="#{!bindings.ar_lang.enabled}" partialSubmit="false"
+                                       shortDesc="#{bundle.Arabic}" icon="/images/icons/arabic.png"/>
+                        </af:toolbar>
+                    </f:facet>
+                    <f:attribute name="endColumnSize" value="0"/>
+                    <f:attribute name="startColumnSize" value="0"/>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+    <!--oracle-jdev-comment:auto-binding-backing-bean-name:MAInstallmentPaymentsBean-->
+</jsp:root>

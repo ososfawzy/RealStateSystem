@@ -1,0 +1,222 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <c:set var="viewcontrollerBundle" value="#{adfBundle['ma.oracle.apps.cx.realestate.ViewControllerBundle']}"/>
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view beforePhase="#{backingBeanScope.MALookupsSearchBean.beforePhase}">
+        <af:document title="#{bundle.Lookups_ManagementPG}" id="d1" binding="#{backingBeanScope.MALookupsSearchBean.d1}">
+            <af:messages id="m1" binding="#{backingBeanScope.MALookupsSearchBean.m1}"/>
+            <af:form id="f1" binding="#{backingBeanScope.MALookupsSearchBean.f1}">
+                <af:pageTemplate viewId="#{pageFlowScope.Facet}" id="pt1">
+                    <f:facet name="center">
+                        <af:panelGroupLayout layout="vertical" id="pgl1"
+                                             binding="#{backingBeanScope.MALookupsSearchBean.pgl1}">
+                            <af:panelHeader text="#{bundle.Search_Lookups}" id="ph1"
+                                            binding="#{backingBeanScope.MALookupsSearchBean.ph1}">
+                                <af:query id="qryId1" headerText="#{bundle.Search}" disclosed="true"
+                                          value="#{bindings.MALookupTypesVOCriteriaQuery.queryDescriptor}"
+                                          model="#{bindings.MALookupTypesVOCriteriaQuery.queryModel}"
+                                          queryListener="#{bindings.MALookupTypesVOCriteriaQuery.processQuery}"
+                                          queryOperationListener="#{bindings.MALookupTypesVOCriteriaQuery.processQueryOperation}"
+                                          resultComponentId="::pc1"
+                                          binding="#{backingBeanScope.MALookupsSearchBean.qryId1}"
+                                          saveQueryMode="hidden"/>
+                            </af:panelHeader>
+                            <af:panelCollection id="pc1" binding="#{backingBeanScope.MALookupsSearchBean.pc1}"
+                                                styleClass="AFStretchWidth" inlineStyle="height:523px;">
+                                <f:facet name="menus"/>
+                                <f:facet name="toolbar">
+                                    <af:toolbar id="t3" binding="#{backingBeanScope.MALookupsSearchBean.t3}">
+                                        <af:button actionListener="#{bindings.CreateInsert.execute}" text="#{bundle.New_Lookup}"
+                                                   disabled="#{!bindings.CreateInsert.enabled}" id="b3"
+                                                   binding="#{backingBeanScope.MALookupsSearchBean.b3}"
+                                                   icon="/images/icons/new_ena.png" action="CreateLookup"/>
+                                        <af:popup childCreation="deferred" autoCancel="disabled" id="p1"
+                                                  binding="#{backingBeanScope.MALookupsSearchBean.p1}"
+                                                  contentDelivery="lazyUncached">
+                                            <af:dialog id="d2" binding="#{backingBeanScope.MALookupsSearchBean.d2}"
+                                                       title="#{bundle.Lookups_Update}" contentWidth="600" contentHeight="300"
+                                                       type="none">
+                                                <f:facet name="buttonBar">
+                                                    <af:toolbar id="t6"
+                                                                binding="#{backingBeanScope.MALookupsSearchBean.t6}">
+                                                        <af:panelGroupLayout id="pgl3"
+                                                                             binding="#{backingBeanScope.MALookupsSearchBean.pgl3}"
+                                                                             layout="horizontal" halign="right"
+                                                                             inlineStyle="width:600px;">
+                                                            <af:button
+                                                                       text="#{bundle.Cancel}"
+                                                                       immediate="true" id="b6"
+                                                                       binding="#{backingBeanScope.MALookupsSearchBean.b6}"
+                                                                       icon="/images/icons/rollback.png"
+                                                                       action="#{backingBeanScope.MALookupsSearchBean.cancelLookupUpdate}">
+                                                                <af:resetActionListener/>
+                                                            </af:button>
+                                                            <af:button
+                                                                       text="#{bundle.Save}" id="b5"
+                                                                       binding="#{backingBeanScope.MALookupsSearchBean.b5}"
+                                                                       icon="/images/icons/save_ena.png"
+                                                                       action="#{backingBeanScope.MALookupsSearchBean.saveLookupUpdates}"/>
+                                                        </af:panelGroupLayout>
+                                                    </af:toolbar>
+                                                </f:facet>
+                                                <af:panelGroupLayout id="pgl2"
+                                                                     binding="#{backingBeanScope.MALookupsSearchBean.pgl2}"
+                                                                     layout="vertical">
+                                                    <af:panelFormLayout id="pfl1"
+                                                                        binding="#{backingBeanScope.MALookupsSearchBean.pfl1}">
+                                                        <af:inputText value="#{bindings.LookupType.inputValue}"
+                                                                      label="#{bindings.LookupType.hints.label}"
+                                                                      required="#{bindings.LookupType.hints.mandatory}"
+                                                                      columns="#{bindings.LookupType.hints.displayWidth}"
+                                                                      maximumLength="#{bindings.LookupType.hints.precision}"
+                                                                      shortDesc="#{bindings.LookupType.hints.tooltip}"
+                                                                      id="it1"
+                                                                      binding="#{backingBeanScope.MALookupsSearchBean.it1}">
+                                                            <f:validator binding="#{bindings.LookupType.validator}"/>
+                                                        </af:inputText>
+                                                    </af:panelFormLayout>
+                                                    <af:panelCollection id="pc2"
+                                                                        binding="#{backingBeanScope.MALookupsSearchBean.pc2}"
+                                                                        styleClass="AFStretchWidth">
+                                                        <f:facet name="menus"/>
+                                                        <f:facet name="toolbar">
+                                                            <af:toolbar id="t5"
+                                                                        binding="#{backingBeanScope.MALookupsSearchBean.t5}">
+                                                                <af:button actionListener="#{bindings.CreateInsert1.execute}"
+                                                                           text="#{bundle.New_Lookup_Code}"
+                                                                           disabled="#{!bindings.CreateInsert1.enabled}"
+                                                                           id="b4"
+                                                                           binding="#{backingBeanScope.MALookupsSearchBean.b4}"
+                                                                           icon="/images/icons/new_ena.png"/>
+                                                            </af:toolbar>
+                                                        </f:facet>
+                                                        <f:facet name="statusbar"/>
+                                                        <af:table value="#{bindings.MALookupValuesVO.collectionModel}"
+                                                                  var="row"
+                                                                  rows="#{bindings.MALookupValuesVO.rangeSize}"
+                                                                  emptyText="#{bindings.MALookupValuesVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                                  rowBandingInterval="0"
+                                                                  selectedRowKeys="#{bindings.MALookupValuesVO.collectionModel.selectedRow}"
+                                                                  selectionListener="#{bindings.MALookupValuesVO.collectionModel.makeCurrent}"
+                                                                  rowSelection="single"
+                                                                  fetchSize="#{bindings.MALookupValuesVO.rangeSize}"
+                                                                  id="t4"
+                                                                  binding="#{backingBeanScope.MALookupsSearchBean.t4}"
+                                                                  partialTriggers="::b4">
+                                                            <?audit suppress oracle.adf.faces.compreqsummary?><?audit suppress oracle.adf.faces.tableneedsrowheader?>
+                                                            <af:column sortProperty="#{bindings.MALookupValuesVO.hints.Meaning.name}"
+                                                                       sortable="true"
+                                                                       headerText="#{bindings.MALookupValuesVO.hints.Meaning.label}"
+                                                                       id="c3" width="150">
+                                                                <af:inputText value="#{row.bindings.Meaning.inputValue}"
+                                                                              label="#{bindings.MALookupValuesVO.hints.Meaning.label}"
+                                                                              required="#{bindings.MALookupValuesVO.hints.Meaning.mandatory}"
+                                                                              columns="#{bindings.MALookupValuesVO.hints.Meaning.displayWidth}"
+                                                                              maximumLength="#{bindings.MALookupValuesVO.hints.Meaning.precision}"
+                                                                              shortDesc="#{bindings.MALookupValuesVO.hints.Meaning.tooltip}"
+                                                                              id="it2">
+                                                                    <f:validator binding="#{row.bindings.Meaning.validator}"/>
+                                                                </af:inputText>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.MALookupValuesVO.hints.LookupCode.name}"
+                                                                       sortable="true"
+                                                                       headerText="#{bindings.MALookupValuesVO.hints.LookupCode.label}"
+                                                                       id="c4" width="150">
+                                                                <af:inputText value="#{row.bindings.LookupCode.inputValue}"
+                                                                              label="#{bindings.MALookupValuesVO.hints.LookupCode.label}"
+                                                                              required="#{bindings.MALookupValuesVO.hints.LookupCode.mandatory}"
+                                                                              columns="#{bindings.MALookupValuesVO.hints.LookupCode.displayWidth}"
+                                                                              maximumLength="#{bindings.MALookupValuesVO.hints.LookupCode.precision}"
+                                                                              shortDesc="#{bindings.MALookupValuesVO.hints.LookupCode.tooltip}"
+                                                                              id="it3">
+                                                                    <f:validator binding="#{row.bindings.LookupCode.validator}"/>
+                                                                </af:inputText>
+                                                            </af:column>
+                                                            <af:column sortProperty="#{bindings.MALookupValuesVO.hints.Description.name}"
+                                                                       sortable="true"
+                                                                       headerText="#{bindings.MALookupValuesVO.hints.Description.label}"
+                                                                       id="c5" width="250">
+                                                                <af:inputText value="#{row.bindings.Description.inputValue}"
+                                                                              label="#{bindings.MALookupValuesVO.hints.Description.label}"
+                                                                              required="#{bindings.MALookupValuesVO.hints.Description.mandatory}"
+                                                                              columns="#{bindings.MALookupValuesVO.hints.Description.displayWidth}"
+                                                                              maximumLength="#{bindings.MALookupValuesVO.hints.Description.precision}"
+                                                                              shortDesc="#{bindings.MALookupValuesVO.hints.Description.tooltip}"
+                                                                              id="it4">
+                                                                    <f:validator binding="#{row.bindings.Description.validator}"/>
+                                                                </af:inputText>
+                                                            </af:column>
+                                                        </af:table>
+                                                    </af:panelCollection>
+                                                </af:panelGroupLayout>
+                                            </af:dialog>
+                                        </af:popup>
+                                    </af:toolbar>
+                                </f:facet>
+                                <f:facet name="statusbar"/>
+                                <af:table value="#{bindings.MALookupTypesVO.collectionModel}" var="row"
+                                          rows="#{bindings.MALookupTypesVO.rangeSize}"
+                                          emptyText="#{bindings.MALookupTypesVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                          rowBandingInterval="0"
+                                          selectedRowKeys="#{bindings.MALookupTypesVO.collectionModel.selectedRow}"
+                                          selectionListener="#{bindings.MALookupTypesVO.collectionModel.makeCurrent}"
+                                          rowSelection="single" fetchSize="#{bindings.MALookupTypesVO.rangeSize}"
+                                          id="resId1" binding="#{backingBeanScope.MALookupsSearchBean.resId1}"
+                                          width="100%" partialTriggers="::b3 ::b5" inlineStyle="height:474px;">
+                                    <?audit suppress oracle.adf.faces.compreqsummary?><?audit suppress oracle.adf.faces.tableneedsrowheader?>
+                                    <af:column sortProperty="#{bindings.MALookupTypesVO.hints.LookupType.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MALookupTypesVO.hints.LookupType.label}"
+                                               id="resId1c1" width="200">
+                                        <af:outputText value="#{row.LookupType}"
+                                                       shortDesc="#{bindings.MALookupTypesVO.hints.LookupType.tooltip}"
+                                                       id="ot1"/>
+                                    </af:column>
+                                    <af:column id="c1" headerText="#{bundle.Update}" width="150">
+                                        <af:toolbar id="t2">
+                                            <af:button text="#{viewcontrollerBundle.Update}" id="b1" icon="/images/icons/edit_ena.png"
+                                                       action="#{backingBeanScope.MALookupsSearchBean.updateLookupType}"/>
+                                        </af:toolbar>
+                                    </af:column>
+                                    <af:column id="c2" headerText="#{bundle.Delete}" width="150">
+                                        <af:toolbar id="t1">
+                                            <af:button text="#{bundle.Remove}" id="b2" icon="/images/icons/delete_ena.png"
+                                                       action="#{backingBeanScope.MALookupsSearchBean.deleteLookup}"
+                                                       partialSubmit="false"/>
+                                        </af:toolbar>
+                                    </af:column>
+                                </af:table>
+                            </af:panelCollection>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                    <f:facet name="header">
+                        <af:toolbar id="t7" binding="#{backingBeanScope.MALookupsSearchBean.t7}">
+                            <af:link text="#{bundle.Home}" id="l1" binding="#{backingBeanScope.MALookupsSearchBean.l1}"
+                                     action="home"/>
+                        </af:toolbar>
+                    </f:facet>
+                    <f:facet name="end"/>
+                    <f:facet name="start"/>
+                    <f:facet name="branding"/>
+                    <f:facet name="copyright"/>
+                    <f:facet name="status">
+                        <af:toolbar id="t8" binding="#{backingBeanScope.MALookupsSearchBean.t8}">
+                            <af:button id="b7" binding="#{backingBeanScope.MALookupsSearchBean.b7}"
+                                       actionListener="#{bindings.en_lang.execute}"
+                                       disabled="#{!bindings.en_lang.enabled}" partialSubmit="false"
+                                       shortDesc="#{bundle.English}" icon="/images/icons/english.png"/>
+                            <af:button id="b8" binding="#{backingBeanScope.MALookupsSearchBean.b8}"
+                                       actionListener="#{bindings.ar_lang.execute}"
+                                       disabled="#{!bindings.ar_lang.enabled}" icon="/images/icons/arabic.png"
+                                       shortDesc="#{bundle.Arabic}" partialSubmit="false"/>
+                        </af:toolbar>
+                    </f:facet>
+                    <f:attribute name="endColumnSize" value="0"/>
+                    <f:attribute name="startColumnSize" value="0"/>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+    <!--oracle-jdev-comment:auto-binding-backing-bean-name:MALookupsSearchBean-->
+</jsp:root>

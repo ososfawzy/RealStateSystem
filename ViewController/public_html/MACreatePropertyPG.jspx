@@ -1,0 +1,483 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view beforePhase="#{backingBeanScope.MACreatePropertyBean.beforePhase}">
+    <af:document id="d1" binding="#{backingBeanScope.MACreatePropertyBean.d1}"
+                 title="#{bundle.Property_Creation_Update}">
+      <af:messages binding="#{backingBeanScope.MACreatePropertyBean.m1}"
+                   id="m1"/>
+      <af:form id="f1" binding="#{backingBeanScope.MACreatePropertyBean.f1}">
+            <af:pageTemplate viewId="#{pageFlowScope.Facet}" id="pt1">
+                         <f:facet name="center">
+        <af:panelHeader text="#{bundle.Property_Creation_Update}"
+                        binding="#{backingBeanScope.MACreatePropertyBean.ph1}"
+                        id="ph1">
+          <f:facet name="context"/>
+          <f:facet name="menuBar"/>
+          <f:facet name="toolbar">
+            <af:toolbar binding="#{backingBeanScope.MACreatePropertyBean.t1}"
+                        id="t1">
+                  <af:button text="#{bundle.New}" binding="#{backingBeanScope.MACreatePropertyBean.cb5}" id="cb5"
+                             actionListener="#{backingBeanScope.MACreatePropertyBean.cb5_actionListener}"/>
+                  <af:button actionListener="#{bindings.Commit.execute}" text="#{bundle.Save}"
+                             binding="#{backingBeanScope.MACreatePropertyBean.cb2}" id="cb2"/>
+                  <af:button text="#{bundle.Save_Close}" binding="#{backingBeanScope.MACreatePropertyBean.cb1}" id="cb1"
+                             action="#{bundle.Save_Close}"/>
+                  <af:button text="#{bundle.Back}" binding="#{backingBeanScope.MACreatePropertyBean.cb3}" id="cb3" action="Back"
+                             rendered="false"/>
+                  <af:button actionListener="#{bindings.Rollback.execute}" text="#{bundle.Cancel}" immediate="true"
+                             binding="#{backingBeanScope.MACreatePropertyBean.cb4}" id="cb4" action="Back">
+                    <af:resetActionListener/>
+                  </af:button>
+                </af:toolbar>
+          </f:facet>
+          <f:facet name="legend"/>
+          <f:facet name="info"/>
+          <af:panelGridLayout binding="#{backingBeanScope.MACreatePropertyBean.pgl1}"
+                              id="pgl1">
+            <af:gridRow marginTop="5px" marginBottom="5px" height="auto"
+                        binding="#{backingBeanScope.MACreatePropertyBean.gr1}"
+                        id="gr1">
+              <af:gridCell marginStart="5px" width="50%"
+                           binding="#{backingBeanScope.MACreatePropertyBean.gc1}"
+                           id="gc1">
+                <af:panelFormLayout binding="#{backingBeanScope.MACreatePropertyBean.pfl3}"
+                                    id="pfl3" styleClass="AFStretchWidth">
+                  <af:inputText value="#{bindings.PropertySegment.inputValue}"
+                                label="#{bundle.PROPERTY_SEGMENT}"
+                                required="#{bindings.PropertySegment.hints.mandatory}"
+                                columns="#{bindings.PropertySegment.hints.displayWidth}"
+                                maximumLength="#{bindings.PropertySegment.hints.precision}"
+                                shortDesc="#{bindings.PropertySegment.hints.tooltip}"
+                                binding="#{backingBeanScope.MACreatePropertyBean.it1}"
+                                id="it1">
+                    <f:validator binding="#{bindings.PropertySegment.validator}"/>
+                  </af:inputText>
+                  <af:selectOneChoice value="#{bindings.ParentPropertyId.inputValue}"
+                                      label="#{bundle.PARENT_PROPERTY}"
+                                      required="#{bindings.ParentPropertyId.hints.mandatory}"
+                                      shortDesc="#{bindings.ParentPropertyId.hints.tooltip}"
+                                      binding="#{backingBeanScope.MACreatePropertyBean.soc1}"
+                                      id="soc1">
+                    <f:selectItems value="#{bindings.ParentPropertyId.items}"
+                                   binding="#{backingBeanScope.MACreatePropertyBean.si1}"
+                                   id="si1"/>
+                  </af:selectOneChoice>
+                  <af:selectOneChoice value="#{bindings.ParentTypeId.inputValue}"
+                                      label="#{bundle.PARENT_TYPE}"
+                                      shortDesc="#{bindings.ParentTypeId.hints.tooltip}"
+                                      binding="#{backingBeanScope.MACreatePropertyBean.soc2}"
+                                      id="soc2" autoSubmit="true"
+                                      required="true">
+                    <f:selectItems value="#{bindings.ParentTypeId.items}"
+                                   binding="#{backingBeanScope.MACreatePropertyBean.si2}"
+                                   id="si2"/>
+                  </af:selectOneChoice>
+                  <af:selectOneChoice value="#{bindings.TypeId.inputValue}"
+                                      label="#{bundle.Type}"
+                                      shortDesc="#{bindings.TypeId.hints.tooltip}"
+                                      binding="#{backingBeanScope.MACreatePropertyBean.soc7}"
+                                      id="soc7" partialTriggers="soc2"
+                                      required="#{bindings.TypeId.hints.mandatory}">
+                    <f:selectItems value="#{bindings.TypeId.items}"
+                                   binding="#{backingBeanScope.MACreatePropertyBean.si7}"
+                                   id="si7"/>
+                  </af:selectOneChoice>
+                  <af:inputText value="#{bindings.PropertyName.inputValue}"
+                                label="#{bundle.PROPERTY_NAME}"
+                                columns="25"
+                                maximumLength="#{bindings.PropertyName.hints.precision}"
+                                shortDesc="#{bindings.PropertyName.hints.tooltip}"
+                                binding="#{backingBeanScope.MACreatePropertyBean.it2}"
+                                id="it2" inlineStyle="width:2.0%;"
+                                required="true">
+                    <f:validator binding="#{bindings.PropertyName.validator}"/>
+                  </af:inputText>
+                  <af:selectOneChoice value="#{bindings.BlockBuldingName.inputValue}"
+                                      label="#{bundle.BLOCK_BUILDING_NAME}"
+                                      shortDesc="#{bindings.BlockBuldingName.hints.tooltip}"
+                                      binding="#{backingBeanScope.MACreatePropertyBean.soc3}"
+                                      id="soc3" required="true">
+                    <f:selectItems value="#{bindings.BlockBuldingName.items}"
+                                   binding="#{backingBeanScope.MACreatePropertyBean.si3}"
+                                   id="si3"/>
+                  </af:selectOneChoice>
+                  <af:selectOneChoice value="#{bindings.FloorNumber.inputValue}"
+                                      label="#{bundle.FLOOR_NUMBER}"
+                                      shortDesc="#{bindings.FloorNumber.hints.tooltip}"
+                                      binding="#{backingBeanScope.MACreatePropertyBean.soc4}"
+                                      id="soc4" required="true">
+                    <f:selectItems value="#{bindings.FloorNumber.items}"
+                                   binding="#{backingBeanScope.MACreatePropertyBean.si4}"
+                                   id="si4"/>
+                  </af:selectOneChoice>
+                  <af:selectOneChoice value="#{bindings.PropertyStatus.inputValue}"
+                                      label="#{bundle.PROPERTY_STATUS}"
+                                      shortDesc="#{bindings.PropertyStatus.hints.tooltip}"
+                                      binding="#{backingBeanScope.MACreatePropertyBean.soc5}"
+                                      id="soc5" required="true">
+                    <f:selectItems value="#{bindings.PropertyStatus.items}"
+                                   binding="#{backingBeanScope.MACreatePropertyBean.si5}"
+                                   id="si5"/>
+                  </af:selectOneChoice>
+                  <af:inputDate value="#{bindings.StartDate.inputValue}"
+                                label="#{bundle.START_DATE}"
+                                columns="25"
+                                shortDesc="#{bindings.StartDate.hints.tooltip}"
+                                binding="#{backingBeanScope.MACreatePropertyBean.id1}"
+                                id="id1" required="true">
+                    <f:validator binding="#{bindings.StartDate.validator}"/>
+                    <af:convertDateTime pattern="#{bindings.StartDate.format}"/>
+                  </af:inputDate>
+                  <af:inputDate value="#{bindings.EndDate.inputValue}"
+                                label="#{bundle.END_DATE}"
+                                columns="25"
+                                shortDesc="#{bindings.EndDate.hints.tooltip}"
+                                binding="#{backingBeanScope.MACreatePropertyBean.id2}"
+                                id="id2" required="true">
+                    <f:validator binding="#{bindings.EndDate.validator}"/>
+                    <af:convertDateTime pattern="#{bindings.EndDate.format}"/>
+                  </af:inputDate>
+                  <af:selectBooleanCheckbox value="#{bindings.AvailableForRentFlag.inputValue}"
+                                            label="#{bundle.AVAILABLE_FOR_RENT}"
+                                            shortDesc="#{bindings.AvailableForRentFlag.hints.tooltip}"
+                                            binding="#{backingBeanScope.MACreatePropertyBean.sbc1}"
+                                            id="sbc1"/>
+                  <af:inputText value="#{bindings.PropertyCountry.inputValue}"
+                                label="#{bundle.PROPERTY_COUNTRY}"
+                                required="#{bindings.PropertyCountry.hints.mandatory}"
+                                columns="25"
+                                maximumLength="#{bindings.PropertyCountry.hints.precision}"
+                                shortDesc="#{bindings.PropertyCountry.hints.tooltip}"
+                                binding="#{backingBeanScope.MACreatePropertyBean.it11}"
+                                id="it11">
+                    <f:validator binding="#{bindings.PropertyCountry.validator}"/>
+                  </af:inputText>
+                  <af:inputText value="#{bindings.PropertySite.inputValue}"
+                                label="#{bundle.PROPERTY_SITE}"
+                                required="#{bindings.PropertySite.hints.mandatory}"
+                                columns="25"
+                                maximumLength="#{bindings.PropertySite.hints.precision}"
+                                shortDesc="#{bindings.PropertySite.hints.tooltip}"
+                                binding="#{backingBeanScope.MACreatePropertyBean.it12}"
+                                id="it12">
+                    <f:validator binding="#{bindings.PropertySite.validator}"/>
+                  </af:inputText>
+                </af:panelFormLayout>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" marginEnd="5px" width="50%"
+                           binding="#{backingBeanScope.MACreatePropertyBean.gc2}"
+                           id="gc2">
+                <af:panelFormLayout binding="#{backingBeanScope.MACreatePropertyBean.pfl2}"
+                                    id="pfl2">
+                  <f:facet name="footer"/>
+                  <af:inputText value="#{bindings.UnitNumber.inputValue}"
+                                label="#{bundle.UNIT_NUMBER}"
+                                required="#{bindings.UnitNumber.hints.mandatory}"
+                                columns="25"
+                                maximumLength="#{bindings.UnitNumber.hints.precision}"
+                                shortDesc="#{bindings.UnitNumber.hints.tooltip}"
+                                binding="#{backingBeanScope.MACreatePropertyBean.it3}"
+                                id="it3">
+                    <f:validator binding="#{bindings.UnitNumber.validator}"/>
+                  </af:inputText>
+                  <af:inputText value="#{bindings.UnitSqMt.inputValue}"
+                                label="#{bundle.UNIT_SQMT}"
+                                required="#{bindings.UnitSqMt.hints.mandatory}"
+                                columns="25"
+                                maximumLength="#{bindings.UnitSqMt.hints.precision}"
+                                shortDesc="#{bindings.UnitSqMt.hints.tooltip}"
+                                binding="#{backingBeanScope.MACreatePropertyBean.it4}"
+                                id="it4">
+                    <f:validator binding="#{bindings.UnitSqMt.validator}"/>
+                  </af:inputText>
+                  <af:inputNumberSpinbox value="#{bindings.NumberOfRooms.inputValue}"
+                                         label="#{bundle.NUMBER_OF_ROOMS}"
+                                         required="#{bindings.NumberOfRooms.hints.mandatory}"
+                                         columns="25"
+                                         shortDesc="#{bindings.NumberOfRooms.hints.tooltip}"
+                                         binding="#{backingBeanScope.MACreatePropertyBean.it5}"
+                                         id="it5">
+                    <f:validator binding="#{bindings.NumberOfRooms.validator}"/>
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.NumberOfRooms.format}"/>
+                  </af:inputNumberSpinbox>
+                  <af:inputNumberSpinbox value="#{bindings.NumberOfBathrooms.inputValue}"
+                                         label="#{bundle.NUMBER_OF_BATHROOMS}"
+                                         required="#{bindings.NumberOfBathrooms.hints.mandatory}"
+                                         columns="25"
+                                         shortDesc="#{bindings.NumberOfBathrooms.hints.tooltip}"
+                                         binding="#{backingBeanScope.MACreatePropertyBean.it6}"
+                                         id="it6">
+                    <f:validator binding="#{bindings.NumberOfBathrooms.validator}"/>
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.NumberOfBathrooms.format}"/>
+                  </af:inputNumberSpinbox>
+                  <af:inputNumberSpinbox value="#{bindings.NumberOfParkings.inputValue}"
+                                         label="#{bundle.NUMBER_OF_PARKINGS}"
+                                         required="#{bindings.NumberOfParkings.hints.mandatory}"
+                                         columns="25"
+                                         shortDesc="#{bindings.NumberOfParkings.hints.tooltip}"
+                                         binding="#{backingBeanScope.MACreatePropertyBean.it7}"
+                                         id="it7">
+                    <f:validator binding="#{bindings.NumberOfParkings.validator}"/>
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.NumberOfParkings.format}"/>
+                  </af:inputNumberSpinbox>
+                  <af:selectOneChoice value="#{bindings.DuplexFlag.inputValue}"
+                                      label="#{bundle.DUPLEX}"
+                                      required="#{bindings.DuplexFlag.hints.mandatory}"
+                                      shortDesc="#{bindings.DuplexFlag.hints.tooltip}"
+                                      binding="#{backingBeanScope.MACreatePropertyBean.soc6}"
+                                      id="soc6">
+                    <f:selectItems value="#{bindings.DuplexFlag.items}"
+                                   binding="#{backingBeanScope.MACreatePropertyBean.si6}"
+                                   id="si6"/>
+                  </af:selectOneChoice>
+                  <af:inputText value="#{bindings.RentAmount.inputValue}"
+                                label="#{bundle.RENT_AMOUNT}"
+                                required="#{bindings.RentAmount.hints.mandatory}"
+                                columns="25"
+                                maximumLength="#{bindings.RentAmount.hints.precision}"
+                                shortDesc="#{bindings.RentAmount.hints.tooltip}"
+                                binding="#{backingBeanScope.MACreatePropertyBean.it8}"
+                                id="it8">
+                    <f:validator binding="#{bindings.RentAmount.validator}"/>
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.RentAmount.format}"/>
+                  </af:inputText>
+                  <af:inputText value="#{bindings.Comments.inputValue}"
+                                label="#{bundle.Comments}"
+                                required="#{bindings.Comments.hints.mandatory}"
+                                columns="35"
+                                maximumLength="#{bindings.Comments.hints.precision}"
+                                shortDesc="#{bindings.Comments.hints.tooltip}"
+                                binding="#{backingBeanScope.MACreatePropertyBean.it9}"
+                                id="it9" rows="5" wrap="soft">
+                    <f:validator binding="#{bindings.Comments.validator}"/>
+                  </af:inputText>
+                  <af:inputText value="#{bindings.LastLeasedAmount.inputValue}"
+                                label="#{bundle.LAST_LEASED_AMOUNT}"
+                                required="#{bindings.LastLeasedAmount.hints.mandatory}"
+                                columns="25"
+                                maximumLength="#{bindings.LastLeasedAmount.hints.precision}"
+                                shortDesc="#{bindings.LastLeasedAmount.hints.tooltip}"
+                                binding="#{backingBeanScope.MACreatePropertyBean.it10}"
+                                id="it10">
+                    <f:validator binding="#{bindings.LastLeasedAmount.validator}"/>
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.LastLeasedAmount.format}"/>
+                  </af:inputText>
+                </af:panelFormLayout>
+              </af:gridCell>
+            </af:gridRow>
+          </af:panelGridLayout>
+          <af:panelGridLayout binding="#{backingBeanScope.MACreatePropertyBean.pgl2}"
+                              id="pgl2"
+                              inlineStyle="border-style:groove; border-width:thin; width:60%;"
+                              styleClass="AFStretchWidth" rendered="false">
+            <af:gridRow marginTop="5px" marginBottom="5px" height="auto"
+                        binding="#{backingBeanScope.MACreatePropertyBean.gr3}"
+                        id="gr3">
+              <af:gridCell marginStart="5px" marginEnd="5px" width="50%"
+                           binding="#{backingBeanScope.MACreatePropertyBean.gc6}"
+                           id="gc6">
+                <af:panelFormLayout binding="#{backingBeanScope.MACreatePropertyBean.pfl5}"
+                                    id="pfl5">
+                  <f:facet name="footer"/>
+                  <af:inputDate value="#{bindings.CreationDate.inputValue}"
+                                label="#{bindings.CreationDate.hints.label}"
+                                required="#{bindings.CreationDate.hints.mandatory}"
+                                shortDesc="#{bindings.CreationDate.hints.tooltip}"
+                                binding="#{backingBeanScope.MACreatePropertyBean.id3}"
+                                id="id3">
+                    <f:validator binding="#{bindings.CreationDate.validator}"/>
+                    <af:convertDateTime pattern="#{bindings.CreationDate.format}"/>
+                  </af:inputDate>
+                  <af:inputText value="#{bindings.CreatedBy.inputValue}"
+                                label="#{bindings.CreatedBy.hints.label}"
+                                required="#{bindings.CreatedBy.hints.mandatory}"
+                                columns="25"
+                                maximumLength="#{bindings.CreatedBy.hints.precision}"
+                                shortDesc="#{bindings.CreatedBy.hints.tooltip}"
+                                binding="#{backingBeanScope.MACreatePropertyBean.it13}"
+                                id="it13">
+                    <f:validator binding="#{bindings.CreatedBy.validator}"/>
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.CreatedBy.format}"/>
+                  </af:inputText>
+                </af:panelFormLayout>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" width="50%"
+                           binding="#{backingBeanScope.MACreatePropertyBean.gc5}"
+                           id="gc5">
+                <af:panelFormLayout binding="#{backingBeanScope.MACreatePropertyBean.pfl6}"
+                                    id="pfl6">
+                  <f:facet name="footer"/>
+                  <af:inputDate value="#{bindings.LastUpdateDate.inputValue}"
+                                label="#{bindings.LastUpdateDate.hints.label}"
+                                required="#{bindings.LastUpdateDate.hints.mandatory}"
+                                shortDesc="#{bindings.LastUpdateDate.hints.tooltip}"
+                                binding="#{backingBeanScope.MACreatePropertyBean.id4}"
+                                id="id4">
+                    <f:validator binding="#{bindings.LastUpdateDate.validator}"/>
+                    <af:convertDateTime pattern="#{bindings.LastUpdateDate.format}"/>
+                  </af:inputDate>
+                  <af:inputText value="#{bindings.LastUpdatedBy.inputValue}"
+                                label="#{bindings.LastUpdatedBy.hints.label}"
+                                required="#{bindings.LastUpdatedBy.hints.mandatory}"
+                                columns="25"
+                                maximumLength="#{bindings.LastUpdatedBy.hints.precision}"
+                                shortDesc="#{bindings.LastUpdatedBy.hints.tooltip}"
+                                binding="#{backingBeanScope.MACreatePropertyBean.it14}"
+                                id="it14">
+                    <f:validator binding="#{bindings.LastUpdatedBy.validator}"/>
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.LastUpdatedBy.format}"/>
+                  </af:inputText>
+                </af:panelFormLayout>
+              </af:gridCell>
+            </af:gridRow>
+          </af:panelGridLayout>
+          <af:showDetailHeader text="#{bundle.Owner_Details}" disclosed="true"
+                               binding="#{backingBeanScope.MACreatePropertyBean.sdh1}"
+                               id="sdh1">
+            <f:facet name="context"/>
+            <f:facet name="menuBar"/>
+            <f:facet name="toolbar"/>
+            <f:facet name="legend"/>
+            <f:facet name="info"/>
+            <af:panelGridLayout binding="#{backingBeanScope.MACreatePropertyBean.pgl3}"
+                                id="pgl3">
+              <af:gridRow marginTop="5px" marginBottom="5px" height="auto"
+                          binding="#{backingBeanScope.MACreatePropertyBean.gr2}"
+                          id="gr2">
+                <af:gridCell marginStart="5px" width="50%"
+                             binding="#{backingBeanScope.MACreatePropertyBean.gc3}"
+                             id="gc3">
+                  <af:panelFormLayout binding="#{backingBeanScope.MACreatePropertyBean.pfl1}"
+                                      id="pfl1">
+                    <af:selectOneChoice value="#{bindings.OwnerId.inputValue}"
+                                        label="#{bundle.Owner}"
+                                        shortDesc="#{bindings.OwnerId.hints.tooltip}"
+                                        binding="#{backingBeanScope.MACreatePropertyBean.soc8}"
+                                        id="soc8" required="true">
+                      <f:selectItems value="#{bindings.OwnerId.items}"
+                                     binding="#{backingBeanScope.MACreatePropertyBean.si8}"
+                                     id="si8"/>
+                    </af:selectOneChoice>
+                    <af:inputText value="#{bindings.ContractSegment.inputValue}"
+                                  label="#{bundle.CONTRACT_SEGMENT}"
+                                  required="#{bindings.ContractSegment.hints.mandatory}"
+                                  columns="25"
+                                  maximumLength="#{bindings.ContractSegment.hints.precision}"
+                                  shortDesc="#{bindings.ContractSegment.hints.tooltip}"
+                                  binding="#{backingBeanScope.MACreatePropertyBean.it15}"
+                                  id="it15">
+                      <f:validator binding="#{bindings.ContractSegment.validator}"/>
+                    </af:inputText>
+                    <af:inputText value="#{bindings.ContractSubject.inputValue}"
+                                  label="#{bundle.CONTRACT_SUBJECT}"
+                                  required="#{bindings.ContractSubject.hints.mandatory}"
+                                  columns="25"
+                                  maximumLength="#{bindings.ContractSubject.hints.precision}"
+                                  shortDesc="#{bindings.ContractSubject.hints.tooltip}"
+                                  binding="#{backingBeanScope.MACreatePropertyBean.it16}"
+                                  id="it16">
+                      <f:validator binding="#{bindings.ContractSubject.validator}"/>
+                    </af:inputText>
+                    <af:inputDate value="#{bindings.ContractStartDate.inputValue}"
+                                  label="#{bundle.CONTRACT_START_DATE}"
+                                  required="#{bindings.ContractStartDate.hints.mandatory}"
+                                  columns="25"
+                                  shortDesc="#{bindings.ContractStartDate.hints.tooltip}"
+                                  binding="#{backingBeanScope.MACreatePropertyBean.id5}"
+                                  id="id5">
+                      <f:validator binding="#{bindings.ContractStartDate.validator}"/>
+                      <af:convertDateTime pattern="#{bindings.ContractStartDate.format}"/>
+                    </af:inputDate>
+                    <af:inputDate value="#{bindings.ContractEndDate.inputValue}"
+                                  label="#{bundle.CONTRACT_END_DATE}"
+                                  required="#{bindings.ContractEndDate.hints.mandatory}"
+                                  columns="25"
+                                  shortDesc="#{bindings.ContractEndDate.hints.tooltip}"
+                                  binding="#{backingBeanScope.MACreatePropertyBean.id6}"
+                                  id="id6">
+                      <f:validator binding="#{bindings.ContractEndDate.validator}"/>
+                      <af:convertDateTime pattern="#{bindings.ContractEndDate.format}"/>
+                    </af:inputDate>
+                  </af:panelFormLayout>
+                </af:gridCell>
+                <af:gridCell marginStart="5px" marginEnd="5px" width="50%"
+                             binding="#{backingBeanScope.MACreatePropertyBean.gc4}"
+                             id="gc4">
+                  <af:panelFormLayout binding="#{backingBeanScope.MACreatePropertyBean.pfl4}"
+                                      id="pfl4">
+                    <af:inputText value="#{bindings.PrecentageAmount.inputValue}"
+                                  label="#{bundle.PRECENTAGE_AMOUNT}"
+                                  required="#{bindings.PrecentageAmount.hints.mandatory}"
+                                  columns="#{bindings.PrecentageAmount.hints.displayWidth}"
+                                  maximumLength="#{bindings.PrecentageAmount.hints.precision}"
+                                  shortDesc="#{bindings.PrecentageAmount.hints.tooltip}"
+                                  binding="#{backingBeanScope.MACreatePropertyBean.it17}"
+                                  id="it17">
+                      <f:validator binding="#{bindings.PrecentageAmount.validator}"/>
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.PrecentageAmount.format}"/>
+                    </af:inputText>
+                    <af:inputText value="#{bindings.ReceiptAmount.inputValue}"
+                                  label="#{bundle.RECEIPT_AMOUNT}"
+                                  required="#{bindings.ReceiptAmount.hints.mandatory}"
+                                  columns="25"
+                                  maximumLength="#{bindings.ReceiptAmount.hints.precision}"
+                                  shortDesc="#{bindings.ReceiptAmount.hints.tooltip}"
+                                  binding="#{backingBeanScope.MACreatePropertyBean.it18}"
+                                  id="it18">
+                      <f:validator binding="#{bindings.ReceiptAmount.validator}"/>
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.ReceiptAmount.format}"/>
+                    </af:inputText>
+                    <af:inputText value="#{bindings.SignatureAmount.inputValue}"
+                                  label="#{bundle.SIGNATURE_AMOUNT}"
+                                  required="#{bindings.SignatureAmount.hints.mandatory}"
+                                  columns="25"
+                                  maximumLength="#{bindings.SignatureAmount.hints.precision}"
+                                  shortDesc="#{bindings.SignatureAmount.hints.tooltip}"
+                                  binding="#{backingBeanScope.MACreatePropertyBean.it19}"
+                                  id="it19">
+                      <f:validator binding="#{bindings.SignatureAmount.validator}"/>
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.SignatureAmount.format}"/>
+                    </af:inputText>
+                  </af:panelFormLayout>
+                </af:gridCell>
+              </af:gridRow>
+            </af:panelGridLayout>
+          </af:showDetailHeader>
+        </af:panelHeader>
+        </f:facet>
+                    <f:facet name="header">
+            <af:outputText value="#{bundle.PropertyManagement}" id="ot1" binding="#{backingBeanScope.MACreatePropertyBean.ot1}"/>
+          </f:facet>
+                    <f:facet name="end"/>
+                    <f:facet name="start"/>
+                    <f:facet name="branding"/>
+                    <f:facet name="copyright"/>
+                    <f:facet name="status">
+            <af:toolbar id="t3" binding="#{backingBeanScope.MACreatePropertyBean.t3}">
+              <af:button id="b2" binding="#{backingBeanScope.MACreatePropertyBean.b2}"
+                         partialSubmit="false" shortDesc="#{bundle.English}" icon="/images/icons/english.png"/>
+              <af:button id="b1" binding="#{backingBeanScope.MACreatePropertyBean.b1}" icon="/images/icons/arabic.png"
+                         shortDesc="#{bundle.Arabic}" partialSubmit="false"/>
+            </af:toolbar>
+          </f:facet>
+                    <f:attribute name="endColumnSize" value="0"/>
+                    <f:attribute name="startColumnSize" value="0"/>
+                </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+  <!--oracle-jdev-comment:auto-binding-backing-bean-name:MACreatePropertyBean-->
+</jsp:root>

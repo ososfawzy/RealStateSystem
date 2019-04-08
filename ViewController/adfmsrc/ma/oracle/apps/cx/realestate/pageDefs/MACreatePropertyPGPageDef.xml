@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.65.57" id="MACreatePropertyPGPageDef"
+                Package="ma.oracle.apps.cx.realestate.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables" Refresh="ifNeeded"/>
+    <iterator Binds="MARealEstatePropertyVO1" RangeSize="25"
+              DataControl="MARealEstatePropertyAMDataControl"
+              id="MARealEstatePropertyVO1Iterator" Refresh="ifNeeded"/>
+    <iterator Binds="MARealEstateContractVO1" RangeSize="10"
+              DataControl="MARealEstatePropertyAMDataControl"
+              id="MARealEstateContractVO1Iterator" Refresh="ifNeeded"/>
+    <iterator Binds="MARealEstatePropertyTypesVVO1" RangeSize="-1"
+              DataControl="MARealEstatePropertyAMDataControl"
+              id="MARealEstatePropertyTypesVVO1Iterator1" Refresh="ifNeeded"/>
+    <iterator Binds="MARealEstatePropertySubTypesVVO1" RangeSize="-1"
+              DataControl="MARealEstatePropertyAMDataControl"
+              id="MARealEstatePropertySubTypesVVO1Iterator1"
+              Refresh="ifNeeded"/>
+  </executables>
+  <bindings>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="MARealEstatePropertyAMDataControl"/>
+    <attributeValues IterBinding="MARealEstateContractVO1Iterator"
+                     id="ContractId">
+      <AttrNames>
+        <Item Value="ContractId"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="MARealEstatePropertyVO1Iterator" StaticList="false"
+          Uses="LOV_ParentPropertyId" id="ParentPropertyId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="MARealEstatePropertyVO1Iterator"
+                     id="PropertyName">
+      <AttrNames>
+        <Item Value="PropertyName"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="MARealEstatePropertyVO1Iterator" StaticList="false"
+          Uses="LOV_BlockBuldingName" id="BlockBuldingName"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="MARealEstatePropertyVO1Iterator" StaticList="false"
+          Uses="LOV_FloorNumber" id="FloorNumber" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <list IterBinding="MARealEstatePropertyVO1Iterator" StaticList="false"
+          Uses="LOV_PropertyStatus" id="PropertyStatus" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="MARealEstatePropertyVO1Iterator"
+                     id="StartDate">
+      <AttrNames>
+        <Item Value="StartDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertyVO1Iterator" id="EndDate">
+      <AttrNames>
+        <Item Value="EndDate"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="MARealEstatePropertyVO1Iterator"
+            id="AvailableForRentFlag" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="AvailableForRentFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <attributeValues IterBinding="MARealEstatePropertyVO1Iterator"
+                     id="UnitNumber">
+      <AttrNames>
+        <Item Value="UnitNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertyVO1Iterator"
+                     id="UnitSqMt">
+      <AttrNames>
+        <Item Value="UnitSqMt"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertyVO1Iterator"
+                     id="NumberOfRooms">
+      <AttrNames>
+        <Item Value="NumberOfRooms"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertyVO1Iterator"
+                     id="NumberOfBathrooms">
+      <AttrNames>
+        <Item Value="NumberOfBathrooms"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertyVO1Iterator"
+                     id="NumberOfParkings">
+      <AttrNames>
+        <Item Value="NumberOfParkings"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="MARealEstatePropertyVO1Iterator" StaticList="false"
+          Uses="LOV_DuplexFlag" id="DuplexFlag" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="MARealEstatePropertyVO1Iterator"
+                     id="RentAmount">
+      <AttrNames>
+        <Item Value="RentAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertyVO1Iterator"
+                     id="Comments">
+      <AttrNames>
+        <Item Value="Comments"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertyVO1Iterator"
+                     id="LastLeasedAmount">
+      <AttrNames>
+        <Item Value="LastLeasedAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertyVO1Iterator"
+                     id="PropertyCountry">
+      <AttrNames>
+        <Item Value="PropertyCountry"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertyVO1Iterator"
+                     id="PropertySite">
+      <AttrNames>
+        <Item Value="PropertySite"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertyVO1Iterator"
+                     id="CreatedBy">
+      <AttrNames>
+        <Item Value="CreatedBy"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertyVO1Iterator"
+                     id="CreationDate">
+      <AttrNames>
+        <Item Value="CreationDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertyVO1Iterator"
+                     id="LastUpdatedBy">
+      <AttrNames>
+        <Item Value="LastUpdatedBy"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertyVO1Iterator"
+                     id="LastUpdateDate">
+      <AttrNames>
+        <Item Value="LastUpdateDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateContractVO1Iterator"
+                     id="ContractSegment">
+      <AttrNames>
+        <Item Value="ContractSegment"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateContractVO1Iterator"
+                     id="ContractSubject">
+      <AttrNames>
+        <Item Value="ContractSubject"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateContractVO1Iterator"
+                     id="ContractStartDate">
+      <AttrNames>
+        <Item Value="ContractStartDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateContractVO1Iterator"
+                     id="ContractEndDate">
+      <AttrNames>
+        <Item Value="ContractEndDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateContractVO1Iterator"
+                     id="PrecentageAmount">
+      <AttrNames>
+        <Item Value="PrecentageAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateContractVO1Iterator"
+                     id="ReceiptAmount">
+      <AttrNames>
+        <Item Value="ReceiptAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateContractVO1Iterator"
+                     id="SignatureAmount">
+      <AttrNames>
+        <Item Value="SignatureAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="MARealEstatePropertyVO1Iterator" id="CreateInsert"
+            InstanceName="MARealEstatePropertyAMDataControl.MARealEstatePropertyVO1"
+            DataControl="MARealEstatePropertyAMDataControl"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="MARealEstateContractVO1Iterator" id="CreateInsert1"
+            InstanceName="MARealEstatePropertyAMDataControl.MARealEstateContractVO1"
+            DataControl="MARealEstatePropertyAMDataControl"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <attributeValues IterBinding="MARealEstatePropertyVO1Iterator"
+                     id="PropertySegment">
+      <AttrNames>
+        <Item Value="PropertySegment"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="MARealEstatePropertyVO1Iterator" id="ParentTypeId"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"
+          StaticList="false" NullValueFlag="start" Uses="LOV_ParentTypeId"/>
+    <list IterBinding="MARealEstatePropertyVO1Iterator" id="TypeId"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"
+          StaticList="false" NullValueFlag="start" Uses="LOV_TypeId"/>
+    <list IterBinding="MARealEstateContractVO1Iterator" StaticList="false"
+          Uses="LOV_OwnerId" id="OwnerId" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject"/>
+    <action id="Rollback" RequiresUpdateModel="false"
+            Action="rollbackTransaction"
+            DataControl="MARealEstatePropertyAMDataControl"/>
+    <methodAction id="en_lang" RequiresUpdateModel="true" Action="invokeMethod" MethodName="en_lang"
+                  IsViewObjectMethod="false" DataControl="MARealEstatePropertyAMDataControl"
+                  InstanceName="data.MARealEstatePropertyAMDataControl.dataProvider"
+                  ReturnName="data.MARealEstatePropertyAMDataControl.methodResults.en_lang_MARealEstatePropertyAMDataControl_dataProvider_en_lang_result"/>
+    <methodAction id="ar_lang" RequiresUpdateModel="true" Action="invokeMethod" MethodName="ar_lang"
+                  IsViewObjectMethod="false" DataControl="MARealEstatePropertyAMDataControl"
+                  InstanceName="data.MARealEstatePropertyAMDataControl.dataProvider"
+                  ReturnName="data.MARealEstatePropertyAMDataControl.methodResults.ar_lang_MARealEstatePropertyAMDataControl_dataProvider_ar_lang_result"/>
+  </bindings>
+</pageDefinition>

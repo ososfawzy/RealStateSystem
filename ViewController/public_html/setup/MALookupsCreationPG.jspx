@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view beforePhase="#{backingBeanScope.MALookupsCreationBean.beforePhase}">
+        <af:document title="#{bundle.Lookups_Creation}" id="d1" binding="#{backingBeanScope.MALookupsCreationBean.d1}">
+            <af:messages id="m1" binding="#{backingBeanScope.MALookupsCreationBean.m1}"/>
+            <af:form id="f1" binding="#{backingBeanScope.MALookupsCreationBean.f1}">
+                <af:pageTemplate viewId="#{pageFlowScope.Facet}" id="pt1">
+                    <f:facet name="center">
+                        <af:panelHeader text="#{bundle.Create_Lookup_Type}" id="ph1"
+                                        binding="#{backingBeanScope.MALookupsCreationBean.ph1}">
+                            <f:facet name="context"/>
+                            <f:facet name="menuBar"/>
+                            <f:facet name="toolbar">
+                                <af:toolbar id="t4" binding="#{backingBeanScope.MALookupsCreationBean.t4}">
+                                    <af:button actionListener="#{bindings.Rollback.execute}" text="#{bundle.Cancel}"
+                                               immediate="true" id="b4"
+                                               binding="#{backingBeanScope.MALookupsCreationBean.b4}"
+                                               icon="/images/icons/rollback.png" action="BackToLookupSearch">
+                                        <af:resetActionListener/>
+                                    </af:button>
+                                    <af:button actionListener="#{bindings.Commit.execute}" text="#{bundle.Apply}" id="b3"
+                                               binding="#{backingBeanScope.MALookupsCreationBean.b3}"
+                                               icon="/images/icons/save_ena.png" action="BackToLookupSearch"/>
+                                </af:toolbar>
+                            </f:facet>
+                            <f:facet name="legend"/>
+                            <f:facet name="info"/>
+                            <af:panelGroupLayout id="pgl1" binding="#{backingBeanScope.MALookupsCreationBean.pgl1}"
+                                                 layout="vertical">
+                                <af:panelFormLayout id="pfl1" binding="#{backingBeanScope.MALookupsCreationBean.pfl1}">
+                                    <af:inputText value="#{bindings.LookupType.inputValue}"
+                                                  label="#{bindings.LookupType.hints.label}"
+                                                  required="#{bindings.LookupType.hints.mandatory}"
+                                                  columns="#{bindings.LookupType.hints.displayWidth}"
+                                                  maximumLength="#{bindings.LookupType.hints.precision}"
+                                                  shortDesc="#{bindings.LookupType.hints.tooltip}" id="it1"
+                                                  binding="#{backingBeanScope.MALookupsCreationBean.it1}">
+                                        <f:validator binding="#{bindings.LookupType.validator}"/>
+                                    </af:inputText>
+                                </af:panelFormLayout>
+                                <af:spacer width="10" height="10" id="s1"
+                                           binding="#{backingBeanScope.MALookupsCreationBean.s1}"/>
+                                <af:panelBox text="#{bundle.Lookup_Codes}" id="pb2"
+                                             binding="#{backingBeanScope.MALookupsCreationBean.pb2}">
+                                    <f:facet name="toolbar"/>
+                                    <af:panelCollection id="pc1" binding="#{backingBeanScope.MALookupsCreationBean.pc1}"
+                                                        styleClass="AFStretchWidth">
+                                        <f:facet name="menus"/>
+                                        <f:facet name="toolbar">
+                                            <af:toolbar id="t2" binding="#{backingBeanScope.MALookupsCreationBean.t2}">
+                                                <af:button actionListener="#{bindings.CreateInsert.execute}"
+                                                           text="#{bundle.New_Lookup_Code}"
+                                                           disabled="#{!bindings.CreateInsert.enabled}" id="b1"
+                                                           binding="#{backingBeanScope.MALookupsCreationBean.b1}"
+                                                           icon="/images/icons/new_ena.png"/>
+                                            </af:toolbar>
+                                        </f:facet>
+                                        <f:facet name="statusbar"/>
+                                        <af:table value="#{bindings.MALookupValuesVO.collectionModel}" var="row"
+                                                  rows="#{bindings.MALookupValuesVO.rangeSize}"
+                                                  emptyText="#{bindings.MALookupValuesVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                  rowBandingInterval="0"
+                                                  selectedRowKeys="#{bindings.MALookupValuesVO.collectionModel.selectedRow}"
+                                                  selectionListener="#{bindings.MALookupValuesVO.collectionModel.makeCurrent}"
+                                                  rowSelection="single"
+                                                  fetchSize="#{bindings.MALookupValuesVO.rangeSize}" id="t1"
+                                                  binding="#{backingBeanScope.MALookupsCreationBean.t1}"
+                                                  partialTriggers="::b1">
+                                            <af:column sortProperty="#{bindings.MALookupValuesVO.hints.LookupCode.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MALookupValuesVO.hints.LookupCode.label}"
+                                                       id="c2" width="250">
+                                                <af:inputText value="#{row.bindings.LookupCode.inputValue}"
+                                                              label="#{bindings.MALookupValuesVO.hints.LookupCode.label}"
+                                                              required="#{bindings.MALookupValuesVO.hints.LookupCode.mandatory}"
+                                                              columns="#{bindings.MALookupValuesVO.hints.LookupCode.displayWidth}"
+                                                              maximumLength="#{bindings.MALookupValuesVO.hints.LookupCode.precision}"
+                                                              shortDesc="#{bindings.MALookupValuesVO.hints.LookupCode.tooltip}"
+                                                              id="it3">
+                                                    <f:validator binding="#{row.bindings.LookupCode.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MALookupValuesVO.hints.Meaning.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MALookupValuesVO.hints.Meaning.label}"
+                                                       id="c3" width="250">
+                                                <af:inputText value="#{row.bindings.Meaning.inputValue}"
+                                                              label="#{bindings.MALookupValuesVO.hints.Meaning.label}"
+                                                              required="#{bindings.MALookupValuesVO.hints.Meaning.mandatory}"
+                                                              columns="#{bindings.MALookupValuesVO.hints.Meaning.displayWidth}"
+                                                              maximumLength="#{bindings.MALookupValuesVO.hints.Meaning.precision}"
+                                                              shortDesc="#{bindings.MALookupValuesVO.hints.Meaning.tooltip}"
+                                                              id="it4">
+                                                    <f:validator binding="#{row.bindings.Meaning.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MALookupValuesVO.hints.Description.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MALookupValuesVO.hints.Description.label}"
+                                                       id="c1" width="400">
+                                                <af:inputText value="#{row.bindings.Description.inputValue}"
+                                                              label="#{bindings.MALookupValuesVO.hints.Description.label}"
+                                                              required="#{bindings.MALookupValuesVO.hints.Description.mandatory}"
+                                                              columns="#{bindings.MALookupValuesVO.hints.Description.displayWidth}"
+                                                              maximumLength="#{bindings.MALookupValuesVO.hints.Description.precision}"
+                                                              shortDesc="#{bindings.MALookupValuesVO.hints.Description.tooltip}"
+                                                              id="it2">
+                                                    <f:validator binding="#{row.bindings.Description.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                        </af:table>
+                                    </af:panelCollection>
+                                </af:panelBox>
+                            </af:panelGroupLayout>
+                        </af:panelHeader>
+                    </f:facet>
+                    <f:facet name="header">
+                        <af:toolbar id="t3" binding="#{backingBeanScope.MALookupsCreationBean.t3}">
+                            <af:link text="#{bundle.Home}" id="l1" binding="#{backingBeanScope.MALookupsCreationBean.l1}"
+                                     action="home"/>
+                        </af:toolbar>
+                    </f:facet>
+                    <f:facet name="end"/>
+                    <f:facet name="start"/>
+                    <f:facet name="branding"/>
+                    <f:facet name="copyright"/>
+                    <f:facet name="status">
+                        <af:toolbar id="t5" binding="#{backingBeanScope.MALookupsCreationBean.t5}">
+                            <af:button id="b2" binding="#{backingBeanScope.MALookupsCreationBean.b2}"
+                                       actionListener="#{bindings.en_lang.execute}"
+                                       disabled="#{!bindings.en_lang.enabled}" icon="/images/icons/english.png"
+                                       shortDesc="#{bundle.English}" partialSubmit="false"/>
+                            <af:button id="b5" binding="#{backingBeanScope.MALookupsCreationBean.b5}"
+                                       actionListener="#{bindings.ar_lang.execute}"
+                                       disabled="#{!bindings.ar_lang.enabled}" partialSubmit="false"
+                                       icon="/images/icons/arabic.png" shortDesc="#{bundle.Arabic}"/>
+                        </af:toolbar>
+                    </f:facet>
+                    <f:attribute name="endColumnSize" value="0"/>
+                    <f:attribute name="startColumnSize" value="0"/>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+    <!--oracle-jdev-comment:auto-binding-backing-bean-name:MALookupsCreationBean-->
+</jsp:root>

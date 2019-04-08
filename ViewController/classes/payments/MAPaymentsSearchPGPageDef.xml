@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.10.8" id="MAPaymentsSearchPGPageDef"
+                Package="payments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator id="MAInstallmentPaymentTermsVOIterator" Binds="MAInstallmentPaymentTermsVO"
+              DataControl="MARealEstatePropertyAMDataControl" RangeSize="25"/>
+    <iterator id="MARentPaymentTermsVOIterator" Binds="MARentPaymentTermsVO"
+              DataControl="MARealEstatePropertyAMDataControl" RangeSize="25"/>
+    <iterator Binds="MAInstallmentPaymentTermsVVO" RangeSize="25" DataControl="MARealEstatePropertyAMDataControl"
+              id="MAInstallmentPaymentTermsVVOIterator"/>
+    <searchRegion Criteria="MAInstallmentPaymentTermsVVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="MAInstallmentPaymentTermsVVOIterator" id="MAInstallmentPaymentTermsVVOCriteriaQuery"/>
+    <iterator Binds="MARentPaymentTermsVVO" RangeSize="25" DataControl="MARealEstatePropertyAMDataControl"
+              id="MARentPaymentTermsVVOIterator"/>
+    <searchRegion Criteria="MARentPaymentTermsVVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" Binds="MARentPaymentTermsVVOIterator"
+                  id="MARentPaymentTermsVVOCriteriaQuery"/>
+  </executables>
+  <bindings>
+    <action IterBinding="MAInstallmentPaymentTermsVOIterator" id="CreateInstallment"
+            InstanceName="MARealEstatePropertyAMDataControl.MAInstallmentPaymentTermsVO"
+            DataControl="MARealEstatePropertyAMDataControl" RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="MARentPaymentTermsVOIterator" id="CreateRent"
+            InstanceName="MARealEstatePropertyAMDataControl.MARentPaymentTermsVO"
+            DataControl="MARealEstatePropertyAMDataControl" RequiresUpdateModel="true" Action="createInsertRow"/>
+    <tree IterBinding="MAInstallmentPaymentTermsVVOIterator" id="MAInstallmentPaymentTermsVVO">
+      <nodeDefinition DefName="ma.oracle.apps.cx.realestate.payments.views.MAInstallmentPaymentTermsVVO"
+                      Name="MAInstallmentPaymentTermsVVO0">
+        <AttrNames>
+          <Item Value="RuleName"/>
+          <Item Value="Years"/>
+          <Item Value="ValueOrPercentage"/>
+          <Item Value="Status"/>
+          <Item Value="Notes"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="MARentPaymentTermsVVOIterator" id="MARentPaymentTermsVVO">
+      <nodeDefinition DefName="ma.oracle.apps.cx.realestate.payments.views.MARentPaymentTermsVVO"
+                      Name="MARentPaymentTermsVVO0">
+        <AttrNames>
+          <Item Value="RuleName"/>
+          <Item Value="Deposit"/>
+          <Item Value="DurationScale"/>
+          <Item Value="Commission"/>
+          <Item Value="CalType"/>
+          <Item Value="Status"/>
+          <Item Value="Notes"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="ar_lang" RequiresUpdateModel="true" Action="invokeMethod" MethodName="ar_lang"
+                  IsViewObjectMethod="false" DataControl="MARealEstatePropertyAMDataControl"
+                  InstanceName="data.MARealEstatePropertyAMDataControl.dataProvider"
+                  ReturnName="data.MARealEstatePropertyAMDataControl.methodResults.ar_lang_MARealEstatePropertyAMDataControl_dataProvider_ar_lang_result"/>
+    <methodAction id="en_lang" RequiresUpdateModel="true" Action="invokeMethod" MethodName="en_lang"
+                  IsViewObjectMethod="false" DataControl="MARealEstatePropertyAMDataControl"
+                  InstanceName="data.MARealEstatePropertyAMDataControl.dataProvider"
+                  ReturnName="data.MARealEstatePropertyAMDataControl.methodResults.en_lang_MARealEstatePropertyAMDataControl_dataProvider_en_lang_result"/>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MAGridViewVVO"
+  Version="12.1.3.10.8"
+  InheritPersonalization="true"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  RowClass="ma.oracle.apps.cx.realestate.property.views.MAGridViewVVORowImpl"
+  ComponentClass="ma.oracle.apps.cx.realestate.property.views.MAGridViewVVOImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="ma.oracle.apps.cx.realestate.property.views.MAGridViewVVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="b_location"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="b_parent"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <ViewAccessor
+    Name="MABlockBuildingNameVVO1"
+    ViewObjectName="ma.oracle.apps.cx.realestate.property.views.MABlockBuildingNameVVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="MAFloorNumberVVO1"
+    ViewObjectName="ma.oracle.apps.cx.realestate.property.views.MAFloorNumberVVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="MAOwnerVVO1"
+    ViewObjectName="ma.oracle.apps.cx.realestate.property.views.MAOwnerVVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="MAPropertyDuplexVVO1"
+    ViewObjectName="ma.oracle.apps.cx.realestate.property.views.MAPropertyDuplexVVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="MAPropertyStatusVVO1"
+    ViewObjectName="ma.oracle.apps.cx.realestate.property.views.MAPropertyStatusVVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="MARealEstatepropertyparentVVO1"
+    ViewObjectName="ma.oracle.apps.cx.realestate.property.views.MARealEstatepropertyparentVVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="MARealEstatePropertySubTypesVVO1"
+    ViewObjectName="ma.oracle.apps.cx.realestate.property.views.MARealEstatePropertySubTypesVVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="MARealEstatePropertyTypesVVO1"
+    ViewObjectName="ma.oracle.apps.cx.realestate.property.views.MARealEstatePropertyTypesVVO"
+    RowLevelBinds="true"/>
+  <SQLQuery><![CDATA[SELECT parnt_prop.property_id, 
+       parnt_prop.property_code property_segment, 
+       parnt_prop.property_name, 
+       --       parnt_prop.property_country, 
+       --       parnt_prop.property_city, 
+       --       parnt_prop.property_region 
+       rep.country property_country, 
+       rep.city property_city, 
+       rep.region property_region, 
+       parnt_prop.parent_property_id, 
+       --                PARENT_PROP.PROPERTY_ID, 
+       --          parnt_prop.property_country 
+       --       || '-' 
+       --       || parnt_prop.property_city 
+       --       || '-' 
+       --       || parnt_prop.property_region 
+       rep.country || '-' || rep.city || '-' || rep.region property_location, 
+       parnt_prop.block_bulding_name, 
+       sub_prop.property_code sub_property_segment, 
+       sub_prop.property_name sub_property_name, 
+       parent_rpt.type_name parent_type_name, 
+       sub_rpt.type_name sub_type_name, 
+       DECODE ( 
+          (SELECT '1' 
+             FROM xxma.xxma_real_estate_property a, xxma_rs_lease_property b 
+            WHERE     a.property_id = b.property_id 
+                  AND SYSDATE BETWEEN TRUNC (b.start_date) 
+                                  AND TRUNC (b.end_date) 
+                  AND a.property_id = sub_prop.property_id), 
+          '1', 'Occupied', 
+          'Not Occupied') 
+          occupation_status, 
+       xxma_real_estate_pkg.get_grid_start_date (sub_prop.property_id) 
+          start_date, 
+       xxma_real_estate_pkg.get_grid_last_date (sub_prop.property_id) 
+          end_date, 
+       xxma_real_estate_pkg.get_lease_end_date (sub_prop.property_id) 
+          service_end_date 
+  FROM xxma_real_estate_property sub_prop, 
+       xxma_real_estate_property parnt_prop, 
+       xxma_rs_property_types parent_rpt, 
+       xxma_rs_property_types sub_rpt, 
+       xxma_real_estate_building reb, 
+       xxma_real_estate_project rep 
+ WHERE     parent_rpt.type_id = sub_rpt.parent_type_id 
+       AND parent_rpt.type_id = sub_prop.parent_type_id 
+       AND parnt_prop.property_id = sub_prop.parent_property_id 
+       AND sub_rpt.type_id = sub_prop.type_id 
+       AND reb.building_id = parnt_prop.building_id 
+       AND rep.project_id = reb.project_id 
+UNION 
+SELECT sub_prop.property_id, 
+       sub_prop.property_code property_segment, 
+       sub_prop.property_name, 
+       --       sub_prop.property_country, 
+       --       sub_prop.property_city, 
+       --       sub_prop.property_region, 
+       rep.country property_country, 
+       rep.city property_city, 
+       rep.region property_region, 
+       sub_prop.parent_property_id, 
+       --          sub_prop.property_country 
+       --       || '-' 
+       --       || sub_prop.property_city 
+       --       || '-' 
+       --       || sub_prop.property_region 
+       rep.country || '-' || rep.city || '-' || rep.region property_location, 
+       sub_prop.block_bulding_name, 
+       ' ' sub_property_segment, 
+       ' ' sub_property_name, 
+       parent_rpt.type_name parent_type_name, 
+       sub_rpt.type_name sub_type_name, 
+       DECODE ( 
+          (SELECT '1' 
+             FROM xxma.xxma_real_estate_property a, xxma_rs_lease_property b 
+            WHERE     a.property_id = b.property_id 
+                  AND SYSDATE BETWEEN TRUNC (b.start_date) 
+                                  AND TRUNC (b.end_date) 
+                  AND a.property_id = sub_prop.property_id), 
+          '1', 'Occupied', 
+          'Not Occupied') 
+          occupation_status, 
+       xxma_real_estate_pkg.get_grid_last_date (sub_prop.property_id) 
+          start_date, 
+       xxma_real_estate_pkg.get_grid_start_date (sub_prop.property_id) 
+          end_date, 
+       xxma_real_estate_pkg.get_lease_end_date (sub_prop.property_id) 
+          service_end_date 
+  FROM xxma_real_estate_property sub_prop, 
+       xxma_rs_property_types parent_rpt, 
+       xxma_rs_property_types sub_rpt, 
+       xxma_real_estate_building reb, 
+       xxma_real_estate_project rep 
+ WHERE     parent_rpt.type_id = sub_rpt.parent_type_id 
+       AND parent_rpt.type_id = sub_prop.parent_type_id 
+       AND sub_rpt.type_id = sub_prop.type_id 
+       AND sub_prop.parent_property_id IS NULL 
+       AND sub_prop.is_deleted_flag IS NULL 
+       AND sub_prop.property_id NOT IN 
+              (SELECT a.parent_property_id 
+                 FROM xxma_real_estate_property a 
+                WHERE a.parent_property_id IS NOT NULL) 
+       AND reb.building_id = sub_prop.building_id 
+       AND rep.project_id = reb.project_id]]></SQLQuery>
+  <ViewAttribute
+    Name="PropertyId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="PROPERTY_ID"
+    Expression="PROPERTY_ID"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="39"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ma.oracle.apps.cx.realestate.property.views.MAGridViewVVO.PropertyId_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PropertySegment"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PROPERTY_SEGMENT"
+    Expression="PROPERTY_SEGMENT"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="240"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ma.oracle.apps.cx.realestate.property.views.MAGridViewVVO.PropertySegment_LABEL"/>
+        <DISPLAYWIDTH
+          Value="25"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PropertyName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="240"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PROPERTY_NAME"
+    Expression="PROPERTY_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="240"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ma.oracle.apps.cx.realestate.property.views.MAGridViewVVO.PropertyName_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PropertyCountry"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="240"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PROPERTY_COUNTRY"
+    Expression="PROPERTY_COUNTRY"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="240"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ma.oracle.apps.cx.realestate.property.views.MAGridViewVVO.PropertyCountry_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PropertyCity"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="240"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PROPERTY_CITY"
+    Expression="PROPERTY_CITY"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="240"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ma.oracle.apps.cx.realestate.property.views.MAGridViewVVO.PropertyCity_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PropertyRegion"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="240"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PROPERTY_REGION"
+    Expression="PROPERTY_REGION"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="240"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ma.oracle.apps.cx.realestate.property.views.MAGridViewVVO.PropertyRegion_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ParentPropertyId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="PARENT_PROPERTY_ID"
+    Expression="PARENT_PROPERTY_ID"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="39"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ma.oracle.apps.cx.realestate.property.views.MAGridViewVVO.ParentPropertyId_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PropertyLocation"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="722"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PROPERTY_LOCATION"
+    Expression="PROPERTY_LOCATION"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="722"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ma.oracle.apps.cx.realestate.property.views.MAGridViewVVO.PropertyLocation_LABEL"/>
+        <DISPLAYWIDTH
+          Value="25"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="BlockBuldingName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="240"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="BLOCK_BULDING_NAME"
+    Expression="BLOCK_BULDING_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="240"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ma.oracle.apps.cx.realestate.property.views.MAGridViewVVO.BlockBuldingName_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SubPropertySegment"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="240"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SUB_PROPERTY_SEGMENT"
+    Expression="SUB_PROPERTY_SEGMENT"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="240"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SubPropertyName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="240"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SUB_PROPERTY_NAME"
+    Expression="SUB_PROPERTY_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="240"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ParentTypeName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="240"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PARENT_TYPE_NAME"
+    Expression="PARENT_TYPE_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="240"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SubTypeName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="240"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SUB_TYPE_NAME"
+    Expression="SUB_TYPE_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="240"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="OccupationStatus"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="12"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="OCCUPATION_STATUS"
+    Expression="OCCUPATION_STATUS"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="StartDate"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Date"
+    ColumnType="DATE"
+    AliasName="START_DATE"
+    Expression="START_DATE"
+    SQLType="DATE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="7"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="EndDate"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Date"
+    ColumnType="DATE"
+    AliasName="END_DATE"
+    Expression="END_DATE"
+    SQLType="DATE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="7"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ServiceEndDate"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Date"
+    ColumnType="DATE"
+    AliasName="SERVICE_END_DATE"
+    Expression="SERVICE_END_DATE"
+    SQLType="DATE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="7"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewCriteria
+    Name="MAGridViewVVOCriteria"
+    ViewObjectName="ma.oracle.apps.cx.realestate.property.views.MAGridViewVVO"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="vcrow40"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="PropertySegment"
+        ViewAttribute="PropertySegment"
+        Operator="="
+        Conjunction="AND"
+        Value=":b_parent"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="PropertyLocation"
+        ViewAttribute="PropertyLocation"
+        Operator="="
+        Conjunction="OR"
+        Value=":b_location"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <ViewLinkAccessor
+    Name="MARealEstatePropertySearchVVO"
+    ViewLink="ma.oracle.apps.cx.realestate.property.views.MAGridViewSearchToPropertySearchVL"
+    Type="oracle.jbo.Row"
+    IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="MARealEstateParentPropertySearchVVO"
+    ViewLink="ma.oracle.apps.cx.realestate.property.views.MAGridViewSearchToParentPropertySearchVL"
+    Type="oracle.jbo.Row"
+    IsUpdateable="false"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ma.oracle.apps.cx.realestate.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

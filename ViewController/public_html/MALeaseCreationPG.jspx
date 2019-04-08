@@ -1,0 +1,1388 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['ma.oracle.apps.cx.realestate.ViewControllerBundle']}"/>
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view beforePhase="#{backingBeanScope.MALeaseCreationBean.beforePhase}">
+    <af:document id="d1" binding="#{backingBeanScope.MALeaseCreationBean.d1}"
+                 title="#{bundle.Lease_Creation_UpdatePG}">
+      <af:messages binding="#{backingBeanScope.MALeaseCreationBean.m1}"
+                   id="m1"/>
+      <af:form id="f1" binding="#{backingBeanScope.MALeaseCreationBean.f1}">
+      <af:pageTemplate viewId="#{pageFlowScope.Facet}" id="pt1">
+                         <f:facet name="center">
+        <af:panelTabbed binding="#{backingBeanScope.MALeaseCreationBean.pt2}"
+                        id="pt2">
+          <af:showDetailItem text="#{bundle.Summary}"
+                             binding="#{backingBeanScope.MALeaseCreationBean.sdi5}"
+                             id="sdi5"
+                             disclosureListener="#{backingBeanScope.MALeaseCreationBean.disclosureListner}">
+            <af:panelGroupLayout binding="#{backingBeanScope.MALeaseCreationBean.pgl18}"
+                                 id="pgl18" layout="scroll">
+              <af:panelGroupLayout binding="#{backingBeanScope.MALeaseCreationBean.pgl14}"
+                                   id="pgl14" layout="horizontal"
+                                   halign="right">
+                <af:toolbar binding="#{backingBeanScope.MALeaseCreationBean.t4}"
+                            id="t4">
+                      <af:button text="#{bundle.Save_and_Close}" binding="#{backingBeanScope.MALeaseCreationBean.cb4}" id="cb4"
+                                 icon="/images/icons/save_ena.png"
+                                 action="#{backingBeanScope.MALeaseCreationBean.saveCreateLease}"/>
+                      <af:button actionListener="#{bindings.Commit.execute}" text="#{bundle.Save}"
+                                 binding="#{backingBeanScope.MALeaseCreationBean.cb1}" id="cb1"
+                                 icon="/images/icons/save_ena.png"/>
+                      <af:button text="#{bundle.Cancel}" immediate="true" binding="#{backingBeanScope.MALeaseCreationBean.cb5}"
+                                 id="cb5" icon="/images/icons/rollback.png"
+                                 action="#{backingBeanScope.MALeaseCreationBean.cancelCreateLease}">
+                        <af:resetActionListener/>
+                      </af:button>
+                    </af:toolbar>
+              </af:panelGroupLayout>
+              <af:panelGroupLayout binding="#{backingBeanScope.MALeaseCreationBean.pgl10}"
+                                   id="pgl10">
+                <af:panelGridLayout binding="#{backingBeanScope.MALeaseCreationBean.pgl3}"
+                                    id="pgl3">
+                  <af:gridRow marginTop="0px" height="auto"
+                              binding="#{backingBeanScope.MALeaseCreationBean.gr5}"
+                              id="gr5">
+                    <af:gridCell marginStart="0px" width="50%"
+                                 binding="#{backingBeanScope.MALeaseCreationBean.gc9}"
+                                 id="gc9">
+                      <af:panelFormLayout binding="#{backingBeanScope.MALeaseCreationBean.pfl2}"
+                                          id="pfl2">
+                        <af:inputText value="#{bindings.LeaseSegment.inputValue}"
+                                      label="#{bundle.Lease_ID}"
+                                      required="#{bindings.LeaseSegment.hints.mandatory}"
+                                      columns="#{bindings.LeaseSegment.hints.displayWidth}"
+                                      maximumLength="#{bindings.LeaseSegment.hints.precision}"
+                                      shortDesc="#{bindings.LeaseSegment.hints.tooltip}"
+                                      binding="#{backingBeanScope.MALeaseCreationBean.it1}"
+                                      id="it1">
+                          <f:validator binding="#{bindings.LeaseSegment.validator}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.Subject.inputValue}"
+                                      label="#{bundle.Subject}"
+                                      required="#{bindings.Subject.hints.mandatory}"
+                                      columns="#{bindings.Subject.hints.displayWidth}"
+                                      maximumLength="#{bindings.Subject.hints.precision}"
+                                      shortDesc="#{bindings.Subject.hints.tooltip}"
+                                      binding="#{backingBeanScope.MALeaseCreationBean.it2}"
+                                      id="it2">
+                          <f:validator binding="#{bindings.Subject.validator}"/>
+                        </af:inputText>
+                        <af:selectOneChoice value="#{bindings.OpportunityId.inputValue}"
+                                            label="#{bundle.Opportunity}"
+                                            required="#{bindings.OpportunityId.hints.mandatory}"
+                                            shortDesc="#{bindings.OpportunityId.hints.tooltip}"
+                                            binding="#{backingBeanScope.MALeaseCreationBean.soc1}"
+                                            id="soc1">
+                          <f:selectItems value="#{bindings.OpportunityId.items}"
+                                         binding="#{backingBeanScope.MALeaseCreationBean.si1}"
+                                         id="si1"/>
+                        </af:selectOneChoice>
+                        <af:inputText value="#{bindings.VendorContactId.inputValue}"
+                                      label="#{bindings.VendorContactId.hints.label}"
+                                      required="#{bindings.VendorContactId.hints.mandatory}"
+                                      columns="#{bindings.VendorContactId.hints.displayWidth}"
+                                      maximumLength="#{bindings.VendorContactId.hints.precision}"
+                                      shortDesc="#{bindings.VendorContactId.hints.tooltip}"
+                                      binding="#{backingBeanScope.MALeaseCreationBean.it3}"
+                                      id="it3" rendered="false">
+                          <f:validator binding="#{bindings.VendorContactId.validator}"/>
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.VendorContactId.format}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.VendorId.inputValue}"
+                                      label="#{bindings.VendorId.hints.label}"
+                                      required="#{bindings.VendorId.hints.mandatory}"
+                                      columns="#{bindings.VendorId.hints.displayWidth}"
+                                      maximumLength="#{bindings.VendorId.hints.precision}"
+                                      shortDesc="#{bindings.VendorId.hints.tooltip}"
+                                      binding="#{backingBeanScope.MALeaseCreationBean.it4}"
+                                      id="it4" rendered="false">
+                          <f:validator binding="#{bindings.VendorId.validator}"/>
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.VendorId.format}"/>
+                        </af:inputText>
+                      </af:panelFormLayout>
+                    </af:gridCell>
+                    <af:gridCell marginStart="0px" marginEnd="0px" width="50%"
+                                 binding="#{backingBeanScope.MALeaseCreationBean.gc10}"
+                                 id="gc10">
+                      <af:panelFormLayout binding="#{backingBeanScope.MALeaseCreationBean.pfl3}"
+                                          id="pfl3">
+                        <af:inputText value="#{bindings.LeaserName.inputValue}"
+                                      label="#{bundle.Tenant_Name}"
+                                      required="#{bindings.LeaserName.hints.mandatory}"
+                                      columns="#{bindings.LeaserName.hints.displayWidth}"
+                                      maximumLength="#{bindings.LeaserName.hints.precision}"
+                                      shortDesc="#{bindings.LeaserName.hints.tooltip}"
+                                      binding="#{backingBeanScope.MALeaseCreationBean.it43}"
+                                      id="it43">
+                          <f:validator binding="#{bindings.LeaserName.validator}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.LeaserAddress.inputValue}"
+                                      label="#{bundle.Tenant_Address}"
+                                      required="#{bindings.LeaserAddress.hints.mandatory}"
+                                      columns="#{bindings.LeaserAddress.hints.displayWidth}"
+                                      maximumLength="#{bindings.LeaserAddress.hints.precision}"
+                                      shortDesc="#{bindings.LeaserAddress.hints.tooltip}"
+                                      binding="#{backingBeanScope.MALeaseCreationBean.it44}"
+                                      id="it44">
+                          <f:validator binding="#{bindings.LeaserAddress.validator}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.ContactPerson.inputValue}"
+                                      label="#{bundle.Contact_Person}"
+                                      required="#{bindings.ContactPerson.hints.mandatory}"
+                                      columns="#{bindings.ContactPerson.hints.displayWidth}"
+                                      maximumLength="#{bindings.ContactPerson.hints.precision}"
+                                      shortDesc="#{bindings.ContactPerson.hints.tooltip}"
+                                      binding="#{backingBeanScope.MALeaseCreationBean.it45}"
+                                      id="it45">
+                          <f:validator binding="#{bindings.ContactPerson.validator}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.ContactPhoneNumber.inputValue}"
+                                      label="#{bundle.Contact_Phone_Number}"
+                                      required="#{bindings.ContactPhoneNumber.hints.mandatory}"
+                                      columns="#{bindings.ContactPhoneNumber.hints.displayWidth}"
+                                      maximumLength="#{bindings.ContactPhoneNumber.hints.precision}"
+                                      shortDesc="#{bindings.ContactPhoneNumber.hints.tooltip}"
+                                      binding="#{backingBeanScope.MALeaseCreationBean.it46}"
+                                      id="it46">
+                          <f:validator binding="#{bindings.ContactPhoneNumber.validator}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.ContactEmail.inputValue}"
+                                      label="#{bundle.Contact_Email}"
+                                      required="#{bindings.ContactEmail.hints.mandatory}"
+                                      columns="#{bindings.ContactEmail.hints.displayWidth}"
+                                      maximumLength="#{bindings.ContactEmail.hints.precision}"
+                                      shortDesc="#{bindings.ContactEmail.hints.tooltip}"
+                                      binding="#{backingBeanScope.MALeaseCreationBean.it47}"
+                                      id="it47">
+                          <f:validator binding="#{bindings.ContactEmail.validator}"/>
+                        </af:inputText>
+                      </af:panelFormLayout>
+                    </af:gridCell>
+                  </af:gridRow>
+                </af:panelGridLayout>
+                <af:showDetailHeader text="#{bundle.Lease_Details}" disclosed="true"
+                                     binding="#{backingBeanScope.MALeaseCreationBean.sdh1}"
+                                     id="sdh1">
+                  <af:panelGridLayout binding="#{backingBeanScope.MALeaseCreationBean.pgl1}"
+                                      id="pgl1">
+                    <af:gridRow marginTop="0px" marginBottom="0px" height="auto"
+                                binding="#{backingBeanScope.MALeaseCreationBean.gr6}"
+                                id="gr6">
+                      <af:gridCell marginStart="0px" width="50%"
+                                   binding="#{backingBeanScope.MALeaseCreationBean.gc11}"
+                                   id="gc11">
+                        <af:panelFormLayout binding="#{backingBeanScope.MALeaseCreationBean.pfl1}"
+                                            id="pfl1">
+                          <af:selectOneChoice value="#{bindings.LeaseStatus.inputValue}"
+                                              label="#{bundle.Lease_Status}"
+                                              required="#{bindings.LeaseStatus.hints.mandatory}"
+                                              shortDesc="#{bindings.LeaseStatus.hints.tooltip}"
+                                              binding="#{backingBeanScope.MALeaseCreationBean.soc2}"
+                                              id="soc2">
+                            <f:selectItems value="#{bindings.LeaseStatus.items}"
+                                           binding="#{backingBeanScope.MALeaseCreationBean.si2}"
+                                           id="si2"/>
+                          </af:selectOneChoice>
+                          <af:selectOneChoice value="#{bindings.LeaseType.inputValue}"
+                                              label="#{bundle.LeaseType_LABEL}"
+                                              required="#{bindings.LeaseType.hints.mandatory}"
+                                              shortDesc="#{bindings.LeaseType.hints.tooltip}"
+                                              binding="#{backingBeanScope.MALeaseCreationBean.soc3}"
+                                              id="soc3">
+                            <f:selectItems value="#{bindings.LeaseType.items}"
+                                           binding="#{backingBeanScope.MALeaseCreationBean.si3}"
+                                           id="si3"/>
+                          </af:selectOneChoice>
+                          <af:selectOneChoice value="#{bindings.ParentLease.inputValue}"
+                                              label="#{bundle.Parent_Lease}"
+                                              required="#{bindings.ParentLease.hints.mandatory}"
+                                              shortDesc="#{bindings.ParentLease.hints.tooltip}"
+                                              binding="#{backingBeanScope.MALeaseCreationBean.soc4}"
+                                              id="soc4">
+                            <f:selectItems value="#{bindings.ParentLease.items}"
+                                           binding="#{backingBeanScope.MALeaseCreationBean.si4}"
+                                           id="si4"/>
+                          </af:selectOneChoice>
+                          <af:inputDate value="#{bindings.StartDate.inputValue}"
+                                        label="#{bundle.START_DATE}"
+                                        required="#{bindings.StartDate.hints.mandatory}"
+                                        shortDesc="#{bindings.StartDate.hints.tooltip}"
+                                        binding="#{backingBeanScope.MALeaseCreationBean.id1}"
+                                        id="id1">
+                            <f:validator binding="#{bindings.StartDate.validator}"/>
+                            <af:convertDateTime pattern="#{bindings.StartDate.format}"/>
+                          </af:inputDate>
+                          <af:inputDate value="#{bindings.EndDate.inputValue}"
+                                        label="#{bundle.END_DATE}"
+                                        required="#{bindings.EndDate.hints.mandatory}"
+                                        shortDesc="#{bindings.EndDate.hints.tooltip}"
+                                        binding="#{backingBeanScope.MALeaseCreationBean.id2}"
+                                        id="id2">
+                            <f:validator binding="#{bindings.EndDate.validator}"/>
+                            <af:convertDateTime pattern="#{bindings.EndDate.format}"/>
+                          </af:inputDate>
+                          <af:inputDate value="#{bindings.BookingExpiringOn.inputValue}"
+                                        label="#{bundle.Booking_Expiring_On}"
+                                        required="#{bindings.BookingExpiringOn.hints.mandatory}"
+                                        shortDesc="#{bindings.BookingExpiringOn.hints.tooltip}"
+                                        binding="#{backingBeanScope.MALeaseCreationBean.id3}"
+                                        id="id3">
+                            <f:validator binding="#{bindings.BookingExpiringOn.validator}"/>
+                            <af:convertDateTime pattern="#{bindings.BookingExpiringOn.format}"/>
+                          </af:inputDate>
+                        </af:panelFormLayout>
+                      </af:gridCell>
+                      <af:gridCell marginStart="0px" marginEnd="0px" width="50%"
+                                   binding="#{backingBeanScope.MALeaseCreationBean.gc12}"
+                                   id="gc12">
+                        <af:panelFormLayout binding="#{backingBeanScope.MALeaseCreationBean.pfl4}"
+                                            id="pfl4" labelAlignment="start"
+                                            inlineStyle="text-align:left;">
+                          <af:panelGridLayout binding="#{backingBeanScope.MALeaseCreationBean.pgl13}"
+                                              id="pgl13">
+                            <af:gridRow marginTop="0px" marginBottom="0px"
+                                        height="auto"
+                                        binding="#{backingBeanScope.MALeaseCreationBean.gr1}"
+                                        id="gr1">
+                              <af:gridCell binding="#{backingBeanScope.MALeaseCreationBean.gc1}"
+                                           id="gc1">
+                                <af:panelGroupLayout binding="#{backingBeanScope.MALeaseCreationBean.pgl4}"
+                                                     id="pgl4"
+                                                     layout="horizontal">
+                                  <af:inputText value="#{bindings.Increase.inputValue}"
+                                                label="#{bundle.Increase}"
+                                                required="#{bindings.Increase.hints.mandatory}"
+                                                columns="#{bindings.Increase.hints.displayWidth}"
+                                                maximumLength="#{bindings.Increase.hints.precision}"
+                                                shortDesc="#{bindings.Increase.hints.tooltip}"
+                                                binding="#{backingBeanScope.MALeaseCreationBean.it5}"
+                                                id="it5">
+                                    <f:validator binding="#{bindings.Increase.validator}"/>
+                                  </af:inputText>
+                                  <af:inputText value="#{bindings.IterationMonths.inputValue}"
+                                                label="#{bundle.Iteration_Months}"
+                                                required="#{bindings.IterationMonths.hints.mandatory}"
+                                                columns="#{bindings.IterationMonths.hints.displayWidth}"
+                                                maximumLength="#{bindings.IterationMonths.hints.precision}"
+                                                shortDesc="#{bindings.IterationMonths.hints.tooltip}"
+                                                binding="#{backingBeanScope.MALeaseCreationBean.it6}"
+                                                id="it6">
+                                    <f:validator binding="#{bindings.IterationMonths.validator}"/>
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.IterationMonths.format}"/>
+                                  </af:inputText>
+                                  <af:selectBooleanCheckbox value="#{bindings.AutoCalculateFlag.inputValue}"
+                                                            label="#{bundle.Auto_Calculate_Flag}"
+                                                            shortDesc="#{bindings.AutoCalculateFlag.hints.tooltip}"
+                                                            binding="#{backingBeanScope.MALeaseCreationBean.sbc1}"
+                                                            id="sbc1"/>
+                                </af:panelGroupLayout>
+                              </af:gridCell>
+                            </af:gridRow>
+                            <af:gridRow binding="#{backingBeanScope.MALeaseCreationBean.gr2}"
+                                        id="gr2" height="auto">
+                              <af:gridCell binding="#{backingBeanScope.MALeaseCreationBean.gc5}"
+                                           id="gc5">
+                                <af:inputText value="#{bindings.TenureMonths.inputValue}"
+                                              label="#{bundle.Tenure_Months}"
+                                              required="#{bindings.TenureMonths.hints.mandatory}"
+                                              columns="#{bindings.TenureMonths.hints.displayWidth}"
+                                              maximumLength="#{bindings.TenureMonths.hints.precision}"
+                                              shortDesc="#{bindings.TenureMonths.hints.tooltip}"
+                                              binding="#{backingBeanScope.MALeaseCreationBean.it8}"
+                                              id="it8">
+                                  <f:validator binding="#{bindings.TenureMonths.validator}"/>
+                                </af:inputText>
+                              </af:gridCell>
+                            </af:gridRow>
+                            <af:gridRow binding="#{backingBeanScope.MALeaseCreationBean.gr3}"
+                                        id="gr3">
+                              <af:gridCell binding="#{backingBeanScope.MALeaseCreationBean.gc4}"
+                                           id="gc4">
+                                <af:inputText value="#{bindings.LeaseTermsConditions.inputValue}"
+                                              label="#{bundle.Lease_Terms_amp_Conditions_Additional}"
+                                              required="#{bindings.LeaseTermsConditions.hints.mandatory}"
+                                              columns="60"
+                                              maximumLength="#{bindings.LeaseTermsConditions.hints.precision}"
+                                              shortDesc="#{bindings.LeaseTermsConditions.hints.tooltip}"
+                                              binding="#{backingBeanScope.MALeaseCreationBean.it9}"
+                                              id="it9" rows="4" wrap="hard">
+                                  <f:validator binding="#{bindings.LeaseTermsConditions.validator}"/>
+                                </af:inputText>
+                              </af:gridCell>
+                            </af:gridRow>
+                          </af:panelGridLayout>
+                        </af:panelFormLayout>
+                      </af:gridCell>
+                    </af:gridRow>
+                  </af:panelGridLayout>
+                </af:showDetailHeader>
+                <af:showDetailHeader text="#{bundle.Billing_Details}" disclosed="true"
+                                     binding="#{backingBeanScope.MALeaseCreationBean.sdh2}"
+                                     id="sdh2">
+                  <af:panelGridLayout binding="#{backingBeanScope.MALeaseCreationBean.pgl5}"
+                                      id="pgl5">
+                    <af:gridRow marginTop="0px" marginBottom="0px" height="auto"
+                                binding="#{backingBeanScope.MALeaseCreationBean.gr7}"
+                                id="gr7">
+                      <af:gridCell marginStart="0px" width="50%"
+                                   binding="#{backingBeanScope.MALeaseCreationBean.gc13}"
+                                   id="gc13">
+                        <af:panelFormLayout binding="#{backingBeanScope.MALeaseCreationBean.pfl5}"
+                                            id="pfl5">
+                          <af:selectOneChoice value="#{bindings.BillingFrequency.inputValue}"
+                                              label="#{bundle.Billing_Frequency}"
+                                              required="#{bindings.BillingFrequency.hints.mandatory}"
+                                              shortDesc="#{bindings.BillingFrequency.hints.tooltip}"
+                                              binding="#{backingBeanScope.MALeaseCreationBean.soc5}"
+                                              id="soc5">
+                            <f:selectItems value="#{bindings.BillingFrequency.items}"
+                                           binding="#{backingBeanScope.MALeaseCreationBean.si5}"
+                                           id="si5"/>
+                          </af:selectOneChoice>
+                          <af:inputText value="#{bindings.Water.inputValue}"
+                                        label="#{bundle.Water}"
+                                        required="#{bindings.Water.hints.mandatory}"
+                                        columns="#{bindings.Water.hints.displayWidth}"
+                                        maximumLength="#{bindings.Water.hints.precision}"
+                                        shortDesc="#{bindings.Water.hints.tooltip}"
+                                        binding="#{backingBeanScope.MALeaseCreationBean.it10}"
+                                        id="it10">
+                            <f:validator binding="#{bindings.Water.validator}"/>
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.Water.format}"/>
+                          </af:inputText>
+                          <af:inputText value="#{bindings.Electricity.inputValue}"
+                                        label="#{bundle.Electricity}"
+                                        required="#{bindings.Electricity.hints.mandatory}"
+                                        columns="#{bindings.Electricity.hints.displayWidth}"
+                                        maximumLength="#{bindings.Electricity.hints.precision}"
+                                        shortDesc="#{bindings.Electricity.hints.tooltip}"
+                                        binding="#{backingBeanScope.MALeaseCreationBean.it11}"
+                                        id="it11">
+                            <f:validator binding="#{bindings.Electricity.validator}"/>
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.Electricity.format}"/>
+                          </af:inputText>
+                          <af:inputText value="#{bindings.Sanitation.inputValue}"
+                                        label="#{bundle.Sanitation}"
+                                        required="#{bindings.Sanitation.hints.mandatory}"
+                                        columns="#{bindings.Sanitation.hints.displayWidth}"
+                                        maximumLength="#{bindings.Sanitation.hints.precision}"
+                                        shortDesc="#{bindings.Sanitation.hints.tooltip}"
+                                        binding="#{backingBeanScope.MALeaseCreationBean.it12}"
+                                        id="it12">
+                            <f:validator binding="#{bindings.Sanitation.validator}"/>
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.Sanitation.format}"/>
+                          </af:inputText>
+                          <af:inputText value="#{bindings.Badge.inputValue}"
+                                        label="#{bundle.Badge}"
+                                        required="#{bindings.Badge.hints.mandatory}"
+                                        columns="#{bindings.Badge.hints.displayWidth}"
+                                        maximumLength="#{bindings.Badge.hints.precision}"
+                                        shortDesc="#{bindings.Badge.hints.tooltip}"
+                                        binding="#{backingBeanScope.MALeaseCreationBean.it13}"
+                                        id="it13">
+                            <f:validator binding="#{bindings.Badge.validator}"/>
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.Badge.format}"/>
+                          </af:inputText>
+                          <af:inputText value="#{bindings.Discount.inputValue}"
+                                        label="#{bundle.Discount}"
+                                        required="#{bindings.Discount.hints.mandatory}"
+                                        columns="#{bindings.Discount.hints.displayWidth}"
+                                        maximumLength="#{bindings.Discount.hints.precision}"
+                                        shortDesc="#{bindings.Discount.hints.tooltip}"
+                                        binding="#{backingBeanScope.MALeaseCreationBean.it14}"
+                                        id="it14">
+                            <f:validator binding="#{bindings.Discount.validator}"/>
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.Discount.format}"/>
+                          </af:inputText>
+                        </af:panelFormLayout>
+                      </af:gridCell>
+                      <af:gridCell marginStart="0px" marginEnd="0px" width="50%"
+                                   binding="#{backingBeanScope.MALeaseCreationBean.gc14}"
+                                   id="gc14">
+                        <af:panelFormLayout binding="#{backingBeanScope.MALeaseCreationBean.pfl6}"
+                                            id="pfl6">
+                          <af:selectOneChoice value="#{bindings.Currency.inputValue}"
+                                              label="#{bundle.Currency_LABEL}"
+                                              required="#{bindings.Currency.hints.mandatory}"
+                                              shortDesc="#{bindings.Currency.hints.tooltip}"
+                                              binding="#{backingBeanScope.MALeaseCreationBean.soc6}"
+                                              id="soc6">
+                            <f:selectItems value="#{bindings.Currency.items}"
+                                           binding="#{backingBeanScope.MALeaseCreationBean.si6}"
+                                           id="si6"/>
+                          </af:selectOneChoice>
+                          <af:inputText value="#{bindings.RentAmount.inputValue}"
+                                        label="#{bundle.RENT_AMOUNT}"
+                                        required="#{bindings.RentAmount.hints.mandatory}"
+                                        columns="#{bindings.RentAmount.hints.displayWidth}"
+                                        maximumLength="#{bindings.RentAmount.hints.precision}"
+                                        shortDesc="#{bindings.RentAmount.hints.tooltip}"
+                                        binding="#{backingBeanScope.MALeaseCreationBean.it15}"
+                                        id="it15">
+                            <f:validator binding="#{bindings.RentAmount.validator}"/>
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.RentAmount.format}"/>
+                          </af:inputText>
+                          <af:inputText value="#{bindings.AdhockCharges.inputValue}"
+                                        label="#{bundle.Adhock_Charges}"
+                                        required="#{bindings.AdhockCharges.hints.mandatory}"
+                                        columns="#{bindings.AdhockCharges.hints.displayWidth}"
+                                        maximumLength="#{bindings.AdhockCharges.hints.precision}"
+                                        shortDesc="#{bindings.AdhockCharges.hints.tooltip}"
+                                        binding="#{backingBeanScope.MALeaseCreationBean.it16}"
+                                        id="it16" disabled="true">
+                            <f:validator binding="#{bindings.AdhockCharges.validator}"/>
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.AdhockCharges.format}"/>
+                          </af:inputText>
+                          <af:inputText value="#{bindings.GrossRentAmount.inputValue}"
+                                        label="#{bundle.Gross_Rent_Amount}"
+                                        required="#{bindings.GrossRentAmount.hints.mandatory}"
+                                        columns="#{bindings.GrossRentAmount.hints.displayWidth}"
+                                        maximumLength="#{bindings.GrossRentAmount.hints.precision}"
+                                        shortDesc="#{bindings.GrossRentAmount.hints.tooltip}"
+                                        binding="#{backingBeanScope.MALeaseCreationBean.it17}"
+                                        id="it17" disabled="true">
+                            <f:validator binding="#{bindings.GrossRentAmount.validator}"/>
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.GrossRentAmount.format}"/>
+                          </af:inputText>
+                          <af:inputText value="#{bindings.DiscountAmount.inputValue}"
+                                        label="#{bundle.Discount_Amount}"
+                                        required="#{bindings.DiscountAmount.hints.mandatory}"
+                                        columns="#{bindings.DiscountAmount.hints.displayWidth}"
+                                        maximumLength="#{bindings.DiscountAmount.hints.precision}"
+                                        shortDesc="#{bindings.DiscountAmount.hints.tooltip}"
+                                        binding="#{backingBeanScope.MALeaseCreationBean.it18}"
+                                        id="it18" disabled="true">
+                            <f:validator binding="#{bindings.DiscountAmount.validator}"/>
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.DiscountAmount.format}"/>
+                          </af:inputText>
+                          <af:inputText value="#{bindings.NetAmount.inputValue}"
+                                        label="#{bundle.Net_Amount}"
+                                        required="#{bindings.NetAmount.hints.mandatory}"
+                                        columns="#{bindings.NetAmount.hints.displayWidth}"
+                                        maximumLength="#{bindings.NetAmount.hints.precision}"
+                                        shortDesc="#{bindings.NetAmount.hints.tooltip}"
+                                        binding="#{backingBeanScope.MALeaseCreationBean.it19}"
+                                        id="it19" disabled="true">
+                            <f:validator binding="#{bindings.NetAmount.validator}"/>
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.NetAmount.format}"/>
+                          </af:inputText>
+                        </af:panelFormLayout>
+                      </af:gridCell>
+                    </af:gridRow>
+                  </af:panelGridLayout>
+                </af:showDetailHeader>
+                <af:showDetailHeader text="#{bundle.Renewal_Details}" disclosed="true"
+                                     binding="#{backingBeanScope.MALeaseCreationBean.sdh3}"
+                                     id="sdh3">
+                  <af:panelGridLayout binding="#{backingBeanScope.MALeaseCreationBean.pgl6}"
+                                      id="pgl6">
+                    <af:gridRow marginTop="0px" marginBottom="0px" height="auto"
+                                binding="#{backingBeanScope.MALeaseCreationBean.gr8}"
+                                id="gr8">
+                      <af:gridCell marginStart="0px" width="50%"
+                                   binding="#{backingBeanScope.MALeaseCreationBean.gc15}"
+                                   id="gc15">
+                        <af:panelFormLayout binding="#{backingBeanScope.MALeaseCreationBean.pfl8}"
+                                            id="pfl8">
+                          <af:inputDate value="#{bindings.RenewalNoticeSent.inputValue}"
+                                        label="#{bundle.Renewal_Notice_Sent}"
+                                        required="#{bindings.RenewalNoticeSent.hints.mandatory}"
+                                        shortDesc="#{bindings.RenewalNoticeSent.hints.tooltip}"
+                                        binding="#{backingBeanScope.MALeaseCreationBean.id4}"
+                                        id="id4">
+                            <f:validator binding="#{bindings.RenewalNoticeSent.validator}"/>
+                            <af:convertDateTime pattern="#{bindings.RenewalNoticeSent.format}"/>
+                          </af:inputDate>
+                          <af:inputDate value="#{bindings.ReceivedConfirmationDate.inputValue}"
+                                        label="#{bundle.Received_Confirmation_Date}"
+                                        required="#{bindings.ReceivedConfirmationDate.hints.mandatory}"
+                                        shortDesc="#{bindings.ReceivedConfirmationDate.hints.tooltip}"
+                                        binding="#{backingBeanScope.MALeaseCreationBean.id5}"
+                                        id="id5">
+                            <f:validator binding="#{bindings.ReceivedConfirmationDate.validator}"/>
+                            <af:convertDateTime pattern="#{bindings.ReceivedConfirmationDate.format}"/>
+                          </af:inputDate>
+                          <af:selectOneChoice value="#{bindings.CustomerResponse.inputValue}"
+                                              label="#{bundle.Customer_Reasponse}"
+                                              required="#{bindings.CustomerResponse.hints.mandatory}"
+                                              shortDesc="#{bindings.CustomerResponse.hints.tooltip}"
+                                              binding="#{backingBeanScope.MALeaseCreationBean.soc7}"
+                                              id="soc7">
+                            <f:selectItems value="#{bindings.CustomerResponse.items}"
+                                           binding="#{backingBeanScope.MALeaseCreationBean.si7}"
+                                           id="si7"/>
+                          </af:selectOneChoice>
+                          <af:selectOneChoice value="#{bindings.RenewedContractsHistory.inputValue}"
+                                              label="#{bundle.Renewed_Contracts_History}"
+                                              required="#{bindings.RenewedContractsHistory.hints.mandatory}"
+                                              shortDesc="#{bindings.RenewedContractsHistory.hints.tooltip}"
+                                              binding="#{backingBeanScope.MALeaseCreationBean.soc8}"
+                                              id="soc8">
+                            <f:selectItems value="#{bindings.RenewedContractsHistory.items}"
+                                           binding="#{backingBeanScope.MALeaseCreationBean.si8}"
+                                           id="si8"/>
+                          </af:selectOneChoice>
+                        </af:panelFormLayout>
+                      </af:gridCell>
+                      <af:gridCell marginStart="0px" marginEnd="0px" width="50%"
+                                   binding="#{backingBeanScope.MALeaseCreationBean.gc16}"
+                                   id="gc16">
+                        <af:panelFormLayout binding="#{backingBeanScope.MALeaseCreationBean.pfl7}"
+                                            id="pfl7">
+                          <af:inputText value="#{bindings.ProposedYearlyRent.inputValue}"
+                                        label="#{bundle.Proposed_Yearly_Rent}"
+                                        required="#{bindings.ProposedYearlyRent.hints.mandatory}"
+                                        columns="#{bindings.ProposedYearlyRent.hints.displayWidth}"
+                                        maximumLength="#{bindings.ProposedYearlyRent.hints.precision}"
+                                        shortDesc="#{bindings.ProposedYearlyRent.hints.tooltip}"
+                                        binding="#{backingBeanScope.MALeaseCreationBean.it20}"
+                                        id="it20">
+                            <f:validator binding="#{bindings.ProposedYearlyRent.validator}"/>
+                          </af:inputText>
+                          <af:inputDate value="#{bindings.VacantDate.inputValue}"
+                                        label="#{bundle.Vacant_Date}"
+                                        required="#{bindings.VacantDate.hints.mandatory}"
+                                        shortDesc="#{bindings.VacantDate.hints.tooltip}"
+                                        binding="#{backingBeanScope.MALeaseCreationBean.id6}"
+                                        id="id6">
+                            <f:validator binding="#{bindings.VacantDate.validator}"/>
+                            <af:convertDateTime pattern="#{bindings.VacantDate.format}"/>
+                          </af:inputDate>
+                          <af:inputDate value="#{bindings.ExtendedDate.inputValue}"
+                                        label="#{bundle.Extended_Date}"
+                                        required="#{bindings.ExtendedDate.hints.mandatory}"
+                                        shortDesc="#{bindings.ExtendedDate.hints.tooltip}"
+                                        binding="#{backingBeanScope.MALeaseCreationBean.id7}"
+                                        id="id7">
+                            <f:validator binding="#{bindings.ExtendedDate.validator}"/>
+                            <af:convertDateTime pattern="#{bindings.ExtendedDate.format}"/>
+                          </af:inputDate>
+                        </af:panelFormLayout>
+                      </af:gridCell>
+                    </af:gridRow>
+                  </af:panelGridLayout>
+                </af:showDetailHeader>
+                <af:showDetailHeader text="#{bundle.Termination_Details}" disclosed="true"
+                                     binding="#{backingBeanScope.MALeaseCreationBean.sdh4}"
+                                     id="sdh4">
+                  <af:panelGridLayout binding="#{backingBeanScope.MALeaseCreationBean.pgl7}"
+                                      id="pgl7">
+                    <af:gridRow marginTop="0px" marginBottom="0px" height="auto"
+                                binding="#{backingBeanScope.MALeaseCreationBean.gr9}"
+                                id="gr9">
+                      <af:gridCell marginStart="0px" width="50%"
+                                   binding="#{backingBeanScope.MALeaseCreationBean.gc17}"
+                                   id="gc17">
+                        <af:panelFormLayout binding="#{backingBeanScope.MALeaseCreationBean.pfl9}"
+                                            id="pfl9">
+                          <af:inputDate value="#{bindings.TerminationNoticeSent.inputValue}"
+                                        label="#{bundle.Termination_Notice_Sent}"
+                                        required="#{bindings.TerminationNoticeSent.hints.mandatory}"
+                                        shortDesc="#{bindings.TerminationNoticeSent.hints.tooltip}"
+                                        binding="#{backingBeanScope.MALeaseCreationBean.id8}"
+                                        id="id8">
+                            <f:validator binding="#{bindings.TerminationNoticeSent.validator}"/>
+                            <af:convertDateTime pattern="#{bindings.TerminationNoticeSent.format}"/>
+                          </af:inputDate>
+                          <af:inputDate value="#{bindings.TerminationDate.inputValue}"
+                                        label="#{bundle.Termination_Date}"
+                                        required="#{bindings.TerminationDate.hints.mandatory}"
+                                        shortDesc="#{bindings.TerminationDate.hints.tooltip}"
+                                        binding="#{backingBeanScope.MALeaseCreationBean.id9}"
+                                        id="id9">
+                            <f:validator binding="#{bindings.TerminationDate.validator}"/>
+                            <af:convertDateTime pattern="#{bindings.TerminationDate.format}"/>
+                          </af:inputDate>
+                          <af:selectOneChoice value="#{bindings.TerminationReason.inputValue}"
+                                              label="#{bundle.Termination_Reason}"
+                                              required="#{bindings.TerminationReason.hints.mandatory}"
+                                              shortDesc="#{bindings.TerminationReason.hints.tooltip}"
+                                              binding="#{backingBeanScope.MALeaseCreationBean.soc9}"
+                                              id="soc9" autoSubmit="true">
+                            <f:selectItems value="#{bindings.TerminationReason.items}"
+                                           binding="#{backingBeanScope.MALeaseCreationBean.si9}"
+                                           id="si9"/>
+                          </af:selectOneChoice>
+                          <af:inputText value="#{bindings.TerminationReasonDetails.inputValue}"
+                                        label="#{bundle.Termination_Reason_Details}"
+                                        required="#{bindings.TerminationReasonDetails.hints.mandatory}"
+                                        columns="60"
+                                        maximumLength="#{bindings.TerminationReasonDetails.hints.precision}"
+                                        shortDesc="#{bindings.TerminationReasonDetails.hints.tooltip}"
+                                        binding="#{backingBeanScope.MALeaseCreationBean.it21}"
+                                        id="it21" rows="4">
+                            <f:validator binding="#{bindings.TerminationReasonDetails.validator}"/>
+                          </af:inputText>
+                        </af:panelFormLayout>
+                      </af:gridCell>
+                      <af:gridCell marginStart="0px" marginEnd="0px" width="50%"
+                                   binding="#{backingBeanScope.MALeaseCreationBean.gc18}"
+                                   id="gc18">
+                        <af:panelFormLayout binding="#{backingBeanScope.MALeaseCreationBean.pfl10}"
+                                            id="pfl10" labelAlignment="start">
+                          <af:panelGroupLayout binding="#{backingBeanScope.MALeaseCreationBean.pgl12}"
+                                               id="pgl12" layout="scroll">
+                            <af:panelGroupLayout binding="#{backingBeanScope.MALeaseCreationBean.pgl2}"
+                                                 id="pgl2" layout="horizontal">
+                              <af:inputText value="#{bindings.AdminCharges.inputValue}"
+                                            label="#{bundle.Admin_Charges}"
+                                            required="#{bindings.AdminCharges.hints.mandatory}"
+                                            columns="#{bindings.AdminCharges.hints.displayWidth}"
+                                            maximumLength="#{bindings.AdminCharges.hints.precision}"
+                                            shortDesc="#{bindings.AdminCharges.hints.tooltip}"
+                                            binding="#{backingBeanScope.MALeaseCreationBean.it22}"
+                                            id="it22">
+                                <f:validator binding="#{bindings.AdminCharges.validator}"/>
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.AdminCharges.format}"/>
+                              </af:inputText>
+                              <af:selectBooleanCheckbox value="#{bindings.AdminChargesApprovalFlag.inputValue}"
+                                                        label="#{bundle.Approved}"
+                                                        shortDesc="#{bindings.AdminChargesApprovalFlag.hints.tooltip}"
+                                                        binding="#{backingBeanScope.MALeaseCreationBean.sbc2}"
+                                                        id="sbc2"/>
+                            </af:panelGroupLayout>
+                            <af:panelGroupLayout binding="#{backingBeanScope.MALeaseCreationBean.pgl8}"
+                                                 id="pgl8" layout="horizontal">
+                              <af:inputText value="#{bindings.Penality.inputValue}"
+                                            label="#{bundle.Penality}"
+                                            required="#{bindings.Penality.hints.mandatory}"
+                                            columns="#{bindings.Penality.hints.displayWidth}"
+                                            maximumLength="#{bindings.Penality.hints.precision}"
+                                            shortDesc="#{bindings.Penality.hints.tooltip}"
+                                            binding="#{backingBeanScope.MALeaseCreationBean.it24}"
+                                            id="it24">
+                                <f:validator binding="#{bindings.Penality.validator}"/>
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.Penality.format}"/>
+                              </af:inputText>
+                              <af:selectBooleanCheckbox value="#{bindings.PenalityApprovalFlag.inputValue}"
+                                                        label="#{bundle.Approved}"
+                                                        shortDesc="#{bindings.PenalityApprovalFlag.hints.tooltip}"
+                                                        binding="#{backingBeanScope.MALeaseCreationBean.sbc3}"
+                                                        id="sbc3"/>
+                            </af:panelGroupLayout>
+                            <af:panelGroupLayout binding="#{backingBeanScope.MALeaseCreationBean.pgl9}"
+                                                 id="pgl9" layout="horizontal">
+                              <af:inputText value="#{bindings.RentRefund.inputValue}"
+                                            label="#{bundle.Rent_Refund}"
+                                            required="#{bindings.RentRefund.hints.mandatory}"
+                                            columns="#{bindings.RentRefund.hints.displayWidth}"
+                                            maximumLength="#{bindings.RentRefund.hints.precision}"
+                                            shortDesc="#{bindings.RentRefund.hints.tooltip}"
+                                            binding="#{backingBeanScope.MALeaseCreationBean.it26}"
+                                            id="it26">
+                                <f:validator binding="#{bindings.RentRefund.validator}"/>
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.RentRefund.format}"/>
+                              </af:inputText>
+                              <af:selectBooleanCheckbox value="#{bindings.RentRefundApprovalFlag.inputValue}"
+                                                        label="#{bundle.Approved}"
+                                                        shortDesc="#{bindings.RentRefundApprovalFlag.hints.tooltip}"
+                                                        binding="#{backingBeanScope.MALeaseCreationBean.sbc4}"
+                                                        id="sbc4"/>
+                            </af:panelGroupLayout>
+                            <af:panelGroupLayout binding="#{backingBeanScope.MALeaseCreationBean.pgl11}"
+                                                 id="pgl11" layout="horizontal">
+                              <af:selectOneChoice value="#{bindings.RefundType.inputValue}"
+                                                  label="#{bundle.Refund_Type}"
+                                                  required="#{bindings.RefundType.hints.mandatory}"
+                                                  shortDesc="#{bindings.RefundType.hints.tooltip}"
+                                                  binding="#{backingBeanScope.MALeaseCreationBean.soc10}"
+                                                  id="soc10">
+                                <f:selectItems value="#{bindings.RefundType.items}"
+                                               binding="#{backingBeanScope.MALeaseCreationBean.si10}"
+                                               id="si10"/>
+                              </af:selectOneChoice>
+                            </af:panelGroupLayout>
+                          </af:panelGroupLayout>
+                        </af:panelFormLayout>
+                      </af:gridCell>
+                    </af:gridRow>
+                  </af:panelGridLayout>
+                </af:showDetailHeader>
+              </af:panelGroupLayout>
+            </af:panelGroupLayout>
+          </af:showDetailItem>
+          <af:showDetailItem text="#{bundle.Property}"
+                             binding="#{backingBeanScope.MALeaseCreationBean.sdi2}"
+                             id="sdi2"
+                             disclosureListener="#{backingBeanScope.MALeaseCreationBean.disclosureListner}">
+            <af:panelCollection binding="#{backingBeanScope.MALeaseCreationBean.pc3}"
+                                id="pc3" styleClass="AFStretchWidth">
+              <f:facet name="toolbar">
+                <af:toolbar binding="#{backingBeanScope.MALeaseCreationBean.t7}"
+                            id="t7">
+                      <af:button text="#{bundle.New}" disabled="#{!bindings.CreateInsert2.enabled}"
+                                 binding="#{backingBeanScope.MALeaseCreationBean.b1}" id="b1"
+                                 icon="/images/icons/new_ena.png"
+                                 action="#{backingBeanScope.MALeaseCreationBean.addPropertyRow}"/>
+                      <af:button actionListener="#{bindings.Commit.execute}" text="#{bundle.Save}"
+                                 binding="#{backingBeanScope.MALeaseCreationBean.b2}" id="b2"
+                                 icon="/images/icons/save_ena.png"/>
+                      <af:popup binding="#{backingBeanScope.MALeaseCreationBean.p2}"
+                            id="p2" autoCancel="disabled"
+                            childCreation="deferred">
+                    <af:dialog binding="#{backingBeanScope.MALeaseCreationBean.d3}"
+                               id="d3" title="#{bundle.Search_Select_Property}"
+                               type="none"
+                               contentWidth="600">
+                      <af:panelGroupLayout layout="vertical"
+                                           binding="#{backingBeanScope.MALeaseCreationBean.panelGroupLayout1}"
+                                           id="panelGroupLayout1">
+                        <af:panelHeader text="#{bundle.Select_Property_ID}"
+                                        binding="#{backingBeanScope.MALeaseCreationBean.panelHeader1}"
+                                        id="panelHeader1">
+                          <af:query id="query1" headerText="#{bundle.Search}"
+                                    disclosed="true"
+                                    value="#{bindings.MARSPropertySearchVOCriteriaQuery.queryDescriptor}"
+                                    model="#{bindings.MARSPropertySearchVOCriteriaQuery.queryModel}"
+                                    queryListener="#{bindings.MARSPropertySearchVOCriteriaQuery.processQuery}"
+                                    queryOperationListener="#{bindings.MARSPropertySearchVOCriteriaQuery.processQueryOperation}"
+                                    resultComponentId="::table1"
+                                    binding="#{backingBeanScope.MALeaseCreationBean.query1}"
+                                    saveQueryMode="hidden"/>
+                        </af:panelHeader>
+                        <af:table value="#{bindings.MARSPropertySearchVO.collectionModel}"
+                                  var="row"
+                                  rows="#{bindings.MARSPropertySearchVO.rangeSize}"
+                                  emptyText="#{bindings.MARSPropertySearchVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                  fetchSize="#{bindings.MARSPropertySearchVO.rangeSize}"
+                                  rowBandingInterval="0"
+                                  selectedRowKeys="#{bindings.MARSPropertySearchVO.collectionModel.selectedRow}"
+                                  selectionListener="#{bindings.MARSPropertySearchVO.collectionModel.makeCurrent}"
+                                  rowSelection="single" id="table1"
+                                  binding="#{backingBeanScope.MALeaseCreationBean.table1}"
+                                  summary="#{bundle.Property_Search_Result_Table}"
+                                  width="100%" inlineStyle="height:185px;" partialTriggers="::cb9">
+                          <af:column headerText="#{bindings.MARSPropertySearchVO.hints.SelectAttr.label}"
+                                     id="column1" rendered="false">
+                            <af:selectBooleanRadio value="#{row.bindings.SelectAttr.inputValue}"
+                                                   required="#{bindings.MARSPropertySearchVO.hints.SelectAttr.mandatory}"
+                                                   shortDesc="#{bindings.MARSPropertySearchVO.hints.SelectAttr.tooltip}"
+                                                   id="selectBooleanRadio1"
+                                                   text="#{bundle.selectBooleanRadio1}">
+                              <f:validator binding="#{row.bindings.SelectAttr.validator}"/>
+                            </af:selectBooleanRadio>
+                          </af:column>
+                          <af:column sortProperty="#{bindings.MARSPropertySearchVO.hints.PropertySegment.name}"
+                                     sortable="true"
+                                     headerText="#{bindings.MARSPropertySearchVO.hints.PropertySegment.label}"
+                                     id="column2" rowHeader="unstyled">
+                            <af:outputText value="#{row.PropertySegment}"
+                                           id="outputText1"/>
+                          </af:column>
+                          <af:column sortProperty="#{bindings.MARSPropertySearchVO.hints.PropertyName.name}"
+                                     sortable="true"
+                                     headerText="#{bindings.MARSPropertySearchVO.hints.PropertyName.label}"
+                                     id="column3">
+                            <af:outputText value="#{row.PropertyName}"
+                                           id="outputText2"/>
+                          </af:column>
+                          <af:column sortProperty="#{bindings.MARSPropertySearchVO.hints.StartDate.name}"
+                                     sortable="true"
+                                     headerText="#{bindings.MARSPropertySearchVO.hints.StartDate.label}"
+                                     id="column4">
+                            <af:outputText value="#{row.StartDate}"
+                                           id="outputText3">
+                              <af:convertDateTime pattern="#{bindings.MARSPropertySearchVO.hints.StartDate.format}"/>
+                            </af:outputText>
+                          </af:column>
+                          <af:column sortProperty="#{bindings.MARSPropertySearchVO.hints.EndDate.name}"
+                                     sortable="true"
+                                     headerText="#{bindings.MARSPropertySearchVO.hints.EndDate.label}"
+                                     id="column5">
+                            <af:outputText value="#{row.EndDate}"
+                                           id="outputText4">
+                              <af:convertDateTime pattern="#{bindings.MARSPropertySearchVO.hints.EndDate.format}"/>
+                            </af:outputText>
+                          </af:column>
+                          <af:column sortProperty="#{bindings.MARSPropertySearchVO.hints.BlockBuldingName.name}"
+                                     sortable="true"
+                                     headerText="#{bindings.MARSPropertySearchVO.hints.BlockBuldingName.label}"
+                                     id="column6">
+                            <af:outputText value="#{row.BlockBuldingName}"
+                                           id="outputText5"/>
+                          </af:column>
+                          <af:column sortProperty="#{bindings.MARSPropertySearchVO.hints.FloorNumber.name}"
+                                     sortable="true"
+                                     headerText="#{bindings.MARSPropertySearchVO.hints.FloorNumber.label}"
+                                     id="column7">
+                            <af:outputText value="#{row.FloorNumber}"
+                                           id="outputText6"/>
+                          </af:column>
+                        </af:table>
+                      </af:panelGroupLayout>
+                      <f:facet name="buttonBar">
+                        <af:panelGroupLayout binding="#{backingBeanScope.MALeaseCreationBean.panelGroupLayout2}"
+                                             id="panelGroupLayout2"
+                                             layout="horizontal" halign="left"
+                                             styleClass="AFStretchWidth">
+                          <af:panelGroupLayout binding="#{backingBeanScope.MALeaseCreationBean.pgl17}"
+                                               id="pgl17">
+                                <af:button text="#{bundle.OK}" binding="#{backingBeanScope.MALeaseCreationBean.cb9}" id="cb9"
+                                           action="#{backingBeanScope.MALeaseCreationBean.addLeasePropertyRowOK}"
+                                           partialSubmit="false"/>
+                                <af:button text="#{bundle.Cancel}" binding="#{backingBeanScope.MALeaseCreationBean.cb8}" id="cb8"
+                                           action="#{backingBeanScope.MALeaseCreationBean.cancelPropertyPopup}"/>
+                              </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                      </f:facet>
+                    </af:dialog>
+                  </af:popup>
+                </af:toolbar>
+              </f:facet>
+              <f:facet name="statusbar"/>
+              <af:table value="#{bindings.MARSLeasePropertyVO.collectionModel}"
+                        var="row"
+                        rows="#{bindings.MARSLeasePropertyVO.rangeSize}"
+                        emptyText="#{bindings.MARSLeasePropertyVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                        fetchSize="#{bindings.MARSLeasePropertyVO.rangeSize}"
+                        rowBandingInterval="0"
+                        selectedRowKeys="#{bindings.MARSLeasePropertyVO.collectionModel.selectedRow}"
+                        selectionListener="#{bindings.MARSLeasePropertyVO.collectionModel.makeCurrent}"
+                        rowSelection="single"
+                        binding="#{backingBeanScope.MALeaseCreationBean.t6}"
+                        id="t6" width="100%" columnStretching="last">
+                    <?audit suppress oracle.adf.faces.compreqsummary?><?audit suppress oracle.adf.faces.tableneedsrowheader?><?audit suppress oracle.adf.faces.tableneedsrowheader?>
+                    <af:column sortProperty="#{bindings.MARSLeasePropertyVO.hints.PropertySegment.name}"
+                           sortable="true" headerText="#{bundle.PROPERTY_ID}" id="c24">
+                  <af:inputText value="#{row.bindings.PropertySegment.inputValue}"
+                                label="#{bindings.MARSLeasePropertyVO.hints.PropertySegment.label}"
+                                required="#{bindings.MARSLeasePropertyVO.hints.PropertySegment.mandatory}"
+                                columns="#{bindings.MARSLeasePropertyVO.hints.PropertySegment.displayWidth}"
+                                maximumLength="#{bindings.MARSLeasePropertyVO.hints.PropertySegment.precision}"
+                                shortDesc="#{bindings.MARSLeasePropertyVO.hints.PropertySegment.tooltip}"
+                                id="it38">
+                    <f:validator binding="#{row.bindings.PropertySegment.validator}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.MARSLeasePropertyVO.hints.PropertyName.name}"
+                           sortable="true" headerText="#{bundle.PROPERTY_NAME}" id="c23">
+                  <af:inputText value="#{row.bindings.PropertyName.inputValue}"
+                                label="#{bindings.MARSLeasePropertyVO.hints.PropertyName.label}"
+                                required="#{bindings.MARSLeasePropertyVO.hints.PropertyName.mandatory}"
+                                columns="#{bindings.MARSLeasePropertyVO.hints.PropertyName.displayWidth}"
+                                maximumLength="#{bindings.MARSLeasePropertyVO.hints.PropertyName.precision}"
+                                shortDesc="#{bindings.MARSLeasePropertyVO.hints.PropertyName.tooltip}"
+                                id="it37">
+                    <f:validator binding="#{row.bindings.PropertyName.validator}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.MARSLeasePropertyVO.hints.StartDate.name}"
+                           sortable="true" headerText="#{bundle.START_DATE}" id="c28">
+                  <af:inputDate value="#{row.bindings.StartDate.inputValue}"
+                                label="#{bindings.MARSLeasePropertyVO.hints.StartDate.label}"
+                                required="#{bindings.MARSLeasePropertyVO.hints.StartDate.mandatory}"
+                                shortDesc="#{bindings.MARSLeasePropertyVO.hints.StartDate.tooltip}"
+                                id="id14">
+                    <f:validator binding="#{row.bindings.StartDate.validator}"/>
+                    <af:convertDateTime pattern="#{bindings.MARSLeasePropertyVO.hints.StartDate.format}"/>
+                  </af:inputDate>
+                </af:column>
+                <af:column sortProperty="#{bindings.MARSLeasePropertyVO.hints.EndDate.name}"
+                           sortable="true" headerText="#{bundle.END_DATE}" id="c27">
+                  <af:inputDate value="#{row.bindings.EndDate.inputValue}"
+                                label="#{bindings.MARSLeasePropertyVO.hints.EndDate.label}"
+                                required="#{bindings.MARSLeasePropertyVO.hints.EndDate.mandatory}"
+                                shortDesc="#{bindings.MARSLeasePropertyVO.hints.EndDate.tooltip}"
+                                id="id15">
+                    <f:validator binding="#{row.bindings.EndDate.validator}"/>
+                    <af:convertDateTime pattern="#{bindings.MARSLeasePropertyVO.hints.EndDate.format}"/>
+                  </af:inputDate>
+                </af:column>
+                <af:column sortProperty="#{bindings.MARSLeasePropertyVO.hints.BlockBuldingName.name}"
+                           sortable="true" headerText="#{bundle.BLOCK_BUILDING_NAME}"
+                           id="c22">
+                  <af:inputText value="#{row.bindings.BlockBuldingName.inputValue}"
+                                label="#{bindings.MARSLeasePropertyVO.hints.BlockBuldingName.label}"
+                                required="#{bindings.MARSLeasePropertyVO.hints.BlockBuldingName.mandatory}"
+                                columns="#{bindings.MARSLeasePropertyVO.hints.BlockBuldingName.displayWidth}"
+                                maximumLength="#{bindings.MARSLeasePropertyVO.hints.BlockBuldingName.precision}"
+                                shortDesc="#{bindings.MARSLeasePropertyVO.hints.BlockBuldingName.tooltip}"
+                                id="it34">
+                    <f:validator binding="#{row.bindings.BlockBuldingName.validator}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.MARSLeasePropertyVO.hints.FloorNumber.name}"
+                           sortable="true" headerText="#{bundle.FLOOR_NUMBER}" id="c20">
+                  <af:inputText value="#{row.bindings.FloorNumber.inputValue}"
+                                label="#{bindings.MARSLeasePropertyVO.hints.FloorNumber.label}"
+                                required="#{bindings.MARSLeasePropertyVO.hints.FloorNumber.mandatory}"
+                                columns="#{bindings.MARSLeasePropertyVO.hints.FloorNumber.displayWidth}"
+                                maximumLength="#{bindings.MARSLeasePropertyVO.hints.FloorNumber.precision}"
+                                shortDesc="#{bindings.MARSLeasePropertyVO.hints.FloorNumber.tooltip}"
+                                id="it35">
+                    <f:validator binding="#{row.bindings.FloorNumber.validator}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.MARSLeasePropertyVO.hints.UnitNumber.name}"
+                           sortable="true" headerText="#{bundle.UNIT_NUMBER}" id="c25">
+                  <af:inputText value="#{row.bindings.UnitNumber.inputValue}"
+                                label="#{bindings.MARSLeasePropertyVO.hints.UnitNumber.label}"
+                                required="#{bindings.MARSLeasePropertyVO.hints.UnitNumber.mandatory}"
+                                columns="#{bindings.MARSLeasePropertyVO.hints.UnitNumber.displayWidth}"
+                                maximumLength="#{bindings.MARSLeasePropertyVO.hints.UnitNumber.precision}"
+                                shortDesc="#{bindings.MARSLeasePropertyVO.hints.UnitNumber.tooltip}"
+                                id="it33">
+                    <f:validator binding="#{row.bindings.UnitNumber.validator}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.MARSLeasePropertyVO.hints.ParentTypeName.name}"
+                           sortable="true" headerText="#{bundle.Property_Type}" id="c19">
+                  <af:inputText value="#{row.bindings.ParentTypeName.inputValue}"
+                                label="#{bindings.MARSLeasePropertyVO.hints.ParentTypeName.label}"
+                                required="#{bindings.MARSLeasePropertyVO.hints.ParentTypeName.mandatory}"
+                                columns="#{bindings.MARSLeasePropertyVO.hints.ParentTypeName.displayWidth}"
+                                maximumLength="#{bindings.MARSLeasePropertyVO.hints.ParentTypeName.precision}"
+                                shortDesc="#{bindings.MARSLeasePropertyVO.hints.ParentTypeName.tooltip}"
+                                id="it39">
+                    <f:validator binding="#{row.bindings.ParentTypeName.validator}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.MARSLeasePropertyVO.hints.ChildTypeName.name}"
+                           sortable="true" headerText="#{bundle.Property_Sub_Type}"
+                           id="c26">
+                  <af:inputText value="#{row.bindings.ChildTypeName.inputValue}"
+                                label="#{bindings.MARSLeasePropertyVO.hints.ChildTypeName.label}"
+                                required="#{bindings.MARSLeasePropertyVO.hints.ChildTypeName.mandatory}"
+                                columns="#{bindings.MARSLeasePropertyVO.hints.ChildTypeName.displayWidth}"
+                                maximumLength="#{bindings.MARSLeasePropertyVO.hints.ChildTypeName.precision}"
+                                shortDesc="#{bindings.MARSLeasePropertyVO.hints.ChildTypeName.tooltip}"
+                                id="it32">
+                    <f:validator binding="#{row.bindings.ChildTypeName.validator}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.MARSLeasePropertyVO.hints.UnitSqMt.name}"
+                           sortable="true" headerText="#{bundle.Sq_Mt}" id="c21">
+                  <af:inputText value="#{row.bindings.UnitSqMt.inputValue}"
+                                label="#{bindings.MARSLeasePropertyVO.hints.UnitSqMt.label}"
+                                required="#{bindings.MARSLeasePropertyVO.hints.UnitSqMt.mandatory}"
+                                columns="#{bindings.MARSLeasePropertyVO.hints.UnitSqMt.displayWidth}"
+                                maximumLength="#{bindings.MARSLeasePropertyVO.hints.UnitSqMt.precision}"
+                                shortDesc="#{bindings.MARSLeasePropertyVO.hints.UnitSqMt.tooltip}"
+                                id="it36">
+                    <f:validator binding="#{row.bindings.UnitSqMt.validator}"/>
+                  </af:inputText>
+                </af:column>
+              </af:table>
+            </af:panelCollection>
+          </af:showDetailItem>
+          <af:showDetailItem text="#{bundle.Charges}"
+                             binding="#{backingBeanScope.MALeaseCreationBean.sdi1}"
+                             id="sdi1"
+                             disclosureListener="#{backingBeanScope.MALeaseCreationBean.disclosureListner}">
+            <af:panelCollection binding="#{backingBeanScope.MALeaseCreationBean.pc1}"
+                                id="pc1" styleClass="AFStretchWidth">
+              <f:facet name="toolbar">
+                <af:toolbar binding="#{backingBeanScope.MALeaseCreationBean.t3}"
+                            id="t3">
+                      <af:button text="#{bundle.New}" disabled="#{!bindings.CreateInsert.enabled}"
+                                 binding="#{backingBeanScope.MALeaseCreationBean.cb3}" id="cb3"
+                                 icon="/images/icons/new_ena.png"
+                                 action="#{backingBeanScope.MALeaseCreationBean.addNewChargesProperty}"/>
+                      <af:button actionListener="#{bindings.Commit.execute}" text="#{bundle.Save}"
+                                 binding="#{backingBeanScope.MALeaseCreationBean.cb2}" id="cb2"
+                                 icon="/images/icons/save_ena.png"/>
+                      <af:popup binding="#{backingBeanScope.MALeaseCreationBean.p1}"
+                            id="p1" autoCancel="disabled"
+                            childCreation="deferred">
+                    <af:dialog binding="#{backingBeanScope.MALeaseCreationBean.d2}"
+                               id="d2" title="#{bundle.Search_Select_Property}"
+                               closeIconVisible="false" type="none"
+                               contentWidth="600">
+                      <af:panelGroupLayout layout="vertical"
+                                           binding="#{backingBeanScope.MALeaseCreationBean.pgl15}"
+                                           id="pgl15">
+                        <af:panelHeader text="#{bundle.Select_Property_ID}"
+                                        binding="#{backingBeanScope.MALeaseCreationBean.ph1}"
+                                        id="ph1">
+                          <af:query id="qryId1" headerText="#{bundle.Search}"
+                                    disclosed="true"
+                                    value="#{bindings.MARSPropertySearchVOCriteriaQuery.queryDescriptor}"
+                                    model="#{bindings.MARSPropertySearchVOCriteriaQuery.queryModel}"
+                                    queryListener="#{bindings.MARSPropertySearchVOCriteriaQuery.processQuery}"
+                                    queryOperationListener="#{bindings.MARSPropertySearchVOCriteriaQuery.processQueryOperation}"
+                                    resultComponentId="::resId1"
+                                    binding="#{backingBeanScope.MALeaseCreationBean.qryId1}"
+                                    saveQueryMode="hidden"/>
+                        </af:panelHeader>
+                        <af:table value="#{bindings.MARSPropertySearchVO.collectionModel}"
+                                  var="row"
+                                  rows="#{bindings.MARSPropertySearchVO.rangeSize}"
+                                  emptyText="#{bindings.MARSPropertySearchVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                  fetchSize="#{bindings.MARSPropertySearchVO.rangeSize}"
+                                  rowBandingInterval="0"
+                                  selectedRowKeys="#{bindings.MARSPropertySearchVO.collectionModel.selectedRow}"
+                                  selectionListener="#{bindings.MARSPropertySearchVO.collectionModel.makeCurrent}"
+                                  rowSelection="single" id="resId1"
+                                  binding="#{backingBeanScope.MALeaseCreationBean.resId1}"
+                                  summary="#{bundle.Property_Search_Result_Table}"
+                                  width="100%">
+                          <af:column headerText="#{bindings.MARSPropertySearchVO.hints.SelectAttr.label}"
+                                     id="c10">
+                            <af:selectBooleanRadio value="#{row.bindings.SelectAttr.inputValue}"
+                                                   required="#{bindings.MARSPropertySearchVO.hints.SelectAttr.mandatory}"
+                                                   shortDesc="#{bindings.MARSPropertySearchVO.hints.SelectAttr.tooltip}"
+                                                   id="it28"
+                                                   text="#{bundle.selectBooleanRadio1}">
+                              <f:validator binding="#{row.bindings.SelectAttr.validator}"/>
+                            </af:selectBooleanRadio>
+                          </af:column>
+                          <af:column sortProperty="#{bindings.MARSPropertySearchVO.hints.PropertySegment.name}"
+                                     sortable="true"
+                                     headerText="#{bindings.MARSPropertySearchVO.hints.PropertySegment.label}"
+                                     id="resId1c1" rowHeader="unstyled">
+                            <af:outputText value="#{row.PropertySegment}"
+                                           id="ot13"/>
+                          </af:column>
+                          <af:column sortProperty="#{bindings.MARSPropertySearchVO.hints.PropertyName.name}"
+                                     sortable="true"
+                                     headerText="#{bindings.MARSPropertySearchVO.hints.PropertyName.label}"
+                                     id="resId1c2">
+                            <af:outputText value="#{row.PropertyName}"
+                                           id="ot15"/>
+                          </af:column>
+                          <af:column sortProperty="#{bindings.MARSPropertySearchVO.hints.StartDate.name}"
+                                     sortable="true"
+                                     headerText="#{bindings.MARSPropertySearchVO.hints.StartDate.label}"
+                                     id="resId1c3">
+                            <af:outputText value="#{row.StartDate}" id="ot14">
+                              <af:convertDateTime pattern="#{bindings.MARSPropertySearchVO.hints.StartDate.format}"/>
+                            </af:outputText>
+                          </af:column>
+                          <af:column sortProperty="#{bindings.MARSPropertySearchVO.hints.EndDate.name}"
+                                     sortable="true"
+                                     headerText="#{bindings.MARSPropertySearchVO.hints.EndDate.label}"
+                                     id="resId1c4">
+                            <af:outputText value="#{row.EndDate}" id="ot11">
+                              <af:convertDateTime pattern="#{bindings.MARSPropertySearchVO.hints.EndDate.format}"/>
+                            </af:outputText>
+                          </af:column>
+                          <af:column sortProperty="#{bindings.MARSPropertySearchVO.hints.BlockBuldingName.name}"
+                                     sortable="true"
+                                     headerText="#{bindings.MARSPropertySearchVO.hints.BlockBuldingName.label}"
+                                     id="resId1c5">
+                            <af:outputText value="#{row.BlockBuldingName}"
+                                           id="ot12"/>
+                          </af:column>
+                          <af:column sortProperty="#{bindings.MARSPropertySearchVO.hints.FloorNumber.name}"
+                                     sortable="true"
+                                     headerText="#{bindings.MARSPropertySearchVO.hints.FloorNumber.label}"
+                                     id="resId1c6">
+                            <af:outputText value="#{row.FloorNumber}"
+                                           id="ot10"/>
+                          </af:column>
+                        </af:table>
+                      </af:panelGroupLayout>
+                      <f:facet name="buttonBar">
+                        <af:panelGroupLayout binding="#{backingBeanScope.MALeaseCreationBean.pgl16}"
+                                             id="pgl16" layout="horizontal">
+                              <af:button text="#{bundle.OK}" binding="#{backingBeanScope.MALeaseCreationBean.cb6}" id="cb6"/>
+                              <af:button text="#{bundle.Cancel}" binding="#{backingBeanScope.MALeaseCreationBean.cb7}" id="cb7"/>
+                            </af:panelGroupLayout>
+                      </f:facet>
+                    </af:dialog>
+                  </af:popup>
+                </af:toolbar>
+              </f:facet>
+              <f:facet name="statusbar"/>
+              <af:table value="#{bindings.MARSLeaseChargesVO.collectionModel}"
+                        var="row"
+                        rows="#{bindings.MARSLeaseChargesVO.rangeSize}"
+                        emptyText="#{bindings.MARSLeaseChargesVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                        fetchSize="#{bindings.MARSLeaseChargesVO.rangeSize}"
+                        rowBandingInterval="0"
+                        selectedRowKeys="#{bindings.MARSLeaseChargesVO.collectionModel.selectedRow}"
+                        selectionListener="#{bindings.MARSLeaseChargesVO.collectionModel.makeCurrent}"
+                        rowSelection="single"
+                        binding="#{backingBeanScope.MALeaseCreationBean.t2}"
+                        id="t2" summary="#{bundle.Properties_Table}"
+                        partialTriggers="::cb3" columnStretching="last"
+                        width="100%">
+                    <?audit suppress oracle.adf.faces.tableneedsrowheader?>
+                    <af:column headerText="#{bundle.Property}"
+                           id="c30" width="130">
+                  <af:inputListOfValues id="propertySegmentId"
+                                        popupTitle="Search and Select: #{bindings.MARSLeaseChargesVO.hints.PropertySegment.label}"
+                                        value="#{row.bindings.PropertySegment.inputValue}"
+                                        model="#{row.bindings.PropertySegment.listOfValuesModel}"
+                                        required="#{bindings.MARSLeaseChargesVO.hints.PropertySegment.mandatory}"
+                                        columns="#{bindings.MARSLeaseChargesVO.hints.PropertySegment.displayWidth}"
+                                        shortDesc="#{bindings.MARSLeaseChargesVO.hints.PropertySegment.tooltip}">
+                    <f:validator binding="#{row.bindings.PropertySegment.validator}"/>
+                  </af:inputListOfValues>
+                </af:column>
+                <af:column sortProperty="#{bindings.MARSLeaseChargesVO.hints.ChargeType.name}"
+                           sortable="true" headerText="#{bundle.Charge_Type}" id="c1"
+                           width="130">
+                  <af:selectOneChoice value="#{row.bindings.ChargeType.inputValue}"
+                                      label="#{row.bindings.ChargeType.label}"
+                                      required="#{bindings.MARSLeaseChargesVO.hints.ChargeType.mandatory}"
+                                      shortDesc="#{bindings.MARSLeaseChargesVO.hints.ChargeType.tooltip}"
+                                      id="soc11">
+                    <f:selectItems value="#{row.bindings.ChargeType.items}"
+                                   id="si11"/>
+                  </af:selectOneChoice>
+                </af:column>
+                <af:column headerText="#{bundle.Amount}"
+                           id="c29" width="130">
+                  <af:inputText value="#{row.bindings.Amount.inputValue}"
+                                label="#{bindings.MARSLeaseChargesVO.hints.Amount.label}"
+                                required="#{bindings.MARSLeaseChargesVO.hints.Amount.mandatory}"
+                                columns="#{bindings.MARSLeaseChargesVO.hints.Amount.displayWidth}"
+                                maximumLength="#{bindings.MARSLeaseChargesVO.hints.Amount.precision}"
+                                shortDesc="#{bindings.MARSLeaseChargesVO.hints.Amount.tooltip}"
+                                id="it40">
+                    <f:validator binding="#{row.bindings.Amount.validator}"/>
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.MARSLeaseChargesVO.hints.Amount.format}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.MARSLeaseChargesVO.hints.StartDate.name}"
+                           sortable="true" headerText="#{bundle.START_DATE}" id="c9"
+                           width="130">
+                  <af:inputDate value="#{row.bindings.StartDate.inputValue}"
+                                label="#{bindings.MARSLeaseChargesVO.hints.StartDate.label}"
+                                required="#{bindings.MARSLeaseChargesVO.hints.StartDate.mandatory}"
+                                shortDesc="#{bindings.MARSLeaseChargesVO.hints.StartDate.tooltip}"
+                                id="id10">
+                    <f:validator binding="#{row.bindings.StartDate.validator}"/>
+                    <af:convertDateTime pattern="#{bindings.MARSLeaseChargesVO.hints.StartDate.format}"/>
+                  </af:inputDate>
+                </af:column>
+                <af:column sortProperty="#{bindings.MARSLeaseChargesVO.hints.EndDate.name}"
+                           sortable="true" headerText="#{bundle.END_DATE}" id="c8"
+                           width="130">
+                  <af:inputDate value="#{row.bindings.EndDate.inputValue}"
+                                label="#{bindings.MARSLeaseChargesVO.hints.EndDate.label}"
+                                required="#{bindings.MARSLeaseChargesVO.hints.EndDate.mandatory}"
+                                shortDesc="#{bindings.MARSLeaseChargesVO.hints.EndDate.tooltip}"
+                                id="id11">
+                    <f:validator binding="#{row.bindings.EndDate.validator}"/>
+                    <af:convertDateTime pattern="#{bindings.MARSLeaseChargesVO.hints.EndDate.format}"/>
+                  </af:inputDate>
+                </af:column>
+                <af:column sortProperty="#{bindings.MARSLeaseChargesVO.hints.CreatedBy.name}"
+                           sortable="true" headerText="#{bundle.CREATED_BY}" id="c2"
+                           width="130">
+                  <af:outputText value="#{row.CreatedBy}" id="ot7">
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.MARSLeaseChargesVO.hints.CreatedBy.format}"/>
+                  </af:outputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.MARSLeaseChargesVO.hints.LastUpdatedBy.name}"
+                           sortable="true" headerText="#{bundle.LAST_UPDATED_BY}" id="c5"
+                           width="130">
+                  <af:outputText value="#{row.LastUpdatedBy}" id="ot6">
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.MARSLeaseChargesVO.hints.LastUpdatedBy.format}"/>
+                  </af:outputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.MARSLeaseChargesVO.hints.CreationDate.name}"
+                           sortable="true" headerText="#{bundle.CREATION_DATE}" id="c6"
+                           width="130">
+                  <af:outputText value="#{row.CreationDate}" id="ot5">
+                    <af:convertDateTime pattern="#{bindings.MARSLeaseChargesVO.hints.CreationDate.format}"/>
+                  </af:outputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.MARSLeaseChargesVO.hints.LastUpdateDate.name}"
+                           sortable="true" headerText="#{bundle.LAST_UPDATE_DATE}" id="c3"
+                           width="130">
+                  <af:outputText value="#{row.LastUpdateDate}" id="ot9">
+                    <af:convertDateTime pattern="#{bindings.MARSLeaseChargesVO.hints.LastUpdateDate.format}"/>
+                  </af:outputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.MARSLeaseChargesVO.hints.LastUpdateLogin.name}"
+                           sortable="true" headerText="#{bundle.Last_Update_Login}"
+                           id="c4" width="130">
+                  <af:outputText value="#{row.LastUpdateLogin}" id="ot8">
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.MARSLeaseChargesVO.hints.LastUpdateLogin.format}"/>
+                  </af:outputText>
+                </af:column>
+              </af:table>
+            </af:panelCollection>
+          </af:showDetailItem>
+          <af:showDetailItem text="#{bundle.Payments}"
+                             binding="#{backingBeanScope.MALeaseCreationBean.sdi3}"
+                             id="sdi3"
+                             disclosureListener="#{backingBeanScope.MALeaseCreationBean.disclosureListner}">
+            <af:panelCollection binding="#{backingBeanScope.MALeaseCreationBean.pc2}"
+                                id="pc2" styleClass="AFStretchWidth">
+              <f:facet name="toolbar">
+                <af:toolbar binding="#{backingBeanScope.MALeaseCreationBean.t5}"
+                            id="t5">
+                      <af:button text="#{bundle.New}" disabled="#{!bindings.CreateInsert1.enabled}"
+                                 binding="#{backingBeanScope.MALeaseCreationBean.cb20}" id="cb20"
+                                 icon="/images/icons/new_ena.png"
+                                 action="#{backingBeanScope.MALeaseCreationBean.addPaymentRow}"/>
+                      <af:button actionListener="#{bindings.Commit.execute}" text="#{bundle.Save}"
+                                 binding="#{backingBeanScope.MALeaseCreationBean.cb21}" id="cb21"
+                                 icon="/images/icons/save_ena.png"/>
+                    </af:toolbar>
+              </f:facet>
+              <f:facet name="statusbar"/>
+              <af:table value="#{bindings.MARSLeasePaymentsVO1.collectionModel}"
+                        var="row"
+                        rows="#{bindings.MARSLeasePaymentsVO1.rangeSize}"
+                        emptyText="#{bindings.MARSLeasePaymentsVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                        fetchSize="#{bindings.MARSLeasePaymentsVO1.rangeSize}"
+                        rowBandingInterval="0"
+                        selectedRowKeys="#{bindings.MARSLeasePaymentsVO1.collectionModel.selectedRow}"
+                        selectionListener="#{bindings.MARSLeasePaymentsVO1.collectionModel.makeCurrent}"
+                        rowSelection="single"
+                        binding="#{backingBeanScope.MALeaseCreationBean.t1}"
+                        id="t1" width="100%" partialTriggers="::cb21 ::cb20"
+                        columnStretching="last">
+                    <?audit suppress oracle.adf.faces.compreqsummary?><?audit suppress oracle.adf.faces.compreqsummary?><?audit suppress oracle.adf.faces.tableneedsrowheader?><?audit suppress oracle.adf.faces.tableneedsrowheader?><?audit suppress oracle.adf.faces.tableneedsrowheader?>
+                    <af:column sortProperty="#{bindings.MARSLeasePaymentsVO1.hints.PaymentType.name}"
+                           sortable="true" headerText="#{bundle.Payment_Type}" id="c12"
+                           width="160">
+                  <af:selectOneChoice value="#{row.bindings.PaymentType.inputValue}"
+                                      label="#{row.bindings.PaymentType.label}"
+                                      required="#{bindings.MARSLeasePaymentsVO1.hints.PaymentType.mandatory}"
+                                      shortDesc="#{bindings.MARSLeasePaymentsVO1.hints.PaymentType.tooltip}"
+                                      id="soc12">
+                    <f:selectItems value="#{row.bindings.PaymentType.items}"
+                                   id="si13"/>
+                  </af:selectOneChoice>
+                </af:column>
+                <af:column sortProperty="#{bindings.MARSLeasePaymentsVO1.hints.PaymentNumber.name}"
+                           sortable="true" headerText="#{bindings.MARSLeasePaymentsVO1.hints.PaymentNumber.label}" id="c7"
+                           width="160">
+                  <af:inputText value="#{row.bindings.PaymentNumber.inputValue}"
+                                label="#{bindings.MARSLeasePaymentsVO1.hints.PaymentNumber.label}"
+                                required="#{bindings.MARSLeasePaymentsVO1.hints.PaymentNumber.mandatory}"
+                                columns="#{bindings.MARSLeasePaymentsVO1.hints.PaymentNumber.displayWidth}"
+                                maximumLength="#{bindings.MARSLeasePaymentsVO1.hints.PaymentNumber.precision}"
+                                shortDesc="#{bindings.MARSLeasePaymentsVO1.hints.PaymentNumber.tooltip}"
+                                id="it31">
+                    <f:validator binding="#{row.bindings.PaymentNumber.validator}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.MARSLeasePaymentsVO1.hints.Amount.name}"
+                           sortable="true" headerText="#{bundle.Amount}" id="c18"
+                           width="160">
+                  <af:inputText value="#{row.bindings.Amount.inputValue}"
+                                label="#{bindings.MARSLeasePaymentsVO1.hints.Amount.label}"
+                                required="#{bindings.MARSLeasePaymentsVO1.hints.Amount.mandatory}"
+                                columns="#{bindings.MARSLeasePaymentsVO1.hints.Amount.displayWidth}"
+                                maximumLength="#{bindings.MARSLeasePaymentsVO1.hints.Amount.precision}"
+                                shortDesc="#{bindings.MARSLeasePaymentsVO1.hints.Amount.tooltip}"
+                                id="it29">
+                    <f:validator binding="#{row.bindings.Amount.validator}"/>
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.MARSLeasePaymentsVO1.hints.Amount.format}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.MARSLeasePaymentsVO1.hints.DueDate.name}"
+                           sortable="true" headerText="#{bundle.Due_Date}" id="c15"
+                           width="160">
+                  <af:inputDate value="#{row.bindings.DueDate.inputValue}"
+                                label="#{bindings.MARSLeasePaymentsVO1.hints.DueDate.label}"
+                                required="#{bindings.MARSLeasePaymentsVO1.hints.DueDate.mandatory}"
+                                shortDesc="#{bindings.MARSLeasePaymentsVO1.hints.DueDate.tooltip}"
+                                id="id12">
+                    <f:validator binding="#{row.bindings.DueDate.validator}"/>
+                    <af:convertDateTime pattern="#{bindings.MARSLeasePaymentsVO1.hints.DueDate.format}"/>
+                  </af:inputDate>
+                </af:column>
+                <af:column sortProperty="#{bindings.MARSLeasePaymentsVO1.hints.PaymentDate.name}"
+                           sortable="true" headerText="#{bundle.Payment_Date}" id="c16"
+                           width="160">
+                  <af:inputDate value="#{row.bindings.PaymentDate.inputValue}"
+                                label="#{bindings.MARSLeasePaymentsVO1.hints.PaymentDate.label}"
+                                required="#{bindings.MARSLeasePaymentsVO1.hints.PaymentDate.mandatory}"
+                                shortDesc="#{bindings.MARSLeasePaymentsVO1.hints.PaymentDate.tooltip}"
+                                id="id13">
+                    <f:validator binding="#{row.bindings.PaymentDate.validator}"/>
+                    <af:convertDateTime pattern="#{bindings.MARSLeasePaymentsVO1.hints.PaymentDate.format}"/>
+                  </af:inputDate>
+                </af:column>
+                <af:column sortProperty="#{bindings.MARSLeasePaymentsVO1.hints.RemitToBank.name}"
+                           sortable="true" headerText="#{bundle.Remit_to_Bank}" id="c14"
+                           width="160">
+                  <af:selectOneChoice value="#{row.bindings.RemitToBank.inputValue}"
+                                      label="#{row.bindings.RemitToBank.label}"
+                                      required="#{bindings.MARSLeasePaymentsVO1.hints.RemitToBank.mandatory}"
+                                      shortDesc="#{bindings.MARSLeasePaymentsVO1.hints.RemitToBank.tooltip}"
+                                      id="soc13">
+                    <f:selectItems value="#{row.bindings.RemitToBank.items}"
+                                   id="si14"/>
+                  </af:selectOneChoice>
+                </af:column>
+                <af:column sortProperty="#{bindings.MARSLeasePaymentsVO1.hints.PaymentStatus.name}"
+                           sortable="true" headerText="#{bundle.Payment_Status}" id="c13"
+                           width="160">
+                  <af:selectOneChoice value="#{row.bindings.PaymentStatus.inputValue}"
+                                      label="#{row.bindings.PaymentStatus.label}"
+                                      required="#{bindings.MARSLeasePaymentsVO1.hints.PaymentStatus.mandatory}"
+                                      shortDesc="#{bindings.MARSLeasePaymentsVO1.hints.PaymentStatus.tooltip}"
+                                      id="soc14">
+                    <f:selectItems value="#{row.bindings.PaymentStatus.items}"
+                                   id="si12"/>
+                  </af:selectOneChoice>
+                </af:column>
+                <af:column sortProperty="#{bindings.MARSLeasePaymentsVO1.hints.Remarks.name}"
+                           sortable="true" headerText="#{bundle.Remarks}" id="c17"
+                           width="160">
+                  <af:inputText value="#{row.bindings.Remarks.inputValue}"
+                                label="#{bindings.MARSLeasePaymentsVO1.hints.Remarks.label}"
+                                required="#{bindings.MARSLeasePaymentsVO1.hints.Remarks.mandatory}"
+                                columns="#{bindings.MARSLeasePaymentsVO1.hints.Remarks.displayWidth}"
+                                maximumLength="#{bindings.MARSLeasePaymentsVO1.hints.Remarks.precision}"
+                                shortDesc="#{bindings.MARSLeasePaymentsVO1.hints.Remarks.tooltip}"
+                                id="it30">
+                    <f:validator binding="#{row.bindings.Remarks.validator}"/>
+                  </af:inputText>
+                </af:column>
+              </af:table>
+            </af:panelCollection>
+          </af:showDetailItem>
+        </af:panelTabbed>
+               </f:facet>
+                    <f:facet name="header">
+            <af:outputText value="#{bundle.Lease_Management}" id="ot1" binding="#{backingBeanScope.MALeaseCreationBean.ot1}"/>
+          </f:facet>
+
+                    <f:facet name="end"/>
+                    <f:facet name="start"/>
+                    <f:facet name="branding"/>
+                    <f:facet name="copyright"/>
+                    <f:facet name="status">
+            <af:toolbar id="t8" binding="#{backingBeanScope.MALeaseCreationBean.t8}">
+              <af:button id="b4" binding="#{backingBeanScope.MALeaseCreationBean.b4}"
+                         actionListener="#{bindings.en_lang.execute}" disabled="#{!bindings.en_lang.enabled}"
+                         icon="/images/icons/english.png" partialSubmit="false" shortDesc="#{bundle.English}"/>
+              <af:button id="b3" binding="#{backingBeanScope.MALeaseCreationBean.b3}"
+                         actionListener="#{bindings.ar_lang.execute}" disabled="#{!bindings.ar_lang.enabled}"
+                         shortDesc="#{bundle.Arabic}" icon="/images/icons/arabic.png" partialSubmit="false"/>
+            </af:toolbar>
+          </f:facet>
+                    <f:attribute name="endColumnSize" value="0"/>
+                    <f:attribute name="startColumnSize" value="0"/>
+                </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+  <!--oracle-jdev-comment:auto-binding-backing-bean-name:MALeaseCreationBean-->
+</jsp:root>

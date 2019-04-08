@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MARealEstatePropertyExportVO"
+  Version="12.1.3.10.8"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  ComponentClass="ma.oracle.apps.cx.realestate.property.views.MARealEstatePropertyExportVOImpl"
+  SelectListFlags="1"
+  FromListFlags="1"
+  WhereFlags="1"
+  SelectAllAttributes="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Coll"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="ma.oracle.apps.cx.realestate.property.views.MARealEstatePropertyExportVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <EntityUsage
+    Name="MARealEstatePropertyEO"
+    Entity="ma.oracle.apps.cx.realestate.property.entities.MARealEstatePropertyEO"/>
+  <ViewAttribute
+    Name="PropertyId"
+    PrecisionRule="true"
+    EntityAttrName="PropertyId"
+    EntityUsage="MARealEstatePropertyEO"
+    AliasName="PROPERTY_ID"/>
+  <ViewAttribute
+    Name="PropertyName"
+    PrecisionRule="true"
+    EntityAttrName="PropertyName"
+    EntityUsage="MARealEstatePropertyEO"
+    AliasName="PROPERTY_NAME"/>
+  <ViewAttribute
+    Name="PropertyCode"
+    PrecisionRule="true"
+    EntityAttrName="PropertyCode"
+    EntityUsage="MARealEstatePropertyEO"
+    AliasName="PROPERTY_CODE"/>
+  <ViewAttribute
+    Name="BuildingId"
+    PrecisionRule="true"
+    EntityAttrName="BuildingId"
+    EntityUsage="MARealEstatePropertyEO"
+    AliasName="BUILDING_ID"/>
+  <ViewAttribute
+    Name="BlockBuldingName"
+    PrecisionRule="true"
+    EntityAttrName="BlockBuldingName"
+    EntityUsage="MARealEstatePropertyEO"
+    AliasName="BLOCK_BULDING_NAME"/>
+  <ViewAttribute
+    Name="FloorNumber"
+    PrecisionRule="true"
+    EntityAttrName="FloorNumber"
+    EntityUsage="MARealEstatePropertyEO"
+    AliasName="FLOOR_NUMBER"/>
+  <ViewAttribute
+    Name="PropertyStatus"
+    PrecisionRule="true"
+    EntityAttrName="PropertyStatus"
+    EntityUsage="MARealEstatePropertyEO"
+    AliasName="PROPERTY_STATUS"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ma.oracle.apps.cx.realestate.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

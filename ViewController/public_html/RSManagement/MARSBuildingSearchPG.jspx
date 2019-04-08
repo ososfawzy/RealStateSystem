@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="MARSBuildingSearchPG.jspx" id="d1" binding="#{backingBeanScope.MARSBuildingSearchBean.d1}">
+            <af:messages id="m1" binding="#{backingBeanScope.MARSBuildingSearchBean.m1}"/>
+            <af:form id="f1" binding="#{backingBeanScope.MARSBuildingSearchBean.f1}" usesUpload="true">
+                <af:pageTemplate viewId="/oracle/templates/threeColumnTemplate.jspx" id="pt1">
+                    <f:facet name="center">
+                        <af:panelGroupLayout layout="vertical" id="pgl1"
+                                             binding="#{backingBeanScope.MARSBuildingSearchBean.pgl1}">
+                            <af:panelHeader text="MARealEstateBuilding" id="ph1"
+                                            binding="#{backingBeanScope.MARSBuildingSearchBean.ph1}">
+                                <af:query id="qryId1" headerText="Search" disclosed="true"
+                                          value="#{bindings.MARSBuildingSearchVOCriteriaQuery.queryDescriptor}"
+                                          model="#{bindings.MARSBuildingSearchVOCriteriaQuery.queryModel}"
+                                          queryListener="#{bindings.MARSBuildingSearchVOCriteriaQuery.processQuery}"
+                                          queryOperationListener="#{bindings.MARSBuildingSearchVOCriteriaQuery.processQueryOperation}"
+                                          resultComponentId="::pc1:resId1"
+                                          binding="#{backingBeanScope.MARSBuildingSearchBean.qryId1}"/>
+                            </af:panelHeader>
+                            <af:panelCollection id="pc1" binding="#{backingBeanScope.MARSBuildingSearchBean.pc1}"
+                                                inlineStyle="width:1350px;">
+                                <f:facet name="toolbar">
+                                    <af:toolbar id="t1" binding="#{backingBeanScope.MARSBuildingSearchBean.t1}">
+                                        <af:inputFile label="Import" id="if1"
+                                                      binding="#{backingBeanScope.MARSBuildingSearchBean.if1}"
+                                                      valueChangeListener="#{backingBeanScope.MARSBuildingSearchBean.uploadFileVCE}"
+                                                      autoSubmit="true" 
+                                                      labelStyle="font-weight:bold;color:navy;"/>
+                                        <af:button text="Commit" id="b5"
+                                                   binding="#{backingBeanScope.MARSBuildingSearchBean.b5}"
+                                                   actionListener="#{bindings.Commit.execute}"/>
+                                    </af:toolbar>
+                                </f:facet>
+                                <f:facet name="statusbar"/>
+                                <af:table value="#{bindings.MARSBuildingSearchVO1.collectionModel}" var="row"
+                                          rows="#{bindings.MARSBuildingSearchVO1.rangeSize}"
+                                          emptyText="#{bindings.MARSBuildingSearchVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                          rowBandingInterval="0"
+                                          selectedRowKeys="#{bindings.MARSBuildingSearchVO1.collectionModel.selectedRow}"
+                                          selectionListener="#{bindings.MARSBuildingSearchVO1.collectionModel.makeCurrent}"
+                                          rowSelection="single" fetchSize="#{bindings.MARSBuildingSearchVO1.rangeSize}"
+                                          id="resId1" binding="#{backingBeanScope.MARSBuildingSearchBean.resId1}"
+                                          width="1350">
+                                    <af:column headerText="#{bindings.MARSBuildingSearchVO1.hints.BuildingId.label}"
+                                               id="resId1c1" width="114">
+                                        <af:selectOneChoice value="#{row.bindings.BuildingId.inputValue}"
+                                                            label="#{row.bindings.BuildingId.label}"
+                                                            required="#{bindings.MARSBuildingSearchVO1.hints.BuildingId.mandatory}"
+                                                            shortDesc="#{bindings.MARSBuildingSearchVO1.hints.BuildingId.tooltip}"
+                                                            readOnly="true" id="soc1">
+                                            <f:selectItems value="#{row.bindings.BuildingId.items}" id="si1"/>
+                                            <f:validator binding="#{row.bindings.BuildingId.validator}"/>
+                                        </af:selectOneChoice>
+                                    </af:column>
+                                    <af:column headerText="#{bindings.MARSBuildingSearchVO1.hints.BuildingName.label}"
+                                               id="resId1c2" width="155">
+                                        <af:selectOneChoice value="#{row.bindings.BuildingName.inputValue}"
+                                                            label="#{row.bindings.BuildingName.label}"
+                                                            required="#{bindings.MARSBuildingSearchVO1.hints.BuildingName.mandatory}"
+                                                            shortDesc="#{bindings.MARSBuildingSearchVO1.hints.BuildingName.tooltip}"
+                                                            readOnly="true" id="soc2">
+                                            <f:selectItems value="#{row.bindings.BuildingName.items}" id="si2"/>
+                                            <f:validator binding="#{row.bindings.BuildingName.validator}"/>
+                                        </af:selectOneChoice>
+                                    </af:column>
+                                    <af:column headerText="#{bindings.MARSBuildingSearchVO1.hints.BuildingType.label}"
+                                               id="resId1c3" width="126">
+                                        <af:selectOneChoice value="#{row.bindings.BuildingType.inputValue}"
+                                                            label="#{row.bindings.BuildingType.label}"
+                                                            required="#{bindings.MARSBuildingSearchVO1.hints.BuildingType.mandatory}"
+                                                            shortDesc="#{bindings.MARSBuildingSearchVO1.hints.BuildingType.tooltip}"
+                                                            readOnly="true" id="soc3">
+                                            <f:selectItems value="#{row.bindings.BuildingType.items}" id="si3"/>
+                                            <f:validator binding="#{row.bindings.BuildingType.validator}"/>
+                                        </af:selectOneChoice>
+                                    </af:column>
+                                    <af:column headerText="#{bindings.MARSBuildingSearchVO1.hints.NoOfFloors.label}"
+                                               id="resId1c4" width="125">
+                                        <af:outputText value="#{row.NoOfFloors}"
+                                                       shortDesc="#{bindings.MARSBuildingSearchVO1.hints.NoOfFloors.tooltip}"
+                                                       id="ot1">
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.MARSBuildingSearchVO1.hints.NoOfFloors.format}"/>
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column headerText="#{bindings.MARSBuildingSearchVO1.hints.AvailableForRentFlag.label}"
+                                               id="resId1c5" width="161">
+                                        <af:outputText value="#{row.AvailableForRentFlag}"
+                                                       shortDesc="#{bindings.MARSBuildingSearchVO1.hints.AvailableForRentFlag.tooltip}"
+                                                       id="ot2"/>
+                                    </af:column>
+                                    <af:column headerText="#{bindings.MARSBuildingSearchVO1.hints.Status.label}"
+                                               id="resId1c6" width="-81">
+                                        <af:outputText value="#{row.Status}"
+                                                       shortDesc="#{bindings.MARSBuildingSearchVO1.hints.Status.tooltip}"
+                                                       id="ot3"/>
+                                    </af:column>
+                                    <af:column headerText="#{bindings.MARSBuildingSearchVO1.hints.WestSide.label}"
+                                               id="resId1c7" width="125">
+                                        <af:outputText value="#{row.WestSide}"
+                                                       shortDesc="#{bindings.MARSBuildingSearchVO1.hints.WestSide.tooltip}"
+                                                       id="ot4"/>
+                                    </af:column>
+                                    <af:column headerText="#{bindings.MARSBuildingSearchVO1.hints.NorthSide.label}"
+                                               id="resId1c8" width="111">
+                                        <af:outputText value="#{row.NorthSide}"
+                                                       shortDesc="#{bindings.MARSBuildingSearchVO1.hints.NorthSide.tooltip}"
+                                                       id="ot5"/>
+                                    </af:column>
+                                    <af:column id="c2" headerText="Export">
+                                        <af:button text="export" id="b4">
+                                        
+                                            <af:fileDownloadActionListener contentType="xls" filename="MARealEstateBuilding.xls"
+                                                                           method="#{backingBeanScope.MARSBuildingSearchBean.generateExcel}"/>
+                                        
+                                        </af:button>
+                                    </af:column>
+                                    <af:column id="c1" headerText="Delete" 
+                                               width="64">
+                                        <af:button text="delete" id="b3"
+                                                   actionListener="#{backingBeanScope.MARSBuildingSearchBean.onRemoveAction}"/>
+                                    </af:column>
+                                </af:table>
+                            </af:panelCollection>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                    <f:facet name="header"/>
+                    
+                    
+                    <f:facet name="branding"/>
+                    <f:facet name="copyright"/>
+                    <f:facet name="status">
+                        <af:toolbar id="t5" binding="#{backingBeanScope.MARSBuildingSearchBean.t5}">
+                            <af:button id="b2" binding="#{backingBeanScope.MARSBuildingSearchBean.b2}"
+                                       actionListener="#{bindings.en_lang.execute}"
+                                       disabled="#{!bindings.en_lang.enabled}" icon="/images/icons/english.png"
+                                       shortDesc="#{bundle.English}" partialSubmit="false"/>
+                            <af:button id="b1" binding="#{backingBeanScope.MARSBuildingSearchBean.b1}"
+                                       actionListener="#{bindings.ar_lang.execute}"
+                                       disabled="#{!bindings.ar_lang.enabled}" partialSubmit="false"
+                                       shortDesc="#{bundle.Arabic}" icon="/images/icons/arabic.png"/>
+                        </af:toolbar>
+                    </f:facet>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+    <!--oracle-jdev-comment:auto-binding-backing-bean-name:MARSBuildingSearchBean-->
+</jsp:root>

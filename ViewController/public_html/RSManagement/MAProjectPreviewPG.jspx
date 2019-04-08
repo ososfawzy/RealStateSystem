@@ -1,0 +1,307 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view beforePhase="#{backingBeanScope.MAProjectPreviewBean.beforePhase}">
+        <af:document title="#{bundle.MAProjectPreviewPG}" id="d1" binding="#{backingBeanScope.MAProjectPreviewBean.d1}">
+            <af:messages id="m1" binding="#{backingBeanScope.MAProjectPreviewBean.m1}"/>
+            <af:form id="f1" binding="#{backingBeanScope.MAProjectPreviewBean.f1}">
+                <af:pageTemplate viewId="#{pageFlowScope.Facet}" id="pt1">
+                    <f:facet name="center">
+                        <af:panelTabbed position="above" id="pt2"
+                                        binding="#{backingBeanScope.MAProjectPreviewBean.pt2}">
+                            <af:showDetailItem id="tab1" text="#{bundle.Project_Preview}"
+                                               binding="#{backingBeanScope.MAProjectPreviewBean.tab1}">
+                                <af:panelGroupLayout id="pgl2" binding="#{backingBeanScope.MAProjectPreviewBean.pgl2}"
+                                                     layout="scroll">
+                                    <af:panelStretchLayout id="psl1"
+                                                           binding="#{backingBeanScope.MAProjectPreviewBean.psl1}"
+                                                           startWidth="0" endWidth="50%" topHeight="0" bottomHeight="0"
+                                                           styleClass="AFStretchWidth" inlineStyle="height:800px;">
+                                        <f:facet name="bottom"/>
+                                        <f:facet name="center">
+                                            <af:panelGridLayout id="pgl4"
+                                                                binding="#{backingBeanScope.MAProjectPreviewBean.pgl4}">
+                                                <af:gridRow marginTop="5px" height="auto" id="gr5"
+                                                            binding="#{backingBeanScope.MAProjectPreviewBean.gr5}">
+                                                    <af:gridCell marginStart="5px" width="100%" marginEnd="5px"
+                                                                 id="gc9"
+                                                                 binding="#{backingBeanScope.MAProjectPreviewBean.gc9}">
+                                                        <af:panelFormLayout id="pfl1"
+                                                                            binding="#{backingBeanScope.MAProjectPreviewBean.pfl1}">
+                                                            <af:inputText value="#{bindings.IntAttribute5.inputValue}"
+                                                                          label="#{bundle.Project_ID}"
+                                                                          required="#{bindings.IntAttribute5.hints.mandatory}"
+                                                                          readOnly="true"
+                                                                          columns="#{bindings.IntAttribute5.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.IntAttribute5.hints.precision}"
+                                                                          shortDesc="#{bindings.IntAttribute5.hints.tooltip}"
+                                                                          id="it1"
+                                                                          binding="#{backingBeanScope.MAProjectPreviewBean.it1}">
+                                                                <f:validator binding="#{bindings.IntAttribute5.validator}"/>
+                                                            </af:inputText>
+                                                            <af:inputText value="#{bindings.ProjectName.inputValue}"
+                                                                          label="#{bindings.ProjectName.hints.label}"
+                                                                          required="#{bindings.ProjectName.hints.mandatory}"
+                                                                          readOnly="true"
+                                                                          columns="#{bindings.ProjectName.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.ProjectName.hints.precision}"
+                                                                          shortDesc="#{bindings.ProjectName.hints.tooltip}"
+                                                                          id="it2"
+                                                                          binding="#{backingBeanScope.MAProjectPreviewBean.it2}">
+                                                                <f:validator binding="#{bindings.ProjectName.validator}"/>
+                                                            </af:inputText>
+                                                            <af:group id="purpose"
+                                                                      binding="#{backingBeanScope.MAProjectPreviewBean.purpose}"
+                                                                      title="#{bundle.Purpose}">
+                                                                <af:selectBooleanCheckbox value="#{bindings.OwingFlag1.inputValue}"
+                                                                                          label="#{bindings.OwingFlag1.label}"
+                                                                                          shortDesc="#{bindings.OwingFlag1.hints.tooltip}"
+                                                                                          id="sbc1"
+                                                                                          binding="#{backingBeanScope.MAProjectPreviewBean.sbc1}"
+                                                                                          disabled="true"/>
+                                                                <af:selectBooleanCheckbox value="#{bindings.RentFlag.inputValue}"
+                                                                                          label="#{bindings.RentFlag.label}"
+                                                                                          shortDesc="#{bindings.RentFlag.hints.tooltip}"
+                                                                                          id="sbc2"
+                                                                                          binding="#{backingBeanScope.MAProjectPreviewBean.sbc2}"
+                                                                                          disabled="true"/>
+                                                            </af:group>
+                                                            <af:group id="location"
+                                                                      binding="#{backingBeanScope.MAProjectPreviewBean.location}"
+                                                                      title="#{bundle.Location}">
+                                                                <af:inputText value="#{bindings.Country.inputValue}"
+                                                                              label="#{bindings.Country.hints.label}"
+                                                                              required="#{bindings.Country.hints.mandatory}"
+                                                                              readOnly="true"
+                                                                              columns="#{bindings.Country.hints.displayWidth}"
+                                                                              maximumLength="#{bindings.Country.hints.precision}"
+                                                                              shortDesc="#{bindings.Country.hints.tooltip}"
+                                                                              id="it5"
+                                                                              binding="#{backingBeanScope.MAProjectPreviewBean.it5}">
+                                                                    <f:validator binding="#{bindings.Country.validator}"/>
+                                                                </af:inputText>
+                                                                <af:inputText value="#{bindings.City.inputValue}"
+                                                                              label="#{bindings.City.hints.label}"
+                                                                              required="#{bindings.City.hints.mandatory}"
+                                                                              readOnly="true"
+                                                                              columns="#{bindings.City.hints.displayWidth}"
+                                                                              maximumLength="#{bindings.City.hints.precision}"
+                                                                              shortDesc="#{bindings.City.hints.tooltip}"
+                                                                              id="it6"
+                                                                              binding="#{backingBeanScope.MAProjectPreviewBean.it6}">
+                                                                    <f:validator binding="#{bindings.City.validator}"/>
+                                                                </af:inputText>
+                                                                <af:inputText value="#{bindings.Region.inputValue}"
+                                                                              label="#{bindings.Region.hints.label}"
+                                                                              required="#{bindings.Region.hints.mandatory}"
+                                                                              readOnly="true"
+                                                                              columns="#{bindings.Region.hints.displayWidth}"
+                                                                              maximumLength="#{bindings.Region.hints.precision}"
+                                                                              shortDesc="#{bindings.Region.hints.tooltip}"
+                                                                              id="it7"
+                                                                              binding="#{backingBeanScope.MAProjectPreviewBean.it7}">
+                                                                    <f:validator binding="#{bindings.Region.validator}"/>
+                                                                </af:inputText>
+                                                                <af:inputText value="#{bindings.Street.inputValue}"
+                                                                              label="#{bindings.Street.hints.label}"
+                                                                              required="#{bindings.Street.hints.mandatory}"
+                                                                              readOnly="true"
+                                                                              columns="#{bindings.Street.hints.displayWidth}"
+                                                                              maximumLength="#{bindings.Street.hints.precision}"
+                                                                              shortDesc="#{bindings.Street.hints.tooltip}"
+                                                                              id="it8"
+                                                                              binding="#{backingBeanScope.MAProjectPreviewBean.it8}">
+                                                                    <f:validator binding="#{bindings.Street.validator}"/>
+                                                                </af:inputText>
+                                                            </af:group>
+                                                            <af:inputText value="#{bindings.WebSite.inputValue}"
+                                                                          label="#{bindings.WebSite.hints.label}"
+                                                                          required="#{bindings.WebSite.hints.mandatory}"
+                                                                          readOnly="true"
+                                                                          columns="#{bindings.WebSite.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.WebSite.hints.precision}"
+                                                                          shortDesc="#{bindings.WebSite.hints.tooltip}"
+                                                                          id="it9"
+                                                                          binding="#{backingBeanScope.MAProjectPreviewBean.it9}">
+                                                                <f:validator binding="#{bindings.WebSite.validator}"/>
+                                                            </af:inputText>
+                                                        </af:panelFormLayout>
+                                                    </af:gridCell>
+                                                </af:gridRow>
+                                                <af:gridRow marginTop="5px" height="auto" id="gr6"
+                                                            binding="#{backingBeanScope.MAProjectPreviewBean.gr6}">
+                                                    <af:gridCell marginStart="5px" width="100%" marginEnd="5px"
+                                                                 id="gc10"
+                                                                 binding="#{backingBeanScope.MAProjectPreviewBean.gc10}">
+                                                        <af:table value="#{bindings.MAProjectPhasesVO.collectionModel}"
+                                                                  var="row"
+                                                                  rows="#{bindings.MAProjectPhasesVO.rangeSize}"
+                                                                  emptyText="#{bindings.MAProjectPhasesVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                                  rowBandingInterval="0"
+                                                                  fetchSize="#{bindings.MAProjectPhasesVO.rangeSize}"
+                                                                  id="t1"
+                                                                  binding="#{backingBeanScope.MAProjectPreviewBean.t1}"
+                                                                  styleClass="AFStretchWidth" width="522"
+                                                                  inlineStyle="height:161px;">
+                                                            <af:column headerText="#{bindings.MAProjectPhasesVO.hints.PhaseNumber.label}"
+                                                                       id="c1" width="100">
+                                                                <af:outputText value="#{row.PhaseNumber}"
+                                                                               shortDesc="#{bindings.MAProjectPhasesVO.hints.PhaseNumber.tooltip}"
+                                                                               id="ot1"/>
+                                                            </af:column>
+                                                            <af:column headerText="#{bindings.MAProjectPhasesVO.hints.EstimatedDelivery.label}"
+                                                                       id="c2" width="100">
+                                                                <af:outputText value="#{row.EstimatedDelivery}"
+                                                                               shortDesc="#{bindings.MAProjectPhasesVO.hints.EstimatedDelivery.tooltip}"
+                                                                               id="ot2">
+                                                                    <af:convertDateTime pattern="#{bindings.MAProjectPhasesVO.hints.EstimatedDelivery.format}"/>
+                                                                </af:outputText>
+                                                            </af:column>
+                                                            <af:column headerText="#{bindings.MAProjectPhasesVO.hints.Notes.label}"
+                                                                       id="c3" inlineStyle="width:auto;" width="297">
+                                                                <af:outputText value="#{row.Notes}"
+                                                                               shortDesc="#{bindings.MAProjectPhasesVO.hints.Notes.tooltip}"
+                                                                               id="ot3"/>
+                                                            </af:column>
+                                                        </af:table>
+                                                    </af:gridCell>
+                                                </af:gridRow>
+                                                <af:gridRow marginTop="5px" height="auto" id="gr7"
+                                                            binding="#{backingBeanScope.MAProjectPreviewBean.gr7}">
+                                                    <af:gridCell marginStart="5px" width="100%" marginEnd="5px"
+                                                                 id="gc11"
+                                                                 binding="#{backingBeanScope.MAProjectPreviewBean.gc11}">
+                                                        <af:table value="#{bindings.MAProjectProjPropServicesVO.collectionModel}"
+                                                                  var="row"
+                                                                  rows="#{bindings.MAProjectProjPropServicesVO.rangeSize}"
+                                                                  emptyText="#{bindings.MAProjectProjPropServicesVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                                  rowBandingInterval="0"
+                                                                  fetchSize="#{bindings.MAProjectProjPropServicesVO.rangeSize}"
+                                                                  id="t2"
+                                                                  binding="#{backingBeanScope.MAProjectPreviewBean.t2}"
+                                                                  width="520" inlineStyle="height:114px;">
+                                                            <af:column headerText="#{bundle.Fearture}" id="c4" width="100">
+                                                                <af:selectOneChoice value="#{row.bindings.ServiceId.inputValue}"
+                                                                                    label="#{row.bindings.ServiceId.label}"
+                                                                                    required="#{bindings.MAProjectProjPropServicesVO.hints.ServiceId.mandatory}"
+                                                                                    shortDesc="#{bindings.MAProjectProjPropServicesVO.hints.ServiceId.tooltip}"
+                                                                                    id="soc1" readOnly="true">
+                                                                    <f:selectItems value="#{row.bindings.ServiceId.items}"
+                                                                                   id="si1"/>
+                                                                    <f:validator binding="#{row.bindings.ServiceId.validator}"/>
+                                                                </af:selectOneChoice>
+                                                            </af:column>
+                                                            <af:column headerText="#{bundle.Paid_Service}" id="c5" width="100">
+                                                                <af:selectBooleanCheckbox value="#{row.bindings.IntAttribute1.inputValue}"
+                                                                                          label="#{row.bindings.IntAttribute1.label}"
+                                                                                          shortDesc="#{bindings.MAProjectProjPropServicesVO.hints.IntAttribute1.tooltip}"
+                                                                                          id="sbc3" disabled="true"/>
+                                                            </af:column>
+                                                            <af:column headerText="#{bundle.Notes}" id="c7" width="192">
+                                                                <af:outputText value="#{row.IntAttribute3}"
+                                                                               shortDesc="#{bindings.MAProjectProjPropServicesVO.hints.IntAttribute3.tooltip}"
+                                                                               id="ot7">
+                                                                    <af:convertNumber groupingUsed="false"
+                                                                                      pattern="#{bindings.MAProjectProjPropServicesVO.hints.IntAttribute3.format}"/>
+                                                                </af:outputText>
+                                                            </af:column>
+                                                        </af:table>
+                                                    </af:gridCell>
+                                                </af:gridRow>
+                                                <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr8"
+                                                            binding="#{backingBeanScope.MAProjectPreviewBean.gr8}">
+                                                    <af:gridCell marginStart="5px" width="100%" marginEnd="5px"
+                                                                 id="gc12"
+                                                                 binding="#{backingBeanScope.MAProjectPreviewBean.gc12}">
+                                                        <af:table value="#{bindings.MAProjectAttachedDocumentsVO.collectionModel}"
+                                                                  var="row"
+                                                                  rows="#{bindings.MAProjectAttachedDocumentsVO.rangeSize}"
+                                                                  emptyText="#{bindings.MAProjectAttachedDocumentsVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                                  rowBandingInterval="0"
+                                                                  fetchSize="#{bindings.MAProjectAttachedDocumentsVO.rangeSize}"
+                                                                  id="t3"
+                                                                  binding="#{backingBeanScope.MAProjectPreviewBean.t3}"
+                                                                  width="523" inlineStyle="height:123px;">
+                                                            <af:column headerText="#{bindings.MAProjectAttachedDocumentsVO.hints.FileName.label}"
+                                                                       id="c8">
+                                                                <af:outputText value="#{row.FileName}"
+                                                                               shortDesc="#{bindings.MAProjectAttachedDocumentsVO.hints.FileName.tooltip}"
+                                                                               id="ot4"/>
+                                                            </af:column>
+                                                            <af:column headerText="#{bindings.MAProjectAttachedDocumentsVO.hints.FileContentType.label}"
+                                                                       id="c9">
+                                                                <af:outputText value="#{row.FileContentType}"
+                                                                               shortDesc="#{bindings.MAProjectAttachedDocumentsVO.hints.FileContentType.tooltip}"
+                                                                               id="ot8"/>
+                                                            </af:column>
+                                                            <af:column id="c10" headerText="#{bundle.Download}">
+                                                                <af:link text="Download" id="l1">
+                                                                    <af:fileDownloadActionListener method="#{backingBeanScope.MAProjectPreviewBean.downloadProjecAttachFile}"/>
+                                                                </af:link>
+                                                            </af:column>
+                                                        </af:table>
+                                                    </af:gridCell>
+                                                </af:gridRow>
+                                            </af:panelGridLayout>
+                                        </f:facet>
+                                        <f:facet name="start"/>
+                                        <f:facet name="end">
+                                            <af:carousel currentItemKey="#{bindings.MAProjectImagesVO.treeModel.rootCurrencyRowKey}"
+                                                         value="#{bindings.MAProjectImagesVO.treeModel}" var="item"
+                                                         id="c11" binding="#{backingBeanScope.MAProjectPreviewBean.c11}"
+                                                         displayItems="oneByOne" styleClass="AFStampContainer">
+                                                <f:facet name="nodeStamp">
+                                                    <af:carouselItem id="ci1"
+                                                                     binding="#{backingBeanScope.MAProjectPreviewBean.ci1}">
+                                                        <af:image source="/projimgservlet?id=#{item.ImageId}"
+                                                                  shortDesc="#{item.ImageId}" id="i1"
+                                                                  binding="#{backingBeanScope.MAProjectPreviewBean.i1}"
+                                                                  inlineStyle="width:250px; height:200px;"/>
+                                                    </af:carouselItem>
+                                                </f:facet>
+                                            </af:carousel>
+                                        </f:facet>
+                                        <f:facet name="top"/>
+                                    </af:panelStretchLayout>
+                                    <af:panelGroupLayout id="pgl3"
+                                                         binding="#{backingBeanScope.MAProjectPreviewBean.pgl3}"
+                                                         layout="horizontal" halign="left">
+                                        <af:toolbar id="t4" binding="#{backingBeanScope.MAProjectPreviewBean.t4}">
+                                            <af:link text="#{bundle.Back_to_Properties}" id="l3"
+                                                     binding="#{backingBeanScope.MAProjectPreviewBean.l3}"
+                                                     action="backSrch"/>
+                                        </af:toolbar>
+                                    </af:panelGroupLayout>
+                                </af:panelGroupLayout>
+                            </af:showDetailItem>
+                        </af:panelTabbed>
+                    </f:facet>
+                    <f:facet name="header">
+                        <af:link text="#{bundle.Home}" id="l2" binding="#{backingBeanScope.MAProjectPreviewBean.l2}"
+                                 action="home"/>
+                    </f:facet>
+                    <f:facet name="end"/>
+                    <f:facet name="start"/>
+                    <f:facet name="branding"/>
+                    <f:facet name="copyright"/>
+                    <f:facet name="status">
+                        <af:toolbar id="t5" binding="#{backingBeanScope.MAProjectPreviewBean.t5}">
+                            <af:button id="b1" binding="#{backingBeanScope.MAProjectPreviewBean.b1}"
+                                       actionListener="#{bindings.en_lang.execute}"
+                                       disabled="#{!bindings.en_lang.enabled}" partialSubmit="false"
+                                       shortDesc="#{bundle.English}" icon="/images/icons/english.png"/>
+                            <af:button id="b2" binding="#{backingBeanScope.MAProjectPreviewBean.b2}"
+                                       actionListener="#{bindings.ar_lang.execute}"
+                                       disabled="#{!bindings.ar_lang.enabled}" shortDesc="#{bundle.Arabic}"
+                                       icon="/images/icons/arabic.png" partialSubmit="false"/>
+                        </af:toolbar>
+                    </f:facet>
+                    <f:attribute name="startColumnSize" value="0"/>
+                    <f:attribute name="endColumnSize" value="0"/>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+    <!--oracle-jdev-comment:auto-binding-backing-bean-name:MAProjectPreviewBean-->
+</jsp:root>

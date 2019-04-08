@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <!--<c:set var="viewcontrollerBundle" value="#{adfBundle['ma.oracle.apps.cx.realestate.ViewControllerBundle']}"/>-->
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view beforePhase="#{backingBeanScope.MARSDashboardBean.beforePhase}">
+        <af:document title="#{bundle.MARSDashboardPG}" id="d1">
+            <af:messages id="m1"/>
+            <af:form id="f1">
+                <af:pageTemplate viewId="/oracle/templates/threeColumnTemplate.jspx" id="pt1">
+                    <f:facet name="center">
+                        <af:panelStretchLayout id="psl1" bottomHeight="10" topHeight="250" endWidth="200"
+                                               startWidth="300" styleClass="AFStretchWidth"
+                                               inlineStyle='background-image:url("images/icons/With-Header-Text2.png");'>
+                            <f:facet name="bottom">
+                                <af:panelStretchLayout id="psl2">
+                                    <f:facet name="bottom"/>
+                                    <f:facet name="center"/>
+                                    <f:facet name="start"/>
+                                    <f:facet name="end"/>
+                                    <f:facet name="top"/>
+                                </af:panelStretchLayout>
+                            </f:facet>
+                            <f:facet name="center">
+                                <af:carousel currentItemKey="#{bindings.MASlideImagesVO1.treeModel.rootCurrencyRowKey}"
+                                             value="#{bindings.MASlideImagesVO1.treeModel}" var="item" id="c1"
+                                             halign="center" auxiliaryScale="0.8" controlArea="none">
+                                    <f:facet name="nodeStamp">
+                                        <af:carouselItem id="ci1"
+                                                         inlineStyle="background-color:inherit; width:auto; background-image:url(&quot;images/icons/With-Header-Text2.png&quot;);">
+                                            <af:goImageLink destination="#{item.Attribute3}" icon="#{item.Attribute1}"
+                                                            hoverIcon="#{item.Attribute1}"
+                                                            depressedIcon="#{item.Attribute1}" id="gil1"/>
+                                        </af:carouselItem>
+                                    </f:facet>
+                                </af:carousel>
+                            </f:facet>
+                            <f:facet name="start">
+                                <af:panelStretchLayout id="psl4">
+                                    <f:facet name="bottom"/>
+                                    <f:facet name="center"/>
+                                    <f:facet name="start"/>
+                                    <f:facet name="end"/>
+                                    <f:facet name="top"/>
+                                </af:panelStretchLayout>
+                            </f:facet>
+                            <f:facet name="end">
+                                <af:panelStretchLayout id="psl3">
+                                    <f:facet name="bottom"/>
+                                    <f:facet name="center"/>
+                                    <f:facet name="start"/>
+                                    <f:facet name="end"/>
+                                    <f:facet name="top"/>
+                                </af:panelStretchLayout>
+                            </f:facet>
+                            <f:facet name="top">
+                                <af:panelStretchLayout id="psl5" bottomHeight="51px">
+                                    <f:facet name="bottom"/>
+                                    <f:facet name="center">
+                                        <af:panelGroupLayout id="pgl1" styleClass="AFStretchWidth" layout="vertical"
+                                                             halign="center">
+                                            <af:button text="Go With Template" id="b3">
+                                                <af:setPropertyListener from="/MainTemp.jspx"
+                                                                        to="#{pageFlowScope.Facet}" type="action"/>
+                                            </af:button>
+                                            <af:button text="Go Without Template" id="b4">
+                                                <af:setPropertyListener from="/MainTemp1.jspx"
+                                                                        to="#{pageFlowScope.Facet}" type="action"/>
+                                            </af:button>
+                                        </af:panelGroupLayout>
+                                    </f:facet>
+                                    <f:facet name="start"/>
+                                    <f:facet name="end"/>
+                                    <f:facet name="top"/>
+                                </af:panelStretchLayout>
+                            </f:facet>
+                        </af:panelStretchLayout>
+                    </f:facet>
+                    <f:facet name="header"/>
+                    <f:facet name="end"/>
+                    <f:facet name="start"/>
+                    <f:facet name="branding"/>
+                    <f:facet name="copyright"/>
+                    <f:facet name="status">
+                        <af:toolbar id="t1">
+                            <af:button id="b1" actionListener="#{bindings.en_lang.execute}"
+                                       disabled="#{!bindings.en_lang.enabled}" partialSubmit="false"
+                                       shortDesc="#{bundle.English}" icon="/images/icons/english.png"/>
+                            <af:button id="b2" actionListener="#{bindings.ar_lang.execute}"
+                                       disabled="#{!bindings.ar_lang.enabled}" partialSubmit="false"
+                                       shortDesc="#{bundle.Arabic}" icon="/images/icons/arabic.png"/>
+                        </af:toolbar>
+                    </f:facet>
+                    <f:attribute name="endColumnSize" value="0"/>
+                    <f:attribute name="startColumnSize" value="0"/>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

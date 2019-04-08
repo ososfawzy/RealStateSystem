@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.10.8" id="MAPaymentCreationPGPageDef"
+                Package="payments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="MAInstallmentPaymentTermsVO" RangeSize="25" DataControl="MARealEstatePropertyAMDataControl"
+              id="MAInstallmentPaymentTermsVOIterator"/>
+    <iterator Binds="MARentPaymentTermsVO" RangeSize="25" DataControl="MARealEstatePropertyAMDataControl"
+              id="MARentPaymentTermsVOIterator"/>
+    <iterator Binds="MADummyPaymentTypeVVO" RangeSize="25" DataControl="MARealEstatePropertyAMDataControl"
+              id="MADummyPaymentTypeVVOIterator"/>
+    <iterator Binds="MAInstallmentPaymentTermsDetailsVO" RangeSize="25" DataControl="MARealEstatePropertyAMDataControl"
+              id="MAInstallmentPaymentTermsDetailsVOIterator"/>
+    <iterator Binds="MARentPaymentTermsDetailsVO" RangeSize="25" DataControl="MARealEstatePropertyAMDataControl"
+              id="MARentPaymentTermsDetailsVOIterator"/>
+  </executables>
+  <bindings>
+    <list IterBinding="MAInstallmentPaymentTermsVOIterator" StaticList="false" Uses="LOV_CalculationType"
+          id="CalculationType" DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="MAInstallmentPaymentTermsVOIterator" id="Notes">
+      <AttrNames>
+        <Item Value="Notes"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MAInstallmentPaymentTermsVOIterator" id="RuleName">
+      <AttrNames>
+        <Item Value="RuleName"/>
+      </AttrNames>
+    </attributeValues>
+     <attributeValues IterBinding="MAInstallmentPaymentTermsVOIterator" id="IntAttribute10">
+      <AttrNames>
+        <Item Value="IntAttribute10"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MAInstallmentPaymentTermsVOIterator" id="SalesCommission">
+      <AttrNames>
+        <Item Value="SalesCommission"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="MAInstallmentPaymentTermsVOIterator" StaticList="false" Uses="LOV_Status" id="Status"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="MAInstallmentPaymentTermsVOIterator" id="ValueOrPercentage">
+      <AttrNames>
+        <Item Value="ValueOrPercentage"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MAInstallmentPaymentTermsVOIterator" id="Years">
+      <AttrNames>
+        <Item Value="Years"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="MARentPaymentTermsVOIterator" StaticList="false" Uses="LOV_CalType" id="CalType"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="MARentPaymentTermsVOIterator" id="Commission">
+      <AttrNames>
+        <Item Value="Commission"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="MARentPaymentTermsVOIterator" StaticList="false" Uses="LOV_DurationScale" id="DurationScale"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="MARentPaymentTermsVOIterator" id="IncreaseAmount">
+      <AttrNames>
+        <Item Value="IncreaseAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARentPaymentTermsVOIterator" id="IncreaseEvery">
+      <AttrNames>
+        <Item Value="IncreaseEvery"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARentPaymentTermsVOIterator" id="RentNotes">
+      <AttrNames>
+        <Item Value="Notes"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARentPaymentTermsVOIterator" id="RentRuleName">
+      <AttrNames>
+        <Item Value="RuleName"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="MARentPaymentTermsVOIterator" StaticList="false" Uses="LOV_Status" id="RentStatus"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="MADummyPaymentTypeVVOIterator" StaticList="false" Uses="LOV_PaymentType" id="PaymentType"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="MARentPaymentTermsVOIterator" id="IntAttribute1">
+      <AttrNames>
+        <Item Value="IntAttribute1"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARentPaymentTermsVOIterator" id="IntAttribute2">
+      <AttrNames>
+        <Item Value="IntAttribute2"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARentPaymentTermsVOIterator" id="IntAttribute11">
+      <AttrNames>
+        <Item Value="IntAttribute11"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="MARentPaymentTermsVOIterator" id="IncreasableFlag" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="IncreasableFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="MARentPaymentTermsVOIterator" id="YearlyFlag" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="YearlyFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="MARealEstatePropertyAMDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction"
+            DataControl="MARealEstatePropertyAMDataControl"/>
+    <tree IterBinding="MAInstallmentPaymentTermsDetailsVOIterator" id="MAInstallmentPaymentTermsDetailsVO">
+      <nodeDefinition DefName="ma.oracle.apps.cx.realestate.payments.views.MAInstallmentPaymentTermsDetailsVO"
+                      Name="MAInstallmentPaymentTermsDetailsVO0">
+        <AttrNames>
+          <Item Value="PaymentType"/>
+          <Item Value="NumberOfInstallments"/>
+          <Item Value="Repetition"/>
+          <Item Value="InstallMonths"/>
+          <Item Value="InstallYears"/>
+          <Item Value="ValueBase"/>
+          <Item Value="InstallmentValue"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="MAInstallmentPaymentTermsDetailsVOIterator" id="NewInstallmentDetail" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <tree IterBinding="MARentPaymentTermsDetailsVOIterator" id="MARentPaymentTermsDetailsVO">
+      <nodeDefinition DefName="ma.oracle.apps.cx.realestate.payments.views.MARentPaymentTermsDetailsVO"
+                      Name="MARentPaymentTermsDetailsVO0">
+        <AttrNames>
+          <Item Value="PaymentType"/>
+          <Item Value="Repetition"/>
+          <Item Value="RentDays"/>
+          <Item Value="RentMonths"/>
+          <Item Value="ValueBase"/>
+          <Item Value="RentValue"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="MARentPaymentTermsDetailsVOIterator" id="NewRentDetails" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <methodAction id="ar_lang" RequiresUpdateModel="true" Action="invokeMethod" MethodName="ar_lang"
+                  IsViewObjectMethod="false" DataControl="MARealEstatePropertyAMDataControl"
+                  InstanceName="data.MARealEstatePropertyAMDataControl.dataProvider"
+                  ReturnName="data.MARealEstatePropertyAMDataControl.methodResults.ar_lang_MARealEstatePropertyAMDataControl_dataProvider_ar_lang_result"/>
+    <methodAction id="en_lang" RequiresUpdateModel="true" Action="invokeMethod" MethodName="en_lang"
+                  IsViewObjectMethod="false" DataControl="MARealEstatePropertyAMDataControl"
+                  InstanceName="data.MARealEstatePropertyAMDataControl.dataProvider"
+                  ReturnName="data.MARealEstatePropertyAMDataControl.methodResults.en_lang_MARealEstatePropertyAMDataControl_dataProvider_en_lang_result"/>
+  </bindings>
+</pageDefinition>

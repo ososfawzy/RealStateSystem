@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.10.8"
+                id="MAProjectBuildingPropertySrchPGPageDef" Package="RSManagement">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="MARealEstateProjectVO" RangeSize="25" DataControl="MARealEstatePropertyAMDataControl"
+              id="MARealEstateProjectVOIterator"/>
+    <iterator Binds="MARealEstateBuildingVO" RangeSize="25" DataControl="MARealEstatePropertyAMDataControl"
+              id="MARealEstateBuildingVOIterator"/>
+    <iterator Binds="MARealEstatePropertyVO1" RangeSize="-1" DataControl="MARealEstatePropertyAMDataControl"
+              id="MARealEstatePropertyVO1Iterator"/>
+    <searchRegion Binds="MARealEstateProjectVOIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="MARealEstateProjectVO1Query"/>
+    <searchRegion Binds="MARealEstateBuildingVOIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="MARealEstateBuildingVO1Query"/>
+    <searchRegion Binds="MARealEstatePropertyVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="MARealEstatePropertyVO11Query"/>
+    <iterator Binds="MARealEstatePaternPropVO" RangeSize="-1" DataControl="MARealEstatePropertyAMDataControl"
+              id="MARealEstatePaternPropVOIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="MARealEstateProjectVOIterator" id="MARealEstateProjectVO">
+      <nodeDefinition DefName="ma.oracle.apps.cx.realestate.project.views.MARealEstateProjectVO"
+                      Name="MARealEstateProjectVO0">
+        <AttrNames>
+          <Item Value="ProjectId"/>
+          <Item Value="ProjectName"/>
+          <Item Value="Country"/>
+          <Item Value="City"/>
+          <Item Value="Region"/>
+          <Item Value="Street"/>
+          <Item Value="OwingFlag" Binds="OwingFlag"/>
+          <Item Value="RentFlag" Binds="RentFlag"/>
+          <Item Value="WebSite"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="MARealEstateBuildingVOIterator" id="MARealEstateBuildingVO">
+      <nodeDefinition DefName="ma.oracle.apps.cx.realestate.building.views.MARealEstateBuildingVO"
+                      Name="MARealEstateBuildingVO0">
+        <AttrNames>
+          <Item Value="BuildingId"/>
+          <Item Value="BuildingName"/>
+          <Item Value="BuildingType"/>
+          <Item Value="BuildingSubType"/>
+          <Item Value="NoOfFloors"/>
+          <Item Value="RentAmount"/>
+          <Item Value="RentOption"/>
+          <Item Value="Status"/>
+          <Item Value="WestSide"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="MARealEstatePropertyVO1Iterator" id="MARealEstatePropertyVO1">
+      <nodeDefinition DefName="ma.oracle.apps.cx.realestate.property.views.MARealEstatePropertyVO"
+                      Name="MARealEstatePropertyVO10">
+        <AttrNames>
+          <Item Value="PropertyId"/>
+          <Item Value="PropertySegment"/>
+          <Item Value="PropertyName"/>
+          <Item Value="BlockBuldingName"/>
+          <Item Value="FloorNumber"/>
+          <Item Value="PropertyStatus"/>
+          <Item Value="StartDate"/>
+          <Item Value="EndDate"/>
+          <Item Value="PropertyCode"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="MARealEstateProjectVOIterator" id="CreateInsert" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <action IterBinding="MARealEstatePropertyVO1Iterator" id="Delete" RequiresUpdateModel="false"
+            Action="removeCurrentRow"/>
+    <action IterBinding="MARealEstateBuildingVOIterator" id="Delete1" RequiresUpdateModel="false"
+            Action="removeCurrentRow"/>
+    <action IterBinding="MARealEstateProjectVOIterator" id="Delete2" RequiresUpdateModel="false"
+            Action="removeCurrentRow"/>
+    <button IterBinding="MARealEstateProjectVOIterator" id="OwingFlag" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="OwingFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="MARealEstateProjectVOIterator" id="RentFlag" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="RentFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <methodAction id="ar_lang" RequiresUpdateModel="true" Action="invokeMethod" MethodName="ar_lang"
+                  IsViewObjectMethod="false" DataControl="MARealEstatePropertyAMDataControl"
+                  InstanceName="data.MARealEstatePropertyAMDataControl.dataProvider"
+                  ReturnName="data.MARealEstatePropertyAMDataControl.methodResults.ar_lang_MARealEstatePropertyAMDataControl_dataProvider_ar_lang_result"/>
+    <methodAction id="en_lang" RequiresUpdateModel="true" Action="invokeMethod" MethodName="en_lang"
+                  IsViewObjectMethod="false" DataControl="MARealEstatePropertyAMDataControl"
+                  InstanceName="data.MARealEstatePropertyAMDataControl.dataProvider"
+                  ReturnName="data.MARealEstatePropertyAMDataControl.methodResults.en_lang_MARealEstatePropertyAMDataControl_dataProvider_en_lang_result"/>
+    <attributeValues IterBinding="MARealEstateBuildingVOIterator" id="IntAttribute11">
+      <AttrNames>
+        <Item Value="IntAttribute11"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateBuildingVOIterator" id="IntAttribute15">
+      <AttrNames>
+        <Item Value="IntAttribute15"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="MARealEstateBuildingVOIterator" StaticList="false"
+          id="ExtAttribute12" DTSupportsMRU="false" SelectItemValueMode="ListObject"
+          ListIter="MARealEstatePaternPropVOIterator">
+      <AttrNames>
+        <Item Value="ExtAttribute12"/>
+      </AttrNames>
+      <ListAttrNames>
+        <Item Value="PropertyId"/>
+      </ListAttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="PropertyName"/>
+      </ListDisplayAttrNames>
+    </list>
+    <attributeValues IterBinding="MARealEstateBuildingVOIterator" id="NoOfFloors">
+      <AttrNames>
+        <Item Value="NoOfFloors"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateBuildingVOIterator" id="IntAttribute12">
+      <AttrNames>
+        <Item Value="IntAttribute12"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="MARealEstateBuildingVOIterator" id="IntAttribute111" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="IntAttribute11"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+  </bindings>
+</pageDefinition>

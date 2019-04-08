@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="windows-1256" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MARentToBuildingRentVL"
+  Version="12.1.3.10.8"
+  InheritPersonalization="merge">
+  <ViewLinkDefEnd
+    Name="MARentPaymentTermsVO"
+    Cardinality="1"
+    Source="true"
+    Owner="ma.oracle.apps.cx.realestate.payments.views.MARentPaymentTermsVO">
+    <DesignTime>
+      <Attr Name="_accessor" Value="true"/>
+      <Attr Name="_finderName" Value="MARentPaymentTermsVO"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ma.oracle.apps.cx.realestate.payments.views.MARentPaymentTermsVO.RentPaymentTermId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="MABuildingRentOptionVO"
+    Cardinality="-1"
+    Owner="ma.oracle.apps.cx.realestate.payments.views.MABuildingRentOptionVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="MABuildingRentOptionVO"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ma.oracle.apps.cx.realestate.payments.views.MABuildingRentOptionVO.RentPaymentTermId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+</ViewLink>

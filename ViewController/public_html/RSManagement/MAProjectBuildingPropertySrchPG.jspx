@@ -1,0 +1,679 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces" xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <c:set var="viewcontrollerBundle" value="#{adfBundle['ma.oracle.apps.cx.realestate.ViewControllerBundle']}"/>
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view beforePhase="#{backingBeanScope.MAProjectBuildingPropertySrchBean.beforePhase}">
+        <af:document title="#{bundle.MAProjectBuildingPropertySrchPG}" id="d1"
+                     binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.d1}">
+            <af:messages id="m1" binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.m1}"/>
+         <f:facet name="metaContainer">
+                <af:group id="g1">
+                    <af:resource type="javascript"
+                                 source="http://www.google.com/jsapi?key=ABQIAAAAetMBDDs_b4p16XisbCkqjhTZ7ugd8zRJDKiZ2T88P8bxAqOXQBQPn1S8SlnuB9Ui98owkVT-4pYQ3A"></af:resource>
+                    <af:resource type="javascript">
+                      function doNavigate(evt) {
+                      
+                      var    directionsDisplay = new google.maps.DirectionsRenderer({
+      map: map
+    });
+                          
+                          var directionsService = new google.maps.DirectionsService;
+                       // directionsDisplay = new google.maps.DirectionsRenderer;
+                          var map = new google.maps.Map2(document.getElementById("map"));
+
+                          
+                           
+                        
+                          var lat = 39.46;
+                          var long =  - 0.36;
+                          var lat2 = 35.669418;
+                          var long2 = 139.75696;
+
+                         
+                          var latlng2 = new GLatLng(lat2, long2);
+                          var latlng = new GLatLng(lat, long);
+
+                          map.addControl(new GLargeMapControl());
+                          map.addControl(new GMapTypeControl());
+
+                          map.setMapType(G_SATELLITE_MAP);
+                          map.setCenter(new GLatLng(lat, long), 16);
+                          map.setCenter(new GLatLng(lat2, long2), 16);
+                          map.addOverlay(new GMarker(latlng));
+                          map.addOverlay(new GMarker(latlng2));
+                          
+                          
+                      
+
+
+          
+                          
+    var polyline = new GPolyline([
+  new GLatLng(lat, long),
+  new GLatLng(lat2, long2)],
+  "#ff0000", 10);
+map.addOverlay(polyline);
+
+
+
+
+                         calculateAndDisplayRoute(directionsService, directionsDisplay,latlng2 , latlng);        
+                         
+                         
+                          var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(lat, long), new google.maps.LatLng(lat2, long2));
+                          alert(distance);
+                      }
+                      
+                      
+                      function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB) {
+  directionsService.route({
+    origin: pointA,
+    destination: pointB,
+    travelMode: google.maps.TravelMode.DRIVING
+  }, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+    } else {
+      window.alert('Directions request failed due to ' + status);
+    }
+  });
+}
+                    
+                    </af:resource>
+                    <!--
+var latitude1 = 39.46;
+var longitude1 = -0.36;
+var latitude2 = 40.40;
+var longitude2 = -3.68;
+
+var distance = google..geometry.spherical.computeDistanceBetween(new google.maps.LatLng(latitude1, longitude1), new google.maps.LatLng(latitude2, longitude2));
+
+-->
+                
+          
+                    <af:resource type="javascript">
+                      google.load("maps", "2.x");
+
+                      // Call this function when the page has been loaded 
+                      function initialize() {
+                        /*   var map = new google.maps.Map2(document.getElementById("map"));
+                         map.setCenter(new google.maps.LatLng(0, 0), 1);
+                          map.addControl(new GLargeMapControl());
+                          map.addControl(new GMapTypeControl());*/
+                          
+                          var pointA = new google.maps.LatLng(51.7519, -1.2578),
+    pointB = new google.maps.LatLng(50.8429, -0.1313),
+    myOptions = {
+      zoom: 7,
+      center: pointA
+    },
+    map = new google.maps.Map(document.getElementById('map'), myOptions),
+    // Instantiate a directions service.
+    directionsService = new google.maps.DirectionsService,
+    directionsDisplay = new google.maps.DirectionsRenderer({
+      map: map
+    }),
+    markerA = new google.maps.Marker({
+      position: pointA,
+      title: "point A",
+      label: "A",
+      map: map
+    }),
+    markerB = new google.maps.Marker({
+      position: pointB,
+      title: "point B",
+      label: "B",
+      map: map
+    });
+
+  // get route from A to B
+  calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
+
+
+                      }
+                      google.setOnLoadCallback(initialize);
+                      
+                      
+                      
+                      function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB) {
+  directionsService.route({
+    origin: pointA,
+    destination: pointB,
+    travelMode: google.maps.TravelMode.DRIVING
+  }, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+    } else {
+      window.alert('Directions request failed due to ' + status);
+    }
+  });
+}
+                      
+                      
+                      
+                      
+                    </af:resource>
+                </af:group>
+            </f:facet>
+            <af:form id="f1" binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.f1}">
+                <af:pageTemplate viewId="/oracle/templates/threeColumnTemplate.jspx" id="pt1">
+                    <f:facet name="center">
+                        <af:panelStretchLayout id="psl1"
+                                               binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.psl1}"
+                                               startWidth="0" endWidth="0" topHeight="0" bottomHeight="0"
+                                               styleClass="AFStretchWidth" dimensionsFrom="parent">
+                            <f:facet name="bottom"/>
+                            <f:facet name="center">
+                                <af:panelCollection id="pc2"
+                                                    binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.pc2}"
+                                                    styleClass="AFStretchWidth">
+                                    <f:facet name="menus"/>
+                                    <f:facet name="toolbar">
+                                        <af:toolbar id="t4"
+                                                    binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.t4}">
+                                            <af:button actionListener="#{bindings.CreateInsert.execute}"
+                                                       text="#{bundle.New_Project}" disabled="#{!bindings.CreateInsert.enabled}"
+                                                       id="b1"
+                                                       binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.b1}"
+                                                       icon="/images/icons/new_ena.png" action="editCreateProject"/>
+                                        </af:toolbar>
+                                    </f:facet>
+                                    <f:facet name="statusbar"/>
+                                    <af:table value="#{bindings.MARealEstateProjectVO.collectionModel}" var="row"
+                                              rows="#{bindings.MARealEstateProjectVO.rangeSize}"
+                                              emptyText="#{bindings.MARealEstateProjectVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                              rowBandingInterval="0"
+                                              fetchSize="#{bindings.MARealEstateProjectVO.rangeSize}" id="t1"
+                                              binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.t1}"
+                                              rowSelection="single"
+                                              selectionListener="#{bindings.MARealEstateProjectVO.treeModel.makeCurrent}"
+                                              rowDisclosureListener="#{backingBeanScope.MAProjectBuildingPropertySrchBean.rowDisclosureListener}"
+                                              filterModel="#{bindings.MARealEstateProjectVO1Query.queryDescriptor}"
+                                              queryListener="#{bindings.MARealEstateProjectVO1Query.processQuery}"
+                                              filterVisible="true" partialTriggers="::b1 l7">
+                                        <af:column headerText="#{bindings.MARealEstateProjectVO.hints.ProjectId.label}"
+                                                   sortProperty="#{bindings.MARealEstateProjectVO.hints.ProjectId.name}"
+                                                   filterable="true" sortable="true" id="c1" width="105">
+                                            <af:outputText value="#{row.ProjectId}"
+                                                           shortDesc="#{bindings.MARealEstateProjectVO.hints.ProjectId.tooltip}"
+                                                           id="ot1">
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.MARealEstateProjectVO.hints.ProjectId.format}"/>
+                                            </af:outputText>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.MARealEstateProjectVO.hints.ProjectName.label}"
+                                                   sortProperty="#{bindings.MARealEstateProjectVO.hints.ProjectName.name}"
+                                                   filterable="true" sortable="true" id="c2" width="105">
+                                            <af:link shortDesc="#{bindings.MARealEstateProjectVO.hints.ProjectName.tooltip}"
+                                                     id="ot2" text="#{row.ProjectName}" action="PrviewProject"/>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.MARealEstateProjectVO.hints.Country.label}"
+                                                   sortProperty="#{bindings.MARealEstateProjectVO.hints.Country.name}"
+                                                   filterable="true" sortable="true" id="c3" width="105">
+                                            <af:outputText value="#{row.Country}"
+                                                           shortDesc="#{bindings.MARealEstateProjectVO.hints.Country.tooltip}"
+                                                           id="ot3"/>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.MARealEstateProjectVO.hints.City.label}"
+                                                   sortProperty="#{bindings.MARealEstateProjectVO.hints.City.name}"
+                                                   filterable="true" sortable="true" id="c4" width="105">
+                                            <af:outputText value="#{row.City}"
+                                                           shortDesc="#{bindings.MARealEstateProjectVO.hints.City.tooltip}"
+                                                           id="ot4"/>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.MARealEstateProjectVO.hints.Region.label}"
+                                                   sortProperty="#{bindings.MARealEstateProjectVO.hints.Region.name}"
+                                                   filterable="true" sortable="true" id="c5" width="105">
+                                            <af:outputText value="#{row.Region}"
+                                                           shortDesc="#{bindings.MARealEstateProjectVO.hints.Region.tooltip}"
+                                                           id="ot5"/>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.MARealEstateProjectVO.hints.Street.label}"
+                                                   sortProperty="#{bindings.MARealEstateProjectVO.hints.Street.name}"
+                                                   filterable="true" sortable="true" id="c6" width="105">
+                                            <af:outputText value="#{row.Street}"
+                                                           shortDesc="#{bindings.MARealEstateProjectVO.hints.Street.tooltip}"
+                                                           id="ot6"/>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.MARealEstateProjectVO.hints.OwingFlag.label}"
+                                                   sortProperty="#{bindings.MARealEstateProjectVO.hints.OwingFlag.name}"
+                                                   filterable="true" sortable="true" id="c7" width="105">
+                                            <af:selectBooleanCheckbox value="#{row.bindings.OwingFlag.inputValue}"
+                                                                      label="#{row.bindings.OwingFlag.label}"
+                                                                      shortDesc="#{bindings.MARealEstateProjectVO.hints.OwingFlag.tooltip}"
+                                                                      id="sbc1" disabled="true"/>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.MARealEstateProjectVO.hints.RentFlag.label}"
+                                                   sortProperty="#{bindings.MARealEstateProjectVO.hints.OwingFlag.name}"
+                                                   filterable="true" sortable="true" id="c8" width="105">
+                                            <af:selectBooleanCheckbox value="#{row.bindings.RentFlag.inputValue}"
+                                                                      label="#{row.bindings.RentFlag.label}"
+                                                                      shortDesc="#{bindings.MARealEstateProjectVO.hints.RentFlag.tooltip}"
+                                                                      id="sbc2" disabled="true"/>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.MARealEstateProjectVO.hints.WebSite.label}"
+                                                   sortProperty="#{bindings.MARealEstateProjectVO.hints.WebSite.name}"
+                                                   filterable="true" sortable="true" id="c9" width="105">
+                                            <af:outputText value="#{row.WebSite}"
+                                                           shortDesc="#{bindings.MARealEstateProjectVO.hints.WebSite.tooltip}"
+                                                           id="ot9"/>
+                                        </af:column>
+                                        <af:column id="c25" headerText="#{bundle.Update}" width="105">
+                                            <af:link text="#{bundle.Edit}" id="l1" action="editCreateProject"
+                                                     icon="/images/icons/edit_ena.png"/>
+                                        </af:column>
+                                        <af:column id="c28" headerText="#{bundle.Delete}" width="105">
+                                            <af:link actionListener="#{bindings.Delete2.execute}"
+                                                     text="#{bundle.Delete}"
+                                                     disabled="#{!bindings.Delete2.enabled}" id="l7"
+                                                     icon="/images/icons/delete_dwn.png"/>
+                                        </af:column>
+                                        <f:facet name="detailStamp">
+                                            <af:panelStretchLayout id="psl2"
+                                                                   binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.psl2}"
+                                                                   startWidth="0" endWidth="0" topHeight="0"
+                                                                   bottomHeight="0" inlineStyle="width:1240px;">
+                                                <f:facet name="bottom"/>
+                                                <f:facet name="center">
+                                                    <af:panelCollection id="pc3"
+                                                                        binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.pc3}">
+                                                        <f:facet name="menus"/>
+                                                        <f:facet name="toolbar">
+                                                            <af:toolbar id="t5"
+                                                                        binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.t5}">
+                                                                <af:button text="#{bundle.New_building}" id="b2"
+                                                                           binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.b2}"
+                                                                           icon="/images/icons/new_ena.png"
+                                                                           action="#{backingBeanScope.MAProjectBuildingPropertySrchBean.creatBuild}"/>
+                                                            </af:toolbar>
+                                                        </f:facet>
+                                                        <f:facet name="statusbar"/>
+                                                        <af:table value="#{bindings.MARealEstateBuildingVO.collectionModel}"
+                                                                  var="row"
+                                                                  rows="#{bindings.MARealEstateBuildingVO.rangeSize}"
+                                                                  emptyText="#{bindings.MARealEstateBuildingVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                                  rowBandingInterval="0"
+                                                                  fetchSize="#{bindings.MARealEstateBuildingVO.rangeSize}"
+                                                                  id="t2"
+                                                                  binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.t2}"
+                                                                  width="1227" rowSelection="single"
+                                                                  selectionListener="#{bindings.MARealEstateBuildingVO.treeModel.makeCurrent}"
+                                                                  rowDisclosureListener="#{backingBeanScope.MAProjectBuildingPropertySrchBean.rowBuildDisclosureListener}"
+                                                                  filterModel="#{bindings.MARealEstateBuildingVO1Query.queryDescriptor}"
+                                                                  queryListener="#{bindings.MARealEstateBuildingVO1Query.processQuery}"
+                                                                  filterVisible="true" partialTriggers="l6">
+                                                            <?audit suppress oracle.ide.xml.validation-error?>
+                                                            <af:column headerText="#{bindings.MARealEstateBuildingVO.hints.BuildingId.label}"
+                                                                       sortProperty="#{bindings.MARealEstateBuildingVO.hints.BuildingId.name}"
+                                                                       filterable="true" sortable="true" id="c10"
+                                                                       width="-991">
+                                                                <af:outputText value="#{row.BuildingId}"
+                                                                               shortDesc="#{bindings.MARealEstateBuildingVO.hints.BuildingId.tooltip}"
+                                                                               id="ot10">
+                                                                    <af:convertNumber groupingUsed="false"
+                                                                                      pattern="#{bindings.MARealEstateBuildingVO.hints.BuildingId.format}"/>
+                                                                </af:outputText>
+                                                            </af:column>
+                                                            <af:column headerText="#{bindings.MARealEstateBuildingVO.hints.BuildingName.label}"
+                                                                       sortProperty="#{bindings.MARealEstateBuildingVO.hints.BuildingName.name}"
+                                                                       filterable="true" sortable="true" id="c11"
+                                                                       width="100">
+                                                                <af:link shortDesc="#{bindings.MARealEstateBuildingVO.hints.BuildingName.tooltip}"
+                                                                         id="ot11" text="#{row.BuildingName}"
+                                                                         action="BuildingSearch"/>
+                                                            </af:column>
+                                                            <af:column headerText="#{bindings.MARealEstateBuildingVO.hints.BuildingType.label}"
+                                                                       sortProperty="#{bindings.MARealEstateBuildingVO.hints.BuildingType.name}"
+                                                                       filterable="true" sortable="true" id="c12"
+                                                                       width="100">
+                                                                <af:selectOneChoice value="#{row.bindings.BuildingType.inputValue}"
+                                                                                    label="#{row.bindings.BuildingType.label}"
+                                                                                    required="#{bindings.MARealEstateBuildingVO.hints.BuildingType.mandatory}"
+                                                                                    shortDesc="#{bindings.MARealEstateBuildingVO.hints.BuildingType.tooltip}"
+                                                                                    readOnly="true" id="soc1">
+                                                                    <f:selectItems value="#{row.bindings.BuildingType.items}"
+                                                                                   id="si1"/>
+                                                                    <f:validator binding="#{row.bindings.BuildingType.validator}"/>
+                                                                </af:selectOneChoice>
+                                                            </af:column>
+                                                            <af:column headerText="#{bindings.MARealEstateBuildingVO.hints.NoOfFloors.label}"
+                                                                       sortProperty="#{bindings.MARealEstateBuildingVO.hints.NoOfFloors.name}"
+                                                                       filterable="true" sortable="true" id="c14"
+                                                                       width="101">
+                                                                <af:outputText value="#{row.NoOfFloors}"
+                                                                               shortDesc="#{bindings.MARealEstateBuildingVO.hints.NoOfFloors.tooltip}"
+                                                                               id="ot12">
+                                                                    <af:convertNumber groupingUsed="false"
+                                                                                      pattern="#{bindings.MARealEstateBuildingVO.hints.NoOfFloors.format}"/>
+                                                                </af:outputText>
+                                                            </af:column>
+                                                            <af:column headerText="#{bindings.MARealEstateBuildingVO.hints.RentOption.label}"
+                                                                       sortProperty="#{bindings.MARealEstateBuildingVO.hints.RentOption.name}"
+                                                                       filterable="true" sortable="true" id="c16"
+                                                                       width="101">
+                                                                <af:outputText value="#{row.RentOption}"
+                                                                               shortDesc="#{bindings.MARealEstateBuildingVO.hints.RentOption.tooltip}"
+                                                                               id="ot14"/>
+                                                            </af:column>
+                                                            <af:column headerText="#{bindings.MARealEstateBuildingVO.hints.Status.label}"
+                                                                       sortProperty="#{bindings.MARealEstateBuildingVO.hints.Status.name}"
+                                                                       filterable="true" sortable="true" id="c17"
+                                                                       width="100">
+                                                                <af:selectOneChoice value="#{row.bindings.Status.inputValue}"
+                                                                                    label="#{row.bindings.Status.label}"
+                                                                                    required="#{bindings.MARealEstateBuildingVO.hints.Status.mandatory}"
+                                                                                    shortDesc="#{bindings.MARealEstateBuildingVO.hints.Status.tooltip}"
+                                                                                    readOnly="true" id="soc3">
+                                                                    <f:selectItems value="#{row.bindings.Status.items}"
+                                                                                   id="si3"/>
+                                                                    <f:validator binding="#{row.bindings.Status.validator}"/>
+                                                                </af:selectOneChoice>
+                                                            </af:column>
+                                                            <af:column headerText="#{bindings.MARealEstateBuildingVO.hints.WestSide.label}"
+                                                                       sortProperty="#{bindings.MARealEstateBuildingVO.hints.WestSide.name}"
+                                                                       filterable="true" sortable="true" id="c18"
+                                                                       width="181">
+                                                                <af:outputText value="#{row.WestSide}"
+                                                                               shortDesc="#{bindings.MARealEstateBuildingVO.hints.WestSide.tooltip}"
+                                                                               id="ot15"/>
+                                                            </af:column>
+                                                            <af:column id="c30" headerText="Properties Wizard"
+                                                                       width="180">
+                                                                <af:button text="Wizard Properties" id="b6"
+                                                                           icon="/images/icons/star_ena.png">
+                                                                    <f:facet name="popup">
+                                                                        <af:popup childCreation="deferred"
+                                                                                  autoCancel="disabled" id="p1"
+                                                                                  binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.p1}"
+                                                                                  contentDelivery="lazyUncached">
+                                                                            <af:dialog id="d2"
+                                                                                       binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.d2}"
+                                                                                       type="none">
+                                                                                <f:facet name="buttonBar">
+                                                                                    <af:panelGroupLayout id="pgl1"
+                                                                                                         binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.pgl1}"
+                                                                                                         layout="horizontal"
+                                                                                                         halign="right">
+                                                                                        <af:toolbar id="t8"
+                                                                                                    binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.t8}">
+                                                                                            <af:button text="Apply"
+                                                                                                       id="b7"
+                                                                                                       actionListener="#{backingBeanScope.MAProjectBuildingPropertySrchBean.creatWizard}"/>
+                                                                                            <af:button text="Cancel"
+                                                                                                       immediate="true"
+                                                                                                       id="b8"
+                                                                                                       actionListener="#{backingBeanScope.MAProjectBuildingPropertySrchBean.cancelCreation}">
+                                                                                                <af:resetActionListener/>
+                                                                                            </af:button>
+                                                                                        </af:toolbar>
+                                                                                    </af:panelGroupLayout>
+                                                                                </f:facet>
+                                                                                <af:panelFormLayout id="pfl1"
+                                                                                                    binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.pfl1}">
+                                                                                    <af:selectBooleanCheckbox value="#{bindings.IntAttribute111.inputValue}"
+                                                                                                              label="#{bindings.IntAttribute111.hints.label}"
+                                                                                                              required="#{bindings.IntAttribute11.hints.mandatory}"
+                                                                                                              shortDesc="#{bindings.IntAttribute11.hints.tooltip}"
+                                                                                                              id="it1"
+                                                                                                              binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.it1}"
+                                                                                                              text=" "
+                                                                                                              autoSubmit="true">
+                                                                                        <f:validator binding="#{bindings.IntAttribute11.validator}"/>
+                                                                                    </af:selectBooleanCheckbox>
+                                                                                    <af:selectOneChoice value="#{bindings.ExtAttribute12.inputValue}"
+                                                                                                        label="#{bindings.ExtAttribute12.hints.label}"
+                                                                                                        shortDesc="#{bindings.ExtAttribute12.hints.tooltip}"
+                                                                                                        id="soc2"
+                                                                                                        binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.soc2}"
+                                                                                                        autoSubmit="true"
+                                                                                                        valueChangeListener="#{backingBeanScope.MAProjectBuildingPropertySrchBean.saveValue}"
+                                                                                                        required="true">
+                                                                                        <f:selectItems value="#{bindings.ExtAttribute12.items}"
+                                                                                                       id="si2"
+                                                                                                       binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.si2}"/>
+                                                                                        <f:validator binding="#{bindings.ExtAttribute12.validator}"/>
+                                                                                    </af:selectOneChoice>
+                                                                                    <af:inputNumberSpinbox value="#{bindings.IntAttribute15.inputValue}"
+                                                                                                           label="#{bindings.IntAttribute15.hints.label}"
+                                                                                                           required="#{bindings.IntAttribute15.hints.mandatory}"
+                                                                                                           columns="#{bindings.IntAttribute15.hints.displayWidth}"
+                                                                                                           shortDesc="#{bindings.IntAttribute15.hints.tooltip}"
+                                                                                                           id="it2"
+                                                                                                           binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.it2}"
+                                                                                                           partialTriggers="it1"
+                                                                                                           disabled="#{bindings.IntAttribute111.inputValue == 'Y' ? true : false}">
+                                                                                        <f:validator binding="#{bindings.IntAttribute15.validator}"/>
+                                                                                    </af:inputNumberSpinbox>
+                                                                                    <af:inputText value="#{bindings.NoOfFloors.inputValue}"
+                                                                                                  label="#{bindings.NoOfFloors.hints.label}"
+                                                                                                  required="#{bindings.NoOfFloors.hints.mandatory}"
+                                                                                                  columns="#{bindings.NoOfFloors.hints.displayWidth}"
+                                                                                                  maximumLength="#{bindings.NoOfFloors.hints.precision}"
+                                                                                                  shortDesc="#{bindings.NoOfFloors.hints.tooltip}"
+                                                                                                  id="it3"
+                                                                                                  binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.it3}"
+                                                                                                  readOnly="true"
+                                                                                                  partialTriggers="it1"
+                                                                                                  disabled="#{bindings.IntAttribute111.inputValue=='N'?true:false}">
+                                                                                        <f:validator binding="#{bindings.NoOfFloors.validator}"/>
+                                                                                        <af:convertNumber groupingUsed="false"
+                                                                                                          pattern="#{bindings.NoOfFloors.format}"/>
+                                                                                    </af:inputText>
+                                                                                    <af:inputText value="#{bindings.IntAttribute12.inputValue}"
+                                                                                                  label="#{bindings.IntAttribute12.hints.label}"
+                                                                                                  required="#{bindings.IntAttribute12.hints.mandatory}"
+                                                                                                  columns="#{bindings.IntAttribute12.hints.displayWidth}"
+                                                                                                  maximumLength="#{bindings.IntAttribute12.hints.precision}"
+                                                                                                  shortDesc="#{bindings.IntAttribute12.hints.tooltip}"
+                                                                                                  id="it4"
+                                                                                                  binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.it4}"
+                                                                                                  readOnly="true"
+                                                                                                  partialTriggers="it1"
+                                                                                                  disabled="#{bindings.IntAttribute111.inputValue=='N'?true:false}">
+                                                                                        <f:validator binding="#{bindings.IntAttribute12.validator}"/>
+                                                                                    </af:inputText>
+                                                                                </af:panelFormLayout>
+                                                                            </af:dialog>
+                                                                        </af:popup>
+                                                                    </f:facet>
+                                                                    <af:showPopupBehavior popupId="p1"/>
+                                                                </af:button>
+                                                            </af:column>
+                                                            <af:column id="c13" width="87" headerText="#{bundle.Update}">
+                                                                <af:link text="#{bundle.Edit}" id="l2"
+                                                                         action="#{backingBeanScope.MAProjectBuildingPropertySrchBean.editBuilding}"
+                                                                         icon="/images/icons/edit_ena.png"/>
+                                                            </af:column>
+                                                            <af:column id="c27" width="169" headerText="#{bundle.Delete}">
+                                                                <af:link actionListener="#{bindings.Delete1.execute}"
+                                                                         text="#{bundle.Delete}"
+                                                                         disabled="#{!bindings.Delete1.enabled}" id="l6"
+                                                                         icon="/images/icons/delete_dwn.png"/>
+                                                            </af:column>
+                                                            <f:facet name="detailStamp">
+                                                                <af:panelStretchLayout id="psl3"
+                                                                                       binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.psl3}"
+                                                                                       startWidth="0" endWidth="1px"
+                                                                                       topHeight="0" bottomHeight="0"
+                                                                                       inlineStyle="width:1191px;">
+                                                                    <f:facet name="bottom"/>
+                                                                    <f:facet name="center">
+                                                                        <af:panelCollection id="pc4"
+                                                                                            binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.pc4}">
+                                                                            <f:facet name="menus"/>
+                                                                            <f:facet name="toolbar">
+                                                                                <af:toolbar id="t6"
+                                                                                            binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.t6}">
+                                                                                    <af:button text="#{bundle.New_Property}"
+                                                                                               id="b3"
+                                                                                               binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.b3}"
+                                                                                               action="#{backingBeanScope.MAProjectBuildingPropertySrchBean.creatProperty}"
+                                                                                               icon="/images/icons/new_ena.png"/>
+                                                                                </af:toolbar>
+                                                                            </f:facet>
+                                                                            <f:facet name="statusbar"/>
+                                                                            <af:table value="#{bindings.MARealEstatePropertyVO1.collectionModel}"
+                                                                                      var="row"
+                                                                                      rows="#{bindings.MARealEstatePropertyVO1.rangeSize}"
+                                                                                      emptyText="#{bindings.MARealEstatePropertyVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                                                      rowBandingInterval="0"
+                                                                                      fetchSize="#{bindings.MARealEstatePropertyVO1.rangeSize}"
+                                                                                      id="t3"
+                                                                                      binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.t3}"
+                                                                                      filterModel="#{bindings.MARealEstatePropertyVO11Query.queryDescriptor}"
+                                                                                      queryListener="#{bindings.MARealEstatePropertyVO11Query.processQuery}"
+                                                                                      width="1186" filterVisible="true"
+                                                                                      rowSelection="single"
+                                                                                      selectionListener="#{bindings.MARealEstatePropertyVO1.treeModel.makeCurrent}"
+                                                                                      rowDisclosureListener="#{backingBeanScope.MAProjectBuildingPropertySrchBean.rowPropDisclosureListener}"
+                                                                                      styleClass="AFStretchWidth"
+                                                                                      partialTriggers="l5">
+                                                                                <af:column headerText="#{bindings.MARealEstatePropertyVO1.hints.PropertyId.label}"
+                                                                                           sortProperty="#{bindings.MARealEstatePropertyVO1.hints.PropertyId.name}"
+                                                                                           filterable="true"
+                                                                                           sortable="true" id="c19"
+                                                                                           width="-2338">
+                                                                                    <af:outputText value="#{row.PropertyId}"
+                                                                                                   shortDesc="#{bindings.MARealEstatePropertyVO1.hints.PropertyId.tooltip}"
+                                                                                                   id="ot16">
+                                                                                        <af:convertNumber groupingUsed="false"
+                                                                                                          pattern="#{bindings.MARealEstatePropertyVO1.hints.PropertyId.format}"/>
+                                                                                    </af:outputText>
+                                                                                </af:column>
+                                                                                <af:column headerText="#{viewcontrollerBundle.Property_Code}"
+                                                                                           sortProperty="#{bindings.MARealEstatePropertyVO1.hints.PropertyCode.name}"
+                                                                                           filterable="true"
+                                                                                           sortable="true" id="c29"
+                                                                                           width="100">
+                                                                                    <af:outputText value="#{row.PropertyCode}"
+                                                                                                   shortDesc="#{bindings.MARealEstatePropertyVO1.hints.PropertyCode.tooltip}"
+                                                                                                   id="ot7"/>
+                                                                                </af:column>
+                                                                                <af:column headerText="#{bindings.MARealEstatePropertyVO1.hints.PropertyName.label}"
+                                                                                           sortProperty="#{bindings.MARealEstatePropertyVO1.hints.PropertyName.name}"
+                                                                                           filterable="true"
+                                                                                           sortable="true" id="c21"
+                                                                                           width="102">
+                                                                                    <af:link shortDesc="#{bindings.MARealEstatePropertyVO1.hints.PropertyName.tooltip}"
+                                                                                             id="ot18"
+                                                                                             text="#{row.PropertyName}"
+                                                                                             action="PropertyPreview"/>
+                                                                                </af:column>
+                                                                                <af:column headerText="#{bindings.MARealEstatePropertyVO1.hints.BlockBuldingName.label}"
+                                                                                           sortProperty="#{bindings.MARealEstatePropertyVO1.hints.BlockBuldingName.name}"
+                                                                                           filterable="true"
+                                                                                           sortable="true" id="c22"
+                                                                                           width="100">
+                                                                                    <af:selectOneChoice value="#{row.bindings.BlockBuldingName.inputValue}"
+                                                                                                        label="#{row.bindings.BlockBuldingName.label}"
+                                                                                                        required="#{bindings.MARealEstatePropertyVO1.hints.BlockBuldingName.mandatory}"
+                                                                                                        shortDesc="#{bindings.MARealEstatePropertyVO1.hints.BlockBuldingName.tooltip}"
+                                                                                                        readOnly="true"
+                                                                                                        id="soc4">
+                                                                                        <f:selectItems value="#{row.bindings.BlockBuldingName.items}"
+                                                                                                       id="si4"/>
+                                                                                        <f:validator binding="#{row.bindings.BlockBuldingName.validator}"/>
+                                                                                    </af:selectOneChoice>
+                                                                                </af:column>
+                                                                                <af:column headerText="#{bindings.MARealEstatePropertyVO1.hints.FloorNumber.label}"
+                                                                                           sortProperty="#{bindings.MARealEstatePropertyVO1.hints.FloorNumber.name}"
+                                                                                           filterable="true"
+                                                                                           sortable="true" id="c23"
+                                                                                           width="100">
+                                                                                    <af:selectOneChoice value="#{row.bindings.FloorNumber.inputValue}"
+                                                                                                        label="#{row.bindings.FloorNumber.label}"
+                                                                                                        required="#{bindings.MARealEstatePropertyVO1.hints.FloorNumber.mandatory}"
+                                                                                                        shortDesc="#{bindings.MARealEstatePropertyVO1.hints.FloorNumber.tooltip}"
+                                                                                                        readOnly="true"
+                                                                                                        id="soc5">
+                                                                                        <f:selectItems value="#{row.bindings.FloorNumber.items}"
+                                                                                                       id="si5"/>
+                                                                                        <f:validator binding="#{row.bindings.FloorNumber.validator}"/>
+                                                                                    </af:selectOneChoice>
+                                                                                </af:column>
+                                                                                <af:column headerText="#{bindings.MARealEstatePropertyVO1.hints.PropertyStatus.label}"
+                                                                                           sortProperty="#{bindings.MARealEstatePropertyVO1.hints.PropertyStatus.name}"
+                                                                                           filterable="true"
+                                                                                           sortable="true" id="c24"
+                                                                                           width="286">
+                                                                                    <af:selectOneChoice value="#{row.bindings.PropertyStatus.inputValue}"
+                                                                                                        label="#{row.bindings.PropertyStatus.label}"
+                                                                                                        required="#{bindings.MARealEstatePropertyVO1.hints.PropertyStatus.mandatory}"
+                                                                                                        shortDesc="#{bindings.MARealEstatePropertyVO1.hints.PropertyStatus.tooltip}"
+                                                                                                        readOnly="true"
+                                                                                                        id="soc6">
+                                                                                        <f:selectItems value="#{row.bindings.PropertyStatus.items}"
+                                                                                                       id="si6"/>
+                                                                                        <f:validator binding="#{row.bindings.PropertyStatus.validator}"/>
+                                                                                    </af:selectOneChoice>
+                                                                                </af:column>
+                                                                                <af:column id="c15" headerText="#{bundle.Update}"
+                                                                                           width="106">
+                                                                                    <af:link text="#{bundle.Edit}" id="l4"
+                                                                                             icon="/images/icons/edit_ena.png"
+                                                                                             action="#{backingBeanScope.MAProjectBuildingPropertySrchBean.editProperty}"/>
+                                                                                </af:column>
+                                                                                <af:column id="c26" width="258"
+                                                                                           headerText="#{bundle.Delete}">
+                                                                                    <af:link actionListener="#{bindings.Delete.execute}"
+                                                                                             text="#{bundle.Delete}"
+                                                                                             disabled="#{!bindings.Delete.enabled}"
+                                                                                             id="l5"
+                                                                                             icon="/images/icons/delete_dwn.png"/>
+                                                                                </af:column>
+                                                                            </af:table>
+                                                                        </af:panelCollection>
+                                                                    </f:facet>
+                                                                    <f:facet name="start"/>
+                                                                    <f:facet name="end"/>
+                                                                    <f:facet name="top"/>
+                                                                </af:panelStretchLayout>
+                                                            </f:facet>
+                                                        </af:table>
+                                                    </af:panelCollection>
+                                                </f:facet>
+                                                <f:facet name="start"/>
+                                                <f:facet name="end"/>
+                                                <f:facet name="top"/>
+                                            </af:panelStretchLayout>
+                                        </f:facet>
+                                    </af:table>
+                                </af:panelCollection>
+                            </f:facet>
+                            <f:facet name="start"/>
+                            <f:facet name="end"/>
+                            <f:facet name="top"/>
+                        </af:panelStretchLayout>
+                    </f:facet>
+                    <f:facet name="header">
+                        <af:link text="#{bundle.Home}" id="l3" binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.l3}"
+                                 action="home"/>
+                    </f:facet>
+                    <f:facet name="end"/>
+                    <f:facet name="start"/>
+                    <f:facet name="branding"/>
+                    <f:facet name="copyright"/>
+                    <f:facet name="status">
+                        <af:toolbar id="t7" binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.t7}">
+                            <af:button id="b4"
+                                       binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.b4}"
+                                       actionListener="#{bindings.en_lang.execute}"
+                                       disabled="#{!bindings.en_lang.enabled}" partialSubmit="false"
+                                       shortDesc="#{bundle.English}" icon="/images/icons/english.png"/>
+                            <af:button id="b5"
+                                       binding="#{backingBeanScope.MAProjectBuildingPropertySrchBean.b5}"
+                                       actionListener="#{bindings.ar_lang.execute}"
+                                       disabled="#{!bindings.ar_lang.enabled}" icon="/images/icons/arabic.png"
+                                       shortDesc="#{bundle.Arabic}" partialSubmit="false"/>
+                        </af:toolbar>
+                    </f:facet>
+                    <f:attribute name="endColumnSize" value="0"/>
+                    <f:attribute name="startColumnSize" value="0"/>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+    <!--oracle-jdev-comment:auto-binding-backing-bean-name:MAProjectBuildingPropertySrchBean-->
+</jsp:root>

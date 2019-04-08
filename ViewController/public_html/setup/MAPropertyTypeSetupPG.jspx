@@ -1,0 +1,309 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view beforePhase="#{backingBeanScope.MAPropertyTypeSetupBean.beforePhase}">
+        <af:document title="#{bundle.Property_Type_SetupPG}" id="d1"
+                     binding="#{backingBeanScope.MAPropertyTypeSetupBean.d1}">
+            <af:messages id="m1" binding="#{backingBeanScope.MAPropertyTypeSetupBean.m1}"/>
+            <af:form id="f1" binding="#{backingBeanScope.MAPropertyTypeSetupBean.f1}">
+                <af:pageTemplate viewId="#{pageFlowScope.Facet}" id="pt1">
+                    <f:facet name="center">
+                        <af:panelGroupLayout layout="scroll" id="pgl2"
+                                             binding="#{backingBeanScope.MAPropertyTypeSetupBean.pgl2}">
+                            <af:panelHeader text="#{bundle.Property_Type_Search}" id="ph1"
+                                            binding="#{backingBeanScope.MAPropertyTypeSetupBean.ph1}">
+                                <af:query id="qryId1" headerText="#{bundle.Search}" disclosed="true"
+                                          value="#{bindings.MARSPropertyTypeVOCriteriaQuery.queryDescriptor}"
+                                          model="#{bindings.MARSPropertyTypeVOCriteriaQuery.queryModel}"
+                                          queryListener="#{bindings.MARSPropertyTypeVOCriteriaQuery.processQuery}"
+                                          queryOperationListener="#{bindings.MARSPropertyTypeVOCriteriaQuery.processQueryOperation}"
+                                          resultComponentId="::pc1"
+                                          binding="#{backingBeanScope.MAPropertyTypeSetupBean.qryId1}"
+                                          saveQueryMode="hidden"/>
+                                <af:panelCollection id="pc1" binding="#{backingBeanScope.MAPropertyTypeSetupBean.pc1}"
+                                                    styleClass="AFStretchWidth">
+                                    <f:facet name="menus"/>
+                                    <f:facet name="toolbar">
+                                        <af:toolbar id="t1" binding="#{backingBeanScope.MAPropertyTypeSetupBean.t1}">
+                                            <af:button text="#{bundle.New_Property_Type}"
+                                                       disabled="#{!bindings.CreateInsert.enabled}" id="b1"
+                                                       binding="#{backingBeanScope.MAPropertyTypeSetupBean.b1}"
+                                                       icon="/images/icons/new_ena.png"
+                                                       action="#{backingBeanScope.MAPropertyTypeSetupBean.newPropertyType}"/>
+                                            <af:button text="#{bundle.Edit}" id="b4"
+                                                       binding="#{backingBeanScope.MAPropertyTypeSetupBean.b4}"
+                                                       icon="/images/icons/edit_ena.png"
+                                                       action="#{backingBeanScope.MAPropertyTypeSetupBean.editPropertyType}"/>
+                                            <af:button text="#{bundle.Remove}" id="b9"
+                                                       binding="#{backingBeanScope.MAPropertyTypeSetupBean.b9}"
+                                                       icon="/images/icons/delete_ena.png"
+                                                       action="#{backingBeanScope.MAPropertyTypeSetupBean.deletePropertyType}"/>
+                                            <af:popup childCreation="deferred" autoCancel="disabled" id="p1"
+                                                      binding="#{backingBeanScope.MAPropertyTypeSetupBean.p1}">
+                                                <af:dialog id="d2"
+                                                           binding="#{backingBeanScope.MAPropertyTypeSetupBean.d2}"
+                                                           type="none" title="#{bundle.Create_Edit_Property_Type}"
+                                                           contentWidth="300" contentHeight="150">
+                                                    <f:facet name="buttonBar">
+                                                        <af:toolbar id="t2"
+                                                                    binding="#{backingBeanScope.MAPropertyTypeSetupBean.t2}">
+                                                            <af:panelGroupLayout id="pgl3"
+                                                                                 binding="#{backingBeanScope.MAPropertyTypeSetupBean.pgl3}"
+                                                                                 layout="horizontal" halign="right"
+                                                                                 inlineStyle="width:300px;">
+                                                                <af:button text="#{bundle.Apply}"
+                                                                           id="b2"
+                                                                           binding="#{backingBeanScope.MAPropertyTypeSetupBean.b2}"
+                                                                           icon="/images/icons/save_ena.png"
+                                                                           action="#{backingBeanScope.MAPropertyTypeSetupBean.savePropertyCreate}"/>
+                                                                <af:button text="#{bundle.Cancel}"
+                                                                           immediate="true" id="b3"
+                                                                           binding="#{backingBeanScope.MAPropertyTypeSetupBean.b3}"
+                                                                           icon="/images/icons/rollback.png"
+                                                                           action="#{backingBeanScope.MAPropertyTypeSetupBean.cancelPropertyCreate}">
+                                                                    <af:resetActionListener/>
+                                                                </af:button>
+                                                            </af:panelGroupLayout>
+                                                        </af:toolbar>
+                                                    </f:facet>
+                                                    <af:panelFormLayout id="pfl1"
+                                                                        binding="#{backingBeanScope.MAPropertyTypeSetupBean.pfl1}">
+                                                        <af:inputText value="#{bindings.TypeName.inputValue}"
+                                                                      label="#{bindings.TypeName.hints.label}"
+                                                                      required="#{bindings.TypeName.hints.mandatory}"
+                                                                      columns="#{bindings.TypeName.hints.displayWidth}"
+                                                                      maximumLength="#{bindings.TypeName.hints.precision}"
+                                                                      shortDesc="#{bindings.TypeName.hints.tooltip}"
+                                                                      id="it2"
+                                                                      binding="#{backingBeanScope.MAPropertyTypeSetupBean.it2}">
+                                                            <f:validator binding="#{bindings.TypeName.validator}"/>
+                                                        </af:inputText>
+                                                        <af:inputText value="#{bindings.IntAttribute1.inputValue}"
+                                                                      label="#{bindings.IntAttribute1.hints.label}"
+                                                                      required="#{bindings.IntAttribute1.hints.mandatory}"
+                                                                      columns="#{bindings.IntAttribute1.hints.displayWidth}"
+                                                                      maximumLength="#{bindings.IntAttribute1.hints.precision}"
+                                                                      shortDesc="#{bindings.IntAttribute1.hints.tooltip}"
+                                                                      id="it1"
+                                                                      binding="#{backingBeanScope.MAPropertyTypeSetupBean.it1}">
+                                                            <f:validator binding="#{bindings.IntAttribute1.validator}"/>
+                                                        </af:inputText>
+                                                        <af:selectOneChoice value="#{bindings.ParentTypeId.inputValue}"
+                                                                            label="#{bindings.ParentTypeId.label}"
+                                                                            required="#{bindings.ParentTypeId.hints.mandatory}"
+                                                                            shortDesc="#{bindings.ParentTypeId.hints.tooltip}"
+                                                                            id="soc1"
+                                                                            binding="#{backingBeanScope.MAPropertyTypeSetupBean.soc1}">
+                                                            <f:selectItems value="#{bindings.ParentTypeId.items}"
+                                                                           id="si1"
+                                                                           binding="#{backingBeanScope.MAPropertyTypeSetupBean.si1}"/>
+                                                            <f:validator binding="#{bindings.ParentTypeId.validator}"/>
+                                                        </af:selectOneChoice>
+                                                    </af:panelFormLayout>
+                                                </af:dialog>
+                                            </af:popup>
+                                        </af:toolbar>
+                                    </f:facet>
+                                    <f:facet name="statusbar"/>
+                                    <af:table value="#{bindings.MARSPropertyTypeVO.collectionModel}" var="row"
+                                              rows="#{bindings.MARSPropertyTypeVO.rangeSize}"
+                                              emptyText="#{bindings.MARSPropertyTypeVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                              rowBandingInterval="0"
+                                              selectedRowKeys="#{bindings.MARSPropertyTypeVO.collectionModel.selectedRow}"
+                                              selectionListener="#{bindings.MARSPropertyTypeVO.collectionModel.makeCurrent}"
+                                              rowSelection="single" fetchSize="#{bindings.MARSPropertyTypeVO.rangeSize}"
+                                              id="resId1" binding="#{backingBeanScope.MAPropertyTypeSetupBean.resId1}"
+                                              width="100%" partialTriggers="::b1 ::b2 ::b3 ::b9">
+                                        <?audit suppress oracle.adf.faces.compreqsummary?><?audit suppress oracle.adf.faces.tableneedsrowheader?>
+                                        <af:column sortProperty="#{bindings.MARSPropertyTypeVO.hints.TypeName.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.MARSPropertyTypeVO.hints.TypeName.label}"
+                                                   id="resId1c1" width="250">
+                                            <af:outputText value="#{row.TypeName}"
+                                                           shortDesc="#{bindings.MARSPropertyTypeVO.hints.TypeName.tooltip}"
+                                                           id="ot1"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.MARSPropertyTypeVO.hints.IntAttribute1.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.MARSPropertyTypeVO.hints.IntAttribute1.label}"
+                                                   id="resId1c2" width="250">
+                                            <af:outputText value="#{row.IntAttribute1}"
+                                                           shortDesc="#{bindings.MARSPropertyTypeVO.hints.IntAttribute1.tooltip}"
+                                                           id="ot2"/>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.MARSPropertyTypeVO.hints.ParentType.label}"
+                                                   id="c1" width="250">
+                                            <af:outputText value="#{row.ParentType}"
+                                                           shortDesc="#{bindings.MARSPropertyTypeVO.hints.ParentType.tooltip}"
+                                                           id="ot5"/>
+                                        </af:column>
+                                    </af:table>
+                                </af:panelCollection>
+                            </af:panelHeader>
+                            <af:panelHeader text="#{bundle.Building_Type_Search}" id="ph2"
+                                            binding="#{backingBeanScope.MAPropertyTypeSetupBean.ph2}">
+                                <af:query id="qryId2" headerText="#{bundle.Search}" disclosed="true"
+                                          value="#{bindings.MARsBuildingTypeVOCriteriaQuery.queryDescriptor}"
+                                          model="#{bindings.MARsBuildingTypeVOCriteriaQuery.queryModel}"
+                                          queryListener="#{bindings.MARsBuildingTypeVOCriteriaQuery.processQuery}"
+                                          queryOperationListener="#{bindings.MARsBuildingTypeVOCriteriaQuery.processQueryOperation}"
+                                          resultComponentId="::pc2"
+                                          binding="#{backingBeanScope.MAPropertyTypeSetupBean.qryId2}"
+                                          saveQueryMode="hidden"/>
+                                <af:panelCollection id="pc2" binding="#{backingBeanScope.MAPropertyTypeSetupBean.pc2}"
+                                                    styleClass="AFStretchWidth">
+                                    <f:facet name="menus"/>
+                                    <f:facet name="toolbar">
+                                        <af:toolbar id="t3" binding="#{backingBeanScope.MAPropertyTypeSetupBean.t3}">
+                                            <af:button
+                                                       text="#{bundle.New_Building_Type}"
+                                                       disabled="#{!bindings.NewBuildingType.enabled}" id="b5"
+                                                       binding="#{backingBeanScope.MAPropertyTypeSetupBean.b5}"
+                                                       icon="/images/icons/new_ena.png"
+                                                       action="#{backingBeanScope.MAPropertyTypeSetupBean.newBuilding}"/>
+                                            <af:button text="#{bundle.Edit}" id="b6"
+                                                       binding="#{backingBeanScope.MAPropertyTypeSetupBean.b6}"
+                                                       icon="/images/icons/edit_ena.png"
+                                                       action="#{backingBeanScope.MAPropertyTypeSetupBean.editBuildingType}"/>
+                                            <af:button text="#{bundle.Remove}" id="b10"
+                                                       binding="#{backingBeanScope.MAPropertyTypeSetupBean.b10}"
+                                                       icon="/images/icons/delete_ena.png"
+                                                       action="#{backingBeanScope.MAPropertyTypeSetupBean.deleteBuildingType}"/>
+                                            <af:popup childCreation="deferred" autoCancel="disabled" id="p2"
+                                                      binding="#{backingBeanScope.MAPropertyTypeSetupBean.p2}">
+                                                <af:dialog id="d4"
+                                                           binding="#{backingBeanScope.MAPropertyTypeSetupBean.d4}"
+                                                           title="#{bundle.Create_Edit_Building_Type}" type="none"
+                                                           contentWidth="300" contentHeight="150">
+                                                    <f:facet name="buttonBar">
+                                                        <af:toolbar id="t4"
+                                                                    binding="#{backingBeanScope.MAPropertyTypeSetupBean.t4}">
+                                                            <af:panelGroupLayout id="pgl1"
+                                                                                 binding="#{backingBeanScope.MAPropertyTypeSetupBean.pgl1}"
+                                                                                 layout="horizontal" halign="right"
+                                                                                 inlineStyle="width:300px;">
+                                                                <af:button text="#{bundle.Apply}"
+                                                                           id="b7"
+                                                                           binding="#{backingBeanScope.MAPropertyTypeSetupBean.b7}"
+                                                                           icon="/images/icons/save_ena.png"
+                                                                           action="#{backingBeanScope.MAPropertyTypeSetupBean.applyBuildingCreate}"/>
+                                                                <af:button
+                                                                           text="#{bundle.Cancel}"
+                                                                           immediate="true" id="b8"
+                                                                           binding="#{backingBeanScope.MAPropertyTypeSetupBean.b8}"
+                                                                           icon="/images/icons/rollback.png"
+                                                                           action="#{backingBeanScope.MAPropertyTypeSetupBean.cancelBuildingCreate}">
+                                                                    <af:resetActionListener/>
+                                                                </af:button>
+                                                            </af:panelGroupLayout>
+                                                        </af:toolbar>
+                                                    </f:facet>
+                                                    <af:panelFormLayout id="pfl2"
+                                                                        binding="#{backingBeanScope.MAPropertyTypeSetupBean.pfl2}">
+                                                        <af:inputText value="#{bindings.BuildingTypeName.inputValue}"
+                                                                      label="#{bindings.BuildingTypeName.hints.label}"
+                                                                      required="#{bindings.BuildingTypeName.hints.mandatory}"
+                                                                      columns="#{bindings.BuildingTypeName.hints.displayWidth}"
+                                                                      maximumLength="#{bindings.BuildingTypeName.hints.precision}"
+                                                                      shortDesc="#{bindings.BuildingTypeName.hints.tooltip}"
+                                                                      id="it3"
+                                                                      binding="#{backingBeanScope.MAPropertyTypeSetupBean.it3}">
+                                                            <f:validator binding="#{bindings.BuildingTypeName.validator}"/>
+                                                        </af:inputText>
+                                                        <af:inputText value="#{bindings.BuildingIntAttribute1.inputValue}"
+                                                                      label="#{bindings.BuildingIntAttribute1.hints.label}"
+                                                                      required="#{bindings.BuildingIntAttribute1.hints.mandatory}"
+                                                                      columns="#{bindings.BuildingIntAttribute1.hints.displayWidth}"
+                                                                      maximumLength="#{bindings.BuildingIntAttribute1.hints.precision}"
+                                                                      shortDesc="#{bindings.BuildingIntAttribute1.hints.tooltip}"
+                                                                      id="it4"
+                                                                      binding="#{backingBeanScope.MAPropertyTypeSetupBean.it4}">
+                                                            <f:validator binding="#{bindings.BuildingIntAttribute1.validator}"/>
+                                                        </af:inputText>
+                                                        <af:selectOneChoice value="#{bindings.ParentBuildingTypeId.inputValue}"
+                                                                            label="#{bindings.ParentBuildingTypeId.label}"
+                                                                            required="#{bindings.ParentBuildingTypeId.hints.mandatory}"
+                                                                            shortDesc="#{bindings.ParentBuildingTypeId.hints.tooltip}"
+                                                                            id="soc2"
+                                                                            binding="#{backingBeanScope.MAPropertyTypeSetupBean.soc2}">
+                                                            <f:selectItems value="#{bindings.ParentBuildingTypeId.items}"
+                                                                           id="si2"
+                                                                           binding="#{backingBeanScope.MAPropertyTypeSetupBean.si2}"/>
+                                                            <f:validator binding="#{bindings.ParentBuildingTypeId.validator}"/>
+                                                        </af:selectOneChoice>
+                                                    </af:panelFormLayout>
+                                                </af:dialog>
+                                            </af:popup>
+                                        </af:toolbar>
+                                    </f:facet>
+                                    <f:facet name="statusbar"/>
+                                    <af:table value="#{bindings.MARsBuildingTypeVO.collectionModel}" var="row"
+                                              rows="#{bindings.MARsBuildingTypeVO.rangeSize}"
+                                              emptyText="#{bindings.MARsBuildingTypeVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                              rowBandingInterval="0"
+                                              selectedRowKeys="#{bindings.MARsBuildingTypeVO.collectionModel.selectedRow}"
+                                              selectionListener="#{bindings.MARsBuildingTypeVO.collectionModel.makeCurrent}"
+                                              rowSelection="single" fetchSize="#{bindings.MARsBuildingTypeVO.rangeSize}"
+                                              id="resId2" binding="#{backingBeanScope.MAPropertyTypeSetupBean.resId2}"
+                                              width="100%" partialTriggers="::b5 ::b8 ::b7 ::b10">
+                                        <?audit suppress oracle.adf.faces.compreqsummary?><?audit suppress oracle.adf.faces.tableneedsrowheader?>
+                                        <af:column sortProperty="#{bindings.MARsBuildingTypeVO.hints.BuildingTypeName.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.MARsBuildingTypeVO.hints.BuildingTypeName.label}"
+                                                   id="resId2c1" width="250">
+                                            <af:outputText value="#{row.BuildingTypeName}"
+                                                           shortDesc="#{bindings.MARsBuildingTypeVO.hints.BuildingTypeName.tooltip}"
+                                                           id="ot3"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.MARsBuildingTypeVO.hints.IntAttribute1.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.MARsBuildingTypeVO.hints.IntAttribute1.label}"
+                                                   id="resId2c2" width="250">
+                                            <af:outputText value="#{row.IntAttribute1}"
+                                                           shortDesc="#{bindings.MARsBuildingTypeVO.hints.IntAttribute1.tooltip}"
+                                                           id="ot4"/>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.MARsBuildingTypeVO.hints.ParentType.label}"
+                                                   id="c2" width="250">
+                                            <af:outputText value="#{row.ParentType}"
+                                                           shortDesc="#{bindings.MARsBuildingTypeVO.hints.ParentType.tooltip}"
+                                                           id="ot6"/>
+                                        </af:column>
+                                    </af:table>
+                                </af:panelCollection>
+                            </af:panelHeader>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                    <f:facet name="header">
+                        <af:toolbar id="t5" binding="#{backingBeanScope.MAPropertyTypeSetupBean.t5}">
+                            <af:link text="#{bundle.Home}" id="l1" binding="#{backingBeanScope.MAPropertyTypeSetupBean.l1}"
+                                     action="home"/>
+                        </af:toolbar>
+                    </f:facet>
+                    <f:facet name="end"/>
+                    <f:facet name="start"/>
+                    <f:facet name="branding"/>
+                    <f:facet name="copyright"/>
+                    <f:facet name="status">
+                        <af:toolbar id="t6" binding="#{backingBeanScope.MAPropertyTypeSetupBean.t6}">
+                            <af:button id="b11"
+                                       binding="#{backingBeanScope.MAPropertyTypeSetupBean.b11}"
+                                       actionListener="#{bindings.en_lang.execute}"
+                                       disabled="#{!bindings.en_lang.enabled}" partialSubmit="false"
+                                       shortDesc="#{bundle.English}" icon="/images/icons/english.png"/>
+                            <af:button id="b12"
+                                       binding="#{backingBeanScope.MAPropertyTypeSetupBean.b12}"
+                                       actionListener="#{bindings.ar_lang.execute}"
+                                       disabled="#{!bindings.ar_lang.enabled}" icon="/images/icons/arabic.png"
+                                       shortDesc="#{bundle.Arabic}" partialSubmit="false"/>
+                        </af:toolbar>
+                    </f:facet>
+                    <f:attribute name="endColumnSize" value="0"/>
+                    <f:attribute name="startColumnSize" value="0"/>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+    <!--oracle-jdev-comment:auto-binding-backing-bean-name:MAPropertyTypeSetupBean-->
+</jsp:root>

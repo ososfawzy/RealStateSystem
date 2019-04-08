@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE JboProject SYSTEM "jbo_03_01.dtd">
+<!---->
+<JboProject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="ViewController"
+  Version="12.1.3.10.8"
+  SeparateXMLFiles="true"
+  PackageName="ma.oracle.apps.cx.realestate">
+  <DesignTime>
+    <Attr Name="_jprName" Value="../../../../../../ViewController.jpr"/>
+    <Attr Name="_NamedConnection" Value="XXMA"/>
+    <Attr Name="_appModuleNames0"
+      Value="ma.oracle.apps.cx.realestate.property.modules.MARealEstatePropertyAM"/>
+    <Attr Name="_appModuleNames1"
+      Value="ma.oracle.apps.cx.realestate.lease.modules.MARealEstateLeaseAM"/>
+    <Attr Name="_jbo.TypeMapEntries" Value="Java"/>
+  </DesignTime>
+  <Containee
+    Name="entities"
+    PackageName="ma.oracle.apps.cx.realestate.lease.entities"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_EO" Value="true"/>
+      <Attr Name="_LocationURL" Value="../../Model/src/"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="modules"
+    PackageName="ma.oracle.apps.cx.realestate.lease.modules"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_AM" Value="true"/>
+      <Attr Name="_LocationURL" Value="../../Model/src/"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="views"
+    PackageName="ma.oracle.apps.cx.realestate.lease.views"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_VO" Value="true"/>
+      <Attr Name="_VL" Value="true"/>
+      <Attr Name="_LocationURL" Value="../../Model/src/"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="entities"
+    PackageName="ma.oracle.apps.cx.realestate.property.entities"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_EO" Value="true"/>
+      <Attr Name="_LocationURL" Value="../../Model/src/"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="modules"
+    PackageName="ma.oracle.apps.cx.realestate.property.modules"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_AM" Value="true"/>
+      <Attr Name="_LocationURL" Value="../../Model/src/"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="views"
+    PackageName="ma.oracle.apps.cx.realestate.property.views"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_VO" Value="true"/>
+      <Attr Name="_VL" Value="true"/>
+      <Attr Name="_LocationURL" Value="../../Model/src/"/>
+    </DesignTime>
+  </Containee>
+</JboProject>

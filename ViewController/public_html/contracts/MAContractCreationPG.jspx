@@ -1,0 +1,726 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view beforePhase="#{backingBeanScope.MAContractCreationBean.beforePhase}">
+        <af:document title="#{bundle.Contract_Creation}" id="d1" binding="#{backingBeanScope.MAContractCreationBean.d1}">
+            <af:messages id="m1" binding="#{backingBeanScope.MAContractCreationBean.m1}"/>
+            <af:form id="f1" binding="#{backingBeanScope.MAContractCreationBean.f1}">
+                <af:pageTemplate viewId="#{pageFlowScope.Facet}" id="pt1">
+                    <f:facet name="center">
+                        <af:panelGroupLayout id="pgl1" binding="#{backingBeanScope.MAContractCreationBean.pgl1}"
+                                             layout="scroll">
+                            <af:panelHeader text="#{bundle.Contract_Creation}" id="ph1"
+                                            binding="#{backingBeanScope.MAContractCreationBean.ph1}">
+                                <f:facet name="toolbar">
+                                    <af:toolbar id="t1" binding="#{backingBeanScope.MAContractCreationBean.t1}">
+                                        <af:button actionListener="#{bindings.Rollback.execute}" text="#{bundle.Cancel}"
+                                                   immediate="true" id="b4"
+                                                   binding="#{backingBeanScope.MAContractCreationBean.b4}"
+                                                   icon="/images/icons/rollback.png" action="BackToContractPayments">
+                                            <af:resetActionListener/>
+                                        </af:button>
+                                        <af:button text="#{bundle.Save}" id="b3"
+                                                   binding="#{backingBeanScope.MAContractCreationBean.b3}"
+                                                   icon="/images/icons/save_ena.png"
+                                                   action="#{backingBeanScope.MAContractCreationBean.saveContractCreation}"/>
+                                        <af:button text="#{bundle.Save_and_Close}" id="b6"
+                                                   binding="#{backingBeanScope.MAContractCreationBean.b6}"
+                                                   icon="/images/icons/save_ena.png"
+                                                   action="#{backingBeanScope.MAContractCreationBean.saveCloseContractCreation}"/>
+                                    </af:toolbar>
+                                </f:facet>
+                                <af:panelBox text="#{bundle.Contract_Details}" id="pb1"
+                                             binding="#{backingBeanScope.MAContractCreationBean.pb1}">
+                                    <af:panelFormLayout id="pfl1"
+                                                        binding="#{backingBeanScope.MAContractCreationBean.pfl1}"
+                                                        rows="4" maxColumns="2">
+                                        <af:inputText value="#{bindings.ContractNumber.inputValue}"
+                                                      label="#{bindings.ContractNumber.hints.label}"
+                                                      required="#{bindings.ContractNumber.hints.mandatory}"
+                                                      columns="#{bindings.ContractNumber.hints.displayWidth}"
+                                                      maximumLength="#{bindings.ContractNumber.hints.precision}"
+                                                      shortDesc="#{bindings.ContractNumber.hints.tooltip}" id="it1"
+                                                      binding="#{backingBeanScope.MAContractCreationBean.it1}">
+                                            <f:validator binding="#{bindings.ContractNumber.validator}"/>
+                                        </af:inputText>
+                                        <af:selectOneChoice value="#{bindings.ContractType.inputValue}"
+                                                            label="#{bindings.ContractType.label}"
+                                                            required="#{bindings.ContractType.hints.mandatory}"
+                                                            shortDesc="#{bindings.ContractType.hints.tooltip}" id="soc1"
+                                                            binding="#{backingBeanScope.MAContractCreationBean.soc1}">
+                                            <f:selectItems value="#{bindings.ContractType.items}" id="si1"
+                                                           binding="#{backingBeanScope.MAContractCreationBean.si1}"/>
+                                            <f:validator binding="#{bindings.ContractType.validator}"/>
+                                        </af:selectOneChoice>
+                                        <af:selectOneChoice value="#{bindings.Currency.inputValue}"
+                                                            label="#{bindings.Currency.label}"
+                                                            required="#{bindings.Currency.hints.mandatory}"
+                                                            shortDesc="#{bindings.Currency.hints.tooltip}" id="soc2"
+                                                            binding="#{backingBeanScope.MAContractCreationBean.soc2}">
+                                            <f:selectItems value="#{bindings.Currency.items}" id="si2"
+                                                           binding="#{backingBeanScope.MAContractCreationBean.si2}"/>
+                                            <f:validator binding="#{bindings.Currency.validator}"/>
+                                        </af:selectOneChoice>
+                                        <af:inputText value="#{bindings.SerialNumber.inputValue}"
+                                                      label="#{bindings.SerialNumber.hints.label}"
+                                                      required="#{bindings.SerialNumber.hints.mandatory}"
+                                                      columns="#{bindings.SerialNumber.hints.displayWidth}"
+                                                      maximumLength="#{bindings.SerialNumber.hints.precision}"
+                                                      shortDesc="#{bindings.SerialNumber.hints.tooltip}" id="it2"
+                                                      binding="#{backingBeanScope.MAContractCreationBean.it2}">
+                                            <f:validator binding="#{bindings.SerialNumber.validator}"/>
+                                        </af:inputText>
+                                        <af:inputText value="#{bindings.PropertyActualPrice.inputValue}"
+                                                      label="#{bindings.PropertyActualPrice.hints.label}"
+                                                      columns="#{bindings.PropertyActualPrice.hints.displayWidth}"
+                                                      maximumLength="#{bindings.PropertyActualPrice.hints.precision}"
+                                                      shortDesc="#{bindings.PropertyActualPrice.hints.tooltip}" id="it4"
+                                                      binding="#{backingBeanScope.MAContractCreationBean.it4}"
+                                                      required="true">
+                                            <f:validator binding="#{bindings.PropertyActualPrice.validator}"/>
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.PropertyActualPrice.format}"/>
+                                        </af:inputText>
+                                        <af:inputDate value="#{bindings.PaymentStartDate.inputValue}"
+                                                      label="#{bindings.PaymentStartDate.hints.label}"
+                                                      columns="#{bindings.PaymentStartDate.hints.displayWidth}"
+                                                      shortDesc="#{bindings.PaymentStartDate.hints.tooltip}" id="id1"
+                                                      binding="#{backingBeanScope.MAContractCreationBean.id1}"
+                                                      required="true">
+                                            <f:validator binding="#{bindings.PaymentStartDate.validator}"/>
+                                            <af:convertDateTime pattern="#{bindings.PaymentStartDate.format}"/>
+                                        </af:inputDate>
+                                        <af:inputText value="#{bindings.Notes.inputValue}"
+                                                      label="#{bindings.Notes.hints.label}"
+                                                      required="#{bindings.Notes.hints.mandatory}" columns="50"
+                                                      maximumLength="#{bindings.Notes.hints.precision}"
+                                                      shortDesc="#{bindings.Notes.hints.tooltip}" id="it3"
+                                                      binding="#{backingBeanScope.MAContractCreationBean.it3}" rows="6">
+                                            <f:validator binding="#{bindings.Notes.validator}"/>
+                                        </af:inputText>
+                                    </af:panelFormLayout>
+                                </af:panelBox>
+                                <af:panelBox text="#{bundle.Owner_Details}" id="pb2"
+                                             binding="#{backingBeanScope.MAContractCreationBean.pb2}">
+                                    <af:panelCollection id="pc1"
+                                                        binding="#{backingBeanScope.MAContractCreationBean.pc1}"
+                                                        styleClass="AFStretchWidth">
+                                        <f:facet name="menus"/>
+                                        <f:facet name="toolbar">
+                                            <af:toolbar id="t3" binding="#{backingBeanScope.MAContractCreationBean.t3}">
+                                                <af:button actionListener="#{bindings.CreateContractOwner.execute}"
+                                                           text="#{bundle.New_Owner}"
+                                                           disabled="#{!bindings.CreateContractOwner.enabled}" id="b2"
+                                                           binding="#{backingBeanScope.MAContractCreationBean.b2}"
+                                                           icon="/images/icons/new_ena.png"/>
+                                                <af:button text="#{bundle.Primary_Owner}" id="b8"
+                                                           binding="#{backingBeanScope.MAContractCreationBean.b8}"
+                                                           action="#{backingBeanScope.MAContractCreationBean.primaryOwner}"/>
+                                            </af:toolbar>
+                                        </f:facet>
+                                        <f:facet name="statusbar"/>
+                                        <af:table value="#{bindings.MAContractOwnerVO.collectionModel}" var="row"
+                                                  rows="#{bindings.MAContractOwnerVO.rangeSize}"
+                                                  emptyText="#{bindings.MAContractOwnerVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                  rowBandingInterval="0"
+                                                  selectedRowKeys="#{bindings.MAContractOwnerVO.collectionModel.selectedRow}"
+                                                  selectionListener="#{bindings.MAContractOwnerVO.collectionModel.makeCurrent}"
+                                                  rowSelection="single"
+                                                  fetchSize="#{bindings.MAContractOwnerVO.rangeSize}" id="t2"
+                                                  binding="#{backingBeanScope.MAContractCreationBean.t2}" width="100%"
+                                                  partialTriggers="::b2 ::b8">
+                                            <?audit suppress oracle.adf.faces.compreqsummary?><?audit suppress oracle.adf.faces.tableneedsrowheader?>
+                                            <af:column sortProperty="#{bindings.MAContractOwnerVO.hints.OwnerName.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MAContractOwnerVO.hints.OwnerName.label}"
+                                                       id="c14">
+                                                <af:inputText value="#{row.bindings.OwnerName.inputValue}"
+                                                              label="#{bindings.MAContractOwnerVO.hints.OwnerName.label}"
+                                                              required="#{bindings.MAContractOwnerVO.hints.OwnerName.mandatory}"
+                                                              columns="#{bindings.MAContractOwnerVO.hints.OwnerName.displayWidth}"
+                                                              maximumLength="#{bindings.MAContractOwnerVO.hints.OwnerName.precision}"
+                                                              shortDesc="#{bindings.MAContractOwnerVO.hints.OwnerName.tooltip}"
+                                                              id="it13">
+                                                    <f:validator binding="#{row.bindings.OwnerName.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MAContractOwnerVO.hints.EmailAddress.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MAContractOwnerVO.hints.EmailAddress.label}"
+                                                       id="c15">
+                                                <af:inputText value="#{row.bindings.EmailAddress.inputValue}"
+                                                              label="#{bindings.MAContractOwnerVO.hints.EmailAddress.label}"
+                                                              required="#{bindings.MAContractOwnerVO.hints.EmailAddress.mandatory}"
+                                                              columns="#{bindings.MAContractOwnerVO.hints.EmailAddress.displayWidth}"
+                                                              maximumLength="#{bindings.MAContractOwnerVO.hints.EmailAddress.precision}"
+                                                              shortDesc="#{bindings.MAContractOwnerVO.hints.EmailAddress.tooltip}"
+                                                              id="it17">
+                                                    <f:validator binding="#{row.bindings.EmailAddress.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MAContractOwnerVO.hints.PhoneNumber.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MAContractOwnerVO.hints.PhoneNumber.label}"
+                                                       id="c16">
+                                                <af:inputText value="#{row.bindings.PhoneNumber.inputValue}"
+                                                              label="#{bindings.MAContractOwnerVO.hints.PhoneNumber.label}"
+                                                              required="#{bindings.MAContractOwnerVO.hints.PhoneNumber.mandatory}"
+                                                              columns="#{bindings.MAContractOwnerVO.hints.PhoneNumber.displayWidth}"
+                                                              maximumLength="#{bindings.MAContractOwnerVO.hints.PhoneNumber.precision}"
+                                                              shortDesc="#{bindings.MAContractOwnerVO.hints.PhoneNumber.tooltip}"
+                                                              id="it18">
+                                                    <f:validator binding="#{row.bindings.PhoneNumber.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MAContractOwnerVO.hints.Fax.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MAContractOwnerVO.hints.Fax.label}"
+                                                       id="c17">
+                                                <af:inputText value="#{row.bindings.Fax.inputValue}"
+                                                              label="#{bindings.MAContractOwnerVO.hints.Fax.label}"
+                                                              required="#{bindings.MAContractOwnerVO.hints.Fax.mandatory}"
+                                                              columns="#{bindings.MAContractOwnerVO.hints.Fax.displayWidth}"
+                                                              maximumLength="#{bindings.MAContractOwnerVO.hints.Fax.precision}"
+                                                              shortDesc="#{bindings.MAContractOwnerVO.hints.Fax.tooltip}"
+                                                              id="it19">
+                                                    <f:validator binding="#{row.bindings.Fax.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MAContractOwnerVO.hints.Address.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MAContractOwnerVO.hints.Address.label}"
+                                                       id="c18">
+                                                <af:inputText value="#{row.bindings.Address.inputValue}"
+                                                              label="#{bindings.MAContractOwnerVO.hints.Address.label}"
+                                                              required="#{bindings.MAContractOwnerVO.hints.Address.mandatory}"
+                                                              columns="#{bindings.MAContractOwnerVO.hints.Address.displayWidth}"
+                                                              maximumLength="#{bindings.MAContractOwnerVO.hints.Address.precision}"
+                                                              shortDesc="#{bindings.MAContractOwnerVO.hints.Address.tooltip}"
+                                                              id="it20">
+                                                    <f:validator binding="#{row.bindings.Address.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MAContractOwnerVO.hints.PrimaryContact.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MAContractOwnerVO.hints.PrimaryContact.label}"
+                                                       id="c19">
+                                                <af:selectOneRadio value="#{row.bindings.PrimaryContact.inputValue}"
+                                                                   label="#{row.bindings.PrimaryContact.label}"
+                                                                   required="#{bindings.MAContractOwnerVO.hints.PrimaryContact.mandatory}"
+                                                                   shortDesc="#{bindings.MAContractOwnerVO.hints.PrimaryContact.tooltip}"
+                                                                   id="sor1">
+                                                    <f:selectItems value="#{row.bindings.PrimaryContact.items}"
+                                                                   id="si4"/>
+                                                    <f:validator binding="#{row.bindings.PrimaryContact.validator}"/>
+                                                </af:selectOneRadio>
+                                            </af:column>
+                                            <af:column headerText="#{bundle.Primary_Owner}"
+                                                       id="c23">
+                                                <af:outputText value="#{row.bindings.IntAttribute3.inputValue}"
+                                                               shortDesc="#{bindings.MAContractOwnerVO.hints.IntAttribute3.tooltip}"
+                                                               id="it21"/>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MAContractOwnerVO.hints.OwingPercentage.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MAContractOwnerVO.hints.OwingPercentage.label}"
+                                                       id="c20">
+                                                <af:inputText value="#{row.bindings.OwingPercentage.inputValue}"
+                                                              label="#{bindings.MAContractOwnerVO.hints.OwingPercentage.label}"
+                                                              required="#{bindings.MAContractOwnerVO.hints.OwingPercentage.mandatory}"
+                                                              columns="#{bindings.MAContractOwnerVO.hints.OwingPercentage.displayWidth}"
+                                                              maximumLength="#{bindings.MAContractOwnerVO.hints.OwingPercentage.precision}"
+                                                              shortDesc="#{bindings.MAContractOwnerVO.hints.OwingPercentage.tooltip}"
+                                                              id="it22">
+                                                    <f:validator binding="#{row.bindings.OwingPercentage.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.MAContractOwnerVO.hints.OwingPercentage.format}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MAContractOwnerVO.hints.Notes.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MAContractOwnerVO.hints.Notes.label}"
+                                                       id="c21">
+                                                <af:inputText value="#{row.bindings.Notes.inputValue}"
+                                                              label="#{bindings.MAContractOwnerVO.hints.Notes.label}"
+                                                              required="#{bindings.MAContractOwnerVO.hints.Notes.mandatory}"
+                                                              columns="#{bindings.MAContractOwnerVO.hints.Notes.displayWidth}"
+                                                              maximumLength="#{bindings.MAContractOwnerVO.hints.Notes.precision}"
+                                                              shortDesc="#{bindings.MAContractOwnerVO.hints.Notes.tooltip}"
+                                                              id="it23">
+                                                    <f:validator binding="#{row.bindings.Notes.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MAContractOwnerVO.hints.ControlPanel.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MAContractOwnerVO.hints.ControlPanel.label}"
+                                                       id="c22">
+                                                <af:inputText value="#{row.bindings.ControlPanel.inputValue}"
+                                                              label="#{bindings.MAContractOwnerVO.hints.ControlPanel.label}"
+                                                              required="#{bindings.MAContractOwnerVO.hints.ControlPanel.mandatory}"
+                                                              columns="#{bindings.MAContractOwnerVO.hints.ControlPanel.displayWidth}"
+                                                              maximumLength="#{bindings.MAContractOwnerVO.hints.ControlPanel.precision}"
+                                                              shortDesc="#{bindings.MAContractOwnerVO.hints.ControlPanel.tooltip}"
+                                                              id="it24">
+                                                    <f:validator binding="#{row.bindings.ControlPanel.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                        </af:table>
+                                    </af:panelCollection>
+                                </af:panelBox>
+                                <af:panelBox text="#{bundle.Property_Details}" id="pb3"
+                                             binding="#{backingBeanScope.MAContractCreationBean.pb3}">
+                                    <af:panelFormLayout id="pfl2"
+                                                        binding="#{backingBeanScope.MAContractCreationBean.pfl2}"
+                                                        rows="1">
+                                        <af:button
+                                                   text="#{bundle.Search_Property}"
+                                                   disabled="#{!bindings.ExecuteWithParams.enabled}" id="b1"
+                                                   binding="#{backingBeanScope.MAContractCreationBean.b1}"
+                                                   action="#{backingBeanScope.MAContractCreationBean.searchPropertyBtnAction}"/>
+                                        <af:inputListOfValues popupTitle="#{bundle.Search_Result_Dialog}"
+                                                              id="ilov2"
+                                                              binding="#{backingBeanScope.MAContractCreationBean.ilov2}"
+                                                              value="#{bindings.p_property_id.inputValue}"
+                                                              model="#{bindings.PropertyId.listOfValuesModel}"
+                                                              required="true"/>
+                                    </af:panelFormLayout>
+                                    <af:panelGridLayout id="pgl2"
+                                                        binding="#{backingBeanScope.MAContractCreationBean.pgl2}">
+                                        <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr1"
+                                                    binding="#{backingBeanScope.MAContractCreationBean.gr1}">
+                                            <af:gridCell marginStart="5px" width="50%" id="gc1"
+                                                         binding="#{backingBeanScope.MAContractCreationBean.gc1}">
+                                                <af:panelFormLayout id="pfl3"
+                                                                    binding="#{backingBeanScope.MAContractCreationBean.pfl3}"
+                                                                    maxColumns="2" rows="8" partialTriggers="b1">
+                                                    <af:inputText value="#{bindings.PropertyName.inputValue}"
+                                                                  label="#{bindings.PropertyName.hints.label}"
+                                                                  required="#{bindings.PropertyName.hints.mandatory}"
+                                                                  readOnly="true"
+                                                                  columns="#{bindings.PropertyName.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.PropertyName.hints.precision}"
+                                                                  shortDesc="#{bindings.PropertyName.hints.tooltip}"
+                                                                  id="it10"
+                                                                  binding="#{backingBeanScope.MAContractCreationBean.it10}">
+                                                        <f:validator binding="#{bindings.PropertyName.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.FloorNumber.inputValue}"
+                                                                  label="#{bindings.FloorNumber.hints.label}"
+                                                                  required="#{bindings.FloorNumber.hints.mandatory}"
+                                                                  readOnly="true"
+                                                                  columns="#{bindings.FloorNumber.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.FloorNumber.hints.precision}"
+                                                                  shortDesc="#{bindings.FloorNumber.hints.tooltip}"
+                                                                  id="it11"
+                                                                  binding="#{backingBeanScope.MAContractCreationBean.it11}">
+                                                        <f:validator binding="#{bindings.FloorNumber.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.PropertyCode.inputValue}"
+                                                                  label="#{bindings.PropertyCode.hints.label}"
+                                                                  required="#{bindings.PropertyCode.hints.mandatory}"
+                                                                  readOnly="true"
+                                                                  columns="#{bindings.PropertyCode.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.PropertyCode.hints.precision}"
+                                                                  shortDesc="#{bindings.PropertyCode.hints.tooltip}"
+                                                                  id="it12"
+                                                                  binding="#{backingBeanScope.MAContractCreationBean.it12}">
+                                                        <f:validator binding="#{bindings.PropertyCode.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.BuildingName.inputValue}"
+                                                                  label="#{bindings.BuildingName.hints.label}"
+                                                                  required="#{bindings.BuildingName.hints.mandatory}"
+                                                                  readOnly="true"
+                                                                  columns="#{bindings.BuildingName.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.BuildingName.hints.precision}"
+                                                                  shortDesc="#{bindings.BuildingName.hints.tooltip}"
+                                                                  id="it14"
+                                                                  binding="#{backingBeanScope.MAContractCreationBean.it14}">
+                                                        <f:validator binding="#{bindings.BuildingName.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.ProjectName.inputValue}"
+                                                                  label="#{bindings.ProjectName.hints.label}"
+                                                                  required="#{bindings.ProjectName.hints.mandatory}"
+                                                                  readOnly="true"
+                                                                  columns="#{bindings.ProjectName.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.ProjectName.hints.precision}"
+                                                                  shortDesc="#{bindings.ProjectName.hints.tooltip}"
+                                                                  id="it15"
+                                                                  binding="#{backingBeanScope.MAContractCreationBean.it15}">
+                                                        <f:validator binding="#{bindings.ProjectName.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.TypeName.inputValue}"
+                                                                  label="#{bindings.TypeName.hints.label}"
+                                                                  required="#{bindings.TypeName.hints.mandatory}"
+                                                                  readOnly="true"
+                                                                  columns="#{bindings.TypeName.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.TypeName.hints.precision}"
+                                                                  shortDesc="#{bindings.TypeName.hints.tooltip}"
+                                                                  id="it16"
+                                                                  binding="#{backingBeanScope.MAContractCreationBean.it16}">
+                                                        <f:validator binding="#{bindings.TypeName.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputDate value="#{bindings.EstimatedDeliveryDate.inputValue}"
+                                                                  readOnly="true"
+                                                                  label="#{bindings.EstimatedDeliveryDate.hints.label}"
+                                                                  required="#{bindings.EstimatedDeliveryDate.hints.mandatory}"
+                                                                  columns="#{bindings.EstimatedDeliveryDate.hints.displayWidth}"
+                                                                  shortDesc="#{bindings.EstimatedDeliveryDate.hints.tooltip}"
+                                                                  id="id2"
+                                                                  binding="#{backingBeanScope.MAContractCreationBean.id2}">
+                                                        <f:validator binding="#{bindings.EstimatedDeliveryDate.validator}"/>
+                                                        <af:convertDateTime pattern="#{bindings.EstimatedDeliveryDate.format}"/>
+                                                    </af:inputDate>
+                                                </af:panelFormLayout>
+                                            </af:gridCell>
+                                            <af:gridCell marginStart="5px" width="50%" marginEnd="5px" id="gc2"
+                                                         binding="#{backingBeanScope.MAContractCreationBean.gc2}">
+                                                <af:panelFormLayout id="pfl4"
+                                                                    binding="#{backingBeanScope.MAContractCreationBean.pfl4}"
+                                                                    partialTriggers="b1">
+                                                    <af:panelLabelAndMessage label="#{bindings.PropertyPrice.hints.label}" id="plam3"
+                                                                             binding="#{backingBeanScope.MAContractCreationBean.plam3}">
+                                                        <af:panelGroupLayout id="pgl5"
+                                                                             binding="#{backingBeanScope.MAContractCreationBean.pgl5}"
+                                                                             layout="horizontal">
+                                                            <af:inputText value="#{bindings.PropertyPrice.inputValue}"
+                                                                          required="#{bindings.PropertyPrice.hints.mandatory}"
+                                                                          columns="#{bindings.PropertyPrice.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.PropertyPrice.hints.precision}"
+                                                                          shortDesc="#{bindings.PropertyPrice.hints.tooltip}"
+                                                                          id="it5"
+                                                                          binding="#{backingBeanScope.MAContractCreationBean.it5}"
+                                                                          disabled="true">
+                                                                <f:validator binding="#{bindings.PropertyPrice.validator}"/>
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.PropertyPrice.format}"/>
+                                                            </af:inputText>
+                                                        </af:panelGroupLayout>
+                                                    </af:panelLabelAndMessage>
+                                                    <af:panelLabelAndMessage label="#{bundle.Installment_Rule}" id="plam4"
+                                                                             binding="#{backingBeanScope.MAContractCreationBean.plam4}">
+                                                        <af:panelGroupLayout id="pgl6"
+                                                                             binding="#{backingBeanScope.MAContractCreationBean.pgl6}"
+                                                                             layout="horizontal">
+                                                            <af:selectOneChoice value="#{bindings.ExtAttribute11.inputValue}"
+                                                                                required="#{bindings.ExtAttribute11.hints.mandatory}"
+                                                                                shortDesc="#{bindings.ExtAttribute11.hints.tooltip}"
+                                                                                id="soc3"
+                                                                                binding="#{backingBeanScope.MAContractCreationBean.soc3}"
+                                                                                autoSubmit="true"
+                                                                                valueChangeListener="#{backingBeanScope.MAContractCreationBean.installmentTypeAction}">
+                                                                <f:selectItems value="#{bindings.ExtAttribute11.items}"
+                                                                               id="si3"
+                                                                               binding="#{backingBeanScope.MAContractCreationBean.si3}"/>
+                                                                <f:validator binding="#{bindings.ExtAttribute11.validator}"/>
+                                                            </af:selectOneChoice>
+                                                            <af:button text="#{bundle.Calculate_Installments}" id="b7"
+                                                                       binding="#{backingBeanScope.MAContractCreationBean.b7}"
+                                                                       action="#{backingBeanScope.MAContractCreationBean.createInstallmentAction}"/>
+                                                        </af:panelGroupLayout>
+                                                    </af:panelLabelAndMessage>
+                                                    <af:panelLabelAndMessage label="#{bundle.Sales_Commission}" id="plam1"
+                                                                             binding="#{backingBeanScope.MAContractCreationBean.plam1}">
+                                                        <af:panelGroupLayout id="pgl3"
+                                                                             binding="#{backingBeanScope.MAContractCreationBean.pgl3}"
+                                                                             layout="horizontal">
+                                                            <af:inputText value="#{bindings.ExtAttribute12.inputValue}"
+                                                                          required="#{bindings.ExtAttribute12.hints.mandatory}"
+                                                                          columns="#{bindings.ExtAttribute12.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.ExtAttribute12.hints.precision}"
+                                                                          shortDesc="#{bindings.ExtAttribute12.hints.tooltip}"
+                                                                          id="it6"
+                                                                          binding="#{backingBeanScope.MAContractCreationBean.it6}">
+                                                                <f:validator binding="#{bindings.ExtAttribute12.validator}"/>
+                                                            </af:inputText>
+                                                            <af:selectBooleanCheckbox value="#{bindings.ExtAttribute13.inputValue}"
+                                                                                      shortDesc="#{bindings.ExtAttribute13.hints.tooltip}"
+                                                                                      id="sbc1"
+                                                                                      binding="#{backingBeanScope.MAContractCreationBean.sbc1}"/>
+                                                        </af:panelGroupLayout>
+                                                    </af:panelLabelAndMessage>
+                                                    <af:panelLabelAndMessage label="#{bundle.Disclaimer_Fee}" id="plam2"
+                                                                             binding="#{backingBeanScope.MAContractCreationBean.plam2}">
+                                                        <af:panelGroupLayout id="pgl4"
+                                                                             binding="#{backingBeanScope.MAContractCreationBean.pgl4}"
+                                                                             layout="horizontal">
+                                                            <af:inputText value="#{bindings.ExtAttribute14.inputValue}"
+                                                                          required="#{bindings.ExtAttribute14.hints.mandatory}"
+                                                                          columns="#{bindings.ExtAttribute14.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.ExtAttribute14.hints.precision}"
+                                                                          shortDesc="#{bindings.ExtAttribute14.hints.tooltip}"
+                                                                          id="it8"
+                                                                          binding="#{backingBeanScope.MAContractCreationBean.it8}">
+                                                                <f:validator binding="#{bindings.ExtAttribute14.validator}"/>
+                                                            </af:inputText>
+                                                            <af:selectBooleanCheckbox value="#{bindings.ExtAttribute15.inputValue}"
+                                                                                      shortDesc="#{bindings.ExtAttribute15.hints.tooltip}"
+                                                                                      id="sbc2"
+                                                                                      binding="#{backingBeanScope.MAContractCreationBean.sbc2}"/>
+                                                        </af:panelGroupLayout>
+                                                    </af:panelLabelAndMessage>
+                                                </af:panelFormLayout>
+                                            </af:gridCell>
+                                        </af:gridRow>
+                                    </af:panelGridLayout>
+                                    <f:facet name="toolbar">
+                                        <af:toolbar id="t6" binding="#{backingBeanScope.MAContractCreationBean.t6}"/>
+                                    </f:facet>
+                                </af:panelBox>
+                                <af:panelBox text="#{bundle.Installment_Schedule}" id="pb4"
+                                             binding="#{backingBeanScope.MAContractCreationBean.pb4}">
+                                    <af:panelCollection id="pc2"
+                                                        binding="#{backingBeanScope.MAContractCreationBean.pc2}"
+                                                        styleClass="AFStretchWidth">
+                                        <f:facet name="menus"/>
+                                        <f:facet name="toolbar">
+                                            <af:toolbar id="t5"
+                                                        binding="#{backingBeanScope.MAContractCreationBean.t5}">
+                                                <af:button actionListener="#{bindings.CreateInsert.execute}"
+                                                           text="#{bundle.New_Installment_Schedule}"
+                                                           disabled="#{!bindings.CreateInsert.enabled}" id="b5"
+                                                           binding="#{backingBeanScope.MAContractCreationBean.b5}"
+                                                           icon="/images/icons/new_ena.png"/>
+                                            </af:toolbar>
+                                        </f:facet>
+                                        <f:facet name="statusbar"/>
+                                        <af:table value="#{bindings.MAContractPropertyPaymentVVO.collectionModel}"
+                                                  var="row" rows="#{bindings.MAContractPropertyPaymentVVO.rangeSize}"
+                                                  emptyText="#{bindings.MAContractPropertyPaymentVVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                  rowBandingInterval="0"
+                                                  selectedRowKeys="#{bindings.MAContractPropertyPaymentVVO.collectionModel.selectedRow}"
+                                                  selectionListener="#{bindings.MAContractPropertyPaymentVVO.collectionModel.makeCurrent}"
+                                                  rowSelection="single"
+                                                  fetchSize="#{bindings.MAContractPropertyPaymentVVO.rangeSize}"
+                                                  id="t4" binding="#{backingBeanScope.MAContractCreationBean.t4}"
+                                                  width="100%" partialTriggers="::b5 :::b7">
+                                            <?audit suppress oracle.adf.faces.compreqsummary?><?audit suppress oracle.adf.faces.tableneedsrowheader?>
+                                            <af:column sortProperty="#{bindings.MAContractPropertyPaymentVVO.hints.Amount.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MAContractPropertyPaymentVVO.hints.Amount.label}"
+                                                       id="c1">
+                                                <af:inputText value="#{row.bindings.Amount.inputValue}"
+                                                              label="#{bindings.MAContractPropertyPaymentVVO.hints.Amount.label}"
+                                                              required="#{bindings.MAContractPropertyPaymentVVO.hints.Amount.mandatory}"
+                                                              columns="#{bindings.MAContractPropertyPaymentVVO.hints.Amount.displayWidth}"
+                                                              maximumLength="#{bindings.MAContractPropertyPaymentVVO.hints.Amount.precision}"
+                                                              shortDesc="#{bindings.MAContractPropertyPaymentVVO.hints.Amount.tooltip}"
+                                                              id="it9" readOnly="true">
+                                                    <f:validator binding="#{row.bindings.Amount.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.MAContractPropertyPaymentVVO.hints.Amount.format}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MAContractPropertyPaymentVVO.hints.Due.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MAContractPropertyPaymentVVO.hints.Due.label}"
+                                                       id="c2">
+                                                <af:inputText value="#{row.bindings.Due.inputValue}"
+                                                              label="#{bindings.MAContractPropertyPaymentVVO.hints.Due.label}"
+                                                              required="#{bindings.MAContractPropertyPaymentVVO.hints.Due.mandatory}"
+                                                              columns="#{bindings.MAContractPropertyPaymentVVO.hints.Due.displayWidth}"
+                                                              maximumLength="#{bindings.MAContractPropertyPaymentVVO.hints.Due.precision}"
+                                                              shortDesc="#{bindings.MAContractPropertyPaymentVVO.hints.Due.tooltip}"
+                                                              id="it25" readOnly="true">
+                                                    <f:validator binding="#{row.bindings.Due.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.MAContractPropertyPaymentVVO.hints.Due.format}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MAContractPropertyPaymentVVO.hints.DueDate.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MAContractPropertyPaymentVVO.hints.DueDate.label}"
+                                                       id="c3">
+                                                <af:inputDate value="#{row.bindings.DueDate.inputValue}"
+                                                              label="#{bindings.MAContractPropertyPaymentVVO.hints.DueDate.label}"
+                                                              required="#{bindings.MAContractPropertyPaymentVVO.hints.DueDate.mandatory}"
+                                                              columns="#{bindings.MAContractPropertyPaymentVVO.hints.DueDate.displayWidth}"
+                                                              shortDesc="#{bindings.MAContractPropertyPaymentVVO.hints.DueDate.tooltip}"
+                                                              id="id3" readOnly="true">
+                                                    <f:validator binding="#{row.bindings.DueDate.validator}"/>
+                                                    <af:convertDateTime pattern="#{bindings.MAContractPropertyPaymentVVO.hints.DueDate.format}"/>
+                                                </af:inputDate>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MAContractPropertyPaymentVVO.hints.InstallmentNumber.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MAContractPropertyPaymentVVO.hints.InstallmentNumber.label}"
+                                                       id="c4">
+                                                <af:inputText value="#{row.bindings.InstallmentNumber.inputValue}"
+                                                              label="#{bindings.MAContractPropertyPaymentVVO.hints.InstallmentNumber.label}"
+                                                              required="#{bindings.MAContractPropertyPaymentVVO.hints.InstallmentNumber.mandatory}"
+                                                              columns="#{bindings.MAContractPropertyPaymentVVO.hints.InstallmentNumber.displayWidth}"
+                                                              maximumLength="#{bindings.MAContractPropertyPaymentVVO.hints.InstallmentNumber.precision}"
+                                                              shortDesc="#{bindings.MAContractPropertyPaymentVVO.hints.InstallmentNumber.tooltip}"
+                                                              id="it26" readOnly="true">
+                                                    <f:validator binding="#{row.bindings.InstallmentNumber.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.MAContractPropertyPaymentVVO.hints.InstallmentNumber.format}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MAContractPropertyPaymentVVO.hints.Intrest.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MAContractPropertyPaymentVVO.hints.Intrest.label}"
+                                                       id="c5">
+                                                <af:inputText value="#{row.bindings.Intrest.inputValue}"
+                                                              label="#{bindings.MAContractPropertyPaymentVVO.hints.Intrest.label}"
+                                                              required="#{bindings.MAContractPropertyPaymentVVO.hints.Intrest.mandatory}"
+                                                              columns="#{bindings.MAContractPropertyPaymentVVO.hints.Intrest.displayWidth}"
+                                                              maximumLength="#{bindings.MAContractPropertyPaymentVVO.hints.Intrest.precision}"
+                                                              shortDesc="#{bindings.MAContractPropertyPaymentVVO.hints.Intrest.tooltip}"
+                                                              id="it27" readOnly="true">
+                                                    <f:validator binding="#{row.bindings.Intrest.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.MAContractPropertyPaymentVVO.hints.Intrest.format}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MAContractPropertyPaymentVVO.hints.MaturityDate.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MAContractPropertyPaymentVVO.hints.MaturityDate.label}"
+                                                       id="c6">
+                                                <af:inputDate value="#{row.bindings.MaturityDate.inputValue}"
+                                                              label="#{bindings.MAContractPropertyPaymentVVO.hints.MaturityDate.label}"
+                                                              required="#{bindings.MAContractPropertyPaymentVVO.hints.MaturityDate.mandatory}"
+                                                              columns="#{bindings.MAContractPropertyPaymentVVO.hints.MaturityDate.displayWidth}"
+                                                              shortDesc="#{bindings.MAContractPropertyPaymentVVO.hints.MaturityDate.tooltip}"
+                                                              id="id4" readOnly="true">
+                                                    <f:validator binding="#{row.bindings.MaturityDate.validator}"/>
+                                                    <af:convertDateTime pattern="#{bindings.MAContractPropertyPaymentVVO.hints.MaturityDate.format}"/>
+                                                </af:inputDate>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MAContractPropertyPaymentVVO.hints.Notes.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MAContractPropertyPaymentVVO.hints.Notes.label}"
+                                                       id="c7">
+                                                <af:inputText value="#{row.bindings.Notes.inputValue}"
+                                                              label="#{bindings.MAContractPropertyPaymentVVO.hints.Notes.label}"
+                                                              required="#{bindings.MAContractPropertyPaymentVVO.hints.Notes.mandatory}"
+                                                              columns="#{bindings.MAContractPropertyPaymentVVO.hints.Notes.displayWidth}"
+                                                              maximumLength="#{bindings.MAContractPropertyPaymentVVO.hints.Notes.precision}"
+                                                              shortDesc="#{bindings.MAContractPropertyPaymentVVO.hints.Notes.tooltip}"
+                                                              id="it28" readOnly="true">
+                                                    <f:validator binding="#{row.bindings.Notes.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MAContractPropertyPaymentVVO.hints.Paid.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MAContractPropertyPaymentVVO.hints.Paid.label}"
+                                                       id="c8">
+                                                <af:inputText value="#{row.bindings.Paid.inputValue}"
+                                                              label="#{bindings.MAContractPropertyPaymentVVO.hints.Paid.label}"
+                                                              required="#{bindings.MAContractPropertyPaymentVVO.hints.Paid.mandatory}"
+                                                              columns="#{bindings.MAContractPropertyPaymentVVO.hints.Paid.displayWidth}"
+                                                              maximumLength="#{bindings.MAContractPropertyPaymentVVO.hints.Paid.precision}"
+                                                              shortDesc="#{bindings.MAContractPropertyPaymentVVO.hints.Paid.tooltip}"
+                                                              id="it29" readOnly="true">
+                                                    <f:validator binding="#{row.bindings.Paid.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.MAContractPropertyPaymentVVO.hints.Paid.format}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MAContractPropertyPaymentVVO.hints.PaidOn.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MAContractPropertyPaymentVVO.hints.PaidOn.label}"
+                                                       id="c9">
+                                                <af:inputDate value="#{row.bindings.PaidOn.inputValue}"
+                                                              label="#{bindings.MAContractPropertyPaymentVVO.hints.PaidOn.label}"
+                                                              required="#{bindings.MAContractPropertyPaymentVVO.hints.PaidOn.mandatory}"
+                                                              columns="#{bindings.MAContractPropertyPaymentVVO.hints.PaidOn.displayWidth}"
+                                                              shortDesc="#{bindings.MAContractPropertyPaymentVVO.hints.PaidOn.tooltip}"
+                                                              id="id5" readOnly="true">
+                                                    <f:validator binding="#{row.bindings.PaidOn.validator}"/>
+                                                    <af:convertDateTime pattern="#{bindings.MAContractPropertyPaymentVVO.hints.PaidOn.format}"/>
+                                                </af:inputDate>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MAContractPropertyPaymentVVO.hints.PaymentDate.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MAContractPropertyPaymentVVO.hints.PaymentDate.label}"
+                                                       id="c10">
+                                                <af:inputDate value="#{row.bindings.PaymentDate.inputValue}"
+                                                              label="#{bindings.MAContractPropertyPaymentVVO.hints.PaymentDate.label}"
+                                                              required="#{bindings.MAContractPropertyPaymentVVO.hints.PaymentDate.mandatory}"
+                                                              columns="#{bindings.MAContractPropertyPaymentVVO.hints.PaymentDate.displayWidth}"
+                                                              shortDesc="#{bindings.MAContractPropertyPaymentVVO.hints.PaymentDate.tooltip}"
+                                                              id="id6" readOnly="true">
+                                                    <f:validator binding="#{row.bindings.PaymentDate.validator}"/>
+                                                    <af:convertDateTime pattern="#{bindings.MAContractPropertyPaymentVVO.hints.PaymentDate.format}"/>
+                                                </af:inputDate>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MAContractPropertyPaymentVVO.hints.PaymentMethod.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MAContractPropertyPaymentVVO.hints.PaymentMethod.label}"
+                                                       id="c11">
+                                                <af:inputText value="#{row.bindings.PaymentMethod.inputValue}"
+                                                              label="#{bindings.MAContractPropertyPaymentVVO.hints.PaymentMethod.label}"
+                                                              required="#{bindings.MAContractPropertyPaymentVVO.hints.PaymentMethod.mandatory}"
+                                                              columns="#{bindings.MAContractPropertyPaymentVVO.hints.PaymentMethod.displayWidth}"
+                                                              maximumLength="#{bindings.MAContractPropertyPaymentVVO.hints.PaymentMethod.precision}"
+                                                              shortDesc="#{bindings.MAContractPropertyPaymentVVO.hints.PaymentMethod.tooltip}"
+                                                              id="it30" readOnly="true">
+                                                    <f:validator binding="#{row.bindings.PaymentMethod.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MAContractPropertyPaymentVVO.hints.PaymentNumber.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MAContractPropertyPaymentVVO.hints.PaymentNumber.label}"
+                                                       id="c12">
+                                                <af:inputText value="#{row.bindings.PaymentNumber.inputValue}"
+                                                              label="#{bindings.MAContractPropertyPaymentVVO.hints.PaymentNumber.label}"
+                                                              required="#{bindings.MAContractPropertyPaymentVVO.hints.PaymentNumber.mandatory}"
+                                                              columns="#{bindings.MAContractPropertyPaymentVVO.hints.PaymentNumber.displayWidth}"
+                                                              maximumLength="#{bindings.MAContractPropertyPaymentVVO.hints.PaymentNumber.precision}"
+                                                              shortDesc="#{bindings.MAContractPropertyPaymentVVO.hints.PaymentNumber.tooltip}"
+                                                              id="it31" readOnly="true">
+                                                    <f:validator binding="#{row.bindings.PaymentNumber.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MAContractPropertyPaymentVVO.hints.ReceiptNumber.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MAContractPropertyPaymentVVO.hints.ReceiptNumber.label}"
+                                                       id="c13">
+                                                <af:inputText value="#{row.bindings.ReceiptNumber.inputValue}"
+                                                              label="#{bindings.MAContractPropertyPaymentVVO.hints.ReceiptNumber.label}"
+                                                              required="#{bindings.MAContractPropertyPaymentVVO.hints.ReceiptNumber.mandatory}"
+                                                              columns="#{bindings.MAContractPropertyPaymentVVO.hints.ReceiptNumber.displayWidth}"
+                                                              maximumLength="#{bindings.MAContractPropertyPaymentVVO.hints.ReceiptNumber.precision}"
+                                                              shortDesc="#{bindings.MAContractPropertyPaymentVVO.hints.ReceiptNumber.tooltip}"
+                                                              id="it32" readOnly="true">
+                                                    <f:validator binding="#{row.bindings.ReceiptNumber.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                        </af:table>
+                                    </af:panelCollection>
+                                </af:panelBox>
+                            </af:panelHeader>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                    <f:facet name="header">
+                        <af:toolbar id="t7" binding="#{backingBeanScope.MAContractCreationBean.t7}">
+                            <af:link text="#{bundle.Home}" id="l1" binding="#{backingBeanScope.MAContractCreationBean.l1}"
+                                     action="home"/>
+                        </af:toolbar>
+                    </f:facet>
+                    <f:facet name="end"/>
+                    <f:facet name="start"/>
+                    <f:facet name="branding"/>
+                    <f:facet name="copyright"/>
+                    <f:facet name="status">
+                        <af:toolbar id="t8" binding="#{backingBeanScope.MAContractCreationBean.t8}">
+                            <af:button id="b9" binding="#{backingBeanScope.MAContractCreationBean.b9}"
+                                       actionListener="#{bindings.en_lang.execute}"
+                                       disabled="#{!bindings.en_lang.enabled}" icon="/images/icons/english.png"
+                                       partialSubmit="false" shortDesc="#{bundle.English}"/>
+                            <af:button id="b10"
+                                       binding="#{backingBeanScope.MAContractCreationBean.b10}"
+                                       actionListener="#{bindings.ar_lang.execute}"
+                                       disabled="#{!bindings.ar_lang.enabled}" partialSubmit="false"
+                                       shortDesc="#{bundle.Arabic}" icon="/images/icons/arabic.png"/>
+                        </af:toolbar>
+                    </f:facet>
+                    <f:attribute name="endColumnSize" value="0"/>
+                    <f:attribute name="startColumnSize" value="0"/>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+    <!--oracle-jdev-comment:auto-binding-backing-bean-name:MAContractCreationBean-->
+</jsp:root>

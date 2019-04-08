@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="windows-1256" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MARealEstateProjPropServVL"
+  Version="12.1.3.10.8"
+  InheritPersonalization="merge">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="ma.oracle.apps.cx.realestate.services.views.MARealEstateProjPropServVL_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="MARealEstateProjectVO"
+    Cardinality="1"
+    Source="true"
+    Owner="ma.oracle.apps.cx.realestate.project.views.MARealEstateProjectVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="MARealEstateProjectVO"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ma.oracle.apps.cx.realestate.project.views.MARealEstateProjectVO.ProjectId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="MARealEstateProjServicesVO"
+    Cardinality="-1"
+    Owner="ma.oracle.apps.cx.realestate.services.views.MARealEstateProjServicesVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="MARealEstateProjServicesVO"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ma.oracle.apps.cx.realestate.services.views.MARealEstateProjServicesVO.ProjectId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ma.oracle.apps.cx.realestate.ModelBundle"/>
+  </ResourceBundle>
+</ViewLink>

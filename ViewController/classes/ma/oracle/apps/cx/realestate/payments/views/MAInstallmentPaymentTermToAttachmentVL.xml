@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="windows-1256" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MAInstallmentPaymentTermToAttachmentVL"
+  Version="12.1.3.10.8"
+  InheritPersonalization="merge">
+  <ViewLinkDefEnd
+    Name="MAInstallmentPaymentTermsVO"
+    Cardinality="1"
+    Source="true"
+    Owner="ma.oracle.apps.cx.realestate.payments.views.MAInstallmentPaymentTermsVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="MAInstallmentPaymentTermsVO"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ma.oracle.apps.cx.realestate.payments.views.MAInstallmentPaymentTermsVO.InstallmentPaymentTermId"/>
+      <Item Value="ma.oracle.apps.cx.realestate.payments.views.MAInstallmentPaymentTermsVO.IntAttribute10"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="MAAttachedDocumentsVO"
+    Cardinality="-1"
+    Owner="ma.oracle.apps.cx.realestate.setup.views.MAAttachedDocumentsVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="MAAttachedDocumentsVO"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ma.oracle.apps.cx.realestate.setup.views.MAAttachedDocumentsVO.Pk1Value"/>
+      <Item Value="ma.oracle.apps.cx.realestate.setup.views.MAAttachedDocumentsVO.EntityName"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+</ViewLink>

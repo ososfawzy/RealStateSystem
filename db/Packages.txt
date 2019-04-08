@@ -1,0 +1,335 @@
+CREATE OR REPLACE PACKAGE APPS.xxma_real_estate_pkg
+AS
+   FUNCTION xxma_occupation ( p_property_id number)
+      RETURN NUMBER;
+      FUNCTION xxma_demand ( p_property_id number)
+      RETURN NUMBER;
+   FUNCTION xxma_forecast ( p_property_id number)
+      RETURN NUMBER;
+   FUNCTION xxma_idle ( p_property_id number)
+      RETURN NUMBER;
+      FUNCTION get_last_occ_date (p_proberty_id NUMBER)
+   RETURN DATE;
+   FUNCTION get_grid_last_date (p_proberty_id NUMBER)
+   RETURN DATE;
+   FUNCTION get_grid_start_date (p_proberty_id NUMBER)
+   RETURN DATE;
+   FUNCTION get_lease_end_date (p_proberty_id NUMBER)
+   RETURN DATE;
+END xxma_real_estate_pkg;
+/
+
+
+
+
+CREATE OR REPLACE PACKAGE BODY APPS.xxma_real_estate_pkg
+AS
+   FUNCTION xxma_occupation (p_property_id NUMBER)
+      RETURN NUMBER
+   AS
+      p_property_perc   NUMBER;
+      occupied_count    NUMBER;
+      total_count       NUMBER;
+   BEGIN
+   
+   SELECT count(p_property_id) 
+    INTO occupied_count
+  FROM XXMa_REAL_ESTATE_PROPERTY PARENT_PROP
+ WHERE     PARENT_PROP.parent_property_id = p_property_id  --PARENT_PROP.property_id
+       AND EXISTS
+              (SELECT a.property_id
+                 FROM XXMA_Rs_lease_PROPERTY a
+                WHERE     a.property_id = PARENT_PROP.property_id
+                      AND SYSDATE BETWEEN a.start_date AND a.end_date);
+   
+ 
+
+
+ SELECT  decode (count(p_property_id),0,1, count(p_property_id))
+-- count(p_property_id) 
+    INTO total_count
+  FROM XXMa_REAL_ESTATE_PROPERTY PARENT_PROP
+ WHERE     PARENT_PROP.parent_property_id = p_property_id  ;--PARENT_PROP.property_id
+      
+
+      p_property_perc := (occupied_count / total_count) * 100;
+
+
+      RETURN p_property_perc;
+   END xxma_occupation;
+
+   FUNCTION xxma_demand (p_property_id NUMBER)
+      RETURN NUMBER
+   AS
+      p_property_perc   NUMBER;
+      demand_count      NUMBER;
+      total_count       NUMBER;
+   BEGIN
+      SELECT COUNT (OPPORTUNITY_ID)
+        INTO demand_count
+        FROM xxma.XXMA_RS_LEASE_PROPERTY
+       WHERE PROPERTY_ID = p_property_id
+       and OPPORTUNITY_ID <> null;
+       
+       
+       SELECT decode (count(p_property_id),0,1, count(p_property_id))
+--        count(p_property_id) 
+    INTO total_count
+  FROM XXMa_REAL_ESTATE_PROPERTY PARENT_PROP
+ WHERE     PARENT_PROP.parent_property_id = p_property_id  ;--PARENT_PROP.property_id
+      
+
+      p_property_perc := (demand_count / total_count) * 100;
+
+
+      RETURN p_property_perc;
+   END xxma_demand;
+
+   FUNCTION xxma_forecast (p_property_id NUMBER)
+      RETURN NUMBER
+   IS
+      p_forecast_perc     NUMBER;
+      draft_count         NUMBER;
+      total_count   NUMBER;
+   BEGIN
+     SELECT COUNT (b.PROPERTY_ID)
+        INTO draft_count
+        FROM xxma.XXMa_REAL_ESTATE_PROPERTY parent_prob,
+        XXMa_REAL_ESTATE_lease a,XXMa_Rs_lease_property b,xxma.XXMa_REAL_ESTATE_PROPERTY sub_prob
+       WHERE     a.lease_status in  ('1','2') 
+       and parent_prob.property_id  = SUB_PROB.PARENT_PROPERTY_ID
+       and  SUB_PROB.PROPERTY_ID = b.property_id
+       and a.lease_id = b.lease_id
+             AND SUB_PROB.PARENT_PROPERTY_ID =p_property_id;
+
+ SELECT decode (count(p_property_id),0,1, count(p_property_id))
+-- count(p_property_id) 
+    INTO total_count
+  FROM XXMa_REAL_ESTATE_PROPERTY PARENT_PROP
+ WHERE     PARENT_PROP.parent_property_id = p_property_id  ;
+
+      p_forecast_perc := (draft_count / total_count) * 100;
+
+
+      RETURN p_forecast_perc;
+   END xxma_forecast;
+
+   FUNCTION xxma_idle (p_property_id NUMBER)
+      RETURN NUMBER
+   IS
+      p_property_perc   NUMBER;
+      idle_count        NUMBER;
+      total_count       NUMBER;
+   BEGIN
+   
+    select count (s.property_id) 
+            INTO idle_count
+ from xxma.XXMa_REAL_ESTATE_PROPERTY s, xxma.XXMa_REAL_ESTATE_PROPERTY p
+ where s.property_id in(SELECT distinct sub_prob.property_id
+
+        FROM 
+        
+        xxma.XXMa_REAL_ESTATE_PROPERTY parent_prob,XXMa_Rs_lease_property b,xxma.XXMa_REAL_ESTATE_PROPERTY sub_prob
+        
+       WHERE     sub_prob.property_id = b.property_id
+       and b.start_date not between parent_prob.start_date and parent_prob.end_date
+       
+        and parent_prob.property_id  = SUB_PROB.PARENT_PROPERTY_ID
+             AND SUB_PROB.PARENT_PROPERTY_ID =p_property_id)
+              and p.property_id  = s.PARENT_PROPERTY_ID
+             and s.PARENT_PROPERTY_ID =p_property_id;
+       
+   
+   
+       SELECT decode (count(p_property_id),0,1, count(p_property_id))
+    INTO total_count
+  FROM XXMa_REAL_ESTATE_PROPERTY PARENT_PROP
+ WHERE     PARENT_PROP.parent_property_id = p_property_id  ;
+
+      p_property_perc := (idle_count / total_count) * 100;
+
+
+      RETURN p_property_perc;
+   END xxma_idle;
+   FUNCTION get_last_occ_date (p_proberty_id NUMBER)
+   RETURN DATE
+IS
+   last_occ_date   DATE;
+BEGIN
+   SELECT MAX (b.end_date)
+   into  last_occ_date
+     FROM XXMA_REAL_ESTATE_PROPERTY PARENT_PROP,
+          XXMA_REAL_ESTATE_PROPERTY sub_PROP,
+          XXMA_Rs_lease_PROPERTY b
+    WHERE     PARENT_PROP.property_id = sub_PROP.parent_property_id
+          --and PARENT_PROP.property_id = b.property_id
+          AND b.property_id = sub_PROP.property_id
+          AND sub_PROP.parent_property_id = p_proberty_id;
+
+   RETURN last_occ_date;
+END get_last_occ_date;
+FUNCTION get_grid_last_date (p_proberty_id NUMBER)
+   RETURN DATE
+IS
+   last_occ_date   DATE;
+BEGIN
+   SELECT MAX (b.end_date)
+   into  last_occ_date
+     FROM XXMA_REAL_ESTATE_PROPERTY sub_PROP,
+          XXMA_Rs_lease_PROPERTY b
+    WHERE    b.property_id = sub_PROP.property_id
+          AND sub_PROP.property_id = p_proberty_id;
+
+   RETURN last_occ_date;
+END get_grid_last_date;
+FUNCTION get_grid_start_date (p_proberty_id NUMBER)
+   RETURN DATE
+IS
+   last_occ_date   DATE;
+BEGIN
+   SELECT MAX (b.start_date)
+   into  last_occ_date
+     FROM XXMA_REAL_ESTATE_PROPERTY sub_PROP,
+          XXMA_Rs_lease_PROPERTY b
+    WHERE    b.property_id = sub_PROP.property_id
+          AND sub_PROP.property_id = p_proberty_id;
+
+   RETURN last_occ_date;
+END get_grid_start_date;
+
+FUNCTION get_lease_end_date (p_proberty_id NUMBER)
+   RETURN DATE
+IS
+   lease_end_date   DATE;
+BEGIN
+SELECT lse.end_date
+into lease_end_date
+  FROM XXMA_REAL_ESTATE_LEASE lse
+ WHERE lse.lease_id =
+          (SELECT rsl.lease_id
+             FROM XXMA_Rs_lease_PROPERTY rsl
+            WHERE rsl.PROP_LEASE_ID =
+                     (SELECT MAX (PROP_LEASE_ID)
+                        FROM XXMA_REAL_ESTATE_PROPERTY sub_PROP,
+                             XXMA_Rs_lease_PROPERTY b
+                       WHERE     b.property_id = sub_PROP.property_id
+                             AND sub_PROP.property_id = p_proberty_id));
+ RETURN lease_end_date;
+END get_lease_end_date;
+
+END xxma_real_estate_pkg;
+/
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+
+
+CREATE OR REPLACE PACKAGE APPS.xxma_custom_real_estate_pkg
+AS
+   FUNCTION xxma_occupation (number in p_property_id)
+      RETURN NUMBER;
+
+   FUNCTION xxma_forecast (number in p_property_id)
+      RETURN NUMBER;
+
+   FUNCTION xxma_idle (number in p_property_id)
+      RETURN NUMBER;
+END xxma_custom_real_estate_pkg;
+/
+
+
+
+CREATE OR REPLACE PACKAGE BODY APPS.xxma_custom_real_estate_pkg
+AS
+   FUNCTION xxma_occupation (p_property_id NUMBER)
+      RETURN NUMBER
+   AS
+      p_property_perc   NUMBER;
+      occupied_count    NUMBER;
+      total_count       NUMBER;
+   BEGIN
+      SELECT COUNT (PROPERTY_ID)
+        INTO occupied_count
+        FROM xxma.XXMSH_REAL_ESTATE_PROPERTY a, XXMSH_RS_LEASE_PROPERTY b
+       WHERE     a.property_id = b.property_id
+             AND b.START_DATE >= SYSDATE    /* conditions of occupied status*/
+             AND b.END_DATE <= SYSDATE      /* conditions of occupied status*/
+             AND a.property_id = p_property_id;
+
+      SELECT COUNT (PROPERTY_ID)
+        INTO total_count
+        FROM xxma.XXMSH_REAL_ESTATE_PROPERTY a, XXMSH_RS_LEASE_PROPERTY b
+       WHERE a.property_id = b.property_id   --    AND b.START_DATE >= sysdate
+                                           --    and b.END_DATE <= sysdate
+             AND a.property_id = p_property_id;
+
+      p_property_perc := (occupied_count / total_count) * 100;
+
+
+      RETURN p_property_perc;
+   END xxma_occupation;
+
+   FUNCTION xxma_forecast (p_property_id NUMBER)
+      RETURN NUMBER
+   IS
+      p_forecast_perc     NUMBER;
+      draft_count         NUMBER;
+      unconfirmed_count   NUMBER;
+   BEGIN
+      SELECT COUNT (PROPERTY_ID)
+        INTO draft_count
+        FROM xxma.XXMSH_REAL_ESTATE_PROPERTY
+       WHERE     property_status = LOWER ('drafted')
+             AND property_id = p_property_id;
+
+      SELECT COUNT (PROPERTY_ID)
+        INTO unconfirmed_count
+        FROM xxma.XXMSH_REAL_ESTATE_PROPERTY
+       WHERE     property_status = LOWER ('unconfirmed')
+             AND property_id = p_property_id;
+
+      p_forecast_perc := (draft_count / unconfirmed_count) * 100;
+
+
+      RETURN p_forecast_perc;
+   END xxma_forecast;
+
+   FUNCTION xxma_idle (p_property_id NUMBER)
+      RETURN NUMBER
+   IS
+      p_property_perc   NUMBER;
+      idle_count        NUMBER;
+      total_count       NUMBER;
+   BEGIN
+      SELECT COUNT (PROPERTY_ID)
+        INTO idle_count
+        FROM xxma.XXMSH_REAL_ESTATE_PROPERTY a, XXMSH_RS_LEASE_PROPERTY b
+       WHERE     a.property_id = b.property_id
+             AND b.START_DATE < SYSDATE     /* conditions of occupied status*/
+             AND b.END_DATE > SYSDATE       /* conditions of occupied status*/
+             -- AND  b.START_DATE  between a.START_DATE and a.END_DATE
+             AND b.START_DATE >= a.START_DATE
+             AND b.START_DATE <= a.END_DATE
+             --and b.END_DATE  between a.START_DATE and a.END_DATE
+             AND b.END_DATE >= a.START_DATE
+             AND b.END_DATE <= a.END_DATE
+             AND a.property_id = p_property_id;
+
+      SELECT COUNT (PROPERTY_ID)
+        INTO total_count
+        FROM xxma.XXMSH_REAL_ESTATE_PROPERTY a, XXMSH_RS_LEASE_PROPERTY b
+       WHERE a.property_id = b.property_id   --    AND b.START_DATE >= sysdate
+                                           --    and b.END_DATE <= sysdate
+             AND a.property_id = p_property_id;
+
+      p_property_perc := (idle_count / total_count) * 100;
+
+
+      RETURN p_property_perc;
+   END xxma_idle;
+END xxma_custom_real_estate_pkg;
+/

@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <view id="MAPropertyPG">
+    <page>/MAPropertyPG.jspx</page>
+  </view>
+  <view id="MACreatePropertyPG">
+    <page>/MACreatePropertyPG.jspx</page>
+  </view>
+  <method-call id="CreateInsert">
+    <method>#{bindings.CreateInsert.execute}</method>
+    <outcome id="__29">
+      <fixed-outcome>CreateInsert</fixed-outcome>
+    </outcome>
+  </method-call>
+  <method-call id="Commit">
+    <method>#{bindings.Commit.execute}</method>
+    <outcome id="__46">
+      <fixed-outcome>Commit</fixed-outcome>
+    </outcome>
+  </method-call>
+  <view id="MALeaseSearchPG">
+    <page>/MALeaseSearchPG.jspx</page>
+  </view>
+  <view id="MALeaseCreationPG">
+    <page>/MALeaseCreationPG.jspx</page>
+  </view>
+  <method-call id="CreateInsert1">
+    <method>#{bindings.CreateInsert.execute}</method>
+    <outcome id="__72">
+      <fixed-outcome>CreateInsert</fixed-outcome>
+    </outcome>
+  </method-call>
+  <view id="MARSDashboardPG">
+    <page>/MARSDashboardPG.jspx</page>
+  </view>
+  <view id="MAServicesSetupPG">
+    <page>/setup/MAServicesSetupPG.jspx</page>
+  </view>
+  <view id="MALookupsCreationPG">
+    <page>/setup/MALookupsCreationPG.jspx</page>
+  </view>
+  <view id="MABuildingTypeSetupPG">
+    <page>/setup/MABuildingTypeSetupPG.jspx</page>
+  </view>
+  <view id="MAPropertyTypeSetupPG">
+    <page>/setup/MAPropertyTypeSetupPG.jspx</page>
+  </view>
+  <view id="MAProjectBuildingPropertyPG">
+    <page>/RSManagement/MAProjectBuildingPropertyPG.jspx</page>
+  </view>
+  <view id="MAPaymentsSearchPG">
+    <page>/payments/MAPaymentsSearchPG.jspx</page>
+  </view>
+  <view id="MAPaymentCreationPG">
+    <page>/payments/MAPaymentCreationPG.jspx</page>
+  </view>
+  <view id="MAContractCreationPG">
+    <page>/contracts/MAContractCreationPG.jspx</page>
+  </view>
+  <view id="MAContractPaymentsPG">
+    <page>/contractPayments/MAContractPaymentsPG.jspx</page>
+  </view>
+  <view id="MAServicesSetupSearchPG">
+    <page>/setup/MAServicesSetupSearchPG.jspx</page>
+  </view>
+  <view id="MALookupsSearchPG">
+    <page>/setup/MALookupsSearchPG.jspx</page>
+  </view>
+  <view id="MAProjectBuildingPropertySrchPG">
+    <page>/RSManagement/MAProjectBuildingPropertySrchPG.jspx</page>
+  </view>
+  <view id="MAProjectPreviewPG">
+    <page>/RSManagement/MAProjectPreviewPG.jspx</page>
+  </view>
+  <view id="MABuildingPreviewPG">
+    <page>/RSManagement/MABuildingPreviewPG.jspx</page>
+  </view>
+  <view id="MAPropertyPreviewPG">
+    <page>/RSManagement/MAPropertyPreviewPG.jspx</page>
+  </view>
+  <view id="MAInstallmentPaymentsPG">
+    <page>/contractPayments/MAInstallmentPaymentsPG.jspx</page>
+  </view>
+  <view id="MARSProjectSearchPG">
+    <page>/RSManagement/MARSProjectSearchPG.jspx</page>
+  </view>
+  <view id="MARSBuildingSearchPG">
+    <page>/RSManagement/MARSBuildingSearchPG.jspx</page>
+  </view>
+  <control-flow-rule id="__21">
+    <from-activity-id id="__22">MAPropertyPG</from-activity-id>
+    <control-flow-case id="__24">
+      <from-outcome id="__25">Grid View Edit</from-outcome>
+      <to-activity-id id="__23">MACreatePropertyPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__27">
+      <from-outcome id="__28">Grid View Create</from-outcome>
+      <to-activity-id id="__26">CreateInsert</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__36">
+      <from-outcome id="__37">Generic View Edit</from-outcome>
+      <to-activity-id id="__35">MACreatePropertyPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__39">
+      <from-outcome id="__40">Generic View Create</from-outcome>
+      <to-activity-id id="__38">CreateInsert</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__90">
+      <from-outcome>home</from-outcome>
+      <to-activity-id>MARSDashboardPG</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__30">
+    <from-activity-id id="__31">CreateInsert</from-activity-id>
+    <control-flow-case id="__73">
+      <from-outcome id="__74">CreateInsert</from-outcome>
+      <to-activity-id id="__75">CreateInsert1</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__41">
+    <from-activity-id id="__42">MACreatePropertyPG</from-activity-id>
+    <control-flow-case id="__44">
+      <from-outcome id="__45">Save/Close</from-outcome>
+      <to-activity-id id="__43">Commit</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__52">
+      <from-outcome id="__54">Back</from-outcome>
+      <to-activity-id id="__53">MAPropertyPG</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__47">
+    <from-activity-id id="__48">Commit</from-activity-id>
+    <control-flow-case id="__50">
+      <from-outcome id="__51">Commit</from-outcome>
+      <to-activity-id id="__49">MAPropertyPG</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__55">
+    <from-activity-id id="__56">MALeaseSearchPG</from-activity-id>
+    <control-flow-case id="__58">
+      <from-outcome id="__59">CreateNewLease</from-outcome>
+      <to-activity-id id="__57">MALeaseCreationPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__60">
+      <from-outcome id="__62">EditLeaseRow</from-outcome>
+      <to-activity-id id="__61">MALeaseCreationPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__89">
+      <from-outcome>home</from-outcome>
+      <to-activity-id>MARSDashboardPG</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__63">
+    <from-activity-id id="__64">MALeaseCreationPG</from-activity-id>
+    <control-flow-case id="__65">
+      <from-outcome id="__67">ReturnToSearch</from-outcome>
+      <to-activity-id id="__66">MALeaseSearchPG</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__76">
+    <from-activity-id id="__77">CreateInsert1</from-activity-id>
+    <control-flow-case id="__82">
+      <from-outcome id="__83">CreateInsert</from-outcome>
+      <to-activity-id id="__84">MACreatePropertyPG</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__86">
+    <from-activity-id>MARSDashboardPG</from-activity-id>
+    <control-flow-case id="__87">
+      <from-outcome>lease</from-outcome>
+      <to-activity-id>MALeaseSearchPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__88">
+      <from-outcome>prop</from-outcome>
+      <to-activity-id>MAPropertyPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__103">
+      <from-outcome>BuildingType</from-outcome>
+      <to-activity-id>MABuildingTypeSetupPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__106">
+      <from-outcome>PropertyType</from-outcome>
+      <to-activity-id>MAPropertyTypeSetupPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__112">
+      <from-outcome>paymentSearch</from-outcome>
+      <to-activity-id>MAPaymentsSearchPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__120">
+      <from-outcome>ContractCreation</from-outcome>
+      <to-activity-id>MAContractCreationPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__123">
+      <from-outcome>ContractPayments</from-outcome>
+      <to-activity-id>MAContractPaymentsPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__127">
+      <from-outcome>LookupsManagement</from-outcome>
+      <to-activity-id>MALookupsSearchPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__130">
+      <from-outcome>ServicesManagement</from-outcome>
+      <to-activity-id>MAServicesSetupSearchPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__34">
+      <from-outcome>ProjectSearch</from-outcome>
+      <to-activity-id>MAProjectBuildingPropertySrchPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__157">
+      <from-outcome>ReceiptsPayments</from-outcome>
+      <to-activity-id>MAInstallmentPaymentsPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__80">
+      <from-outcome>ProjectSearch</from-outcome>
+      <to-activity-id>MARSProjectSearchPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__167">
+      <from-outcome>BuildingSearch</from-outcome>
+      <to-activity-id>MARSBuildingSearchPG</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__85">
+    <from-activity-id>MAServicesSetupPG</from-activity-id>
+    <control-flow-case id="__100">
+      <from-outcome>home</from-outcome>
+      <to-activity-id>MARSDashboardPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__136">
+      <from-outcome>BackToServiceSearch</from-outcome>
+      <to-activity-id>MAServicesSetupSearchPG</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__101">
+    <from-activity-id>MALookupsCreationPG</from-activity-id>
+    <control-flow-case id="__102">
+      <from-outcome>home</from-outcome>
+      <to-activity-id>MARSDashboardPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__134">
+      <from-outcome>BackToLookupSearch</from-outcome>
+      <to-activity-id>MALookupsSearchPG</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__104">
+    <from-activity-id>MABuildingTypeSetupPG</from-activity-id>
+    <control-flow-case id="__105">
+      <from-outcome>home</from-outcome>
+      <to-activity-id>MARSDashboardPG</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__107">
+    <from-activity-id>MAPropertyTypeSetupPG</from-activity-id>
+    <control-flow-case id="__108">
+      <from-outcome>home</from-outcome>
+      <to-activity-id>MARSDashboardPG</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__110">
+    <from-activity-id>MAProjectBuildingPropertyPG</from-activity-id>
+    <control-flow-case id="__111">
+      <from-outcome>home</from-outcome>
+      <to-activity-id>MARSDashboardPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__109">
+      <from-outcome>ProjBuildingSrch</from-outcome>
+      <to-activity-id>MAProjectBuildingPropertySrchPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__162">
+      <from-outcome>CancelProjectCreation</from-outcome>
+      <to-activity-id>MARSProjectSearchPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__166">
+      <from-outcome>CancelBuildingCreation</from-outcome>
+      <to-activity-id>MARSBuildingSearchPG</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__113">
+    <from-activity-id>MAPaymentsSearchPG</from-activity-id>
+    <control-flow-case id="__114">
+      <from-outcome>home</from-outcome>
+      <to-activity-id>MARSDashboardPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__115">
+      <from-outcome>CreatePayment</from-outcome>
+      <to-activity-id>MAPaymentCreationPG</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__116">
+    <from-activity-id>MAPaymentCreationPG</from-activity-id>
+    <control-flow-case id="__117">
+      <from-outcome>BackPaymentSearch</from-outcome>
+      <to-activity-id>MAPaymentsSearchPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__119">
+      <from-outcome>home</from-outcome>
+      <to-activity-id>MARSDashboardPG</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__121">
+    <from-activity-id>MAContractCreationPG</from-activity-id>
+    <control-flow-case id="__122">
+      <from-outcome>home</from-outcome>
+      <to-activity-id>MARSDashboardPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__156">
+      <from-outcome>BackToContractPayments</from-outcome>
+      <to-activity-id>MAContractPaymentsPG</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__124">
+    <from-activity-id>MAContractPaymentsPG</from-activity-id>
+    <control-flow-case id="__125">
+      <from-outcome>home</from-outcome>
+      <to-activity-id>MARSDashboardPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__155">
+      <from-outcome>CreateContract</from-outcome>
+      <to-activity-id>MAContractCreationPG</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__128">
+    <from-activity-id>MALookupsSearchPG</from-activity-id>
+    <control-flow-case id="__129">
+      <from-outcome>home</from-outcome>
+      <to-activity-id>MARSDashboardPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__133">
+      <from-outcome>CreateLookup</from-outcome>
+      <to-activity-id>MALookupsCreationPG</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__131">
+    <from-activity-id>MAServicesSetupSearchPG</from-activity-id>
+    <control-flow-case id="__132">
+      <from-outcome>home</from-outcome>
+      <to-activity-id>MARSDashboardPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__135">
+      <from-outcome>CreateServiceSetup</from-outcome>
+      <to-activity-id>MAServicesSetupPG</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__137">
+    <from-activity-id>MAProjectBuildingPropertySrchPG</from-activity-id>
+    <control-flow-case id="__138">
+      <from-outcome>home</from-outcome>
+      <to-activity-id>MARSDashboardPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__139">
+      <from-outcome>editCreateProject</from-outcome>
+      <to-activity-id>MAProjectBuildingPropertyPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__141">
+      <from-outcome>PrviewProject</from-outcome>
+      <to-activity-id>MAProjectPreviewPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__146">
+      <from-outcome>BuildingSearch</from-outcome>
+      <to-activity-id>MABuildingPreviewPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__150">
+      <from-outcome>PropertyPreview</from-outcome>
+      <to-activity-id>MAPropertyPreviewPG</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__142">
+    <from-activity-id>MAProjectPreviewPG</from-activity-id>
+    <control-flow-case id="__143">
+      <from-outcome>backSrch</from-outcome>
+      <to-activity-id>MAProjectBuildingPropertySrchPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__144">
+      <from-outcome>home</from-outcome>
+      <to-activity-id>MARSDashboardPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__172">
+      <from-outcome>BackProjectSearch</from-outcome>
+      <to-activity-id>MARSProjectSearchPG</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__147">
+    <from-activity-id>MABuildingPreviewPG</from-activity-id>
+    <control-flow-case id="__148">
+      <from-outcome>backSrch</from-outcome>
+      <to-activity-id>MAProjectBuildingPropertySrchPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__154">
+      <from-outcome>home</from-outcome>
+      <to-activity-id>MARSDashboardPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__170">
+      <from-outcome>BackBuildingSearch</from-outcome>
+      <to-activity-id>MARSBuildingSearchPG</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__151">
+    <from-activity-id>MAPropertyPreviewPG</from-activity-id>
+    <control-flow-case id="__152">
+      <from-outcome>BackSrch</from-outcome>
+      <to-activity-id>MAProjectBuildingPropertySrchPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__153">
+      <from-outcome>home</from-outcome>
+      <to-activity-id>MARSDashboardPG</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__158">
+    <from-activity-id>MAInstallmentPaymentsPG</from-activity-id>
+    <control-flow-case id="__159">
+      <from-outcome>home</from-outcome>
+      <to-activity-id>MARSDashboardPG</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__81">
+    <from-activity-id>MARSProjectSearchPG</from-activity-id>
+    <control-flow-case id="__161">
+      <from-outcome>editCreateProject</from-outcome>
+      <to-activity-id>MAProjectBuildingPropertyPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__163">
+      <from-outcome>home</from-outcome>
+      <to-activity-id>MARSDashboardPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__171">
+      <from-outcome>ProjectPreview</from-outcome>
+      <to-activity-id>MAProjectPreviewPG</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__164">
+    <from-activity-id>MARSBuildingSearchPG</from-activity-id>
+    <control-flow-case id="__165">
+      <from-outcome>editCreateProject</from-outcome>
+      <to-activity-id>MAProjectBuildingPropertyPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__168">
+      <from-outcome>home</from-outcome>
+      <to-activity-id>MARSDashboardPG</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__169">
+      <from-outcome>BuildingPreview</from-outcome>
+      <to-activity-id>MABuildingPreviewPG</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <managed-bean id="__1">
+    <managed-bean-name id="__3">MAPropertyCreationBean</managed-bean-name>
+    <managed-bean-class id="__4">ma.oracle.apps.cx.realestate.property.backing.MAPropertyCreationBean</managed-bean-class>
+    <managed-bean-scope id="__2">backingBean</managed-bean-scope>
+    <!--oracle-jdev-comment:managed-bean-jsp-link:1MAPropertyCreationPG.jspx-->
+  </managed-bean>
+  <managed-bean id="__7">
+    <managed-bean-name id="__5">PropertyBean</managed-bean-name>
+    <managed-bean-class id="__6">ma.oracle.apps.cx.realestate.property.backing.MAPropertyBean</managed-bean-class>
+    <managed-bean-scope id="__8">backingBean</managed-bean-scope>
+    <!--oracle-jdev-comment:managed-bean-jsp-link:1MAPropertyPG.jspx-->
+  </managed-bean>
+  <managed-bean id="__9">
+    <managed-bean-name id="__12">MACreatePropertyBean</managed-bean-name>
+    <managed-bean-class id="__11">ma.oracle.apps.cx.realestate.property.backing.MACreatePropertyBean</managed-bean-class>
+    <managed-bean-scope id="__10">backingBean</managed-bean-scope>
+    <!--oracle-jdev-comment:managed-bean-jsp-link:1MACreatePropertyPG.jspx-->
+  </managed-bean>
+  <managed-bean id="__13">
+    <managed-bean-name id="__16">MALeaseCreationBean</managed-bean-name>
+    <managed-bean-class id="__14">ma.oracle.apps.cx.realestate.lease.backing.MALeaseCreationBean</managed-bean-class>
+    <managed-bean-scope id="__15">backingBean</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__19">
+    <managed-bean-name id="__18">MALeaseSearchBean</managed-bean-name>
+    <managed-bean-class id="__20">ma.oracle.apps.cx.realestate.lease.backing.MALeaseSearchBean</managed-bean-class>
+    <managed-bean-scope id="__17">backingBean</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__71">
+    <managed-bean-name id="__70">MAOpportunityPropertiesBean</managed-bean-name>
+    <managed-bean-class id="__68">ma.oracle.apps.cx.realestate.property.backing.MAOpportunityPropertiesBean</managed-bean-class>
+    <managed-bean-scope id="__69">backingBean</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__91">
+    <managed-bean-name>MAProjectBuildingPropertyBean</managed-bean-name>
+    <managed-bean-class>ma.oracle.apps.cx.realestate.ProjectBuildingProperty.backing.MAProjectBuildingPropertyBean</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+    <!--oracle-jdev-comment:managed-bean-jsp-link:1RSManagement/MAProjectBuildingPropertyPG.jspx-->
+  </managed-bean>
+  <managed-bean id="__92">
+    <managed-bean-name>MAPaymentsSearchBean</managed-bean-name>
+    <managed-bean-class>ma.oracle.apps.cx.realestate.payments.backing.MAPaymentsSearchBean</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+    <!--oracle-jdev-comment:managed-bean-jsp-link:1payments/MAPaymentsSearchPG.jspx-->
+  </managed-bean>
+  <managed-bean id="__93">
+    <managed-bean-name>MAPaymentCreationBean</managed-bean-name>
+    <managed-bean-class>ma.oracle.apps.cx.realestate.payments.backing.MAPaymentCreationBean</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+    <!--oracle-jdev-comment:managed-bean-jsp-link:1payments/MAPaymentCreationPG.jspx-->
+  </managed-bean>
+  <managed-bean id="__94">
+    <managed-bean-name>MAContractCreationBean</managed-bean-name>
+    <managed-bean-class>ma.oracle.apps.cx.realestate.contracts.backing.MAContractCreationBean</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+    <!--oracle-jdev-comment:managed-bean-jsp-link:1contracts/MAContractCreationPG.jspx-->
+  </managed-bean>
+  <managed-bean id="__95">
+    <managed-bean-name>MAContractPaymentsBean</managed-bean-name>
+    <managed-bean-class>ma.oracle.apps.cx.realestate.contractPayments.backing.MAContractPaymentsBean</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+    <!--oracle-jdev-comment:managed-bean-jsp-link:1contractPayments/MAContractPaymentsPG.jspx-->
+  </managed-bean>
+  <managed-bean id="__96">
+    <managed-bean-name>MALookupsCreationBean</managed-bean-name>
+    <managed-bean-class>ma.oracle.apps.cx.realestate.setup.backing.MALookupsCreationBean</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+    <!--oracle-jdev-comment:managed-bean-jsp-link:1setup/MALookupsCreationPG.jspx-->
+  </managed-bean>
+  <managed-bean id="__97">
+    <managed-bean-name>MAServicesSetupBean</managed-bean-name>
+    <managed-bean-class>ma.oracle.apps.cx.realestate.setup.backing.MAServicesSetupBean</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+    <!--oracle-jdev-comment:managed-bean-jsp-link:1setup/MAServicesSetupPG.jspx-->
+  </managed-bean>
+  <managed-bean id="__98">
+    <managed-bean-name>MAPropertyTypeSetupBean</managed-bean-name>
+    <managed-bean-class>ma.oracle.apps.cx.realestate.setup.backing.MAPropertyTypeSetupBean</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+    <!--oracle-jdev-comment:managed-bean-jsp-link:1setup/MAPropertyTypeSetupPG.jspx-->
+  </managed-bean>
+  <managed-bean id="__99">
+    <managed-bean-name>MABuildingTypeSetupBean</managed-bean-name>
+    <managed-bean-class>ma.oracle.apps.cx.realestate.setup.backing.MABuildingTypeSetupBean</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+    <!--oracle-jdev-comment:managed-bean-jsp-link:1setup/MABuildingTypeSetupPG.jspx-->
+  </managed-bean>
+  <managed-bean id="__118">
+    <managed-bean-name>MALookupsSearchBean</managed-bean-name>
+    <managed-bean-class>ma.oracle.apps.cx.realestate.setup.backing.MALookupsSearchBean</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+    <!--oracle-jdev-comment:managed-bean-jsp-link:1setup/MALookupsSearchPG.jspx-->
+  </managed-bean>
+  <managed-bean id="__126">
+    <managed-bean-name>MAServicesSetupSearchBean</managed-bean-name>
+    <managed-bean-class>ma.oracle.apps.cx.realestate.setup.backing.MAServicesSetupSearchBean</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+    <!--oracle-jdev-comment:managed-bean-jsp-link:1setup/MAServicesSetupSearchPG.jspx-->
+  </managed-bean>
+  <managed-bean id="__33">
+    <managed-bean-name>MAProjectBuildingPropertySrchBean</managed-bean-name>
+    <managed-bean-class>ma.oracle.apps.cx.realestate.ProjectBuildingProperty.backing.MAProjectBuildingPropertySrchBean</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+    <!--oracle-jdev-comment:managed-bean-jsp-link:1RSManagement/MAProjectBuildingPropertySrchPG.jspx-->
+  </managed-bean>
+  <managed-bean id="__140">
+    <managed-bean-name>MAProjectPreviewBean</managed-bean-name>
+    <managed-bean-class>ma.oracle.apps.cx.realestate.ProjectBuildingProperty.backing.MAProjectPreviewBean</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+    <!--oracle-jdev-comment:managed-bean-jsp-link:1RSManagement/MAProjectPreviewPG.jspx-->
+  </managed-bean>
+  <managed-bean id="__145">
+    <managed-bean-name>MABuildingPreviewBean</managed-bean-name>
+    <managed-bean-class>ma.oracle.apps.cx.realestate.ProjectBuildingProperty.backing.MABuildingPreviewBean</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__149">
+    <managed-bean-name>MAPropertyPreviewBean</managed-bean-name>
+    <managed-bean-class>ma.oracle.apps.cx.realestate.ProjectBuildingProperty.backing.MAPropertyPreviewBean</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+    <!--oracle-jdev-comment:managed-bean-jsp-link:1RSManagement/MAPropertyPreviewPG.jspx-->
+  </managed-bean>
+  <managed-bean id="__160">
+    <managed-bean-name>MAInstallmentPaymentsBean</managed-bean-name>
+    <managed-bean-class>ma.oracle.apps.cx.realestate.contractPayments.backing.MAInstallmentPaymentsBean</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__32">
+    <managed-bean-name>MARSDashboardBean</managed-bean-name>
+    <managed-bean-class>ma.oracle.apps.cx.realestate.Dashboard</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__78">
+    <managed-bean-name>MARSProjectSearchBean</managed-bean-name>
+    <managed-bean-class>ma.oracle.apps.cx.realestate.ProjectBuildingProperty.backing.MARSProjectSearchBean</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+    <!--oracle-jdev-comment:managed-bean-jsp-link:1RSManagement/MARSProjectSearchPG.jspx-->
+  </managed-bean>
+  <managed-bean id="__79">
+    <managed-bean-name>MARSBuildingSearchBean</managed-bean-name>
+    <managed-bean-class>ma.oracle.apps.cx.realestate.ProjectBuildingProperty.backing.MARSBuildingSearchBean</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+    <!--oracle-jdev-comment:managed-bean-jsp-link:1RSManagement/MARSBuildingSearchPG.jspx-->
+  </managed-bean>
+  <managed-bean id="__173">
+    <managed-bean-name>backing_MainTemp</managed-bean-name>
+    <managed-bean-class>ma.oracle.apps.cx.realestate.backing.MainTemp</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+    <!--oracle-jdev-comment:managed-bean-jsp-link:1MainTemp.jspx-->
+  </managed-bean>
+  <managed-bean id="__174">
+    <managed-bean-name>backing_MainTemp1</managed-bean-name>
+    <managed-bean-class>ma.oracle.apps.cx.realestate.backing.MainTemp1</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+    <!--oracle-jdev-comment:managed-bean-jsp-link:1MainTemp1.jspx-->
+  </managed-bean>
+</adfc-config>

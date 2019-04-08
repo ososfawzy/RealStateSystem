@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="windows-1256" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MAPropertySearchVVO"
+  Version="12.1.3.10.8"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full">
+    <DesignTime>
+        <Attr Name="_isExpertMode" Value="true"/>
+    </DesignTime>
+    <ViewAccessor
+        Name="MAPropertyBuildingProjectLovVVO"
+        ViewObjectName="ma.oracle.apps.cx.realestate.contract.views.MAPropertyBuildingProjectLovVVO"
+        RowLevelBinds="true"/>
+    <ListBinding
+        Name="LOV_PropertyId"
+        ListVOName="MAPropertyBuildingProjectLovVVO"
+        ListRangeSize="-1"
+        ComboRowCountHint="10"
+        NullValueFlag="none"
+        MRUCount="0">
+        <AttrArray Name="AttrNames">
+            <Item Value="PropertyId"/>
+        </AttrArray>
+        <AttrArray Name="AttrExpressions"/>
+        <AttrArray Name="ListAttrNames">
+            <Item Value="PropertyId"/>
+        </AttrArray>
+        <AttrArray Name="ListDisplayAttrNames">
+            <Item Value="PropertyCode"/>
+            <Item Value="PropertyCountry"/>
+            <Item Value="PropertyCity"/>
+            <Item Value="ProjectName"/>
+            <Item Value="PhaseNumber"/>
+            <Item Value="BuildingName"/>
+        </AttrArray>
+        <DisplayCriteria
+            Name="MAPropertyBuildingProjectLovVVOCriteria"/>
+    </ListBinding>
+    <SQLQuery><![CDATA[SELECT pro.project_id,       
+       bul.building_id,       
+       prop.property_id,       
+       prop.property_name,       
+       prop.property_country,       
+       prop.property_city,       
+       prop.floor_number,       
+       prop.property_code,       
+       bul.building_name,       
+       pro.project_name,       
+       rpt.type_name,       
+       prop.estimated_delivery_date,       
+       rpp.phase_number       
+  FROM xxma_real_estate_project pro,       
+       xxma_real_estate_building bul,       
+       xxma_real_estate_property prop,       
+       xxma_rs_property_types rpt,       
+       xxma_real_estate_pro_phases rpp       
+ WHERE     pro.project_id = bul.project_id       
+       AND bul.building_id = prop.building_id       
+       AND prop.type_id = rpt.type_id(+)       
+       AND pro.project_id = rpp.project_id]]></SQLQuery>
+    <ViewAttribute
+      Name="ProjectId"
+      IsUpdateable="false"
+      IsPersistent="false"
+      PrecisionRule="true"
+      Type="oracle.jbo.domain.Number"
+      ColumnType="NUMBER"
+      AliasName="PROJECT_ID"
+      Expression="PROJECT_ID"
+      SQLType="NUMERIC"/>
+    <ViewAttribute
+      Name="BuildingId"
+      IsUpdateable="false"
+      IsPersistent="false"
+      PrecisionRule="true"
+      Type="oracle.jbo.domain.Number"
+      ColumnType="NUMBER"
+      AliasName="BUILDING_ID"
+      Expression="BUILDING_ID"
+      SQLType="NUMERIC"/>
+    <ViewAttribute
+      Name="PropertyId"
+      IsPersistent="false"
+      PrecisionRule="true"
+      Type="oracle.jbo.domain.Number"
+      ColumnType="NUMBER"
+      AliasName="PROPERTY_ID"
+      Expression="PROPERTY_ID"
+      SQLType="NUMERIC"
+        LOVName="LOV_PropertyId">
+        <Properties>
+            <SchemaBasedProperties>
+                <CONTROLTYPE
+                    Value="input_text_lov"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="PropertyName"
+      IsUpdateable="false"
+      IsPersistent="false"
+      PrecisionRule="true"
+      Type="java.lang.String"
+      ColumnType="CHAR"
+      AliasName="PROPERTY_NAME"
+      Expression="PROPERTY_NAME"
+      SQLType="VARCHAR">
+        <DesignTime>
+            <Attr Name="_DisplaySize" Value="240"/>
+        </DesignTime>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="PropertyCountry"
+      IsUpdateable="false"
+      IsPersistent="false"
+      PrecisionRule="true"
+      Precision="240"
+      Type="java.lang.String"
+      ColumnType="VARCHAR2"
+      AliasName="PROPERTY_COUNTRY"
+      Expression="PROPERTY_COUNTRY"
+      SQLType="VARCHAR">
+        <DesignTime>
+            <Attr Name="_DisplaySize" Value="240"/>
+        </DesignTime>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="PropertyCity"
+      IsUpdateable="false"
+      IsPersistent="false"
+      PrecisionRule="true"
+      Precision="240"
+      Type="java.lang.String"
+      ColumnType="VARCHAR2"
+      AliasName="PROPERTY_CITY"
+      Expression="PROPERTY_CITY"
+      SQLType="VARCHAR">
+        <DesignTime>
+            <Attr Name="_DisplaySize" Value="240"/>
+        </DesignTime>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="FloorNumber"
+      IsUpdateable="false"
+      IsPersistent="false"
+      PrecisionRule="true"
+      Precision="240"
+      Type="java.lang.String"
+      ColumnType="VARCHAR2"
+      AliasName="FLOOR_NUMBER"
+      Expression="FLOOR_NUMBER"
+      SQLType="VARCHAR">
+        <DesignTime>
+            <Attr Name="_DisplaySize" Value="240"/>
+        </DesignTime>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="PropertyCode"
+      IsUpdateable="false"
+      IsPersistent="false"
+      PrecisionRule="true"
+      Precision="100"
+      Type="java.lang.String"
+      ColumnType="VARCHAR2"
+      AliasName="PROPERTY_CODE"
+      Expression="PROPERTY_CODE"
+      SQLType="VARCHAR">
+        <DesignTime>
+            <Attr Name="_DisplaySize" Value="100"/>
+        </DesignTime>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="BuildingName"
+      IsUpdateable="false"
+      IsPersistent="false"
+      PrecisionRule="true"
+      Precision="240"
+      Type="java.lang.String"
+      ColumnType="VARCHAR2"
+      AliasName="BUILDING_NAME"
+      Expression="BUILDING_NAME"
+      SQLType="VARCHAR">
+        <DesignTime>
+            <Attr Name="_DisplaySize" Value="240"/>
+        </DesignTime>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="ProjectName"
+      IsUpdateable="false"
+      IsPersistent="false"
+      PrecisionRule="true"
+      Precision="240"
+      Type="java.lang.String"
+      ColumnType="VARCHAR2"
+      AliasName="PROJECT_NAME"
+      Expression="PROJECT_NAME"
+      SQLType="VARCHAR">
+        <DesignTime>
+            <Attr Name="_DisplaySize" Value="240"/>
+        </DesignTime>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="TypeName"
+      IsUpdateable="false"
+      IsPersistent="false"
+      PrecisionRule="true"
+      Precision="240"
+      Type="java.lang.String"
+      ColumnType="VARCHAR2"
+      AliasName="TYPE_NAME"
+      Expression="TYPE_NAME"
+      SQLType="VARCHAR">
+        <DesignTime>
+            <Attr Name="_DisplaySize" Value="240"/>
+        </DesignTime>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="EstimatedDeliveryDate"
+      IsUpdateable="false"
+      IsPersistent="false"
+      PrecisionRule="true"
+      Type="java.sql.Date"
+      ColumnType="DATE"
+      AliasName="ESTIMATED_DELIVERY_DATE"
+      Expression="ESTIMATED_DELIVERY_DATE"
+      SQLType="DATE"/>
+    <ViewAttribute
+      Name="PhaseNumber"
+      IsUpdateable="false"
+      IsPersistent="false"
+      PrecisionRule="true"
+      Precision="100"
+      Type="java.lang.String"
+      ColumnType="VARCHAR2"
+      AliasName="PHASE_NUMBER"
+      Expression="PHASE_NUMBER"
+      SQLType="VARCHAR">
+        <DesignTime>
+            <Attr Name="_DisplaySize" Value="100"/>
+        </DesignTime>
+    </ViewAttribute>
+    <ViewCriteria
+      Name="MAPropertySearchVVOCriteria"
+      ViewObjectName="ma.oracle.apps.cx.realestate.contract.views.MAPropertySearchVVO"
+      Conjunction="AND">
+        <Properties>
+            <CustomProperties>
+                <Property
+                  Name="displayOperators"
+                  Value="InAdvancedMode"/>
+                <Property
+                  Name="autoExecute"
+                  Value="false"/>
+                <Property
+                  Name="allowConjunctionOverride"
+                  Value="true"/>
+                <Property
+                  Name="showInList"
+                  Value="true"/>
+                <Property
+                  Name="mode"
+                  Value="Basic"/>
+            </CustomProperties>
+        </Properties>
+        <ViewCriteriaRow
+          Name="MAPropertySearchVVOCriteria_row_0"
+          UpperColumns="1">
+            <ViewCriteriaItem
+                Name="MAPropertySearchVVOCriteria_MAPropertySearchVVOCriteria_row_0_BuildingId"
+                ViewAttribute="BuildingId"
+                Operator="="
+                Conjunction="AND"
+                Required="Optional"/>
+            <ViewCriteriaItem
+              Name="PropertyCountry"
+              ViewAttribute="PropertyCountry"
+              Operator="="
+              Conjunction="AND"
+              Required="Optional"/>
+            <ViewCriteriaItem
+              Name="PropertyCity"
+              ViewAttribute="PropertyCity"
+              Operator="="
+              Conjunction="AND"
+              Required="Optional"/>
+            <ViewCriteriaItem
+                Name="PropertyCode"
+                ViewAttribute="PropertyCode"
+                Operator="="
+                Conjunction="AND"
+                Required="Optional"/>
+            <ViewCriteriaItem
+              Name="ProjectName"
+              ViewAttribute="ProjectName"
+              Operator="="
+              Conjunction="AND"
+              Required="Optional"/>
+            <ViewCriteriaItem
+              Name="PhaseNumber"
+              ViewAttribute="PhaseNumber"
+              Operator="="
+              Conjunction="AND"
+              Required="Optional"/>
+        </ViewCriteriaRow>
+    </ViewCriteria>
+    <AttrArray Name="KeyAttributes">
+        <Item Value="ProjectId"/>
+        <Item Value="BuildingId"/>
+        <Item Value="PropertyId"/>
+    </AttrArray>
+</ViewObject>

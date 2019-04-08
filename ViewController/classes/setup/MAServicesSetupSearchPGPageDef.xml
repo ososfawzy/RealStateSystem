@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.10.8" id="MAServicesSetupSearchPGPageDef"
+                Package="setup">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="MARealEstateServicesVO" RangeSize="25" DataControl="MARealEstatePropertyAMDataControl"
+              id="MARealEstateServicesVOIterator"/>
+    <searchRegion Criteria="MARealEstateServicesVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" Binds="MARealEstateServicesVOIterator"
+                  id="MARealEstateServicesVOCriteriaQuery"/>
+  </executables>
+  <bindings>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="MARealEstatePropertyAMDataControl"/>
+    <action IterBinding="MARealEstateServicesVOIterator" id="CreateInsert" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <attributeValues IterBinding="MARealEstateServicesVOIterator" id="FeatureName">
+      <AttrNames>
+        <Item Value="FeatureName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateServicesVOIterator" id="Notes">
+      <AttrNames>
+        <Item Value="Notes"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="MARealEstateServicesVOIterator" id="PaidServiceFlag" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="PaidServiceFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="MARealEstateServicesVOIterator" id="AvailabilityFlag" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="AvailabilityFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <tree IterBinding="MARealEstateServicesVOIterator" id="MARealEstateServicesVO">
+      <nodeDefinition DefName="ma.oracle.apps.cx.realestate.services.views.MARealEstateServicesVO"
+                      Name="MARealEstateServicesVO0">
+        <AttrNames>
+          <Item Value="FeatureName"/>
+          <Item Value="PaidServiceFlag"/>
+          <Item Value="AvailabilityFlag"/>
+          <Item Value="Notes"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Rollback" DataControl="MARealEstatePropertyAMDataControl" RequiresUpdateModel="false"
+            Action="rollbackTransaction"/>
+    <methodAction id="servicesRequery" RequiresUpdateModel="true" Action="invokeMethod" MethodName="servicesRequery"
+                  IsViewObjectMethod="false" DataControl="MARealEstatePropertyAMDataControl"
+                  InstanceName="data.MARealEstatePropertyAMDataControl.dataProvider"
+                  ReturnName="data.MARealEstatePropertyAMDataControl.methodResults.servicesRequery_MARealEstatePropertyAMDataControl_dataProvider_servicesRequery_result"/>
+    <methodAction id="ar_lang" RequiresUpdateModel="true" Action="invokeMethod" MethodName="ar_lang"
+                  IsViewObjectMethod="false" DataControl="MARealEstatePropertyAMDataControl"
+                  InstanceName="data.MARealEstatePropertyAMDataControl.dataProvider"
+                  ReturnName="data.MARealEstatePropertyAMDataControl.methodResults.ar_lang_MARealEstatePropertyAMDataControl_dataProvider_ar_lang_result"/>
+    <methodAction id="en_lang" RequiresUpdateModel="true" Action="invokeMethod" MethodName="en_lang"
+                  IsViewObjectMethod="false" DataControl="MARealEstatePropertyAMDataControl"
+                  InstanceName="data.MARealEstatePropertyAMDataControl.dataProvider"
+                  ReturnName="data.MARealEstatePropertyAMDataControl.methodResults.en_lang_MARealEstatePropertyAMDataControl_dataProvider_en_lang_result"/>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view beforePhase="#{backingBeanScope.MAServicesSetupBean.beforePhase}">
+        <af:document title="#{bundle.ServiceSetupPG}" id="d1" binding="#{backingBeanScope.MAServicesSetupBean.d1}">
+            <af:messages id="m1" binding="#{backingBeanScope.MAServicesSetupBean.m1}"/>
+            <af:form id="f1" binding="#{backingBeanScope.MAServicesSetupBean.f1}">
+                <af:pageTemplate viewId="#{pageFlowScope.Facet}" id="pt1">
+                    <f:facet name="center">
+                        <af:panelHeader text="Services" id="ph1"
+                                        binding="#{backingBeanScope.MAServicesSetupBean.ph1}">
+                            <f:facet name="context"/>
+                            <f:facet name="menuBar"/>
+                            <f:facet name="toolbar"/>
+                            <f:facet name="legend"/>
+                            <f:facet name="info"/>
+                            <af:panelCollection id="pc2" binding="#{backingBeanScope.MAServicesSetupBean.pc2}"
+                                                styleClass="AFStretchWidth">
+                                <f:facet name="menus"/>
+                                <f:facet name="toolbar">
+                                    <af:toolbar id="t3" binding="#{backingBeanScope.MAServicesSetupBean.t3}">
+                                        <af:button text="#{bundle.New_Service}"
+                                                   disabled="#{!bindings.CreateInsert.enabled}" id="b1"
+                                                   binding="#{backingBeanScope.MAServicesSetupBean.b1}"
+                                                   icon="/images/icons/new_ena.png"
+                                                   action="#{backingBeanScope.MAServicesSetupBean.newService}"/>
+                                        <af:button
+                                                   text="#{bundle.Edit_Service}" id="b2"
+                                                   binding="#{backingBeanScope.MAServicesSetupBean.b2}"
+                                                   icon="/images/icons/edit_ena.png"
+                                                   action="#{backingBeanScope.MAServicesSetupBean.editServiceLine}">
+                                            <af:showPopupBehavior popupId="p1" triggerType="click"/>
+                                        </af:button>
+                                        <af:popup childCreation="deferred" autoCancel="disabled" id="p1"
+                                                  binding="#{backingBeanScope.MAServicesSetupBean.p1}">
+                                            <af:dialog id="d2" binding="#{backingBeanScope.MAServicesSetupBean.d2}"
+                                                       title="#{bundle.Services}" contentWidth="400" contentHeight="150"
+                                                       type="none">
+                                                <f:facet name="buttonBar">
+                                                    <af:toolbar id="t5"
+                                                                binding="#{backingBeanScope.MAServicesSetupBean.t5}">
+                                                        <af:panelGroupLayout id="pgl2"
+                                                                             binding="#{backingBeanScope.MAServicesSetupBean.pgl2}"
+                                                                             layout="horizontal"
+                                                                             inlineStyle="width:400px;" halign="right">
+                                                            <af:button text="#{bundle.Cancel}"
+                                                                       immediate="true" id="b4"
+                                                                       binding="#{backingBeanScope.MAServicesSetupBean.b4}"
+                                                                       icon="/images/icons/rollback.png"
+                                                                       action="#{backingBeanScope.MAServicesSetupBean.cancelServicesCreation}"
+                                                                       partialSubmit="false">
+                                                                <af:resetActionListener/>
+                                                            </af:button>
+                                                            <af:button text="#{bundle.Save}" id="b3"
+                                                                       binding="#{backingBeanScope.MAServicesSetupBean.b3}"
+                                                                       icon="/images/icons/save_ena.png"
+                                                                       action="#{backingBeanScope.MAServicesSetupBean.afterSaveServices}"
+                                                                       partialSubmit="false"/>
+                                                        </af:panelGroupLayout>
+                                                    </af:toolbar>
+                                                </f:facet>
+                                                <af:panelFormLayout id="pfl1"
+                                                                    binding="#{backingBeanScope.MAServicesSetupBean.pfl1}">
+                                                    <af:inputText value="#{bindings.FeatureName.inputValue}"
+                                                                  label="#{bindings.FeatureName.hints.label}"
+                                                                  required="#{bindings.FeatureName.hints.mandatory}"
+                                                                  columns="#{bindings.FeatureName.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.FeatureName.hints.precision}"
+                                                                  shortDesc="#{bindings.FeatureName.hints.tooltip}"
+                                                                  id="it1"
+                                                                  binding="#{backingBeanScope.MAServicesSetupBean.it1}">
+                                                        <f:validator binding="#{bindings.FeatureName.validator}"/>
+                                                    </af:inputText>
+                                                    <af:panelGroupLayout id="pgl3"
+                                                                         binding="#{backingBeanScope.MAServicesSetupBean.pgl3}"
+                                                                         layout="horizontal">
+                                                        <af:selectBooleanCheckbox value="#{bindings.PaidServiceFlag.inputValue}"
+                                                                                  shortDesc="#{bindings.PaidServiceFlag.hints.tooltip}"
+                                                                                  id="sbc1"
+                                                                                  binding="#{backingBeanScope.MAServicesSetupBean.sbc1}"
+                                                                                  label="#{bindings.PaidServiceFlag.label}"/>
+                                                        <af:selectBooleanCheckbox value="#{bindings.AvailabilityFlag.inputValue}"
+                                                                                  label="#{bindings.AvailabilityFlag.label}"
+                                                                                  shortDesc="#{bindings.AvailabilityFlag.hints.tooltip}"
+                                                                                  id="sbc2"
+                                                                                  binding="#{backingBeanScope.MAServicesSetupBean.sbc2}"/>
+                                                    </af:panelGroupLayout>
+                                                    <af:inputText value="#{bindings.Notes.inputValue}"
+                                                                  label="#{bindings.Notes.hints.label}"
+                                                                  required="#{bindings.Notes.hints.mandatory}"
+                                                                  columns="50"
+                                                                  maximumLength="#{bindings.Notes.hints.precision}"
+                                                                  shortDesc="#{bindings.Notes.hints.tooltip}" id="it4"
+                                                                  binding="#{backingBeanScope.MAServicesSetupBean.it4}"
+                                                                  rows="8">
+                                                        <f:validator binding="#{bindings.Notes.validator}"/>
+                                                    </af:inputText>
+                                                </af:panelFormLayout>
+                                            </af:dialog>
+                                        </af:popup>
+                                    </af:toolbar>
+                                </f:facet>
+                                <f:facet name="statusbar"/>
+                                <af:table value="#{bindings.MARealEstateServicesVO.collectionModel}" var="row"
+                                          rows="#{bindings.MARealEstateServicesVO.rangeSize}"
+                                          emptyText="#{bindings.MARealEstateServicesVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                          rowBandingInterval="0"
+                                          selectedRowKeys="#{bindings.MARealEstateServicesVO.collectionModel.selectedRow}"
+                                          selectionListener="#{bindings.MARealEstateServicesVO.collectionModel.makeCurrent}"
+                                          rowSelection="single" fetchSize="#{bindings.MARealEstateServicesVO.rangeSize}"
+                                          id="t1" binding="#{backingBeanScope.MAServicesSetupBean.t1}"
+                                          summary="#{bundle.Services_Table}" partialTriggers="::b2">
+                                    <af:column sortProperty="#{bindings.MARealEstateServicesVO.hints.FeatureName.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MARealEstateServicesVO.hints.FeatureName.label}"
+                                               id="c1" rowHeader="unstyled" width="200">
+                                        <af:outputText value="#{row.FeatureName}"
+                                                       shortDesc="#{bindings.MARealEstateServicesVO.hints.FeatureName.tooltip}"
+                                                       id="ot1"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.MARealEstateServicesVO.hints.PaidServiceFlag.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MARealEstateServicesVO.hints.PaidServiceFlag.label}"
+                                               id="c2" width="200">
+                                        <af:outputText value="#{row.PaidServiceFlag}"
+                                                       shortDesc="#{bindings.MARealEstateServicesVO.hints.PaidServiceFlag.tooltip}"
+                                                       id="ot2"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.MARealEstateServicesVO.hints.AvailabilityFlag.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MARealEstateServicesVO.hints.AvailabilityFlag.label}"
+                                               id="c3" width="200">
+                                        <af:outputText value="#{row.AvailabilityFlag}"
+                                                       shortDesc="#{bindings.MARealEstateServicesVO.hints.AvailabilityFlag.tooltip}"
+                                                       id="ot3"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.MARealEstateServicesVO.hints.Notes.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MARealEstateServicesVO.hints.Notes.label}"
+                                               id="c4" width="400">
+                                        <af:outputText value="#{row.Notes}"
+                                                       shortDesc="#{bindings.MARealEstateServicesVO.hints.Notes.tooltip}"
+                                                       id="ot4"/>
+                                    </af:column>
+                                </af:table>
+                            </af:panelCollection>
+                        </af:panelHeader>
+                    </f:facet>
+                    <f:facet name="header">
+                        <af:toolbar id="t2" binding="#{backingBeanScope.MAServicesSetupBean.t2}">
+                            <af:link text="#{bundle.Home}" id="l1" binding="#{backingBeanScope.MAServicesSetupBean.l1}"
+                                     action="home"/>
+                        </af:toolbar>
+                    </f:facet>
+                    <f:facet name="end"/>
+                    <f:facet name="start"/>
+                    <f:facet name="branding"/>
+                    <f:facet name="copyright"/>
+                    <f:facet name="status">
+                        <af:toolbar id="t4" binding="#{backingBeanScope.MAServicesSetupBean.t4}">
+                            <af:button id="b5" binding="#{backingBeanScope.MAServicesSetupBean.b5}"
+                                       actionListener="#{bindings.en_lang.execute}"
+                                       disabled="#{!bindings.en_lang.enabled}" partialSubmit="false"
+                                       shortDesc="#{bundle.English}" icon="/images/icons/english.png"/>
+                            <af:button id="b6" binding="#{backingBeanScope.MAServicesSetupBean.b6}"
+                                       actionListener="#{bindings.ar_lang.execute}"
+                                       disabled="#{!bindings.ar_lang.enabled}" icon="/images/icons/arabic.png"
+                                       shortDesc="#{bundle.Arabic}" partialSubmit="false"/>
+                        </af:toolbar>
+                    </f:facet>
+                    <f:attribute name="endColumnSize" value="0"/>
+                    <f:attribute name="startColumnSize" value="0"/>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+    <!--oracle-jdev-comment:auto-binding-backing-bean-name:MAServicesSetupBean-->
+</jsp:root>

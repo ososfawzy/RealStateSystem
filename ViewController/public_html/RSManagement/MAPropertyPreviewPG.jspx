@@ -1,0 +1,864 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view beforePhase="#{backingBeanScope.MAPropertyPreviewBean.beforePhase}">
+        <af:document title="#{bundle.MAPropertyPreviewPG}" id="d1" binding="#{backingBeanScope.MAPropertyPreviewBean.d1}">
+            <af:messages id="m1" binding="#{backingBeanScope.MAPropertyPreviewBean.m1}"/>
+            <af:form id="f1" binding="#{backingBeanScope.MAPropertyPreviewBean.f1}">
+                <af:pageTemplate viewId="#{pageFlowScope.Facet}" id="pt1">
+                    <f:facet name="center">
+                        <af:panelTabbed position="above" id="pt2"
+                                        binding="#{backingBeanScope.MAPropertyPreviewBean.pt2}">
+                            <af:showDetailItem id="tab1" text="#{bundle.Property_Preview}"
+                                               binding="#{backingBeanScope.MAPropertyPreviewBean.tab1}">
+                                <af:panelGroupLayout id="pgl1"
+                                                     binding="#{backingBeanScope.MAPropertyPreviewBean.pgl1}"
+                                                     layout="scroll">
+                                    <af:panelStretchLayout id="psl1"
+                                                           binding="#{backingBeanScope.MAPropertyPreviewBean.psl1}"
+                                                           startWidth="0" endWidth="0" topHeight="0" bottomHeight="0"
+                                                           styleClass="AFStretchWidth" inlineStyle="height:807px;">
+                                        <f:facet name="bottom"/>
+                                        <f:facet name="center">
+                                            <af:panelGridLayout id="pgl3"
+                                                                binding="#{backingBeanScope.MAPropertyPreviewBean.pgl3}">
+                                                <af:gridRow marginTop="5px" height="auto" id="gr1"
+                                                            binding="#{backingBeanScope.MAPropertyPreviewBean.gr1}">
+                                                    <af:gridCell marginStart="5px" width="25%" id="gc1"
+                                                                 binding="#{backingBeanScope.MAPropertyPreviewBean.gc1}">
+                                                        <af:panelFormLayout id="pfl1"
+                                                                            binding="#{backingBeanScope.MAPropertyPreviewBean.pfl1}">
+                                                            <af:group id="group"
+                                                                      binding="#{backingBeanScope.MAPropertyPreviewBean.group}">
+                                                                <af:inputText value="#{bindings.PropertySegment.inputValue}"
+                                                                              label="#{bundle.Property_Code}"
+                                                                              required="#{bindings.PropertySegment.hints.mandatory}"
+                                                                              readOnly="true"
+                                                                              columns="#{bindings.PropertySegment.hints.displayWidth}"
+                                                                              maximumLength="#{bindings.PropertySegment.hints.precision}"
+                                                                              shortDesc="#{bindings.PropertySegment.hints.tooltip}"
+                                                                              id="it1"
+                                                                              binding="#{backingBeanScope.MAPropertyPreviewBean.it1}">
+                                                                    <f:validator binding="#{bindings.PropertySegment.validator}"/>
+                                                                </af:inputText>
+                                                                <af:inputText value="#{bindings.PropertyName.inputValue}"
+                                                                              label="#{bindings.PropertyName.hints.label}"
+                                                                              required="#{bindings.PropertyName.hints.mandatory}"
+                                                                              readOnly="true"
+                                                                              columns="#{bindings.PropertyName.hints.displayWidth}"
+                                                                              maximumLength="#{bindings.PropertyName.hints.precision}"
+                                                                              shortDesc="#{bindings.PropertyName.hints.tooltip}"
+                                                                              id="it2"
+                                                                              binding="#{backingBeanScope.MAPropertyPreviewBean.it2}">
+                                                                    <f:validator binding="#{bindings.PropertyName.validator}"/>
+                                                                </af:inputText>
+                                                                <af:selectOneChoice value="#{bindings.BlockBuldingName.inputValue}"
+                                                                                    label="#{bindings.BlockBuldingName.label}"
+                                                                                    required="#{bindings.BlockBuldingName.hints.mandatory}"
+                                                                                    shortDesc="#{bindings.BlockBuldingName.hints.tooltip}"
+                                                                                    readOnly="true" id="soc1"
+                                                                                    binding="#{backingBeanScope.MAPropertyPreviewBean.soc1}">
+                                                                    <f:selectItems value="#{bindings.BlockBuldingName.items}"
+                                                                                   id="si1"
+                                                                                   binding="#{backingBeanScope.MAPropertyPreviewBean.si1}"/>
+                                                                    <f:validator binding="#{bindings.BlockBuldingName.validator}"/>
+                                                                </af:selectOneChoice>
+                                                                <af:selectOneChoice value="#{bindings.TypeId.inputValue}"
+                                                                                    label="#{bindings.TypeId.label}"
+                                                                                    required="#{bindings.TypeId.hints.mandatory}"
+                                                                                    shortDesc="#{bindings.TypeId.hints.tooltip}"
+                                                                                    readOnly="true" id="soc2"
+                                                                                    binding="#{backingBeanScope.MAPropertyPreviewBean.soc2}">
+                                                                    <f:selectItems value="#{bindings.TypeId.items}"
+                                                                                   id="si2"
+                                                                                   binding="#{backingBeanScope.MAPropertyPreviewBean.si2}"/>
+                                                                    <f:validator binding="#{bindings.TypeId.validator}"/>
+                                                                </af:selectOneChoice>
+                                                                <af:selectOneChoice value="#{bindings.ParentTypeId.inputValue}"
+                                                                                    label="#{bindings.ParentTypeId.label}"
+                                                                                    required="#{bindings.ParentTypeId.hints.mandatory}"
+                                                                                    shortDesc="#{bindings.ParentTypeId.hints.tooltip}"
+                                                                                    readOnly="true" id="soc3"
+                                                                                    binding="#{backingBeanScope.MAPropertyPreviewBean.soc3}">
+                                                                    <f:selectItems value="#{bindings.ParentTypeId.items}"
+                                                                                   id="si3"
+                                                                                   binding="#{backingBeanScope.MAPropertyPreviewBean.si3}"/>
+                                                                    <f:validator binding="#{bindings.ParentTypeId.validator}"/>
+                                                                </af:selectOneChoice>
+                                                                <af:selectOneChoice value="#{bindings.FloorNumber.inputValue}"
+                                                                                    label="#{bindings.FloorNumber.label}"
+                                                                                    required="#{bindings.FloorNumber.hints.mandatory}"
+                                                                                    shortDesc="#{bindings.FloorNumber.hints.tooltip}"
+                                                                                    readOnly="true" id="soc4"
+                                                                                    binding="#{backingBeanScope.MAPropertyPreviewBean.soc4}">
+                                                                    <f:selectItems value="#{bindings.FloorNumber.items}"
+                                                                                   id="si4"
+                                                                                   binding="#{backingBeanScope.MAPropertyPreviewBean.si4}"/>
+                                                                    <f:validator binding="#{bindings.FloorNumber.validator}"/>
+                                                                </af:selectOneChoice>
+                                                                <af:inputText value="#{bindings.UnitNumber.inputValue}"
+                                                                              label="#{bindings.UnitNumber.hints.label}"
+                                                                              required="#{bindings.UnitNumber.hints.mandatory}"
+                                                                              readOnly="true"
+                                                                              columns="#{bindings.UnitNumber.hints.displayWidth}"
+                                                                              maximumLength="#{bindings.UnitNumber.hints.precision}"
+                                                                              shortDesc="#{bindings.UnitNumber.hints.tooltip}"
+                                                                              id="it3"
+                                                                              binding="#{backingBeanScope.MAPropertyPreviewBean.it3}">
+                                                                    <f:validator binding="#{bindings.UnitNumber.validator}"/>
+                                                                </af:inputText>
+                                                                <af:selectOneChoice value="#{bindings.PropertyActivity.inputValue}"
+                                                                                    label="#{bindings.PropertyActivity.label}"
+                                                                                    required="#{bindings.PropertyActivity.hints.mandatory}"
+                                                                                    shortDesc="#{bindings.PropertyActivity.hints.tooltip}"
+                                                                                    readOnly="true" id="soc5"
+                                                                                    binding="#{backingBeanScope.MAPropertyPreviewBean.soc5}">
+                                                                    <f:selectItems value="#{bindings.PropertyActivity.items}"
+                                                                                   id="si5"
+                                                                                   binding="#{backingBeanScope.MAPropertyPreviewBean.si5}"/>
+                                                                    <f:validator binding="#{bindings.PropertyActivity.validator}"/>
+                                                                </af:selectOneChoice>
+                                                                <af:inputText value="#{bindings.PropertyPattern.inputValue}"
+                                                                              label="#{bindings.PropertyPattern.hints.label}"
+                                                                              required="#{bindings.PropertyPattern.hints.mandatory}"
+                                                                              readOnly="true"
+                                                                              columns="#{bindings.PropertyPattern.hints.displayWidth}"
+                                                                              maximumLength="#{bindings.PropertyPattern.hints.precision}"
+                                                                              shortDesc="#{bindings.PropertyPattern.hints.tooltip}"
+                                                                              id="it4"
+                                                                              binding="#{backingBeanScope.MAPropertyPreviewBean.it4}">
+                                                                    <f:validator binding="#{bindings.PropertyPattern.validator}"/>
+                                                                </af:inputText>
+                                                            </af:group>
+                                                        </af:panelFormLayout>
+                                                    </af:gridCell>
+                                                    <af:gridCell marginStart="5px" width="50%" marginEnd="5px"
+                                                                 id="gc2"
+                                                                 binding="#{backingBeanScope.MAPropertyPreviewBean.gc2}">
+                                                        <af:group id="g1"
+                                                                  binding="#{backingBeanScope.MAPropertyPreviewBean.g1}">
+                                                            <af:inputText value="#{bindings.UnitSqMt.inputValue}"
+                                                                          label="#{bindings.UnitSqMt.hints.label}"
+                                                                          required="#{bindings.UnitSqMt.hints.mandatory}"
+                                                                          readOnly="true"
+                                                                          columns="#{bindings.UnitSqMt.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.UnitSqMt.hints.precision}"
+                                                                          shortDesc="#{bindings.UnitSqMt.hints.tooltip}"
+                                                                          id="it5"
+                                                                          binding="#{backingBeanScope.MAPropertyPreviewBean.it5}">
+                                                                <f:validator binding="#{bindings.UnitSqMt.validator}"/>
+                                                            </af:inputText>
+                                                            <af:inputText value="#{bindings.NumberOfRooms.inputValue}"
+                                                                          label="#{bindings.NumberOfRooms.hints.label}"
+                                                                          required="#{bindings.NumberOfRooms.hints.mandatory}"
+                                                                          readOnly="true"
+                                                                          columns="#{bindings.NumberOfRooms.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.NumberOfRooms.hints.precision}"
+                                                                          shortDesc="#{bindings.NumberOfRooms.hints.tooltip}"
+                                                                          id="it6"
+                                                                          binding="#{backingBeanScope.MAPropertyPreviewBean.it6}">
+                                                                <f:validator binding="#{bindings.NumberOfRooms.validator}"/>
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.NumberOfRooms.format}"/>
+                                                            </af:inputText>
+                                                            <af:inputText value="#{bindings.NumberOfBathrooms.inputValue}"
+                                                                          label="#{bindings.NumberOfBathrooms.hints.label}"
+                                                                          required="#{bindings.NumberOfBathrooms.hints.mandatory}"
+                                                                          readOnly="true"
+                                                                          columns="#{bindings.NumberOfBathrooms.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.NumberOfBathrooms.hints.precision}"
+                                                                          shortDesc="#{bindings.NumberOfBathrooms.hints.tooltip}"
+                                                                          id="it7"
+                                                                          binding="#{backingBeanScope.MAPropertyPreviewBean.it7}">
+                                                                <f:validator binding="#{bindings.NumberOfBathrooms.validator}"/>
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.NumberOfBathrooms.format}"/>
+                                                            </af:inputText>
+                                                            <af:inputText value="#{bindings.ElectricMeter.inputValue}"
+                                                                          label="#{bindings.ElectricMeter.hints.label}"
+                                                                          required="#{bindings.ElectricMeter.hints.mandatory}"
+                                                                          readOnly="true"
+                                                                          columns="#{bindings.ElectricMeter.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.ElectricMeter.hints.precision}"
+                                                                          shortDesc="#{bindings.ElectricMeter.hints.tooltip}"
+                                                                          id="it11"
+                                                                          binding="#{backingBeanScope.MAPropertyPreviewBean.it11}">
+                                                                <f:validator binding="#{bindings.ElectricMeter.validator}"/>
+                                                            </af:inputText>
+                                                            <af:inputText value="#{bindings.NumberOfParkings.inputValue}"
+                                                                          label="#{bindings.NumberOfParkings.hints.label}"
+                                                                          required="#{bindings.NumberOfParkings.hints.mandatory}"
+                                                                          readOnly="true"
+                                                                          columns="#{bindings.NumberOfParkings.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.NumberOfParkings.hints.precision}"
+                                                                          shortDesc="#{bindings.NumberOfParkings.hints.tooltip}"
+                                                                          id="it8"
+                                                                          binding="#{backingBeanScope.MAPropertyPreviewBean.it8}">
+                                                                <f:validator binding="#{bindings.NumberOfParkings.validator}"/>
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.NumberOfParkings.format}"/>
+                                                            </af:inputText>
+                                                            <af:selectOneChoice value="#{bindings.DuplexFlag.inputValue}"
+                                                                                label="#{bindings.DuplexFlag.label}"
+                                                                                required="#{bindings.DuplexFlag.hints.mandatory}"
+                                                                                shortDesc="#{bindings.DuplexFlag.hints.tooltip}"
+                                                                                readOnly="true" id="soc6"
+                                                                                binding="#{backingBeanScope.MAPropertyPreviewBean.soc6}">
+                                                                <f:selectItems value="#{bindings.DuplexFlag.items}"
+                                                                               id="si6"
+                                                                               binding="#{backingBeanScope.MAPropertyPreviewBean.si6}"/>
+                                                                <f:validator binding="#{bindings.DuplexFlag.validator}"/>
+                                                            </af:selectOneChoice>
+                                                            <af:selectBooleanCheckbox value="#{bindings.AcFlag.inputValue}"
+                                                                                      label="#{bindings.AcFlag.label}"
+                                                                                      shortDesc="#{bindings.AcFlag.hints.tooltip}"
+                                                                                      id="sbc1"
+                                                                                      binding="#{backingBeanScope.MAPropertyPreviewBean.sbc1}"
+                                                                                      disabled="true"/>
+                                                            <af:selectBooleanCheckbox value="#{bindings.FurnishedFlag.inputValue}"
+                                                                                      label="#{bindings.FurnishedFlag.label}"
+                                                                                      shortDesc="#{bindings.FurnishedFlag.hints.tooltip}"
+                                                                                      id="sbc2"
+                                                                                      binding="#{backingBeanScope.MAPropertyPreviewBean.sbc2}"
+                                                                                      disabled="true"/>
+                                                        </af:group>
+                                                        <af:inputText value="#{bindings.WaterMeter.inputValue}"
+                                                                      label="#{bindings.WaterMeter.hints.label}"
+                                                                      required="#{bindings.WaterMeter.hints.mandatory}"
+                                                                      readOnly="true"
+                                                                      columns="#{bindings.WaterMeter.hints.displayWidth}"
+                                                                      maximumLength="#{bindings.WaterMeter.hints.precision}"
+                                                                      shortDesc="#{bindings.WaterMeter.hints.tooltip}"
+                                                                      id="it12"
+                                                                      binding="#{backingBeanScope.MAPropertyPreviewBean.it12}">
+                                                            <f:validator binding="#{bindings.WaterMeter.validator}"/>
+                                                        </af:inputText>
+                                                    </af:gridCell>
+                                                </af:gridRow>
+                                                <af:gridRow marginTop="5px" height="auto" id="gr2"
+                                                            binding="#{backingBeanScope.MAPropertyPreviewBean.gr2}">
+                                                    <af:gridCell marginStart="5px" width="25%" id="gc3"
+                                                                 binding="#{backingBeanScope.MAPropertyPreviewBean.gc3}">
+                                                        <af:panelGridLayout id="pgl4"
+                                                                            binding="#{backingBeanScope.MAPropertyPreviewBean.pgl4}">
+                                                            <af:gridRow marginTop="5px" height="auto" id="gr7"
+                                                                        binding="#{backingBeanScope.MAPropertyPreviewBean.gr7}">
+                                                                <af:gridCell marginStart="5px" width="100%"
+                                                                             marginEnd="5px" id="gc13"
+                                                                             binding="#{backingBeanScope.MAPropertyPreviewBean.gc13}">
+                                                                    <af:selectBooleanCheckbox value="#{bindings.AvailableForRentFlag.inputValue}"
+                                                                                              label="#{bindings.AvailableForRentFlag.label}"
+                                                                                              shortDesc="#{bindings.AvailableForRentFlag.hints.tooltip}"
+                                                                                              id="sbc3"
+                                                                                              binding="#{backingBeanScope.MAPropertyPreviewBean.sbc3}"
+                                                                                              disabled="false"/>
+                                                                </af:gridCell>
+                                                            </af:gridRow>
+                                                            <af:gridRow marginTop="5px" height="auto" marginBottom="5px"
+                                                                        id="gr8"
+                                                                        binding="#{backingBeanScope.MAPropertyPreviewBean.gr8}">
+                                                                <af:gridCell marginStart="5px" width="100%"
+                                                                             marginEnd="5px" id="gc14"
+                                                                             binding="#{backingBeanScope.MAPropertyPreviewBean.gc14}">
+                                                                    <af:panelFormLayout id="pfl3"
+                                                                                        binding="#{backingBeanScope.MAPropertyPreviewBean.pfl3}">
+                                                                        <af:selectOneChoice value="#{bindings.RentPaymentTermId.inputValue}"
+                                                                                            label="#{bindings.RentPaymentTermId.label}"
+                                                                                            required="#{bindings.RentPaymentTermId.hints.mandatory}"
+                                                                                            shortDesc="#{bindings.RentPaymentTermId.hints.tooltip}"
+                                                                                            readOnly="true" id="soc8"
+                                                                                            binding="#{backingBeanScope.MAPropertyPreviewBean.soc8}">
+                                                                            <f:selectItems value="#{bindings.RentPaymentTermId.items}"
+                                                                                           id="si8"
+                                                                                           binding="#{backingBeanScope.MAPropertyPreviewBean.si8}"/>
+                                                                            <f:validator binding="#{bindings.RentPaymentTermId.validator}"/>
+                                                                        </af:selectOneChoice>
+                                                                        <af:inputText value="#{bindings.RentPrice.inputValue}"
+                                                                                      label="#{bindings.RentPrice.hints.label}"
+                                                                                      required="#{bindings.RentPrice.hints.mandatory}"
+                                                                                      readOnly="true"
+                                                                                      columns="#{bindings.RentPrice.hints.displayWidth}"
+                                                                                      maximumLength="#{bindings.RentPrice.hints.precision}"
+                                                                                      shortDesc="#{bindings.RentPrice.hints.tooltip}"
+                                                                                      id="it14"
+                                                                                      binding="#{backingBeanScope.MAPropertyPreviewBean.it14}">
+                                                                            <f:validator binding="#{bindings.RentPrice.validator}"/>
+                                                                            <af:convertNumber groupingUsed="false"
+                                                                                              pattern="#{bindings.RentPrice.format}"/>
+                                                                        </af:inputText>
+                                                                        <af:inputDate value="#{bindings.StartServiceDate.inputValue}"
+                                                                                      readOnly="true"
+                                                                                      label="#{bindings.StartServiceDate.hints.label}"
+                                                                                      required="#{bindings.StartServiceDate.hints.mandatory}"
+                                                                                      columns="#{bindings.StartServiceDate.hints.displayWidth}"
+                                                                                      shortDesc="#{bindings.StartServiceDate.hints.tooltip}"
+                                                                                      id="id4"
+                                                                                      binding="#{backingBeanScope.MAPropertyPreviewBean.id4}">
+                                                                            <f:validator binding="#{bindings.StartServiceDate.validator}"/>
+                                                                            <af:convertDateTime pattern="#{bindings.StartServiceDate.format}"/>
+                                                                        </af:inputDate>
+                                                                        <af:inputDate value="#{bindings.EndServiceDate.inputValue}"
+                                                                                      readOnly="true"
+                                                                                      label="#{bindings.EndServiceDate.hints.label}"
+                                                                                      required="#{bindings.EndServiceDate.hints.mandatory}"
+                                                                                      columns="#{bindings.EndServiceDate.hints.displayWidth}"
+                                                                                      shortDesc="#{bindings.EndServiceDate.hints.tooltip}"
+                                                                                      id="id5"
+                                                                                      binding="#{backingBeanScope.MAPropertyPreviewBean.id5}">
+                                                                            <f:validator binding="#{bindings.EndServiceDate.validator}"/>
+                                                                            <af:convertDateTime pattern="#{bindings.EndServiceDate.format}"/>
+                                                                        </af:inputDate>
+                                                                    </af:panelFormLayout>
+                                                                </af:gridCell>
+                                                            </af:gridRow>
+                                                        </af:panelGridLayout>
+                                                    </af:gridCell>
+                                                    <af:gridCell marginStart="5px" width="50%" marginEnd="5px"
+                                                                 id="gc4"
+                                                                 binding="#{backingBeanScope.MAPropertyPreviewBean.gc4}">
+                                                        <af:group id="g14"
+                                                                  binding="#{backingBeanScope.MAPropertyPreviewBean.g1}">
+                                                            <af:selectOneChoice value="#{bindings.PropertyStatus.inputValue}"
+                                                                                label="#{bindings.PropertyStatus.label}"
+                                                                                required="#{bindings.PropertyStatus.hints.mandatory}"
+                                                                                shortDesc="#{bindings.PropertyStatus.hints.tooltip}"
+                                                                                readOnly="true" id="soc7"
+                                                                                binding="#{backingBeanScope.MAPropertyPreviewBean.soc7}">
+                                                                <f:selectItems value="#{bindings.PropertyStatus.items}"
+                                                                               id="si7"
+                                                                               binding="#{backingBeanScope.MAPropertyPreviewBean.si7}"/>
+                                                                <f:validator binding="#{bindings.PropertyStatus.validator}"/>
+                                                            </af:selectOneChoice>
+                                                            <af:inputDate value="#{bindings.EstimatedDeliveryDate.inputValue}"
+                                                                          readOnly="true"
+                                                                          label="#{bindings.EstimatedDeliveryDate.hints.label}"
+                                                                          required="#{bindings.EstimatedDeliveryDate.hints.mandatory}"
+                                                                          columns="#{bindings.EstimatedDeliveryDate.hints.displayWidth}"
+                                                                          shortDesc="#{bindings.EstimatedDeliveryDate.hints.tooltip}"
+                                                                          id="id1"
+                                                                          binding="#{backingBeanScope.MAPropertyPreviewBean.id1}">
+                                                                <f:validator binding="#{bindings.EstimatedDeliveryDate.validator}"/>
+                                                                <af:convertDateTime pattern="#{bindings.EstimatedDeliveryDate.format}"/>
+                                                            </af:inputDate>
+                                                            <af:inputText value="#{bindings.Comments.inputValue}"
+                                                                          label="#{bindings.Comments.hints.label}"
+                                                                          required="#{bindings.Comments.hints.mandatory}"
+                                                                          readOnly="true"
+                                                                          columns="#{bindings.Comments.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.Comments.hints.precision}"
+                                                                          shortDesc="#{bindings.Comments.hints.tooltip}"
+                                                                          id="it13"
+                                                                          binding="#{backingBeanScope.MAPropertyPreviewBean.it13}">
+                                                                <f:validator binding="#{bindings.Comments.validator}"/>
+                                                            </af:inputText>
+                                                        </af:group>
+                                                    </af:gridCell>
+                                                </af:gridRow>
+                                                <af:gridRow marginTop="5px" height="auto" id="gr3"
+                                                            binding="#{backingBeanScope.MAPropertyPreviewBean.gr3}">
+                                                    <af:gridCell marginStart="5px" width="25%" id="gc5"
+                                                                 binding="#{backingBeanScope.MAPropertyPreviewBean.gc5}">
+                                                        <af:panelFormLayout id="pfl2"
+                                                                            binding="#{backingBeanScope.MAPropertyPreviewBean.pfl2}">
+                                                            <af:group id="g2"
+                                                                      binding="#{backingBeanScope.MAPropertyPreviewBean.g2}">
+                                                                <af:inputText value="#{bindings.CreatedBy.inputValue}"
+                                                                              label="#{bindings.CreatedBy.hints.label}"
+                                                                              required="#{bindings.CreatedBy.hints.mandatory}"
+                                                                              readOnly="true"
+                                                                              columns="#{bindings.CreatedBy.hints.displayWidth}"
+                                                                              maximumLength="#{bindings.CreatedBy.hints.precision}"
+                                                                              shortDesc="#{bindings.CreatedBy.hints.tooltip}"
+                                                                              id="it9"
+                                                                              binding="#{backingBeanScope.MAPropertyPreviewBean.it9}">
+                                                                    <f:validator binding="#{bindings.CreatedBy.validator}"/>
+                                                                    <af:convertNumber groupingUsed="false"
+                                                                                      pattern="#{bindings.CreatedBy.format}"/>
+                                                                </af:inputText>
+                                                                <af:inputDate value="#{bindings.CreationDate.inputValue}"
+                                                                              readOnly="true"
+                                                                              label="#{bindings.CreationDate.hints.label}"
+                                                                              required="#{bindings.CreationDate.hints.mandatory}"
+                                                                              columns="#{bindings.CreationDate.hints.displayWidth}"
+                                                                              shortDesc="#{bindings.CreationDate.hints.tooltip}"
+                                                                              id="id2"
+                                                                              binding="#{backingBeanScope.MAPropertyPreviewBean.id2}">
+                                                                    <f:validator binding="#{bindings.CreationDate.validator}"/>
+                                                                    <af:convertDateTime pattern="#{bindings.CreationDate.format}"/>
+                                                                </af:inputDate>
+                                                                <af:inputText value="#{bindings.LastUpdatedBy.inputValue}"
+                                                                              label="#{bindings.LastUpdatedBy.hints.label}"
+                                                                              required="#{bindings.LastUpdatedBy.hints.mandatory}"
+                                                                              readOnly="true"
+                                                                              columns="#{bindings.LastUpdatedBy.hints.displayWidth}"
+                                                                              maximumLength="#{bindings.LastUpdatedBy.hints.precision}"
+                                                                              shortDesc="#{bindings.LastUpdatedBy.hints.tooltip}"
+                                                                              id="it10"
+                                                                              binding="#{backingBeanScope.MAPropertyPreviewBean.it10}">
+                                                                    <f:validator binding="#{bindings.LastUpdatedBy.validator}"/>
+                                                                    <af:convertNumber groupingUsed="false"
+                                                                                      pattern="#{bindings.LastUpdatedBy.format}"/>
+                                                                </af:inputText>
+                                                                <af:inputDate value="#{bindings.LastUpdateDate.inputValue}"
+                                                                              readOnly="true"
+                                                                              label="#{bindings.LastUpdateDate.hints.label}"
+                                                                              required="#{bindings.LastUpdateDate.hints.mandatory}"
+                                                                              columns="#{bindings.LastUpdateDate.hints.displayWidth}"
+                                                                              shortDesc="#{bindings.LastUpdateDate.hints.tooltip}"
+                                                                              id="id3"
+                                                                              binding="#{backingBeanScope.MAPropertyPreviewBean.id3}">
+                                                                    <f:validator binding="#{bindings.LastUpdateDate.validator}"/>
+                                                                    <af:convertDateTime pattern="#{bindings.LastUpdateDate.format}"/>
+                                                                </af:inputDate>
+                                                            </af:group>
+                                                        </af:panelFormLayout>
+                                                    </af:gridCell>
+                                                    <af:gridCell marginStart="5px" width="50%" marginEnd="5px"
+                                                                 id="gc6"
+                                                                 binding="#{backingBeanScope.MAPropertyPreviewBean.gc6}">
+                                                        <af:table value="#{bindings.MAPropertyAttachedDocumentsVO.collectionModel}"
+                                                                  var="row"
+                                                                  rows="#{bindings.MAPropertyAttachedDocumentsVO.rangeSize}"
+                                                                  emptyText="#{bindings.MAPropertyAttachedDocumentsVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                                  rowBandingInterval="0"
+                                                                  fetchSize="#{bindings.MAPropertyAttachedDocumentsVO.rangeSize}"
+                                                                  id="t4"
+                                                                  binding="#{backingBeanScope.MAPropertyPreviewBean.t4}"
+                                                                  width="542" inlineStyle="height:88px;">
+                                                            <af:column headerText="#{bindings.MAPropertyAttachedDocumentsVO.hints.FileName.label}"
+                                                                       id="c7">
+                                                                <af:outputText value="#{row.FileName}"
+                                                                               shortDesc="#{bindings.MAPropertyAttachedDocumentsVO.hints.FileName.tooltip}"
+                                                                               id="ot5"/>
+                                                            </af:column>
+                                                            <af:column headerText="#{bindings.MAPropertyAttachedDocumentsVO.hints.FileContentType.label}"
+                                                                       id="c8">
+                                                                <af:outputText value="#{row.FileContentType}"
+                                                                               shortDesc="#{bindings.MAPropertyAttachedDocumentsVO.hints.FileContentType.tooltip}"
+                                                                               id="ot6"/>
+                                                            </af:column>
+                                                            <af:column headerText="#{bindings.MAPropertyAttachedDocumentsVO.hints.UploadDate.label}"
+                                                                       id="c9">
+                                                                <af:outputText value="#{row.UploadDate}"
+                                                                               shortDesc="#{bindings.MAPropertyAttachedDocumentsVO.hints.UploadDate.tooltip}"
+                                                                               id="ot7">
+                                                                    <af:convertDateTime pattern="#{bindings.MAPropertyAttachedDocumentsVO.hints.UploadDate.format}"/>
+                                                                </af:outputText>
+                                                            </af:column>
+                                                            <af:column id="c10" headerText="#{bundle.Download}">
+                                                                <af:link text="#{bundle.Download}" id="l3">
+                                                                    <af:fileDownloadActionListener method="#{backingBeanScope.MAPropertyPreviewBean.downloadPropertyFile}"/>
+                                                                </af:link>
+                                                            </af:column>
+                                                        </af:table>
+                                                    </af:gridCell>
+                                                </af:gridRow>
+                                                <af:gridRow marginTop="5px" height="auto" id="gr4"
+                                                            binding="#{backingBeanScope.MAPropertyPreviewBean.gr4}">
+                                                    <af:gridCell marginStart="5px" width="25%" id="gc7"
+                                                                 binding="#{backingBeanScope.MAPropertyPreviewBean.gc7}">
+                                                        <af:panelFormLayout id="pfl4"
+                                                                            binding="#{backingBeanScope.MAPropertyPreviewBean.pfl4}">
+                                                            <af:selectOneChoice value="#{bindings.OwnerId.inputValue}"
+                                                                                label="#{bindings.OwnerId.label}"
+                                                                                required="#{bindings.OwnerId.hints.mandatory}"
+                                                                                shortDesc="#{bindings.OwnerId.hints.tooltip}"
+                                                                                readOnly="true" id="soc9"
+                                                                                binding="#{backingBeanScope.MAPropertyPreviewBean.soc9}">
+                                                                <f:selectItems value="#{bindings.OwnerId.items}"
+                                                                               id="si9"
+                                                                               binding="#{backingBeanScope.MAPropertyPreviewBean.si9}"/>
+                                                                <f:validator binding="#{bindings.OwnerId.validator}"/>
+                                                            </af:selectOneChoice>
+                                                            <af:inputText value="#{bindings.ContractSubject.inputValue}"
+                                                                          label="#{bindings.ContractSubject.hints.label}"
+                                                                          required="#{bindings.ContractSubject.hints.mandatory}"
+                                                                          readOnly="true"
+                                                                          columns="#{bindings.ContractSubject.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.ContractSubject.hints.precision}"
+                                                                          shortDesc="#{bindings.ContractSubject.hints.tooltip}"
+                                                                          id="it15"
+                                                                          binding="#{backingBeanScope.MAPropertyPreviewBean.it15}">
+                                                                <f:validator binding="#{bindings.ContractSubject.validator}"/>
+                                                            </af:inputText>
+                                                            <af:inputText value="#{bindings.ContractId.inputValue}"
+                                                                          label="#{bindings.ContractId.hints.label}"
+                                                                          required="#{bindings.ContractId.hints.mandatory}"
+                                                                          readOnly="true"
+                                                                          columns="#{bindings.ContractId.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.ContractId.hints.precision}"
+                                                                          shortDesc="#{bindings.ContractId.hints.tooltip}"
+                                                                          id="it16"
+                                                                          binding="#{backingBeanScope.MAPropertyPreviewBean.it16}">
+                                                                <f:validator binding="#{bindings.ContractId.validator}"/>
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.ContractId.format}"/>
+                                                            </af:inputText>
+                                                            <af:inputDate value="#{bindings.ContractStartDate.inputValue}"
+                                                                          readOnly="true"
+                                                                          label="#{bindings.ContractStartDate.hints.label}"
+                                                                          required="#{bindings.ContractStartDate.hints.mandatory}"
+                                                                          columns="#{bindings.ContractStartDate.hints.displayWidth}"
+                                                                          shortDesc="#{bindings.ContractStartDate.hints.tooltip}"
+                                                                          id="id6"
+                                                                          binding="#{backingBeanScope.MAPropertyPreviewBean.id6}">
+                                                                <f:validator binding="#{bindings.ContractStartDate.validator}"/>
+                                                                <af:convertDateTime pattern="#{bindings.ContractStartDate.format}"/>
+                                                            </af:inputDate>
+                                                            <af:inputDate value="#{bindings.ContractEndDate.inputValue}"
+                                                                          readOnly="true"
+                                                                          label="#{bindings.ContractEndDate.hints.label}"
+                                                                          required="#{bindings.ContractEndDate.hints.mandatory}"
+                                                                          columns="#{bindings.ContractEndDate.hints.displayWidth}"
+                                                                          shortDesc="#{bindings.ContractEndDate.hints.tooltip}"
+                                                                          id="id7"
+                                                                          binding="#{backingBeanScope.MAPropertyPreviewBean.id7}">
+                                                                <f:validator binding="#{bindings.ContractEndDate.validator}"/>
+                                                                <af:convertDateTime pattern="#{bindings.ContractEndDate.format}"/>
+                                                            </af:inputDate>
+                                                        </af:panelFormLayout>
+                                                    </af:gridCell>
+                                                    <af:gridCell marginStart="5px" width="50%" marginEnd="5px"
+                                                                 id="gc8"
+                                                                 binding="#{backingBeanScope.MAPropertyPreviewBean.gc8}"/>
+                                                </af:gridRow>
+                                                <af:gridRow marginTop="5px" height="auto" id="gr5"
+                                                            binding="#{backingBeanScope.MAPropertyPreviewBean.gr5}">
+                                                    <af:gridCell marginStart="5px" width="25%" id="gc9"
+                                                                 binding="#{backingBeanScope.MAPropertyPreviewBean.gc9}">
+                                                        <af:panelFormLayout id="pfl5"
+                                                                            binding="#{backingBeanScope.MAPropertyPreviewBean.pfl5}">
+                                                            <af:group id="g3"
+                                                                      binding="#{backingBeanScope.MAPropertyPreviewBean.g3}">
+                                                                <af:inputText value="#{bindings.DepositAmount.inputValue}"
+                                                                              label="#{bindings.DepositAmount.hints.label}"
+                                                                              required="#{bindings.DepositAmount.hints.mandatory}"
+                                                                              columns="#{bindings.DepositAmount.hints.displayWidth}"
+                                                                              maximumLength="#{bindings.DepositAmount.hints.precision}"
+                                                                              shortDesc="#{bindings.DepositAmount.hints.tooltip}"
+                                                                              id="it17"
+                                                                              binding="#{backingBeanScope.MAPropertyPreviewBean.it17}"
+                                                                              readOnly="true">
+                                                                    <f:validator binding="#{bindings.DepositAmount.validator}"/>
+                                                                    <af:convertNumber groupingUsed="false"
+                                                                                      pattern="#{bindings.DepositAmount.format}"/>
+                                                                </af:inputText>
+                                                                <af:inputText value="#{bindings.BuildingArea.inputValue}"
+                                                                              label="#{bindings.BuildingArea.hints.label}"
+                                                                              required="#{bindings.BuildingArea.hints.mandatory}"
+                                                                              columns="#{bindings.BuildingArea.hints.displayWidth}"
+                                                                              maximumLength="#{bindings.BuildingArea.hints.precision}"
+                                                                              shortDesc="#{bindings.BuildingArea.hints.tooltip}"
+                                                                              id="it18"
+                                                                              binding="#{backingBeanScope.MAPropertyPreviewBean.it18}"
+                                                                              readOnly="true">
+                                                                    <f:validator binding="#{bindings.BuildingArea.validator}"/>
+                                                                </af:inputText>
+                                                                <af:inputText value="#{bindings.PropertyArea.inputValue}"
+                                                                              label="#{bindings.PropertyArea.hints.label}"
+                                                                              required="#{bindings.PropertyArea.hints.mandatory}"
+                                                                              columns="#{bindings.PropertyArea.hints.displayWidth}"
+                                                                              maximumLength="#{bindings.PropertyArea.hints.precision}"
+                                                                              shortDesc="#{bindings.PropertyArea.hints.tooltip}"
+                                                                              id="it19"
+                                                                              binding="#{backingBeanScope.MAPropertyPreviewBean.it19}"
+                                                                              readOnly="true">
+                                                                    <f:validator binding="#{bindings.PropertyArea.validator}"/>
+                                                                </af:inputText>
+                                                                <af:inputText value="#{bindings.BasementArea.inputValue}"
+                                                                              label="#{bindings.BasementArea.hints.label}"
+                                                                              required="#{bindings.BasementArea.hints.mandatory}"
+                                                                              columns="#{bindings.BasementArea.hints.displayWidth}"
+                                                                              maximumLength="#{bindings.BasementArea.hints.precision}"
+                                                                              shortDesc="#{bindings.BasementArea.hints.tooltip}"
+                                                                              id="it20"
+                                                                              binding="#{backingBeanScope.MAPropertyPreviewBean.it20}"
+                                                                              readOnly="true">
+                                                                    <f:validator binding="#{bindings.BasementArea.validator}"/>
+                                                                </af:inputText>
+                                                                <af:inputText value="#{bindings.GarageArea.inputValue}"
+                                                                              label="#{bindings.GarageArea.hints.label}"
+                                                                              required="#{bindings.GarageArea.hints.mandatory}"
+                                                                              columns="#{bindings.GarageArea.hints.displayWidth}"
+                                                                              maximumLength="#{bindings.GarageArea.hints.precision}"
+                                                                              shortDesc="#{bindings.GarageArea.hints.tooltip}"
+                                                                              id="it21"
+                                                                              binding="#{backingBeanScope.MAPropertyPreviewBean.it21}"
+                                                                              readOnly="true">
+                                                                    <f:validator binding="#{bindings.GarageArea.validator}"/>
+                                                                </af:inputText>
+                                                                <af:inputText value="#{bindings.GardenArea.inputValue}"
+                                                                              label="#{bindings.GardenArea.hints.label}"
+                                                                              required="#{bindings.GardenArea.hints.mandatory}"
+                                                                              columns="#{bindings.GardenArea.hints.displayWidth}"
+                                                                              maximumLength="#{bindings.GardenArea.hints.precision}"
+                                                                              shortDesc="#{bindings.GardenArea.hints.tooltip}"
+                                                                              id="it22"
+                                                                              binding="#{backingBeanScope.MAPropertyPreviewBean.it22}"
+                                                                              readOnly="true">
+                                                                    <f:validator binding="#{bindings.GardenArea.validator}"/>
+                                                                </af:inputText>
+                                                                <af:inputText value="#{bindings.RoofArea.inputValue}"
+                                                                              label="#{bindings.RoofArea.hints.label}"
+                                                                              required="#{bindings.RoofArea.hints.mandatory}"
+                                                                              columns="#{bindings.RoofArea.hints.displayWidth}"
+                                                                              maximumLength="#{bindings.RoofArea.hints.precision}"
+                                                                              shortDesc="#{bindings.RoofArea.hints.tooltip}"
+                                                                              id="it23"
+                                                                              binding="#{backingBeanScope.MAPropertyPreviewBean.it23}"
+                                                                              readOnly="true">
+                                                                    <f:validator binding="#{bindings.RoofArea.validator}"/>
+                                                                </af:inputText>
+                                                                <af:inputText value="#{bindings.NetArea.inputValue}"
+                                                                              label="#{bindings.NetArea.hints.label}"
+                                                                              required="#{bindings.NetArea.hints.mandatory}"
+                                                                              columns="#{bindings.NetArea.hints.displayWidth}"
+                                                                              maximumLength="#{bindings.NetArea.hints.precision}"
+                                                                              shortDesc="#{bindings.NetArea.hints.tooltip}"
+                                                                              id="it24"
+                                                                              binding="#{backingBeanScope.MAPropertyPreviewBean.it24}"
+                                                                              readOnly="true">
+                                                                    <f:validator binding="#{bindings.NetArea.validator}"/>
+                                                                </af:inputText>
+                                                            </af:group>
+                                                        </af:panelFormLayout>
+                                                    </af:gridCell>
+                                                    <af:gridCell marginStart="5px" width="50%" marginEnd="5px"
+                                                                 id="gc10"
+                                                                 binding="#{backingBeanScope.MAPropertyPreviewBean.gc10}">
+                                                        <af:group id="g31"
+                                                                  binding="#{backingBeanScope.MAPropertyPreviewBean.g31}">
+                                                            <af:inputText value="#{bindings.Water.inputValue}"
+                                                                          label="#{bindings.Water.hints.label}"
+                                                                          required="#{bindings.Water.hints.mandatory}"
+                                                                          columns="#{bindings.Water.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.Water.hints.precision}"
+                                                                          shortDesc="#{bindings.Water.hints.tooltip}"
+                                                                          id="it25"
+                                                                          binding="#{backingBeanScope.MAPropertyPreviewBean.it25}"
+                                                                          readOnly="true">
+                                                                <f:validator binding="#{bindings.Water.validator}"/>
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.Water.format}"/>
+                                                            </af:inputText>
+                                                            <af:inputText value="#{bindings.BuildingPricePerMeter.inputValue}"
+                                                                          label="#{bindings.BuildingPricePerMeter.hints.label}"
+                                                                          required="#{bindings.BuildingPricePerMeter.hints.mandatory}"
+                                                                          columns="#{bindings.BuildingPricePerMeter.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.BuildingPricePerMeter.hints.precision}"
+                                                                          shortDesc="#{bindings.BuildingPricePerMeter.hints.tooltip}"
+                                                                          id="it26"
+                                                                          binding="#{backingBeanScope.MAPropertyPreviewBean.it26}"
+                                                                          readOnly="true">
+                                                                <f:validator binding="#{bindings.BuildingPricePerMeter.validator}"/>
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.BuildingPricePerMeter.format}"/>
+                                                            </af:inputText>
+                                                            <af:inputText value="#{bindings.PropertyPricePerMeter.inputValue}"
+                                                                          label="#{bindings.PropertyPricePerMeter.hints.label}"
+                                                                          required="#{bindings.PropertyPricePerMeter.hints.mandatory}"
+                                                                          columns="#{bindings.PropertyPricePerMeter.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.PropertyPricePerMeter.hints.precision}"
+                                                                          shortDesc="#{bindings.PropertyPricePerMeter.hints.tooltip}"
+                                                                          id="it27"
+                                                                          binding="#{backingBeanScope.MAPropertyPreviewBean.it27}"
+                                                                          readOnly="true">
+                                                                <f:validator binding="#{bindings.PropertyPricePerMeter.validator}"/>
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.PropertyPricePerMeter.format}"/>
+                                                            </af:inputText>
+                                                            <af:inputText value="#{bindings.BasementPricePerMeter.inputValue}"
+                                                                          label="#{bindings.BasementPricePerMeter.hints.label}"
+                                                                          required="#{bindings.BasementPricePerMeter.hints.mandatory}"
+                                                                          columns="#{bindings.BasementPricePerMeter.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.BasementPricePerMeter.hints.precision}"
+                                                                          shortDesc="#{bindings.BasementPricePerMeter.hints.tooltip}"
+                                                                          id="it28"
+                                                                          binding="#{backingBeanScope.MAPropertyPreviewBean.it28}"
+                                                                          readOnly="true">
+                                                                <f:validator binding="#{bindings.BasementPricePerMeter.validator}"/>
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.BasementPricePerMeter.format}"/>
+                                                            </af:inputText>
+                                                            <af:inputText value="#{bindings.GaragePricePerMeter.inputValue}"
+                                                                          label="#{bindings.GaragePricePerMeter.hints.label}"
+                                                                          required="#{bindings.GaragePricePerMeter.hints.mandatory}"
+                                                                          columns="#{bindings.GaragePricePerMeter.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.GaragePricePerMeter.hints.precision}"
+                                                                          shortDesc="#{bindings.GaragePricePerMeter.hints.tooltip}"
+                                                                          id="it29"
+                                                                          binding="#{backingBeanScope.MAPropertyPreviewBean.it29}"
+                                                                          readOnly="true">
+                                                                <f:validator binding="#{bindings.GaragePricePerMeter.validator}"/>
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.GaragePricePerMeter.format}"/>
+                                                            </af:inputText>
+                                                            <af:inputText value="#{bindings.GardenPricePerMeter.inputValue}"
+                                                                          label="#{bindings.GardenPricePerMeter.hints.label}"
+                                                                          required="#{bindings.GardenPricePerMeter.hints.mandatory}"
+                                                                          columns="#{bindings.GardenPricePerMeter.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.GardenPricePerMeter.hints.precision}"
+                                                                          shortDesc="#{bindings.GardenPricePerMeter.hints.tooltip}"
+                                                                          id="it30"
+                                                                          binding="#{backingBeanScope.MAPropertyPreviewBean.it30}"
+                                                                          readOnly="true">
+                                                                <f:validator binding="#{bindings.GardenPricePerMeter.validator}"/>
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.GardenPricePerMeter.format}"/>
+                                                            </af:inputText>
+                                                            <af:inputText value="#{bindings.RoofPricePerMeter.inputValue}"
+                                                                          label="#{bindings.RoofPricePerMeter.hints.label}"
+                                                                          required="#{bindings.RoofPricePerMeter.hints.mandatory}"
+                                                                          columns="#{bindings.RoofPricePerMeter.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.RoofPricePerMeter.hints.precision}"
+                                                                          shortDesc="#{bindings.RoofPricePerMeter.hints.tooltip}"
+                                                                          id="it31"
+                                                                          binding="#{backingBeanScope.MAPropertyPreviewBean.it31}"
+                                                                          readOnly="true">
+                                                                <f:validator binding="#{bindings.RoofPricePerMeter.validator}"/>
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.RoofPricePerMeter.format}"/>
+                                                            </af:inputText>
+                                                            <af:inputText value="#{bindings.NetPropertyPrice.inputValue}"
+                                                                          label="#{bindings.NetPropertyPrice.hints.label}"
+                                                                          required="#{bindings.NetPropertyPrice.hints.mandatory}"
+                                                                          columns="#{bindings.NetPropertyPrice.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.NetPropertyPrice.hints.precision}"
+                                                                          shortDesc="#{bindings.NetPropertyPrice.hints.tooltip}"
+                                                                          id="it32"
+                                                                          binding="#{backingBeanScope.MAPropertyPreviewBean.it32}"
+                                                                          readOnly="true">
+                                                                <f:validator binding="#{bindings.NetPropertyPrice.validator}"/>
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.NetPropertyPrice.format}"/>
+                                                            </af:inputText>
+                                                        </af:group>
+                                                    </af:gridCell>
+                                                </af:gridRow>
+                                                <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr6"
+                                                            binding="#{backingBeanScope.MAPropertyPreviewBean.gr6}">
+                                                    <af:gridCell marginStart="5px" width="25%" id="gc11"
+                                                                 binding="#{backingBeanScope.MAPropertyPreviewBean.gc11}">
+                                                        <af:table value="#{bindings.MAPropertyProjPropServicesVO.collectionModel}"
+                                                                  var="row"
+                                                                  rows="#{bindings.MAPropertyProjPropServicesVO.rangeSize}"
+                                                                  emptyText="#{bindings.MAPropertyProjPropServicesVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                                  rowBandingInterval="0"
+                                                                  fetchSize="#{bindings.MAPropertyProjPropServicesVO.rangeSize}"
+                                                                  id="t2"
+                                                                  binding="#{backingBeanScope.MAPropertyPreviewBean.t2}"
+                                                                  width="493">
+                                                            <af:column headerText="#{bundle.Fearture}" id="c1">
+                                                                <af:selectOneChoice value="#{row.bindings.ServiceId.inputValue}"
+                                                                                    label="#{row.bindings.ServiceId.label}"
+                                                                                    required="#{bindings.MAPropertyProjPropServicesVO.hints.ServiceId.mandatory}"
+                                                                                    shortDesc="#{bindings.MAPropertyProjPropServicesVO.hints.ServiceId.tooltip}"
+                                                                                    id="soc10" readOnly="true">
+                                                                    <f:selectItems value="#{row.bindings.ServiceId.items}"
+                                                                                   id="si10"/>
+                                                                    <f:validator binding="#{row.bindings.ServiceId.validator}"/>
+                                                                </af:selectOneChoice>
+                                                            </af:column>
+                                                            <af:column headerText="#{bundle.availability}" id="c2">
+                                                                <af:outputText value="#{row.IntAttribute1}"
+                                                                               shortDesc="#{bindings.MAPropertyProjPropServicesVO.hints.IntAttribute1.tooltip}"
+                                                                               id="ot2"/>
+                                                            </af:column>
+                                                            <af:column headerText="#{bundle.Notes}" id="c3">
+                                                                <af:outputText value="#{row.IntAttribute2}"
+                                                                               shortDesc="#{bindings.MAPropertyProjPropServicesVO.hints.IntAttribute2.tooltip}"
+                                                                               id="ot3"/>
+                                                            </af:column>
+                                                            <af:column headerText="#{bundle.Cost}" id="c4">
+                                                                <af:outputText value="#{row.ServiceCost}"
+                                                                               shortDesc="#{bindings.MAPropertyProjPropServicesVO.hints.ServiceCost.tooltip}"
+                                                                               id="ot4">
+                                                                    <af:convertNumber groupingUsed="false"
+                                                                                      pattern="#{bindings.MAPropertyProjPropServicesVO.hints.ServiceCost.format}"/>
+                                                                </af:outputText>
+                                                            </af:column>
+                                                        </af:table>
+                                                    </af:gridCell>
+                                                    <af:gridCell marginStart="5px" width="50%" marginEnd="5px"
+                                                                 id="gc12"
+                                                                 binding="#{backingBeanScope.MAPropertyPreviewBean.gc12}">
+                                                        <af:table value="#{bindings.MAPropertiesPropertyInstallmentVO.collectionModel}"
+                                                                  var="row"
+                                                                  rows="#{bindings.MAPropertiesPropertyInstallmentVO.rangeSize}"
+                                                                  emptyText="#{bindings.MAPropertiesPropertyInstallmentVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                                  rowBandingInterval="0"
+                                                                  fetchSize="#{bindings.MAPropertiesPropertyInstallmentVO.rangeSize}"
+                                                                  id="t3"
+                                                                  binding="#{backingBeanScope.MAPropertyPreviewBean.t3}">
+                                                            <af:column headerText="#{bindings.MAPropertiesPropertyInstallmentVO.hints.InstallmentPaymentTermId.label}"
+                                                                       id="c5">
+                                                                <af:selectOneChoice value="#{row.bindings.InstallmentPaymentTermId.inputValue}"
+                                                                                    label="#{row.bindings.InstallmentPaymentTermId.label}"
+                                                                                    required="#{bindings.MAPropertiesPropertyInstallmentVO.hints.InstallmentPaymentTermId.mandatory}"
+                                                                                    shortDesc="#{bindings.MAPropertiesPropertyInstallmentVO.hints.InstallmentPaymentTermId.tooltip}"
+                                                                                    readOnly="true" id="soc11">
+                                                                    <f:selectItems value="#{row.bindings.InstallmentPaymentTermId.items}"
+                                                                                   id="si11"/>
+                                                                    <f:validator binding="#{row.bindings.InstallmentPaymentTermId.validator}"/>
+                                                                </af:selectOneChoice>
+                                                            </af:column>
+                                                            <af:column headerText="#{bindings.MAPropertiesPropertyInstallmentVO.hints.InstallmentPrice.label}"
+                                                                       id="c6">
+                                                                <af:outputText value="#{row.InstallmentPrice}"
+                                                                               shortDesc="#{bindings.MAPropertiesPropertyInstallmentVO.hints.InstallmentPrice.tooltip}"
+                                                                               id="ot1">
+                                                                    <af:convertNumber groupingUsed="false"
+                                                                                      pattern="#{bindings.MAPropertiesPropertyInstallmentVO.hints.InstallmentPrice.format}"/>
+                                                                </af:outputText>
+                                                            </af:column>
+                                                        </af:table>
+                                                    </af:gridCell>
+                                                </af:gridRow>
+                                            </af:panelGridLayout>
+                                        </f:facet>
+                                        <f:facet name="start"/>
+                                        <f:facet name="end"/>
+                                        <f:facet name="top"/>
+                                    </af:panelStretchLayout>
+                                    <af:panelGroupLayout id="pgl2"
+                                                         binding="#{backingBeanScope.MAPropertyPreviewBean.pgl2}"
+                                                         layout="horizontal">
+                                        <af:toolbar id="t1" binding="#{backingBeanScope.MAPropertyPreviewBean.t1}">
+                                            <af:link text="#{bundle.Back_to_Properties}" id="l1"
+                                                     binding="#{backingBeanScope.MAPropertyPreviewBean.l1}"
+                                                     action="BackSrch"/>
+                                        </af:toolbar>
+                                    </af:panelGroupLayout>
+                                </af:panelGroupLayout>
+                            </af:showDetailItem>
+                        </af:panelTabbed>
+                    </f:facet>
+                    <f:facet name="header">
+                        <af:link text="#{bundle.Home}" id="l2" binding="#{backingBeanScope.MAPropertyPreviewBean.l2}"
+                                 action="home"/>
+                    </f:facet>
+                    <f:facet name="end"/>
+                    <f:facet name="start"/>
+                    <f:facet name="branding"/>
+                    <f:facet name="copyright"/>
+                    <f:facet name="status">
+                        <af:toolbar id="t5" binding="#{backingBeanScope.MAPropertyPreviewBean.t5}">
+                            <af:button id="b2" binding="#{backingBeanScope.MAPropertyPreviewBean.b2}"
+                                       actionListener="#{bindings.en_lang.execute}"
+                                       disabled="#{!bindings.en_lang.enabled}" icon="/images/icons/english.png"
+                                       shortDesc="#{bundle.English}" partialSubmit="false"/>
+                            <af:button id="b1" binding="#{backingBeanScope.MAPropertyPreviewBean.b1}"
+                                       actionListener="#{bindings.ar_lang.execute}"
+                                       disabled="#{!bindings.ar_lang.enabled}" partialSubmit="false"
+                                       shortDesc="#{bundle.Arabic}" icon="/images/icons/arabic.png"/>
+                        </af:toolbar>
+                    </f:facet>
+                    <f:attribute name="endColumnSize" value="0"/>
+                    <f:attribute name="startColumnSize" value="0"/>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+    <!--oracle-jdev-comment:auto-binding-backing-bean-name:MAPropertyPreviewBean-->
+</jsp:root>

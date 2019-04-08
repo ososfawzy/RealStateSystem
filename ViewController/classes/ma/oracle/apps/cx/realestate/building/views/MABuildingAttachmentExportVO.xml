@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MABuildingAttachmentExportVO"
+  Version="12.1.3.10.8"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  ComponentClass="ma.oracle.apps.cx.realestate.building.views.MABuildingAttachmentExportVOImpl"
+  PageIterMode="Full"
+  SelectListFlags="1"
+  FromListFlags="1"
+  WhereFlags="1"
+  SelectAllAttributes="false"
+  RowClass="ma.oracle.apps.cx.realestate.building.views.MABuildingAttachmentExportVORowImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Coll"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="ma.oracle.apps.cx.realestate.building.views.MABuildingAttachmentExportVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <EntityUsage
+    Name="MAAttachedDocumentsEO"
+    Entity="ma.oracle.apps.cx.realestate.setup.entities.MAAttachedDocumentsEO"/>
+  <ViewAttribute
+    Name="AttachedDocumentId"
+    PrecisionRule="true"
+    EntityAttrName="AttachedDocumentId"
+    EntityUsage="MAAttachedDocumentsEO"
+    AliasName="ATTACHED_DOCUMENT_ID"/>
+  <ViewAttribute
+    Name="EntityName"
+    PrecisionRule="true"
+    EntityAttrName="EntityName"
+    EntityUsage="MAAttachedDocumentsEO"
+    AliasName="ENTITY_NAME"/>
+  <ViewAttribute
+    Name="FileName"
+    PrecisionRule="true"
+    EntityAttrName="FileName"
+    EntityUsage="MAAttachedDocumentsEO"
+    AliasName="FILE_NAME"/>
+  <ViewAttribute
+    Name="BuildingId"
+    PrecisionRule="true"
+    EntityAttrName="Pk1Value"
+    EntityUsage="MAAttachedDocumentsEO"
+    AliasName="PK1_VALUE"/>
+  <ViewAttribute
+    Name="UploadDate"
+    PrecisionRule="true"
+    EntityAttrName="UploadDate"
+    EntityUsage="MAAttachedDocumentsEO"
+    AliasName="UPLOAD_DATE"/>
+  <ViewAttribute
+    Name="FileData"
+    IsQueriable="false"
+    PrecisionRule="true"
+    EntityAttrName="FileData"
+    EntityUsage="MAAttachedDocumentsEO"
+    AliasName="FILE_DATA"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ma.oracle.apps.cx.realestate.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.65.57" id="MAOpportunityPropertiesPGPageDef"
+                Package="ma.oracle.apps.cx.realestate.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="MARSPropertySearchVO" RangeSize="25"
+              DataControl="MARealEstateLeaseAMDataControl"
+              id="MARSPropertySearchVOIterator"/>
+    <searchRegion Criteria="MARSPropertySearchVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="MARSPropertySearchVOIterator"
+                  id="MARSPropertySearchVOCriteriaQuery"/>
+    <iterator Binds="MARSOppLeasePropertyVO" RangeSize="25"
+              DataControl="MARealEstateLeaseAMDataControl"
+              id="MARSOppLeasePropertyVOIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="MARSPropertySearchVOIterator" id="MARSPropertySearchVO">
+      <nodeDefinition DefName="ma.oracle.apps.cx.realestate.lease.views.MARSPropertySearchVO"
+                      Name="MARSPropertySearchVO0">
+        <AttrNames>
+          <Item Value="PropertySegment"/>
+          <Item Value="PropertyName"/>
+          <Item Value="PropertyStatus"/>
+          <Item Value="StartDate"/>
+          <Item Value="EndDate"/>
+          <Item Value="FloorNumber"/>
+          <Item Value="BlockBuldingName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Commit" DataControl="MARealEstateLeaseAMDataControl"
+            RequiresUpdateModel="true" Action="commitTransaction"/>
+    <tree IterBinding="MARSOppLeasePropertyVOIterator"
+          id="MARSOppLeasePropertyVO">
+      <nodeDefinition DefName="ma.oracle.apps.cx.realestate.lease.views.MARSOppLeasePropertyVO"
+                      Name="MARSOppLeasePropertyVO0">
+        <AttrNames>
+          <Item Value="PropertySegment"/>
+          <Item Value="PropertyName"/>
+          <Item Value="StartDate"/>
+          <Item Value="EndDate"/>
+          <Item Value="BlockBuldingName"/>
+          <Item Value="FloorNumber"/>
+          <Item Value="UnitNumber"/>
+          <Item Value="UnitSqMt"/>
+          <Item Value="ParentTypeName"/>
+          <Item Value="ChildTypeName"/>
+          <Item Value="LeaseId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="initOppLeasePropertyQuery"
+                  InstanceName="MARealEstateLeaseAMDataControl.dataProvider"
+                  DataControl="MARealEstateLeaseAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="initOppLeasePropertyQuery"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="opportunityId" NDValue=""
+                 NDType="oracle.jbo.domain.Number"/>
+    </methodAction>
+    <methodAction id="createOppLeasePropertyRow"
+                  InstanceName="MARealEstateLeaseAMDataControl.dataProvider"
+                  DataControl="MARealEstateLeaseAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="createOppLeasePropertyRow"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="propertyId" NDType="oracle.jbo.domain.Number"/>
+      <NamedData NDName="opportunityId" NDType="oracle.jbo.domain.Number"/>
+    </methodAction>
+    <methodAction id="createLeaseFromOpportunity"
+                  InstanceName="MARealEstateLeaseAMDataControl.dataProvider"
+                  DataControl="MARealEstateLeaseAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="createLeaseFromOpportunity"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MARealEstateLeaseAMDataControl.methodResults.createLeaseFromOpportunity_MARealEstateLeaseAMDataControl_dataProvider_createLeaseFromOpportunity_result">
+      <NamedData NDName="opportunityId" NDType="oracle.jbo.domain.Number"/>
+      <NamedData NDName="leaseSubject" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="ar_lang" RequiresUpdateModel="true" Action="invokeMethod" MethodName="ar_lang"
+                  IsViewObjectMethod="false" DataControl="MARealEstatePropertyAMDataControl"
+                  InstanceName="data.MARealEstatePropertyAMDataControl.dataProvider"
+                  ReturnName="data.MARealEstatePropertyAMDataControl.methodResults.ar_lang_MARealEstatePropertyAMDataControl_dataProvider_ar_lang_result"/>
+    <methodAction id="en_lang" RequiresUpdateModel="true" Action="invokeMethod" MethodName="en_lang"
+                  IsViewObjectMethod="false" DataControl="MARealEstatePropertyAMDataControl"
+                  InstanceName="data.MARealEstatePropertyAMDataControl.dataProvider"
+                  ReturnName="data.MARealEstatePropertyAMDataControl.methodResults.en_lang_MARealEstatePropertyAMDataControl_dataProvider_en_lang_result"/>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,255 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <c:set var="viewcontrollerBundle" value="#{adfBundle['ma.oracle.apps.cx.realestate.ViewControllerBundle']}"/>
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view beforePhase="#{backingBeanScope.MAPaymentsSearchBean.beforePhase}">
+        <af:document title="#{bundle.Payment_SearchPG}" id="d1" binding="#{backingBeanScope.MAPaymentsSearchBean.d1}">
+            <af:messages id="m1" binding="#{backingBeanScope.MAPaymentsSearchBean.m1}"/>
+            <af:form id="f1" binding="#{backingBeanScope.MAPaymentsSearchBean.f1}">
+                <af:pageTemplate viewId="#{pageFlowScope.Facet}" id="pt1">
+                    <f:facet name="center">
+                        <af:panelGroupLayout id="pgl1" binding="#{backingBeanScope.MAPaymentsSearchBean.pgl1}"
+                                             layout="scroll">
+                            <af:panelBox text="#{viewcontrollerBundle.Installment_Payment_Terms}" id="pb1"
+                                         binding="#{backingBeanScope.MAPaymentsSearchBean.pb1}">
+                                <f:facet name="toolbar"/>
+                                <af:panelGroupLayout layout="vertical" id="pgl2"
+                                                     binding="#{backingBeanScope.MAPaymentsSearchBean.pgl2}">
+                                    <af:panelHeader text="  " id="ph1"
+                                                    binding="#{backingBeanScope.MAPaymentsSearchBean.ph1}">
+                                        <?audit suppress oracle.adf.faces.compreqtext?>
+                                        <af:query id="qryId1" headerText="#{bundle.Search}" disclosed="true"
+                                                  value="#{bindings.MAInstallmentPaymentTermsVVOCriteriaQuery.queryDescriptor}"
+                                                  model="#{bindings.MAInstallmentPaymentTermsVVOCriteriaQuery.queryModel}"
+                                                  queryListener="#{bindings.MAInstallmentPaymentTermsVVOCriteriaQuery.processQuery}"
+                                                  queryOperationListener="#{bindings.MAInstallmentPaymentTermsVVOCriteriaQuery.processQueryOperation}"
+                                                  resultComponentId="::pc1"
+                                                  binding="#{backingBeanScope.MAPaymentsSearchBean.qryId1}"
+                                                  saveQueryMode="hidden"/>
+                                    </af:panelHeader>
+                                </af:panelGroupLayout>
+                                <af:panelCollection id="pc1" binding="#{backingBeanScope.MAPaymentsSearchBean.pc1}"
+                                                    inlineStyle="width:900px;">
+                                    <f:facet name="menus"/>
+                                    <f:facet name="toolbar">
+                                        <af:toolbar id="t1" binding="#{backingBeanScope.MAPaymentsSearchBean.t1}">
+                                            <af:button text="#{bundle.New_Installment}" id="b1"
+                                                       binding="#{backingBeanScope.MAPaymentsSearchBean.b1}"
+                                                       action="#{backingBeanScope.MAPaymentsSearchBean.createInstallmentPayment}"
+                                                       icon="/images/icons/new_ena.png"/>
+                                        </af:toolbar>
+                                    </f:facet>
+                                    <f:facet name="statusbar"/>
+                                    <af:table value="#{bindings.MAInstallmentPaymentTermsVVO.collectionModel}" var="row"
+                                              rows="#{bindings.MAInstallmentPaymentTermsVVO.rangeSize}"
+                                              emptyText="#{bindings.MAInstallmentPaymentTermsVVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                              rowBandingInterval="0"
+                                              selectedRowKeys="#{bindings.MAInstallmentPaymentTermsVVO.collectionModel.selectedRow}"
+                                              selectionListener="#{bindings.MAInstallmentPaymentTermsVVO.collectionModel.makeCurrent}"
+                                              rowSelection="single"
+                                              fetchSize="#{bindings.MAInstallmentPaymentTermsVVO.rangeSize}" id="resId1"
+                                              binding="#{backingBeanScope.MAPaymentsSearchBean.resId1}" width="100%"
+                                              partialTriggers="b3 b4">
+                                        <?audit suppress oracle.adf.faces.compreqsummary?><?audit suppress oracle.adf.faces.tableneedsrowheader?>
+                                        <af:column sortProperty="#{bindings.MAInstallmentPaymentTermsVVO.hints.RuleName.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.MAInstallmentPaymentTermsVVO.hints.RuleName.label}"
+                                                   id="resId1c1" width="140">
+                                            <af:outputText value="#{row.RuleName}"
+                                                           shortDesc="#{bindings.MAInstallmentPaymentTermsVVO.hints.RuleName.tooltip}"
+                                                           id="ot1"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.MAInstallmentPaymentTermsVVO.hints.Years.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.MAInstallmentPaymentTermsVVO.hints.Years.label}"
+                                                   id="resId1c2" width="140">
+                                            <af:outputText value="#{row.Years}"
+                                                           shortDesc="#{bindings.MAInstallmentPaymentTermsVVO.hints.Years.tooltip}"
+                                                           id="ot2">
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.MAInstallmentPaymentTermsVVO.hints.Years.format}"/>
+                                            </af:outputText>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.MAInstallmentPaymentTermsVVO.hints.ValueOrPercentage.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.MAInstallmentPaymentTermsVVO.hints.ValueOrPercentage.label}"
+                                                   id="resId1c3" width="140">
+                                            <af:outputText value="#{row.ValueOrPercentage}"
+                                                           shortDesc="#{bindings.MAInstallmentPaymentTermsVVO.hints.ValueOrPercentage.tooltip}"
+                                                           id="ot3"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.MAInstallmentPaymentTermsVVO.hints.Status.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.MAInstallmentPaymentTermsVVO.hints.Status.label}"
+                                                   id="resId1c4" width="140">
+                                            <af:outputText value="#{row.Status}"
+                                                           shortDesc="#{bindings.MAInstallmentPaymentTermsVVO.hints.Status.tooltip}"
+                                                           id="ot4"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.MAInstallmentPaymentTermsVVO.hints.Notes.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.MAInstallmentPaymentTermsVVO.hints.Notes.label}"
+                                                   id="resId1c5" width="140">
+                                            <af:outputText value="#{row.Notes}"
+                                                           shortDesc="#{bindings.MAInstallmentPaymentTermsVVO.hints.Notes.tooltip}"
+                                                           id="ot5"/>
+                                        </af:column>
+                                        <af:column id="c1" headerText="#{bundle.Control}">
+                                            <af:panelGroupLayout id="pgl4" layout="horizontal">
+                                                <af:toolbar id="t3">
+                                                    <af:button id="b3" icon="/images/icons/edit_ena.png"
+                                                               action="#{backingBeanScope.MAPaymentsSearchBean.editInstallmentAction}"/>
+                                                    <af:button id="b4" icon="/images/icons/delete_ena.png"
+                                                               action="#{backingBeanScope.MAPaymentsSearchBean.deleteInstallment}"/>
+                                                </af:toolbar>
+                                            </af:panelGroupLayout>
+                                        </af:column>
+                                    </af:table>
+                                </af:panelCollection>
+                            </af:panelBox>
+                            <af:panelBox text="#{bundle.Rent_Payments_Terms}" id="pb2"
+                                         binding="#{backingBeanScope.MAPaymentsSearchBean.pb2}">
+                                <f:facet name="toolbar"/>
+                                <af:panelGroupLayout layout="vertical" id="pgl3"
+                                                     binding="#{backingBeanScope.MAPaymentsSearchBean.pgl3}">
+                                    <af:panelHeader text=" " id="ph2"
+                                                    binding="#{backingBeanScope.MAPaymentsSearchBean.ph2}">
+                                        <?audit suppress oracle.adf.faces.compreqtext?>
+                                        <af:query id="qryId2" headerText="#{bundle.Search}" disclosed="true"
+                                                  value="#{bindings.MARentPaymentTermsVVOCriteriaQuery.queryDescriptor}"
+                                                  model="#{bindings.MARentPaymentTermsVVOCriteriaQuery.queryModel}"
+                                                  queryListener="#{bindings.MARentPaymentTermsVVOCriteriaQuery.processQuery}"
+                                                  queryOperationListener="#{bindings.MARentPaymentTermsVVOCriteriaQuery.processQueryOperation}"
+                                                  resultComponentId="::pc2"
+                                                  binding="#{backingBeanScope.MAPaymentsSearchBean.qryId2}"
+                                                  saveQueryMode="hidden"/>
+                                    </af:panelHeader>
+                                </af:panelGroupLayout>
+                                <af:panelCollection id="pc2" binding="#{backingBeanScope.MAPaymentsSearchBean.pc2}"
+                                                    inlineStyle="width:900px;">
+                                    <f:facet name="menus"/>
+                                    <f:facet name="toolbar">
+                                        <af:toolbar id="t2" binding="#{backingBeanScope.MAPaymentsSearchBean.t2}">
+                                            <af:button text="#{bundle.New_Rent}" id="b2"
+                                                       binding="#{backingBeanScope.MAPaymentsSearchBean.b2}"
+                                                       icon="/images/icons/new_ena.png"
+                                                       action="#{backingBeanScope.MAPaymentsSearchBean.createRentPayment}"/>
+                                        </af:toolbar>
+                                    </f:facet>
+                                    <f:facet name="statusbar"/>
+                                    <af:table value="#{bindings.MARentPaymentTermsVVO.collectionModel}" var="row"
+                                              rows="#{bindings.MARentPaymentTermsVVO.rangeSize}"
+                                              emptyText="#{bindings.MARentPaymentTermsVVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                              rowBandingInterval="0"
+                                              selectedRowKeys="#{bindings.MARentPaymentTermsVVO.collectionModel.selectedRow}"
+                                              selectionListener="#{bindings.MARentPaymentTermsVVO.collectionModel.makeCurrent}"
+                                              rowSelection="single"
+                                              fetchSize="#{bindings.MARentPaymentTermsVVO.rangeSize}" id="resId2"
+                                              binding="#{backingBeanScope.MAPaymentsSearchBean.resId2}" width="100%"
+                                              partialTriggers="b5 b6">
+                                        <?audit suppress oracle.adf.faces.compreqsummary?><?audit suppress oracle.adf.faces.tableneedsrowheader?>
+                                        <af:column sortProperty="#{bindings.MARentPaymentTermsVVO.hints.RuleName.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.MARentPaymentTermsVVO.hints.RuleName.label}"
+                                                   id="resId2c1" width="100">
+                                            <af:outputText value="#{row.RuleName}"
+                                                           shortDesc="#{bindings.MARentPaymentTermsVVO.hints.RuleName.tooltip}"
+                                                           id="ot6"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.MARentPaymentTermsVVO.hints.Deposit.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.MARentPaymentTermsVVO.hints.Deposit.label}"
+                                                   id="resId2c2" width="100">
+                                            <af:outputText value="#{row.Deposit}"
+                                                           shortDesc="#{bindings.MARentPaymentTermsVVO.hints.Deposit.tooltip}"
+                                                           id="ot7"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.MARentPaymentTermsVVO.hints.DurationScale.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.MARentPaymentTermsVVO.hints.DurationScale.label}"
+                                                   id="resId2c3" width="100">
+                                            <af:outputText value="#{row.DurationScale}"
+                                                           shortDesc="#{bindings.MARentPaymentTermsVVO.hints.DurationScale.tooltip}"
+                                                           id="ot8"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.MARentPaymentTermsVVO.hints.Commission.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.MARentPaymentTermsVVO.hints.Commission.label}"
+                                                   id="resId2c4" width="100">
+                                            <af:outputText value="#{row.Commission}"
+                                                           shortDesc="#{bindings.MARentPaymentTermsVVO.hints.Commission.tooltip}"
+                                                           id="ot9">
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.MARentPaymentTermsVVO.hints.Commission.format}"/>
+                                            </af:outputText>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.MARentPaymentTermsVVO.hints.CalType.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.MARentPaymentTermsVVO.hints.CalType.label}"
+                                                   id="resId2c5" width="100">
+                                            <af:outputText value="#{row.CalType}"
+                                                           shortDesc="#{bindings.MARentPaymentTermsVVO.hints.CalType.tooltip}"
+                                                           id="ot10"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.MARentPaymentTermsVVO.hints.Status.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.MARentPaymentTermsVVO.hints.Status.label}"
+                                                   id="resId2c6" width="100">
+                                            <af:outputText value="#{row.Status}"
+                                                           shortDesc="#{bindings.MARentPaymentTermsVVO.hints.Status.tooltip}"
+                                                           id="ot11"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.MARentPaymentTermsVVO.hints.Notes.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.MARentPaymentTermsVVO.hints.Notes.label}"
+                                                   id="resId2c7" width="100">
+                                            <af:outputText value="#{row.Notes}"
+                                                           shortDesc="#{bindings.MARentPaymentTermsVVO.hints.Notes.tooltip}"
+                                                           id="ot12"/>
+                                        </af:column>
+                                        <af:column id="c2" headerText="#{viewcontrollerBundle.Control}">
+                                            <af:panelGroupLayout id="pgl5" layout="horizontal">
+                                                <af:toolbar id="t4">
+                                                    <af:button id="b5" icon="/images/icons/edit_ena.png"
+                                                               action="#{backingBeanScope.MAPaymentsSearchBean.editRentAction}"/>
+                                                    <af:button id="b6" icon="/images/icons/delete_ena.png"
+                                                               action="#{backingBeanScope.MAPaymentsSearchBean.deleteRent}"/>
+                                                </af:toolbar>
+                                            </af:panelGroupLayout>
+                                        </af:column>
+                                    </af:table>
+                                </af:panelCollection>
+                            </af:panelBox>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                    <f:facet name="header">
+                        <af:toolbar id="t5" binding="#{backingBeanScope.MAPaymentsSearchBean.t5}">
+                            <af:link text="#{bundle.Home}" id="l1" binding="#{backingBeanScope.MAPaymentsSearchBean.l1}"
+                                     action="home"/>
+                        </af:toolbar>
+                    </f:facet>
+                    <f:facet name="end"/>
+                    <f:facet name="start"/>
+                    <f:facet name="branding"/>
+                    <f:facet name="copyright"/>
+                    <f:facet name="status">
+                        <af:toolbar id="t6" binding="#{backingBeanScope.MAPaymentsSearchBean.t6}">
+                            <af:button id="b7" binding="#{backingBeanScope.MAPaymentsSearchBean.b7}"
+                                       actionListener="#{bindings.en_lang.execute}"
+                                       disabled="#{!bindings.en_lang.enabled}" partialSubmit="false"
+                                       shortDesc="#{bundle.English}" icon="/images/icons/english.png"/>
+                            <af:button id="b8" binding="#{backingBeanScope.MAPaymentsSearchBean.b8}"
+                                       actionListener="#{bindings.ar_lang.execute}"
+                                       disabled="#{!bindings.ar_lang.enabled}" icon="/images/icons/arabic.png"
+                                       shortDesc="#{bundle.Arabic}" partialSubmit="false"/>
+                        </af:toolbar>
+                    </f:facet>
+                    <f:attribute name="endColumnSize" value="0"/>
+                    <f:attribute name="startColumnSize" value="0"/>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+    <!--oracle-jdev-comment:auto-binding-backing-bean-name:MAPaymentsSearchBean-->
+</jsp:root>

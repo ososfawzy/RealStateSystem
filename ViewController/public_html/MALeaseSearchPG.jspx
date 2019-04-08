@@ -1,0 +1,871 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view beforePhase="#{backingBeanScope.MALeaseSearchBean.beforePhase}">
+    <af:document id="d1" binding="#{backingBeanScope.MALeaseSearchBean.d1}"
+                 title="#{bundle.Lease_Search}">
+      <af:messages binding="#{backingBeanScope.MALeaseSearchBean.m1}" id="m1"/>
+      <af:form id="f1" binding="#{backingBeanScope.MALeaseSearchBean.f1}">
+      <af:pageTemplate viewId="#{pageFlowScope.Facet}" id="pt1">
+                         <f:facet name="center">
+            <af:panelGroupLayout id="pgl2" binding="#{backingBeanScope.MALeaseSearchBean.pgl2}">
+              <af:panelGroupLayout layout="horizontal" binding="#{backingBeanScope.MALeaseSearchBean.pgl1}" id="pgl1"
+                                   styleClass="AFStretchWidth">
+                <af:panelHeader text="#{bundle.Lease_Search}" binding="#{backingBeanScope.MALeaseSearchBean.ph1}" id="ph1">
+                  <af:query id="qryId1" headerText="#{bundle.Find}" disclosed="true"
+                            value="#{bindings.MALeaseSearchVVOCriteriaQuery.queryDescriptor}"
+                            model="#{bindings.MALeaseSearchVVOCriteriaQuery.queryModel}"
+                            queryListener="#{bindings.MALeaseSearchVVOCriteriaQuery.processQuery}"
+                            queryOperationListener="#{bindings.MALeaseSearchVVOCriteriaQuery.processQueryOperation}"
+                            resultComponentId="::pc1" binding="#{backingBeanScope.MALeaseSearchBean.qryId1}"
+                            saveQueryMode="hidden"/>
+                </af:panelHeader>
+              </af:panelGroupLayout>
+              <af:panelCollection binding="#{backingBeanScope.MALeaseSearchBean.pc1}" id="pc1"
+                                  styleClass="AFStretchWidth">
+                <f:facet name="menus"/>
+                <f:facet name="toolbar">
+                  <af:toolbar binding="#{backingBeanScope.MALeaseSearchBean.t1}" id="t1">
+                    <af:button text="#{bundle.Create}" disabled="#{!bindings.CreateInsert.enabled}"
+                               binding="#{backingBeanScope.MALeaseSearchBean.cb1}" id="cb1"
+                               icon="/images/icons/new_ena.png"
+                               action="#{backingBeanScope.MALeaseSearchBean.createNewLease}"/>
+                    <af:button text="#{bundle.Edit}" binding="#{backingBeanScope.MALeaseSearchBean.cb3}" id="cb3"
+                               icon="/images/icons/edit_ena.png"
+                               action="#{backingBeanScope.MALeaseSearchBean.editLeaseRow}"/>
+                    <af:button text="#{bundle.Export}" binding="#{backingBeanScope.MALeaseSearchBean.cb2}" id="cb2"
+                               icon="/images/icons/print_ena.png">
+                      <af:exportCollectionActionListener exportedId="resId1" type="excelHTML" filename="Lease Info.xls"
+                                                         title="#{bundle.Lease_Info}"/>
+                    </af:button>
+                    <af:popup binding="#{backingBeanScope.MALeaseSearchBean.p1}" id="p1" contentDelivery="lazyUncached"
+                              autoCancel="disabled" childCreation="deferred">
+                      <af:dialog binding="#{backingBeanScope.MALeaseSearchBean.d2}" id="d2" title="#{bundle.Lease_Information}"
+                                 type="none" contentWidth="600">
+                        <af:panelFormLayout binding="#{backingBeanScope.MALeaseSearchBean.pfl1}" id="pfl1"
+                                            maxColumns="3" rows="10">
+                          <af:panelLabelAndMessage label="#{bindings.LeaseSegment.hints.label}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam1}" id="plam1">
+                            <af:outputText value="#{bindings.LeaseSegment.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot12}" id="ot12"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.Subject.hints.label}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam2}" id="plam2">
+                            <af:outputText value="#{bindings.Subject.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot13}" id="ot13"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.LeaserName.hints.label}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam3}" id="plam3">
+                            <af:outputText value="#{bindings.LeaserName.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot14}" id="ot14"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Lease_Segment}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam4}" id="plam4">
+                            <af:outputText value="#{bindings.LeaserAddress.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot15}" id="ot15"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Contact_Person}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam5}" id="plam5">
+                            <af:outputText value="#{bindings.ContactPerson.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot16}" id="ot16"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Contact_Phone_Number}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam6}" id="plam6">
+                            <af:outputText value="#{bindings.ContactPhoneNumber.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot17}" id="ot17"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Contact_Email}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam7}" id="plam7">
+                            <af:outputText value="#{bindings.ContactEmail.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot18}" id="ot18"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Lease_Status}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam8}" id="plam8">
+                            <af:outputText value="#{bindings.LeaseStatus.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot19}" id="ot19"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Lease_Type}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam9}" id="plam9">
+                            <af:outputText value="#{bindings.LeaseType.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot20}" id="ot20"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Treinnel_Percentage}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam10}" id="plam10">
+                            <af:outputText value="#{bindings.TreinnelPercentage.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot21}" id="ot21">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.TreinnelPercentage.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Parent_Lease}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam11}" id="plam11">
+                            <af:outputText value="#{bindings.ParentLease.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot22}" id="ot22"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.START_DATE}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam12}" id="plam12">
+                            <af:outputText value="#{bindings.StartDate.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot23}" id="ot23">
+                              <af:convertDateTime pattern="#{bindings.StartDate.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.END_DATE}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam13}" id="plam13">
+                            <af:outputText value="#{bindings.EndDate.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot24}" id="ot24">
+                              <af:convertDateTime pattern="#{bindings.EndDate.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Booking_Expiring_On}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam14}" id="plam14">
+                            <af:outputText value="#{bindings.BookingExpiringOn.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot25}" id="ot25">
+                              <af:convertDateTime pattern="#{bindings.BookingExpiringOn.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Increase}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam15}" id="plam15">
+                            <af:outputText value="#{bindings.Increase.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot26}" id="ot26"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Iteration_Months}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam16}" id="plam16">
+                            <af:outputText value="#{bindings.IterationMonths.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot27}" id="ot27">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.IterationMonths.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Auto_Calculate_Flag}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam17}" id="plam17">
+                            <af:outputText value="#{bindings.AutoCalculateFlag.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot28}" id="ot28"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Tenure_Months}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam18}" id="plam18">
+                            <af:outputText value="#{bindings.TenureMonths.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot29}" id="ot29"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Lease_Terms_Conditions}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam19}" id="plam19">
+                            <af:outputText value="#{bindings.LeaseTermsConditions.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot30}" id="ot30"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Billing_Frequency}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam20}" id="plam20">
+                            <af:outputText value="#{bindings.BillingFrequency.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot31}" id="ot31"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Water}" binding="#{backingBeanScope.MALeaseSearchBean.plam21}"
+                                                   id="plam21">
+                            <af:outputText value="#{bindings.Water.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot32}" id="ot32">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.Water.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.Electricity.hints.label}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam22}" id="plam22">
+                            <af:outputText value="#{bindings.Electricity.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot33}" id="ot33">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.Electricity.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.Sanitation.hints.label}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam23}" id="plam23">
+                            <af:outputText value="#{bindings.Sanitation.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot34}" id="ot34">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.Sanitation.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.Badge.hints.label}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam24}" id="plam24">
+                            <af:outputText value="#{bindings.Badge.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot35}" id="ot35">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.Badge.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.Discount.hints.label}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam25}" id="plam25">
+                            <af:outputText value="#{bindings.Discount.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot36}" id="ot36">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.Discount.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.Currency.hints.label}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam26}" id="plam26">
+                            <af:outputText value="#{bindings.Currency.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot37}" id="ot37"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.RENT_AMOUNT}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam27}" id="plam27">
+                            <af:outputText value="#{bindings.RentAmount.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot38}" id="ot38">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.RentAmount.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Adhock_Charges}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam28}" id="plam28">
+                            <af:outputText value="#{bindings.AdhockCharges.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot39}" id="ot39">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.AdhockCharges.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Gross_Rent_Amount}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam29}" id="plam29">
+                            <af:outputText value="#{bindings.GrossRentAmount.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot40}" id="ot40">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.GrossRentAmount.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Discount_Amount}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam30}" id="plam30">
+                            <af:outputText value="#{bindings.DiscountAmount.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot41}" id="ot41">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.DiscountAmount.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Net_Amount}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam31}" id="plam31">
+                            <af:outputText value="#{bindings.NetAmount.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot42}" id="ot42">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.NetAmount.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Renewal_Notice_Sent}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam32}" id="plam32">
+                            <af:outputText value="#{bindings.RenewalNoticeSent.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot43}" id="ot43">
+                              <af:convertDateTime pattern="#{bindings.RenewalNoticeSent.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Received_Confirmation_Date}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam33}" id="plam33">
+                            <af:outputText value="#{bindings.ReceivedConfirmationDate.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot44}" id="ot44">
+                              <af:convertDateTime pattern="#{bindings.ReceivedConfirmationDate.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Customer_Reasponse}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam34}" id="plam34">
+                            <af:outputText value="#{bindings.CustomerResponse.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot45}" id="ot45"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Proposed_Yearly_Rent}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam35}" id="plam35">
+                            <af:outputText value="#{bindings.ProposedYearlyRent.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot46}" id="ot46"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Vacant_Date}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam36}" id="plam36">
+                            <af:outputText value="#{bindings.VacantDate.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot47}" id="ot47">
+                              <af:convertDateTime pattern="#{bindings.VacantDate.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Extended_Date}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam37}" id="plam37">
+                            <af:outputText value="#{bindings.ExtendedDate.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot48}" id="ot48">
+                              <af:convertDateTime pattern="#{bindings.ExtendedDate.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Termination_Notice_Sent}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam38}" id="plam38">
+                            <af:outputText value="#{bindings.TerminationNoticeSent.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot49}" id="ot49">
+                              <af:convertDateTime pattern="#{bindings.TerminationNoticeSent.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Termination_Date}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam39}" id="plam39">
+                            <af:outputText value="#{bindings.TerminationDate.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot50}" id="ot50">
+                              <af:convertDateTime pattern="#{bindings.TerminationDate.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Termination_Reason}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam40}" id="plam40">
+                            <af:outputText value="#{bindings.TerminationReason.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot51}" id="ot51"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Termination_Reason_Details}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam41}" id="plam41">
+                            <af:outputText value="#{bindings.TerminationReasonDetails.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot52}" id="ot52"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Admin_Charges}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam42}" id="plam42">
+                            <af:outputText value="#{bindings.AdminCharges.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot53}" id="ot53">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.AdminCharges.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Admin_Charges_Approval_Flag}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam43}" id="plam43">
+                            <af:outputText value="#{bindings.AdminChargesApprovalFlag.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot54}" id="ot54"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.Penality.hints.label}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam44}" id="plam44">
+                            <af:outputText value="#{bindings.Penality.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot55}" id="ot55">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.Penality.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Penality_Approval_Flag}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam45}" id="plam45">
+                            <af:outputText value="#{bindings.PenalityApprovalFlag.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot56}" id="ot56"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Rent_Refund}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam46}" id="plam46">
+                            <af:outputText value="#{bindings.RentRefund.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot57}" id="ot57">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.RentRefund.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Rent_Refund_Approval_Flag}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam47}" id="plam47">
+                            <af:outputText value="#{bindings.RentRefundApprovalFlag.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot58}" id="ot58"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Refund_Type}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam48}" id="plam48">
+                            <af:outputText value="#{bindings.RefundType.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot59}" id="ot59"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Lease_Version}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam49}" id="plam49">
+                            <af:outputText value="#{bindings.LeaseVersion.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot60}" id="ot60"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Renewed_Contracts_History}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam50}" id="plam50">
+                            <af:outputText value="#{bindings.RenewedContractsHistory.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot61}" id="ot61"/>
+                          </af:panelLabelAndMessage>
+                        </af:panelFormLayout>
+                      </af:dialog>
+                    </af:popup>
+                    <af:popup binding="#{backingBeanScope.MALeaseSearchBean.p2}" id="p2" contentDelivery="lazyUncached"
+                              autoCancel="disabled" childCreation="deferred" rendered="false">
+                      <af:dialog binding="#{backingBeanScope.MALeaseSearchBean.d3}" id="d3" type="none"
+                                 title="#{bundle.Lease_Name}" contentWidth="600">
+                        <af:panelFormLayout binding="#{backingBeanScope.MALeaseSearchBean.pfl2}" id="pfl2"
+                                            maxColumns="2" rows="4">
+                          <af:panelLabelAndMessage label="#{bundle.Supplier_Name}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam51}" id="plam51">
+                            <af:outputText value="#{bindings.VendorName.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot62}" id="ot62"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Supplier_Name}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam52}" id="plam52">
+                            <af:outputText value="#{bindings.Segment1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot63}" id="ot63"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Supplier_Site_Code}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam53}" id="plam53">
+                            <af:outputText value="#{bindings.VendorSiteCode.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot64}" id="ot64"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Address}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam54}" id="plam54">
+                            <af:outputText value="#{bindings.AddressLine1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot65}" id="ot65"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.City}" binding="#{backingBeanScope.MALeaseSearchBean.plam55}"
+                                                   id="plam55">
+                            <af:outputText value="#{bindings.City.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot66}" id="ot66"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.State}" binding="#{backingBeanScope.MALeaseSearchBean.plam56}"
+                                                   id="plam56">
+                            <af:outputText value="#{bindings.State.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot67}" id="ot67"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Zip}" binding="#{backingBeanScope.MALeaseSearchBean.plam57}"
+                                                   id="plam57">
+                            <af:outputText value="#{bindings.Zip.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot68}" id="ot68"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Country}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam58}" id="plam58">
+                            <af:outputText value="#{bindings.Country.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot69}" id="ot69"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Phone}" binding="#{backingBeanScope.MALeaseSearchBean.plam59}"
+                                                   id="plam59">
+                            <af:outputText value="#{bindings.Phone.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot70}" id="ot70"/>
+                          </af:panelLabelAndMessage>
+                        </af:panelFormLayout>
+                      </af:dialog>
+                    </af:popup>
+                    <af:popup binding="#{backingBeanScope.MALeaseSearchBean.p3}" id="p3" contentDelivery="lazyUncached"
+                              autoCancel="disabled" childCreation="deferred" rendered="false">
+                      <af:dialog binding="#{backingBeanScope.MALeaseSearchBean.d4}" id="d4" title="Tenant Contact"
+                                 contentWidth="600" type="none">
+                        <af:panelFormLayout binding="#{backingBeanScope.MALeaseSearchBean.pfl3}" id="pfl3">
+                          <af:panelLabelAndMessage label="#{bundle.Contact_Person}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam60}" id="plam60">
+                            <af:outputText value="#{bindings.ContactPerson1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot71}" id="ot71"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Phone}" binding="#{backingBeanScope.MALeaseSearchBean.plam61}"
+                                                   id="plam61">
+                            <af:outputText value="#{bindings.PrimaryPhoneNumber.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot72}" id="ot72"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Email}" binding="#{backingBeanScope.MALeaseSearchBean.plam62}"
+                                                   id="plam62">
+                            <af:outputText value="#{bindings.EmailAddress.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot73}" id="ot73"/>
+                          </af:panelLabelAndMessage>
+                        </af:panelFormLayout>
+                      </af:dialog>
+                    </af:popup>
+                    <af:popup binding="#{backingBeanScope.MALeaseSearchBean.p4}" id="p4" contentDelivery="lazyUncached"
+                              autoCancel="disabled" childCreation="deferred">
+                      <af:dialog binding="#{backingBeanScope.MALeaseSearchBean.d5}" id="d5" title="#{bundle.Parent_Lease}"
+                                 contentWidth="600" type="none">
+                        <af:panelFormLayout binding="#{backingBeanScope.MALeaseSearchBean.pfl4}" id="pfl4"
+                                            maxColumns="3" rows="10">
+                          <af:panelLabelAndMessage label="#{bundle.Lease_Segment}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam63}" id="plam63">
+                            <af:outputText value="#{bindings.LeaseSegment1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot74}" id="ot74"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.Subject1.hints.label}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam64}" id="plam64">
+                            <af:outputText value="#{bindings.Subject1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot75}" id="ot75"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Leaser_Name}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam65}" id="plam65">
+                            <af:outputText value="#{bindings.LeaserName1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot76}" id="ot76"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Leaser_Address}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam66}" id="plam66">
+                            <af:outputText value="#{bindings.LeaserAddress1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot77}" id="ot77"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Contact_Person}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam67}" id="plam67">
+                            <af:outputText value="#{bindings.ContactPerson2.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot78}" id="ot78"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Phone}" binding="#{backingBeanScope.MALeaseSearchBean.plam68}"
+                                                   id="plam68">
+                            <af:outputText value="#{bindings.ContactPhoneNumber1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot79}" id="ot79"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Email}" binding="#{backingBeanScope.MALeaseSearchBean.plam69}"
+                                                   id="plam69">
+                            <af:outputText value="#{bindings.ContactEmail1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot80}" id="ot80"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Lease_Status}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam70}" id="plam70">
+                            <af:outputText value="#{bindings.LeaseStatus1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot81}" id="ot81"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Lease_Type}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam71}" id="plam71">
+                            <af:outputText value="#{bindings.LeaseType1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot82}" id="ot82"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Treinnel_Percentage}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam72}" id="plam72">
+                            <af:outputText value="#{bindings.TreinnelPercentage1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot83}" id="ot83">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.TreinnelPercentage1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Parent_Lease}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam73}" id="plam73">
+                            <af:outputText value="#{bindings.ParentLease1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot84}" id="ot84"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.START_DATE}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam74}" id="plam74">
+                            <af:outputText value="#{bindings.StartDate1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot85}" id="ot85">
+                              <af:convertDateTime pattern="#{bindings.StartDate1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.END_DATE}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam75}" id="plam75">
+                            <af:outputText value="#{bindings.EndDate1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot86}" id="ot86">
+                              <af:convertDateTime pattern="#{bindings.EndDate1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Booking_Expiring_On}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam76}" id="plam76">
+                            <af:outputText value="#{bindings.BookingExpiringOn1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot87}" id="ot87">
+                              <af:convertDateTime pattern="#{bindings.BookingExpiringOn1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Increase}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam77}" id="plam77">
+                            <af:outputText value="#{bindings.Increase1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot88}" id="ot88"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Iteration_Months}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam78}" id="plam78">
+                            <af:outputText value="#{bindings.IterationMonths1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot89}" id="ot89">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.IterationMonths1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Auto_Calculate_Flag}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam79}" id="plam79">
+                            <af:outputText value="#{bindings.AutoCalculateFlag1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot90}" id="ot90"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Tenure_Months}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam80}" id="plam80">
+                            <af:outputText value="#{bindings.TenureMonths1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot91}" id="ot91"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Terms_Condtions}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam81}" id="plam81">
+                            <af:outputText value="#{bindings.LeaseTermsConditions1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot92}" id="ot92"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Billing_Frequency}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam82}" id="plam82">
+                            <af:outputText value="#{bindings.BillingFrequency1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot93}" id="ot93"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.Water1.hints.label}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam83}" id="plam83">
+                            <af:outputText value="#{bindings.Water1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot94}" id="ot94">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.Water1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.Electricity1.hints.label}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam84}" id="plam84">
+                            <af:outputText value="#{bindings.Electricity1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot95}" id="ot95">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.Electricity1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.Sanitation1.hints.label}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam85}" id="plam85">
+                            <af:outputText value="#{bindings.Sanitation1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot96}" id="ot96">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.Sanitation1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.Badge1.hints.label}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam86}" id="plam86">
+                            <af:outputText value="#{bindings.Badge1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot97}" id="ot97">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.Badge1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.Discount1.hints.label}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam87}" id="plam87">
+                            <af:outputText value="#{bindings.Discount1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot98}" id="ot98">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.Discount1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.Currency1.hints.label}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam88}" id="plam88">
+                            <af:outputText value="#{bindings.Currency1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot99}" id="ot99"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.RENT_AMOUNT}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam89}" id="plam89">
+                            <af:outputText value="#{bindings.RentAmount1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot100}" id="ot100">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.RentAmount1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Adhock_Charges}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam90}" id="plam90">
+                            <af:outputText value="#{bindings.AdhockCharges1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot101}" id="ot101">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.AdhockCharges1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Gross_Amount}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam91}" id="plam91">
+                            <af:outputText value="#{bindings.GrossRentAmount1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot102}" id="ot102">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.GrossRentAmount1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Discount_Amount}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam92}" id="plam92">
+                            <af:outputText value="#{bindings.DiscountAmount1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot103}" id="ot103">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.DiscountAmount1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Net_Amount}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam93}" id="plam93">
+                            <af:outputText value="#{bindings.NetAmount1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot104}" id="ot104">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.NetAmount1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Renewal_Notice_Sent}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam94}" id="plam94">
+                            <af:outputText value="#{bindings.RenewalNoticeSent1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot105}" id="ot105">
+                              <af:convertDateTime pattern="#{bindings.RenewalNoticeSent1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Received_Confirmation_Date}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam95}" id="plam95">
+                            <af:outputText value="#{bindings.ReceivedConfirmationDate1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot106}" id="ot106">
+                              <af:convertDateTime pattern="#{bindings.ReceivedConfirmationDate1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Customer_Reasponse}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam96}" id="plam96">
+                            <af:outputText value="#{bindings.CustomerResponse1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot107}" id="ot107"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Proposed_Yearly_Rent}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam97}" id="plam97">
+                            <af:outputText value="#{bindings.ProposedYearlyRent1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot108}" id="ot108"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Vacant_Date}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam98}" id="plam98">
+                            <af:outputText value="#{bindings.VacantDate1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot109}" id="ot109">
+                              <af:convertDateTime pattern="#{bindings.VacantDate1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Extended_Date}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam99}" id="plam99">
+                            <af:outputText value="#{bindings.ExtendedDate1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot110}" id="ot110">
+                              <af:convertDateTime pattern="#{bindings.ExtendedDate1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Termination_Notice_Sent}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam100}" id="plam100">
+                            <af:outputText value="#{bindings.TerminationNoticeSent1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot111}" id="ot111">
+                              <af:convertDateTime pattern="#{bindings.TerminationNoticeSent1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Termination_Date}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam101}" id="plam101">
+                            <af:outputText value="#{bindings.TerminationDate1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot112}" id="ot112">
+                              <af:convertDateTime pattern="#{bindings.TerminationDate1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Termination_Reason}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam102}" id="plam102">
+                            <af:outputText value="#{bindings.TerminationReason1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot113}" id="ot113"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Termination_Reason_Details}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam103}" id="plam103">
+                            <af:outputText value="#{bindings.TerminationReasonDetails1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot114}" id="ot114"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Admin_Charges}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam104}" id="plam104">
+                            <af:outputText value="#{bindings.AdminCharges1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot115}" id="ot115">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.AdminCharges1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Admin_Charges_Approval_Flag}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam105}" id="plam105">
+                            <af:outputText value="#{bindings.AdminChargesApprovalFlag1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot116}" id="ot116"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.Penality1.hints.label}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam106}" id="plam106">
+                            <af:outputText value="#{bindings.Penality1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot117}" id="ot117">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.Penality1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Penality_Approval_Flag}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam107}" id="plam107">
+                            <af:outputText value="#{bindings.PenalityApprovalFlag1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot118}" id="ot118"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Rent_Refund}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam108}" id="plam108">
+                            <af:outputText value="#{bindings.RentRefund1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot119}" id="ot119">
+                              <af:convertNumber groupingUsed="false" pattern="#{bindings.RentRefund1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Rent_Refund_Approval_Flag}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam109}" id="plam109">
+                            <af:outputText value="#{bindings.RentRefundApprovalFlag1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot120}" id="ot120"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Refund_Type}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam110}" id="plam110">
+                            <af:outputText value="#{bindings.RefundType1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot121}" id="ot121"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Lease_Version}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam111}" id="plam111">
+                            <af:outputText value="#{bindings.LeaseVersion1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot122}" id="ot122"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Renewed_Contracts_History}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam112}" id="plam112">
+                            <af:outputText value="#{bindings.RenewedContractsHistory1.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot123}" id="ot123"/>
+                          </af:panelLabelAndMessage>
+                        </af:panelFormLayout>
+                      </af:dialog>
+                    </af:popup>
+                    <af:popup binding="#{backingBeanScope.MALeaseSearchBean.p5}" id="p5" contentDelivery="lazyUncached"
+                              autoCancel="disabled" childCreation="deferred">
+                      <af:dialog binding="#{backingBeanScope.MALeaseSearchBean.d6}" id="d6" type="none"
+                                 title="#{bundle.Leaser_Info}" contentWidth="600">
+                        <af:panelFormLayout binding="#{backingBeanScope.MALeaseSearchBean.pfl5}" id="pfl5">
+                          <af:panelLabelAndMessage label="#{bundle.Tenant_Name}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam113}" id="plam113">
+                            <af:outputText value="#{bindings.LeaserName2.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot124}" id="ot124"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Tenant_Address}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam114}" id="plam114">
+                            <af:outputText value="#{bindings.LeaserAddress2.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot125}" id="ot125"/>
+                          </af:panelLabelAndMessage>
+                        </af:panelFormLayout>
+                      </af:dialog>
+                    </af:popup>
+                    <af:popup binding="#{backingBeanScope.MALeaseSearchBean.p6}" id="p6" contentDelivery="lazyUncached"
+                              autoCancel="disabled" childCreation="deferred">
+                      <af:dialog binding="#{backingBeanScope.MALeaseSearchBean.d7}" id="d7" title="#{bundle.Tenant_Contact}"
+                                 type="none" contentWidth="600">
+                        <af:panelFormLayout binding="#{backingBeanScope.MALeaseSearchBean.pfl6}" id="pfl6">
+                          <af:panelLabelAndMessage label="#{bundle.Contact_Person}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam115}" id="plam115">
+                            <af:outputText value="#{bindings.ContactPerson3.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot126}" id="ot126"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Phone}" binding="#{backingBeanScope.MALeaseSearchBean.plam116}"
+                                                   id="plam116">
+                            <af:outputText value="#{bindings.ContactPhoneNumber2.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot127}" id="ot127"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bundle.Contact_Email}"
+                                                   binding="#{backingBeanScope.MALeaseSearchBean.plam117}" id="plam117">
+                            <af:outputText value="#{bindings.ContactEmail2.inputValue}"
+                                           binding="#{backingBeanScope.MALeaseSearchBean.ot128}" id="ot128"/>
+                          </af:panelLabelAndMessage>
+                        </af:panelFormLayout>
+                      </af:dialog>
+                    </af:popup>
+                  </af:toolbar>
+                </f:facet>
+                <f:facet name="statusbar"/>
+                <af:table value="#{bindings.MALeaseSearchVVO.collectionModel}" var="row"
+                          rows="#{bindings.MALeaseSearchVVO.rangeSize}"
+                          emptyText="#{bindings.MALeaseSearchVVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                          fetchSize="#{bindings.MALeaseSearchVVO.rangeSize}" rowBandingInterval="0"
+                          selectedRowKeys="#{bindings.MALeaseSearchVVO.collectionModel.selectedRow}"
+                          selectionListener="#{bindings.MALeaseSearchVVO.collectionModel.makeCurrent}"
+                          rowSelection="single" id="resId1" binding="#{backingBeanScope.MALeaseSearchBean.resId1}"
+                          summary="#{bundle.Lease_Search_Result_Table}" width="100%" columnStretching="last"
+                          partialTriggers="cl1">
+                  <af:column headerText="#{bundle.Lease_ID}" id="c1" width="100">
+                    <af:outputText value="#{row.LeaseId}" id="ot129">
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.MALeaseSearchVVO.hints.LeaseId.format}"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MALeaseSearchVVO.hints.LeaseSegment.name}" sortable="true"
+                             headerText="#{bundle.Contract_ID}" id="resId1c1" width="115">
+                    <af:outputText value="#{row.LeaseSegment}" id="ot6" rendered="false"/>
+                    <af:link text="#{row.LeaseSegment}" disabled="#{!bindings.setCurrentRowWithKey.enabled}" id="cl1"
+                             rendered="true" action="#{backingBeanScope.MALeaseSearchBean.leasePopupShow}"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MALeaseSearchVVO.hints.LeaseVersion.name}" sortable="true"
+                             headerText="#{bundle.Version}" id="resId1c2" rowHeader="unstyled" width="115">
+                    <af:outputText value="#{row.LeaseVersion}" id="ot3"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MALeaseSearchVVO.hints.Subject.name}" sortable="true"
+                             headerText="#{bundle.Lease_Subject}" id="resId1c3" width="115">
+                    <af:outputText value="#{row.Subject}" id="ot11"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MALeaseSearchVVO.hints.TenantName.name}" sortable="true"
+                             headerText="#{bundle.Tenant_Name}" id="resId1c4" width="115">
+                    <af:link id="ot4" text="#{row.TenantName}"
+                             action="#{backingBeanScope.MALeaseSearchBean.tenantNamePopupShow}"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MALeaseSearchVVO.hints.ContactPerson.name}" sortable="true"
+                             headerText="#{bundle.Contact_Person}" id="resId1c5" width="115">
+                    <af:link id="ot5" text="#{row.ContactPerson}"
+                             action="#{backingBeanScope.MALeaseSearchBean.tenantSupplierPopupShow}"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MALeaseSearchVVO.hints.Phone.name}" sortable="true"
+                             headerText="#{bundle.Tenant_Phone}" id="resId1c6" width="115">
+                    <af:outputText value="#{row.Phone}" id="ot2"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MALeaseSearchVVO.hints.EmailAddress.name}" sortable="true"
+                             headerText="#{bundle.Tenant_Email}" id="resId1c7" width="115">
+                    <af:outputText value="#{row.EmailAddress}" id="ot1"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MALeaseSearchVVO.hints.OpportunityName.name}" sortable="true"
+                             headerText="#{bundle.Opportunity_Refrence}" id="resId1c8" width="115">
+                    <af:outputText value="#{row.OpportunityName}" id="ot10"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MALeaseSearchVVO.hints.LeaseType.name}" sortable="true"
+                             headerText="#{bundle.Lease_Type}" id="resId1c9" width="115">
+                    <af:outputText value="#{row.LeaseType}" id="ot9"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MALeaseSearchVVO.hints.LeaseStatus.name}" sortable="true"
+                             headerText="#{bundle.Lease_Status}" id="resId1c10" width="116">
+                    <af:outputText value="#{row.LeaseStatus}" id="ot7"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MALeaseSearchVVO.hints.ParentLease.name}" sortable="true"
+                             headerText="#{bundle.Parent_Lease}" id="resId1c11" width="114">
+                    <af:link id="ot8" text="#{row.ParentLease}"
+                             action="#{backingBeanScope.MALeaseSearchBean.parentLeasePopupShow}"/>
+                  </af:column>
+                </af:table>
+              </af:panelCollection>
+            </af:panelGroupLayout>
+          </f:facet>
+                    <f:facet name="header">
+            <af:outputText value="#{bundle.Lease_Search}" id="ot130" binding="#{backingBeanScope.MALeaseSearchBean.ot130}"/>
+          </f:facet>
+                    <f:facet name="end"/>
+                    <f:facet name="start"/>
+                    <f:facet name="branding"/>
+                    <f:facet name="copyright"/>
+                    <f:facet name="status">
+            <af:toolbar id="t2" binding="#{backingBeanScope.MALeaseSearchBean.t2}">
+              <af:button id="b2" binding="#{backingBeanScope.MALeaseSearchBean.b2}"
+                         actionListener="#{bindings.en_lang.execute}" disabled="#{!bindings.en_lang.enabled}"
+                         partialSubmit="false" shortDesc="#{bundle.English}" icon="/images/icons/english.png"/>
+              <af:button id="b1" binding="#{backingBeanScope.MALeaseSearchBean.b1}"
+                         actionListener="#{bindings.ar_lang.execute}" disabled="#{!bindings.ar_lang.enabled}"
+                         icon="/images/icons/arabic.png" shortDesc="#{bundle.Arabic}" partialSubmit="false"/>
+              <af:link text="#{bundle.Home}" id="l1" binding="#{backingBeanScope.MALeaseSearchBean.l1}" action="home"/>
+            </af:toolbar>
+          </f:facet>
+                    <f:attribute name="endColumnSize" value="0"/>
+                    <f:attribute name="startColumnSize" value="0"/>
+                </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+  <!--oracle-jdev-comment:auto-binding-backing-bean-name:MALeaseSearchBean-->
+</jsp:root>

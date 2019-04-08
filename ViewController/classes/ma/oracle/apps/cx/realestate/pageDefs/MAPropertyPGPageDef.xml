@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.65.57" id="MAPropertyPGPageDef"
+                Package="ma.oracle.apps.cx.realestate.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="MAGridViewVVO1" RangeSize="25"
+              DataControl="MARealEstatePropertyAMDataControl"
+              id="MAGridViewVVO1Iterator" Refresh="ifNeeded"/>
+    <searchRegion Criteria="MAGridViewVVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="MAGridViewVVO1Iterator"
+                  id="MAGridViewVVOCriteriaQuery"/>
+    <iterator Binds="MARealEstatePropertySearchVVO1" RangeSize="25"
+              DataControl="MARealEstatePropertyAMDataControl"
+              id="MARealEstatePropertySearchVVO1Iterator" Refresh="ifNeeded"/>
+    <accessorIterator MasterBinding="MARealEstatePropertySearchVVO1Iterator"
+                      Binds="MARealEstateContractSearchVVO" RangeSize="25"
+                      DataControl="MARealEstatePropertyAMDataControl"
+                      BeanClass="ma.oracle.apps.cx.realestate.property.views.MARealEstateContractSearchVVO"
+                      id="MARealEstateContractSearchVVOIterator"/>
+    <iterator Binds="MAGenericViewVVO1" RangeSize="25"
+              DataControl="MARealEstatePropertyAMDataControl"
+              id="MAGenericViewVVO1Iterator"/>
+    <searchRegion Criteria="GenericViewVVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="MAGenericViewVVO1Iterator"
+                  id="GenericViewVVOCriteriaQuery"/>
+    <iterator Binds="MARealEstateGenericPropertySearchVVO1" RangeSize="25"
+              DataControl="MARealEstatePropertyAMDataControl"
+              id="MARealEstateGenericPropertySearchVVO1Iterator"/>
+    <accessorIterator MasterBinding="MARealEstateGenericPropertySearchVVO1Iterator"
+                      Binds="MARealEstateGenericContractSearchVVO"
+                      RangeSize="25"
+                      DataControl="MARealEstatePropertyAMDataControl"
+                      BeanClass="ma.oracle.apps.cx.realestate.property.views.MARealEstateGenericContractSearchVVO"
+                      id="MARealEstateGenericContractSearchVVOIterator"/>
+    <iterator Binds="MAGenericOwnerVVO1" RangeSize="25"
+              DataControl="MARealEstatePropertyAMDataControl"
+              id="MAGenericOwnerVVO1Iterator"/>
+    <iterator Binds="MATotalOpporunitesVVO1" RangeSize="1"
+              DataControl="MARealEstatePropertyAMDataControl"
+              id="MATotalOpporunitesVVO1Iterator"/>
+    <iterator Binds="MATotalPropertiesVVO1" RangeSize="1"
+              DataControl="MARealEstatePropertyAMDataControl"
+              id="MATotalPropertiesVVO1Iterator"/>
+    <iterator Binds="MAProertyMapVVO1" RangeSize="-1"
+              DataControl="MARealEstatePropertyAMDataControl"
+              id="MAProertyMapVVO1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="MAGridViewVVO1Iterator" id="MAGridViewVVO1">
+      <nodeDefinition DefName="ma.oracle.apps.cx.realestate.property.views.MAGridViewVVO"
+                      Name="MAGridViewVVO10">
+        <AttrNames>
+          <Item Value="PropertyId"/>
+          <Item Value="PropertySegment"/>
+          <Item Value="PropertyName"/>
+          <Item Value="PropertyLocation"/>
+          <Item Value="BlockBuldingName"/>
+          <Item Value="SubPropertySegment"/>
+          <Item Value="SubPropertyName"/>
+          <Item Value="ParentTypeName"/>
+          <Item Value="SubTypeName"/>
+          <Item Value="OccupationStatus"/>
+          <Item Value="StartDate"/>
+          <Item Value="EndDate"/>
+          <Item Value="ServiceEndDate"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="MARealEstatePropertySearchVVO1Iterator"
+                     id="PropertySegment">
+      <AttrNames>
+        <Item Value="PropertySegment"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertySearchVVO1Iterator"
+                     id="PropertyName">
+      <AttrNames>
+        <Item Value="PropertyName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertySearchVVO1Iterator"
+                     id="BlockBuldingName">
+      <AttrNames>
+        <Item Value="BlockBuldingName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertySearchVVO1Iterator"
+                     id="FloorNumber">
+      <AttrNames>
+        <Item Value="FloorNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertySearchVVO1Iterator"
+                     id="PropertyStatus">
+      <AttrNames>
+        <Item Value="PropertyStatus"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertySearchVVO1Iterator"
+                     id="StartDate">
+      <AttrNames>
+        <Item Value="StartDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertySearchVVO1Iterator"
+                     id="EndDate">
+      <AttrNames>
+        <Item Value="EndDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertySearchVVO1Iterator"
+                     id="AvailableForRentFlag">
+      <AttrNames>
+        <Item Value="AvailableForRentFlag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertySearchVVO1Iterator"
+                     id="UnitNumber">
+      <AttrNames>
+        <Item Value="UnitNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertySearchVVO1Iterator"
+                     id="UnitSqMt">
+      <AttrNames>
+        <Item Value="UnitSqMt"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertySearchVVO1Iterator"
+                     id="NumberOfRooms">
+      <AttrNames>
+        <Item Value="NumberOfRooms"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertySearchVVO1Iterator"
+                     id="NumberOfBathrooms">
+      <AttrNames>
+        <Item Value="NumberOfBathrooms"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertySearchVVO1Iterator"
+                     id="NumberOfParkings">
+      <AttrNames>
+        <Item Value="NumberOfParkings"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertySearchVVO1Iterator"
+                     id="DuplexFlag">
+      <AttrNames>
+        <Item Value="DuplexFlag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertySearchVVO1Iterator"
+                     id="RentAmount">
+      <AttrNames>
+        <Item Value="RentAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertySearchVVO1Iterator"
+                     id="Comments">
+      <AttrNames>
+        <Item Value="Comments"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertySearchVVO1Iterator"
+                     id="LastLeasedAmount">
+      <AttrNames>
+        <Item Value="LastLeasedAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertySearchVVO1Iterator"
+                     id="PropertyCountry">
+      <AttrNames>
+        <Item Value="PropertyCountry"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertySearchVVO1Iterator"
+                     id="PropertySite">
+      <AttrNames>
+        <Item Value="PropertySite"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertySearchVVO1Iterator"
+                     id="CreatedBy">
+      <AttrNames>
+        <Item Value="CreatedBy"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertySearchVVO1Iterator"
+                     id="CreationDate">
+      <AttrNames>
+        <Item Value="CreationDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertySearchVVO1Iterator"
+                     id="LastUpdatedBy">
+      <AttrNames>
+        <Item Value="LastUpdatedBy"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertySearchVVO1Iterator"
+                     id="LastUpdateDate">
+      <AttrNames>
+        <Item Value="LastUpdateDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertySearchVVO1Iterator"
+                     id="ParentPropertyId">
+      <AttrNames>
+        <Item Value="ParentPropertyId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstatePropertySearchVVO1Iterator"
+                     id="TypeId">
+      <AttrNames>
+        <Item Value="TypeId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateContractSearchVVOIterator"
+                     id="OwnerId">
+      <AttrNames>
+        <Item Value="OwnerId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateContractSearchVVOIterator"
+                     id="ContractSegment">
+      <AttrNames>
+        <Item Value="ContractSegment"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateContractSearchVVOIterator"
+                     id="ContractSubject">
+      <AttrNames>
+        <Item Value="ContractSubject"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateContractSearchVVOIterator"
+                     id="ContractStartDate">
+      <AttrNames>
+        <Item Value="ContractStartDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateContractSearchVVOIterator"
+                     id="ContractEndDate">
+      <AttrNames>
+        <Item Value="ContractEndDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateContractSearchVVOIterator"
+                     id="PrecentageAmount">
+      <AttrNames>
+        <Item Value="PrecentageAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateContractSearchVVOIterator"
+                     id="ReceiptAmount">
+      <AttrNames>
+        <Item Value="ReceiptAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateContractSearchVVOIterator"
+                     id="SignatureAmount">
+      <AttrNames>
+        <Item Value="SignatureAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="MAGenericViewVVO1Iterator" id="MAGenericViewVVO1">
+      <nodeDefinition DefName="ma.oracle.apps.cx.realestate.property.views.MAGenericViewVVO"
+                      Name="MAGenericViewVVO10">
+        <AttrNames>
+          <Item Value="PropertyId"/>
+          <Item Value="OwnerId"/>
+          <Item Value="PropertySegment"/>
+          <Item Value="PropertyName"/>
+          <Item Value="Owner"/>
+          <Item Value="ParentTypeName"/>
+          <Item Value="PropertyLocation"/>
+          <Item Value="OccupationEq"/>
+          <Item Value="DemandEq"/>
+          <Item Value="ForecastEq"/>
+          <Item Value="IdleEq"/>
+          <Item Value="StartDate"/>
+          <Item Value="EndDate"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="MARealEstateGenericPropertySearchVVO1Iterator"
+                     id="PropertySegment3">
+      <AttrNames>
+        <Item Value="PropertySegment"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericPropertySearchVVO1Iterator"
+                     id="PropertyName2">
+      <AttrNames>
+        <Item Value="PropertyName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericPropertySearchVVO1Iterator"
+                     id="BlockBuldingName2">
+      <AttrNames>
+        <Item Value="BlockBuldingName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericPropertySearchVVO1Iterator"
+                     id="FloorNumber2">
+      <AttrNames>
+        <Item Value="FloorNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericPropertySearchVVO1Iterator"
+                     id="PropertyStatus2">
+      <AttrNames>
+        <Item Value="PropertyStatus"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericPropertySearchVVO1Iterator"
+                     id="StartDate2">
+      <AttrNames>
+        <Item Value="StartDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericPropertySearchVVO1Iterator"
+                     id="EndDate2">
+      <AttrNames>
+        <Item Value="EndDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericPropertySearchVVO1Iterator"
+                     id="AvailableForRentFlag2">
+      <AttrNames>
+        <Item Value="AvailableForRentFlag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericPropertySearchVVO1Iterator"
+                     id="UnitNumber2">
+      <AttrNames>
+        <Item Value="UnitNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericPropertySearchVVO1Iterator"
+                     id="UnitSqMt2">
+      <AttrNames>
+        <Item Value="UnitSqMt"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericPropertySearchVVO1Iterator"
+                     id="NumberOfRooms2">
+      <AttrNames>
+        <Item Value="NumberOfRooms"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericPropertySearchVVO1Iterator"
+                     id="NumberOfBathrooms2">
+      <AttrNames>
+        <Item Value="NumberOfBathrooms"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericPropertySearchVVO1Iterator"
+                     id="NumberOfParkings2">
+      <AttrNames>
+        <Item Value="NumberOfParkings"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericPropertySearchVVO1Iterator"
+                     id="DuplexFlag2">
+      <AttrNames>
+        <Item Value="DuplexFlag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericPropertySearchVVO1Iterator"
+                     id="RentAmount2">
+      <AttrNames>
+        <Item Value="RentAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericPropertySearchVVO1Iterator"
+                     id="Comments2">
+      <AttrNames>
+        <Item Value="Comments"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericPropertySearchVVO1Iterator"
+                     id="LastLeasedAmount2">
+      <AttrNames>
+        <Item Value="LastLeasedAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericPropertySearchVVO1Iterator"
+                     id="PropertyCountry2">
+      <AttrNames>
+        <Item Value="PropertyCountry"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericPropertySearchVVO1Iterator"
+                     id="PropertyCity1">
+      <AttrNames>
+        <Item Value="PropertyCity"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericPropertySearchVVO1Iterator"
+                     id="PropertyRegion1">
+      <AttrNames>
+        <Item Value="PropertyRegion"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericPropertySearchVVO1Iterator"
+                     id="ContractId1">
+      <AttrNames>
+        <Item Value="ContractId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericPropertySearchVVO1Iterator"
+                     id="PropertySite2">
+      <AttrNames>
+        <Item Value="PropertySite"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericPropertySearchVVO1Iterator"
+                     id="CreatedBy2">
+      <AttrNames>
+        <Item Value="CreatedBy"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericPropertySearchVVO1Iterator"
+                     id="CreationDate2">
+      <AttrNames>
+        <Item Value="CreationDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericPropertySearchVVO1Iterator"
+                     id="LastUpdatedBy2">
+      <AttrNames>
+        <Item Value="LastUpdatedBy"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericPropertySearchVVO1Iterator"
+                     id="LastUpdateDate2">
+      <AttrNames>
+        <Item Value="LastUpdateDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericPropertySearchVVO1Iterator"
+                     id="TypeId2">
+      <AttrNames>
+        <Item Value="TypeId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericPropertySearchVVO1Iterator"
+                     id="ParentTypeId1">
+      <AttrNames>
+        <Item Value="ParentTypeId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericContractSearchVVOIterator"
+                     id="ContractId2">
+      <AttrNames>
+        <Item Value="ContractId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericContractSearchVVOIterator"
+                     id="OwnerId1">
+      <AttrNames>
+        <Item Value="OwnerId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericContractSearchVVOIterator"
+                     id="ContractSegment1">
+      <AttrNames>
+        <Item Value="ContractSegment"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericContractSearchVVOIterator"
+                     id="ContractSubject1">
+      <AttrNames>
+        <Item Value="ContractSubject"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericContractSearchVVOIterator"
+                     id="ContractStartDate1">
+      <AttrNames>
+        <Item Value="ContractStartDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericContractSearchVVOIterator"
+                     id="ContractEndDate1">
+      <AttrNames>
+        <Item Value="ContractEndDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericContractSearchVVOIterator"
+                     id="PrecentageAmount1">
+      <AttrNames>
+        <Item Value="PrecentageAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericContractSearchVVOIterator"
+                     id="ReceiptAmount1">
+      <AttrNames>
+        <Item Value="ReceiptAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateGenericContractSearchVVOIterator"
+                     id="SignatureAmount1">
+      <AttrNames>
+        <Item Value="SignatureAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MAGenericOwnerVVO1Iterator" id="OwnerId2">
+      <AttrNames>
+        <Item Value="OwnerId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MAGenericOwnerVVO1Iterator" id="FullName">
+      <AttrNames>
+        <Item Value="FullName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MAGenericOwnerVVO1Iterator" id="EmailAddress">
+      <AttrNames>
+        <Item Value="EmailAddress"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MAGenericOwnerVVO1Iterator"
+                     id="MaritalStatus">
+      <AttrNames>
+        <Item Value="MaritalStatus"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MAGenericOwnerVVO1Iterator"
+                     id="NationalIdentifier">
+      <AttrNames>
+        <Item Value="NationalIdentifier"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MAGenericOwnerVVO1Iterator"
+                     id="WorkTelephone">
+      <AttrNames>
+        <Item Value="WorkTelephone"/>
+      </AttrNames>
+    </attributeValues>
+    <gauge IterBinding="MATotalOpporunitesVVO1Iterator"
+           id="MATotalOpporunitesVVO1" xmlns="http://xmlns.oracle.com/adfm/dvt"
+           type="DIAL">
+      <gaugeDataMap>
+        <thresholds>
+          <item value="0" valueType="literal"/>
+          <item value="CountOpOpportunityId"/>
+        </thresholds>
+        <item type="metric" value="CountOpOpportunityId"/>
+        <item type="minimum" value="0" valueType="literal"/>
+        <item type="maximum" value="25" valueType="literal"/>
+        <item type="topLabel" value="Totalopportunites"/>
+        <item type="bottomLabel" value="Totalopportunites"/>
+      </gaugeDataMap>
+    </gauge>
+    <gauge IterBinding="MATotalPropertiesVVO1Iterator"
+           id="MATotalPropertiesVVO1" xmlns="http://xmlns.oracle.com/adfm/dvt"
+           type="DIAL">
+      <gaugeDataMap>
+        <thresholds>
+          <item value="0" valueType="literal"/>
+          <item value="CountPropPropertyId"/>
+        </thresholds>
+        <item type="metric" value="CountPropPropertyId"/>
+        <item type="minimum" value="0" valueType="literal"/>
+        <item type="maximum" value="25" valueType="literal"/>
+        <item type="topLabel" value="Totalproperies"/>
+        <item type="bottomLabel" value="Totalproperies"/>
+      </gaugeDataMap>
+    </gauge>
+    <attributeValues IterBinding="MARealEstatePropertySearchVVO1Iterator"
+                     id="ParentTypeId">
+      <AttrNames>
+        <Item Value="ParentTypeId"/>
+      </AttrNames>
+    </attributeValues>
+    <mapTheme IterBinding="MAProertyMapVVO1Iterator" id="MAProertyMapVVO1"
+              xmlns="http://xmlns.oracle.com/adfm/dvt">
+      <mapThemeDataMap mapThemeType="point">
+        <item type="lat_long" longitude="Longitude" latitude="Latitude"/>
+      </mapThemeDataMap>
+    </mapTheme>
+    <methodAction id="en_lang" RequiresUpdateModel="true" Action="invokeMethod" MethodName="en_lang"
+                  IsViewObjectMethod="false" DataControl="MARealEstatePropertyAMDataControl"
+                  InstanceName="data.MARealEstatePropertyAMDataControl.dataProvider"
+                  ReturnName="data.MARealEstatePropertyAMDataControl.methodResults.en_lang_MARealEstatePropertyAMDataControl_dataProvider_en_lang_result"/>
+    <methodAction id="ar_lang" RequiresUpdateModel="true" Action="invokeMethod" MethodName="ar_lang"
+                  IsViewObjectMethod="false" DataControl="MARealEstatePropertyAMDataControl"
+                  InstanceName="data.MARealEstatePropertyAMDataControl.dataProvider"
+                  ReturnName="data.MARealEstatePropertyAMDataControl.methodResults.ar_lang_MARealEstatePropertyAMDataControl_dataProvider_ar_lang_result"/>
+  </bindings>
+</pageDefinition>

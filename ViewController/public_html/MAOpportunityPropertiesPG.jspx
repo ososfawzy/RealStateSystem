@@ -1,0 +1,293 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view beforePhase="#{backingBeanScope.MAOpportunityPropertiesBean.initOppPropertiesQuery}">
+    <af:document id="d1"
+                 binding="#{backingBeanScope.MAOpportunityPropertiesBean.d1}" title="#{bundle.Opportunities}">
+      <af:messages id="m1"
+                   binding="#{backingBeanScope.MAOpportunityPropertiesBean.m1}"/>
+      <af:form id="f1"
+               binding="#{backingBeanScope.MAOpportunityPropertiesBean.f1}">
+               <af:pageTemplate viewId="v" id="pt1">
+                         <f:facet name="center">
+        <af:panelCollection binding="#{backingBeanScope.MAOpportunityPropertiesBean.pc1}"
+                            id="pc1" styleClass="AFStretchWidth">
+          <f:facet name="menus"/>
+          <f:facet name="toolbar">
+            <af:toolbar binding="#{backingBeanScope.MAOpportunityPropertiesBean.t2}"
+                        id="t2">
+                  <af:button text="#{bundle.Add_Row}" binding="#{backingBeanScope.MAOpportunityPropertiesBean.cb2}" id="cb2"
+                             icon="/images/icons/new_ena.png"
+                             action="#{backingBeanScope.MAOpportunityPropertiesBean.createPropertyLease}"/>
+                  <af:button actionListener="#{bindings.Commit.execute}" text="#{bundle.Save}"
+                             binding="#{backingBeanScope.MAOpportunityPropertiesBean.cb3}" id="cb3"
+                             icon="/images/icons/save_ena.png"/>
+                  <af:inputText label="#{bundle.Lease_Subject}"
+                            binding="#{backingBeanScope.MAOpportunityPropertiesBean.it9}"
+                            id="it9"/>
+                  <af:button text="#{bundle.Create_Lease}" binding="#{backingBeanScope.MAOpportunityPropertiesBean.cb1}" id="cb1"
+                             action="#{backingBeanScope.MAOpportunityPropertiesBean.createLeaseAction}"/>
+                  <af:popup binding="#{backingBeanScope.MAOpportunityPropertiesBean.p1}"
+                        id="p1" contentDelivery="lazyUncached"
+                        autoCancel="disabled" childCreation="deferred">
+                <af:dialog binding="#{backingBeanScope.MAOpportunityPropertiesBean.d2}"
+                           id="d2" title="#{bundle.Search_Select_Property}" type="none" contentWidth="600">
+                  <af:panelGroupLayout layout="vertical"
+                                       binding="#{backingBeanScope.MAOpportunityPropertiesBean.pgl1}"
+                                       id="pgl1">
+                    <af:panelHeader text="#{bundle.Property_Search}"
+                                    binding="#{backingBeanScope.MAOpportunityPropertiesBean.ph1}"
+                                    id="ph1">
+                      <af:query id="qryId1" headerText="#{bundle.Search}" disclosed="true"
+                                value="#{bindings.MARSPropertySearchVOCriteriaQuery.queryDescriptor}"
+                                model="#{bindings.MARSPropertySearchVOCriteriaQuery.queryModel}"
+                                queryListener="#{bindings.MARSPropertySearchVOCriteriaQuery.processQuery}"
+                                queryOperationListener="#{bindings.MARSPropertySearchVOCriteriaQuery.processQueryOperation}"
+                                resultComponentId="::resId1"
+                                binding="#{backingBeanScope.MAOpportunityPropertiesBean.qryId1}"
+                                saveQueryMode="hidden"/>
+                    </af:panelHeader>
+                    <af:table value="#{bindings.MARSPropertySearchVO.collectionModel}"
+                              var="row"
+                              rows="#{bindings.MARSPropertySearchVO.rangeSize}"
+                              emptyText="#{bindings.MARSPropertySearchVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                              fetchSize="#{bindings.MARSPropertySearchVO.rangeSize}"
+                              rowBandingInterval="0"
+                              selectedRowKeys="#{bindings.MARSPropertySearchVO.collectionModel.selectedRow}"
+                              selectionListener="#{bindings.MARSPropertySearchVO.collectionModel.makeCurrent}"
+                              rowSelection="single" id="resId1"
+                              binding="#{backingBeanScope.MAOpportunityPropertiesBean.resId1}"
+                              inlineStyle="height:151px;" width="100%" summary="#{bundle.Property_Search}">
+                          <?audit suppress oracle.adf.faces.tableneedsrowheader?>
+                          <af:column sortProperty="#{bindings.MARSPropertySearchVO.hints.PropertySegment.name}"
+                                 sortable="true" headerText="#{bundle.PROPERTY_SEGMENT}"
+                                 id="resId1c1">
+                        <af:outputText value="#{row.PropertySegment}" id="ot3"/>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.MARSPropertySearchVO.hints.PropertyName.name}"
+                                 sortable="true" headerText="#{bundle.PROPERTY_NAME}"
+                                 id="resId1c2">
+                        <af:outputText value="#{row.PropertyName}" id="ot5"/>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.MARSPropertySearchVO.hints.PropertyStatus.name}"
+                                 sortable="true" headerText="#{bundle.PROPERTY_STATUS}"
+                                 id="resId1c3">
+                        <af:outputText value="#{row.PropertyStatus}" id="ot6"/>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.MARSPropertySearchVO.hints.StartDate.name}"
+                                 sortable="true" headerText="#{bundle.START_DATE}"
+                                 id="resId1c4">
+                        <af:outputText value="#{row.StartDate}" id="ot4">
+                          <af:convertDateTime pattern="#{bindings.MARSPropertySearchVO.hints.StartDate.format}"/>
+                        </af:outputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.MARSPropertySearchVO.hints.EndDate.name}"
+                                 sortable="true" headerText="#{bundle.END_DATE}"
+                                 id="resId1c5">
+                        <af:outputText value="#{row.EndDate}" id="ot2">
+                          <af:convertDateTime pattern="#{bindings.MARSPropertySearchVO.hints.EndDate.format}"/>
+                        </af:outputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.MARSPropertySearchVO.hints.FloorNumber.name}"
+                                 sortable="true" headerText="#{bundle.FLOOR_NUMBER}"
+                                 id="resId1c6">
+                        <af:outputText value="#{row.FloorNumber}" id="ot7"/>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.MARSPropertySearchVO.hints.BlockBuldingName.name}"
+                                 sortable="true"
+                                 headerText="#{bundle.BLOCK_BUILDING_NAME}" id="resId1c7">
+                        <af:outputText value="#{row.BlockBuldingName}"
+                                       id="ot1"/>
+                      </af:column>
+                    </af:table>
+                  </af:panelGroupLayout>
+                  <f:facet name="buttonBar">
+                    <af:panelGroupLayout binding="#{backingBeanScope.MAOpportunityPropertiesBean.panelGroupLayout2}"
+                                         id="panelGroupLayout2"
+                                         layout="horizontal" halign="left"
+                                         styleClass="AFStretchWidth">
+                      <af:panelGroupLayout binding="#{backingBeanScope.MAOpportunityPropertiesBean.pgl17}"
+                                           id="pgl17">
+                            <af:button text="#{bundle.OK}" binding="#{backingBeanScope.MAOpportunityPropertiesBean.cb9}" id="cb9"
+                                       action="#{backingBeanScope.MAOpportunityPropertiesBean.addLeasePropertyRowOK}"/>
+                            <af:button text="#{bundle.Cancel}" binding="#{backingBeanScope.MAOpportunityPropertiesBean.cb8}"
+                                       id="cb8"
+                                       action="#{backingBeanScope.MAOpportunityPropertiesBean.cancelPropertyPopup}"/>
+                          </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                  </f:facet>
+                </af:dialog>
+              </af:popup>
+            </af:toolbar>
+          </f:facet>
+          <f:facet name="statusbar"/>
+          <af:table value="#{bindings.MARSOppLeasePropertyVO.collectionModel}"
+                    var="row"
+                    rows="#{bindings.MARSOppLeasePropertyVO.rangeSize}"
+                    emptyText="#{bindings.MARSOppLeasePropertyVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                    fetchSize="#{bindings.MARSOppLeasePropertyVO.rangeSize}"
+                    rowBandingInterval="0"
+                    selectedRowKeys="#{bindings.MARSOppLeasePropertyVO.collectionModel.selectedRow}"
+                    selectionListener="#{bindings.MARSOppLeasePropertyVO.collectionModel.makeCurrent}"
+                    rowSelection="single"
+                    binding="#{backingBeanScope.MAOpportunityPropertiesBean.t1}"
+                    id="t1" width="100%" columnStretching="last" summary="#{bundle.Opportunities_Table}">
+                <?audit suppress oracle.adf.faces.tableneedsrowheader?>
+                <af:column sortProperty="#{bindings.MARSOppLeasePropertyVO.hints.PropertySegment.name}"
+                       sortable="true" headerText="#{bundle.PROPERTY_NAME}" id="c10"
+                       width="130">
+              <af:inputText value="#{row.bindings.PropertySegment.inputValue}"
+                            label="#{bindings.MARSOppLeasePropertyVO.hints.PropertySegment.label}"
+                            required="#{bindings.MARSOppLeasePropertyVO.hints.PropertySegment.mandatory}"
+                            columns="#{bindings.MARSOppLeasePropertyVO.hints.PropertySegment.displayWidth}"
+                            maximumLength="#{bindings.MARSOppLeasePropertyVO.hints.PropertySegment.precision}"
+                            shortDesc="#{bindings.MARSOppLeasePropertyVO.hints.PropertySegment.tooltip}"
+                            id="it3">
+                <f:validator binding="#{row.bindings.PropertySegment.validator}"/>
+              </af:inputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.MARSOppLeasePropertyVO.hints.PropertyName.name}"
+                       sortable="true" headerText="#{bundle.PROPERTY_NAME}" id="c7"
+                       width="130">
+              <af:inputText value="#{row.bindings.PropertyName.inputValue}"
+                            label="#{bindings.MARSOppLeasePropertyVO.hints.PropertyName.label}"
+                            required="#{bindings.MARSOppLeasePropertyVO.hints.PropertyName.mandatory}"
+                            columns="#{bindings.MARSOppLeasePropertyVO.hints.PropertyName.displayWidth}"
+                            maximumLength="#{bindings.MARSOppLeasePropertyVO.hints.PropertyName.precision}"
+                            shortDesc="#{bindings.MARSOppLeasePropertyVO.hints.PropertyName.tooltip}"
+                            id="it7">
+                <f:validator binding="#{row.bindings.PropertyName.validator}"/>
+              </af:inputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.MARSOppLeasePropertyVO.hints.StartDate.name}"
+                       sortable="true" headerText="#{bundle.START_DATE}" id="c1"
+                       width="130">
+              <af:inputDate value="#{row.bindings.StartDate.inputValue}"
+                            label="#{bindings.MARSOppLeasePropertyVO.hints.StartDate.label}"
+                            required="#{bindings.MARSOppLeasePropertyVO.hints.StartDate.mandatory}"
+                            shortDesc="#{bindings.MARSOppLeasePropertyVO.hints.StartDate.tooltip}"
+                            id="id2">
+                <f:validator binding="#{row.bindings.StartDate.validator}"/>
+                <af:convertDateTime pattern="#{bindings.MARSOppLeasePropertyVO.hints.StartDate.format}"/>
+              </af:inputDate>
+            </af:column>
+            <af:column sortProperty="#{bindings.MARSOppLeasePropertyVO.hints.EndDate.name}"
+                       sortable="true" headerText="#{bundle.END_DATE}" id="c4"
+                       width="130">
+              <af:inputDate value="#{row.bindings.EndDate.inputValue}"
+                            label="#{bindings.MARSOppLeasePropertyVO.hints.EndDate.label}"
+                            required="#{bindings.MARSOppLeasePropertyVO.hints.EndDate.mandatory}"
+                            shortDesc="#{bindings.MARSOppLeasePropertyVO.hints.EndDate.tooltip}"
+                            id="id1">
+                <f:validator binding="#{row.bindings.EndDate.validator}"/>
+                <af:convertDateTime pattern="#{bindings.MARSOppLeasePropertyVO.hints.EndDate.format}"/>
+              </af:inputDate>
+            </af:column>
+            <af:column sortProperty="#{bindings.MARSOppLeasePropertyVO.hints.BlockBuldingName.name}"
+                       sortable="true" headerText="#{bundle.BLOCK_BUILDING_NAME}" id="c8"
+                       width="130">
+              <af:inputText value="#{row.bindings.BlockBuldingName.inputValue}"
+                            label="#{bindings.MARSOppLeasePropertyVO.hints.BlockBuldingName.label}"
+                            required="#{bindings.MARSOppLeasePropertyVO.hints.BlockBuldingName.mandatory}"
+                            columns="#{bindings.MARSOppLeasePropertyVO.hints.BlockBuldingName.displayWidth}"
+                            maximumLength="#{bindings.MARSOppLeasePropertyVO.hints.BlockBuldingName.precision}"
+                            shortDesc="#{bindings.MARSOppLeasePropertyVO.hints.BlockBuldingName.tooltip}"
+                            id="it8">
+                <f:validator binding="#{row.bindings.BlockBuldingName.validator}"/>
+              </af:inputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.MARSOppLeasePropertyVO.hints.FloorNumber.name}"
+                       sortable="true" headerText="#{bundle.FLOOR_NUMBER}" id="c2"
+                       width="130">
+              <af:inputText value="#{row.bindings.FloorNumber.inputValue}"
+                            label="#{bindings.MARSOppLeasePropertyVO.hints.FloorNumber.label}"
+                            required="#{bindings.MARSOppLeasePropertyVO.hints.FloorNumber.mandatory}"
+                            columns="#{bindings.MARSOppLeasePropertyVO.hints.FloorNumber.displayWidth}"
+                            maximumLength="#{bindings.MARSOppLeasePropertyVO.hints.FloorNumber.precision}"
+                            shortDesc="#{bindings.MARSOppLeasePropertyVO.hints.FloorNumber.tooltip}"
+                            id="it4">
+                <f:validator binding="#{row.bindings.FloorNumber.validator}"/>
+              </af:inputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.MARSOppLeasePropertyVO.hints.UnitNumber.name}"
+                       sortable="true" headerText="#{bundle.UNIT_NUMBER}" id="c9"
+                       width="130">
+              <af:inputText value="#{row.bindings.UnitNumber.inputValue}"
+                            label="#{bindings.MARSOppLeasePropertyVO.hints.UnitNumber.label}"
+                            required="#{bindings.MARSOppLeasePropertyVO.hints.UnitNumber.mandatory}"
+                            columns="#{bindings.MARSOppLeasePropertyVO.hints.UnitNumber.displayWidth}"
+                            maximumLength="#{bindings.MARSOppLeasePropertyVO.hints.UnitNumber.precision}"
+                            shortDesc="#{bindings.MARSOppLeasePropertyVO.hints.UnitNumber.tooltip}"
+                            id="it2">
+                <f:validator binding="#{row.bindings.UnitNumber.validator}"/>
+              </af:inputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.MARSOppLeasePropertyVO.hints.UnitSqMt.name}"
+                       sortable="true" headerText="#{bundle.UNIT_SQMT}" id="c5"
+                       width="130">
+              <af:inputText value="#{row.bindings.UnitSqMt.inputValue}"
+                            label="#{bindings.MARSOppLeasePropertyVO.hints.UnitSqMt.label}"
+                            required="#{bindings.MARSOppLeasePropertyVO.hints.UnitSqMt.mandatory}"
+                            columns="#{bindings.MARSOppLeasePropertyVO.hints.UnitSqMt.displayWidth}"
+                            maximumLength="#{bindings.MARSOppLeasePropertyVO.hints.UnitSqMt.precision}"
+                            shortDesc="#{bindings.MARSOppLeasePropertyVO.hints.UnitSqMt.tooltip}"
+                            id="it6">
+                <f:validator binding="#{row.bindings.UnitSqMt.validator}"/>
+              </af:inputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.MARSOppLeasePropertyVO.hints.ParentTypeName.name}"
+                       sortable="true" headerText="#{bundle.Property_Parent_Type}"
+                       id="c3" width="130">
+              <af:inputText value="#{row.bindings.ParentTypeName.inputValue}"
+                            label="#{bindings.MARSOppLeasePropertyVO.hints.ParentTypeName.label}"
+                            required="#{bindings.MARSOppLeasePropertyVO.hints.ParentTypeName.mandatory}"
+                            columns="#{bindings.MARSOppLeasePropertyVO.hints.ParentTypeName.displayWidth}"
+                            maximumLength="#{bindings.MARSOppLeasePropertyVO.hints.ParentTypeName.precision}"
+                            shortDesc="#{bindings.MARSOppLeasePropertyVO.hints.ParentTypeName.tooltip}"
+                            id="it1">
+                <f:validator binding="#{row.bindings.ParentTypeName.validator}"/>
+              </af:inputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.MARSOppLeasePropertyVO.hints.ChildTypeName.name}"
+                       sortable="true" headerText="#{bundle.Property_Sub_Type}" id="c6"
+                       width="130">
+              <af:inputText value="#{row.bindings.ChildTypeName.inputValue}"
+                            label="#{bindings.MARSOppLeasePropertyVO.hints.ChildTypeName.label}"
+                            required="#{bindings.MARSOppLeasePropertyVO.hints.ChildTypeName.mandatory}"
+                            columns="#{bindings.MARSOppLeasePropertyVO.hints.ChildTypeName.displayWidth}"
+                            maximumLength="#{bindings.MARSOppLeasePropertyVO.hints.ChildTypeName.precision}"
+                            shortDesc="#{bindings.MARSOppLeasePropertyVO.hints.ChildTypeName.tooltip}"
+                            id="it5">
+                <f:validator binding="#{row.bindings.ChildTypeName.validator}"/>
+              </af:inputText>
+            </af:column>
+          </af:table>
+        </af:panelCollection>
+        </f:facet>
+                    <f:facet name="header">
+            <af:outputText value="#{bundle.Opportunity_Management}" id="ot8" binding="#{backingBeanScope.MAOpportunityPropertiesBean.ot8}"/>
+          </f:facet>
+                    <f:facet name="end"/>
+                    <f:facet name="start"/>
+                    <f:facet name="branding"/>
+                    <f:facet name="copyright"/>
+                    <f:facet name="status">
+            <af:toolbar id="t3" binding="#{backingBeanScope.MAOpportunityPropertiesBean.t3}">
+              <af:button id="b2" binding="#{backingBeanScope.MAOpportunityPropertiesBean.b2}"
+                         actionListener="#{bindings.en_lang.execute}" disabled="#{!bindings.en_lang.enabled}"
+                         partialSubmit="false" shortDesc="#{bundle.English}" icon="/images/icons/english.png"/>
+              <af:button id="b1" binding="#{backingBeanScope.MAOpportunityPropertiesBean.b1}"
+                         actionListener="#{bindings.ar_lang.execute}" disabled="#{!bindings.ar_lang.enabled}"
+                         icon="/images/icons/arabic.png" shortDesc="#{bundle.Arabic}" partialSubmit="false"/>
+            </af:toolbar>
+          </f:facet>
+                    <f:attribute name="endColumnSize" value="0"/>
+                    <f:attribute name="startColumnSize" value="0"/>
+                </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+  <!--oracle-jdev-comment:auto-binding-backing-bean-name:MAOpportunityPropertiesBean-->
+</jsp:root>

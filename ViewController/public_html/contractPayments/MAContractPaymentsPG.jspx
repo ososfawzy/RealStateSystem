@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view beforePhase="#{backingBeanScope.MAContractPaymentsBean.beforePhase}">
+        <af:document title="#{bundle.Contracts_SearchPG}" id="d1" binding="#{backingBeanScope.MAContractPaymentsBean.d1}">
+            <af:messages id="m1" binding="#{backingBeanScope.MAContractPaymentsBean.m1}"/>
+            <af:form id="f1" binding="#{backingBeanScope.MAContractPaymentsBean.f1}">
+                <af:pageTemplate viewId="#{pageFlowScope.Facet}" id="pt1">
+                    <f:facet name="center">
+                        <af:panelGroupLayout layout="vertical" id="pgl2"
+                                             binding="#{backingBeanScope.MAContractPaymentsBean.pgl2}">
+                            <af:panelHeader text="#{bundle.Contract_Search}" id="ph1"
+                                            binding="#{backingBeanScope.MAContractPaymentsBean.ph1}">
+                                <af:query id="qryId1" headerText="#{bundle.Search}" disclosed="true"
+                                          value="#{bindings.MAContractsSearchVVOCriteriaQuery.queryDescriptor}"
+                                          model="#{bindings.MAContractsSearchVVOCriteriaQuery.queryModel}"
+                                          queryListener="#{bindings.MAContractsSearchVVOCriteriaQuery.processQuery}"
+                                          queryOperationListener="#{bindings.MAContractsSearchVVOCriteriaQuery.processQueryOperation}"
+                                          resultComponentId="::pc1"
+                                          binding="#{backingBeanScope.MAContractPaymentsBean.qryId1}"
+                                          saveQueryMode="hidden"/>
+                            </af:panelHeader>
+                            <af:panelCollection id="pc1" binding="#{backingBeanScope.MAContractPaymentsBean.pc1}"
+                                                styleClass="AFStretchWidth">
+                                <f:facet name="menus"/>
+                                <f:facet name="toolbar">
+                                    <af:toolbar id="t1" binding="#{backingBeanScope.MAContractPaymentsBean.t1}">
+                                        <af:button text="#{bundle.Create_Contract}" disabled="#{!bindings.CreateInsert.enabled}"
+                                                   id="b1" binding="#{backingBeanScope.MAContractPaymentsBean.b1}"
+                                                   icon="/images/icons/new_ena.png"
+                                                   action="#{backingBeanScope.MAContractPaymentsBean.createContractBtnAction}"/>
+                                        <af:button text="#{bundle.Edit}" id="b2"
+                                                   binding="#{backingBeanScope.MAContractPaymentsBean.b2}"
+                                                   icon="/images/icons/edit_ena.png"
+                                                   action="#{backingBeanScope.MAContractPaymentsBean.editContractAction}"/>
+                                        <af:button text="#{bundle.Remove}" id="b3"
+                                                   binding="#{backingBeanScope.MAContractPaymentsBean.b3}"
+                                                   icon="/images/icons/delete_ena.png"
+                                                   action="#{backingBeanScope.MAContractPaymentsBean.deleteContract}"/>
+                                    </af:toolbar>
+                                </f:facet>
+                                <f:facet name="statusbar"/>
+                                <af:table value="#{bindings.MAContractsSearchVVO.collectionModel}" var="row"
+                                          rows="#{bindings.MAContractsSearchVVO.rangeSize}"
+                                          emptyText="#{bindings.MAContractsSearchVVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                          rowBandingInterval="0"
+                                          selectedRowKeys="#{bindings.MAContractsSearchVVO.collectionModel.selectedRow}"
+                                          selectionListener="#{bindings.MAContractsSearchVVO.collectionModel.makeCurrent}"
+                                          rowSelection="single" fetchSize="#{bindings.MAContractsSearchVVO.rangeSize}"
+                                          id="resId1" binding="#{backingBeanScope.MAContractPaymentsBean.resId1}"
+                                          width="100%" partialTriggers="::b3">
+                                    <?audit suppress oracle.adf.faces.compreqsummary?><?audit suppress oracle.adf.faces.tableneedsrowheader?>
+                                    <af:column sortProperty="#{bindings.MAContractsSearchVVO.hints.ContractNumber.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MAContractsSearchVVO.hints.ContractNumber.label}"
+                                               id="resId1c1">
+                                        <af:outputText value="#{row.ContractNumber}"
+                                                       shortDesc="#{bindings.MAContractsSearchVVO.hints.ContractNumber.tooltip}"
+                                                       id="ot1"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.MAContractsSearchVVO.hints.ContractType.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MAContractsSearchVVO.hints.ContractType.label}"
+                                               id="resId1c2">
+                                        <af:outputText value="#{row.ContractType}"
+                                                       shortDesc="#{bindings.MAContractsSearchVVO.hints.ContractType.tooltip}"
+                                                       id="ot2"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.MAContractsSearchVVO.hints.Currency.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MAContractsSearchVVO.hints.Currency.label}"
+                                               id="resId1c3">
+                                        <af:outputText value="#{row.Currency}"
+                                                       shortDesc="#{bindings.MAContractsSearchVVO.hints.Currency.tooltip}"
+                                                       id="ot3"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.MAContractsSearchVVO.hints.SerialNumber.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MAContractsSearchVVO.hints.SerialNumber.label}"
+                                               id="resId1c4">
+                                        <af:outputText value="#{row.SerialNumber}"
+                                                       shortDesc="#{bindings.MAContractsSearchVVO.hints.SerialNumber.tooltip}"
+                                                       id="ot4"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.MAContractsSearchVVO.hints.PropertyActualPrice.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MAContractsSearchVVO.hints.PropertyActualPrice.label}"
+                                               id="resId1c5">
+                                        <af:outputText value="#{row.PropertyActualPrice}"
+                                                       shortDesc="#{bindings.MAContractsSearchVVO.hints.PropertyActualPrice.tooltip}"
+                                                       id="ot5">
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.MAContractsSearchVVO.hints.PropertyActualPrice.format}"/>
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.MAContractsSearchVVO.hints.PaymentStartDate.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MAContractsSearchVVO.hints.PaymentStartDate.label}"
+                                               id="resId1c6">
+                                        <af:outputText value="#{row.PaymentStartDate}"
+                                                       shortDesc="#{bindings.MAContractsSearchVVO.hints.PaymentStartDate.tooltip}"
+                                                       id="ot6">
+                                            <af:convertDateTime pattern="#{bindings.MAContractsSearchVVO.hints.PaymentStartDate.format}"/>
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.MAContractsSearchVVO.hints.PropertyName.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MAContractsSearchVVO.hints.PropertyName.label}"
+                                               id="resId1c7">
+                                        <af:outputText value="#{row.PropertyName}"
+                                                       shortDesc="#{bindings.MAContractsSearchVVO.hints.PropertyName.tooltip}"
+                                                       id="ot7"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.MAContractsSearchVVO.hints.Notes.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MAContractsSearchVVO.hints.Notes.label}"
+                                               id="resId1c8">
+                                        <af:outputText value="#{row.Notes}"
+                                                       shortDesc="#{bindings.MAContractsSearchVVO.hints.Notes.tooltip}"
+                                                       id="ot8"/>
+                                    </af:column>
+                                </af:table>
+                            </af:panelCollection>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                    <f:facet name="header">
+                        <af:toolbar id="t2" binding="#{backingBeanScope.MAContractPaymentsBean.t2}">
+                            <af:link text="#{bundle.Home}" id="l1" binding="#{backingBeanScope.MAContractPaymentsBean.l1}"
+                                     action="home"/>
+                        </af:toolbar>
+                    </f:facet>
+                    <f:facet name="end"/>
+                    <f:facet name="start"/>
+                    <f:facet name="branding"/>
+                    <f:facet name="copyright"/>
+                    <f:facet name="status">
+                        <af:toolbar id="t3" binding="#{backingBeanScope.MAContractPaymentsBean.t3}">
+                            <af:button id="b4" binding="#{backingBeanScope.MAContractPaymentsBean.b4}"
+                                       actionListener="#{bindings.en_lang.execute}"
+                                       disabled="#{!bindings.en_lang.enabled}" icon="/images/icons/english.png"
+                                       shortDesc="#{bundle.English}" partialSubmit="false"/>
+                            <af:button id="b5" binding="#{backingBeanScope.MAContractPaymentsBean.b5}"
+                                       actionListener="#{bindings.ar_lang.execute}"
+                                       disabled="#{!bindings.ar_lang.enabled}" partialSubmit="false"
+                                       shortDesc="#{bundle.Arabic}" icon="/images/icons/arabic.png"/>
+                        </af:toolbar>
+                    </f:facet>
+                    <f:attribute name="endColumnSize" value="0"/>
+                    <f:attribute name="startColumnSize" value="0"/>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+    <!--oracle-jdev-comment:auto-binding-backing-bean-name:MAContractPaymentsBean-->
+</jsp:root>

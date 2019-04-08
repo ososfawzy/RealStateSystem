@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="windows-1256" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MABuildingToBuildingAttachmentsVL"
+  Version="12.1.3.10.8"
+  InheritPersonalization="merge">
+  <ViewLinkDefEnd
+    Name="MARealEstateBuildingVO"
+    Cardinality="1"
+    Source="true"
+    Owner="ma.oracle.apps.cx.realestate.building.views.MARealEstateBuildingVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="MARealEstateBuildingVO"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ma.oracle.apps.cx.realestate.building.views.MARealEstateBuildingVO.BuildingId"/>
+      <Item Value="ma.oracle.apps.cx.realestate.building.views.MARealEstateBuildingVO.IntAttribute10"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="MABuildingAttachmentVO"
+    Cardinality="-1"
+    Owner="ma.oracle.apps.cx.realestate.building.views.MABuildingAttachmentVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="MABuildingAttachmentVO"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ma.oracle.apps.cx.realestate.building.views.MABuildingAttachmentVO.Pk1Value"/>
+      <Item Value="ma.oracle.apps.cx.realestate.building.views.MABuildingAttachmentVO.EntityName"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+</ViewLink>

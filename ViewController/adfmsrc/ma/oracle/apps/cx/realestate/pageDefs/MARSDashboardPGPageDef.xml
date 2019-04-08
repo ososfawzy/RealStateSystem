@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.10.8" id="MARSDashboardPGPageDef"
+                Package="ma.oracle.apps.cx.realestate.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="MASlideImagesVO1" RangeSize="25" DataControl="MARealEstatePropertyAMDataControl"
+              id="MASlideImagesVO1Iterator"/>
+    <iterator Binds="MARealEstateServicesVO" RangeSize="25" DataControl="MARealEstatePropertyAMDataControl"
+              id="MARealEstateServicesVOIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="MASlideImagesVO1Iterator" id="MASlideImagesVO1">
+      <nodeDefinition DefName="ma.oracle.apps.cx.realestate.property.views.MASlideImagesVO" Name="MASlideImagesVO10">
+        <AttrNames>
+          <Item Value="PiId"/>
+          <Item Value="PiImageFile"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="LastUpdatedBy"/>
+          <Item Value="CreationDate"/>
+          <Item Value="LastUpdateDate"/>
+          <Item Value="LastUpdateLogin"/>
+          <Item Value="AttributeCategory"/>
+          <Item Value="Attribute1"/>
+          <Item Value="Attribute2"/>
+          <Item Value="Attribute3"/>
+          <Item Value="Attribute4"/>
+          <Item Value="Attribute5"/>
+          <Item Value="Attribute6"/>
+          <Item Value="Attribute7"/>
+          <Item Value="Attribute8"/>
+          <Item Value="Attribute9"/>
+          <Item Value="Attribute10"/>
+          <Item Value="Attribute11"/>
+          <Item Value="Attribute12"/>
+          <Item Value="Attribute13"/>
+          <Item Value="Attribute14"/>
+          <Item Value="Attribute15"/>
+          <Item Value="ExtAttributeCategory"/>
+          <Item Value="ExtAttribute1"/>
+          <Item Value="ExtAttribute2"/>
+          <Item Value="ExtAttribute3"/>
+          <Item Value="ExtAttribute4"/>
+          <Item Value="ExtAttribute5"/>
+          <Item Value="ExtAttribute6"/>
+          <Item Value="ExtAttribute7"/>
+          <Item Value="ExtAttribute8"/>
+          <Item Value="ExtAttribute9"/>
+          <Item Value="ExtAttribute10"/>
+          <Item Value="ExtAttribute11"/>
+          <Item Value="ExtAttribute12"/>
+          <Item Value="ExtAttribute13"/>
+          <Item Value="ExtAttribute14"/>
+          <Item Value="ExtAttribute15"/>
+          <Item Value="StartDate"/>
+          <Item Value="EndDate"/>
+          <Item Value="Amount"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <button IterBinding="MARealEstateServicesVOIterator" id="AvailabilityFlag" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="AvailabilityFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="MARealEstateServicesVOIterator" id="PaidServiceFlag" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="PaidServiceFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <methodAction id="ar_lang" RequiresUpdateModel="true" Action="invokeMethod" MethodName="ar_lang"
+                  IsViewObjectMethod="false" DataControl="MARealEstatePropertyAMDataControl"
+                  InstanceName="data.MARealEstatePropertyAMDataControl.dataProvider"
+                  ReturnName="data.MARealEstatePropertyAMDataControl.methodResults.ar_lang_MARealEstatePropertyAMDataControl_dataProvider_ar_lang_result"/>
+    <methodAction id="en_lang" RequiresUpdateModel="true" Action="invokeMethod" MethodName="en_lang"
+                  IsViewObjectMethod="false" DataControl="MARealEstatePropertyAMDataControl"
+                  InstanceName="data.MARealEstatePropertyAMDataControl.dataProvider"
+                  ReturnName="data.MARealEstatePropertyAMDataControl.methodResults.en_lang_MARealEstatePropertyAMDataControl_dataProvider_en_lang_result"/>
+  </bindings>
+</pageDefinition>

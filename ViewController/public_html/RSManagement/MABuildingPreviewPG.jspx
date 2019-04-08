@@ -1,0 +1,564 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view beforePhase="#{backingBeanScope.MABuildingPreviewBean.beforePhase}">
+        <af:document title="#{bundle.MABuildingPreviewPG}" id="d1" binding="#{backingBeanScope.MABuildingPreviewBean.d1}">
+            <af:messages id="m1"/>
+            <af:form id="f1" binding="#{backingBeanScope.MABuildingPreviewBean.f1}">
+                <af:pageTemplate viewId="/oracle/templates/threeColumnTemplate.jspx" id="pt1">
+                    <f:facet name="center">
+                        <af:panelTabbed position="above" id="pt2"
+                                        binding="#{backingBeanScope.MABuildingPreviewBean.pt2}">
+                            <af:showDetailItem id="tab1" text="#{bundle.Building_Preview}"
+                                               binding="#{backingBeanScope.MABuildingPreviewBean.tab1}">
+                                <af:panelGroupLayout id="pgl1" layout="scroll">
+                                    <af:panelStretchLayout id="psl1" startWidth="0" endWidth="0" topHeight="0"
+                                                           bottomHeight="0" styleClass="AFStretchWidth"
+                                                           inlineStyle="height:821px;">
+                                        <f:facet name="bottom"/>
+                                        <f:facet name="center">
+                                            <af:panelGridLayout id="pgl2">
+                                                <af:gridRow marginTop="5px" height="auto" id="gr1">
+                                                    <af:gridCell marginStart="5px" width="25%" id="gc1">
+                                                        <af:panelFormLayout id="pfl1"
+                                                                            binding="#{backingBeanScope.MABuildingPreviewBean.pfl1}">
+                                                            <af:group id="group"
+                                                                      binding="#{backingBeanScope.MABuildingPreviewBean.group}">
+                                                                <af:selectOneChoice value="#{bindings.ProjectId.inputValue}"
+                                                                                    label="#{bindings.ProjectId.label}"
+                                                                                    required="#{bindings.ProjectId.hints.mandatory}"
+                                                                                    shortDesc="#{bindings.ProjectId.hints.tooltip}"
+                                                                                    id="soc1"
+                                                                                    binding="#{backingBeanScope.MABuildingPreviewBean.soc1}"
+                                                                                    readOnly="true">
+                                                                    <f:selectItems value="#{bindings.ProjectId.items}"
+                                                                                   id="si1"
+                                                                                   binding="#{backingBeanScope.MABuildingPreviewBean.si1}"/>
+                                                                    <f:validator binding="#{bindings.ProjectId.validator}"/>
+                                                                </af:selectOneChoice>
+                                                                <af:inputText value="#{bindings.BuildingId.inputValue}"
+                                                                              label="#{bindings.BuildingId.hints.label}"
+                                                                              required="#{bindings.BuildingId.hints.mandatory}"
+                                                                              columns="#{bindings.BuildingId.hints.displayWidth}"
+                                                                              maximumLength="#{bindings.BuildingId.hints.precision}"
+                                                                              shortDesc="#{bindings.BuildingId.hints.tooltip}"
+                                                                              id="it1"
+                                                                              binding="#{backingBeanScope.MABuildingPreviewBean.it1}"
+                                                                              readOnly="true">
+                                                                    <f:validator binding="#{bindings.BuildingId.validator}"/>
+                                                                    <af:convertNumber groupingUsed="false"
+                                                                                      pattern="#{bindings.BuildingId.format}"/>
+                                                                </af:inputText>
+                                                                <af:inputText value="#{bindings.BuildingName.inputValue}"
+                                                                              label="#{bindings.BuildingName.hints.label}"
+                                                                              required="#{bindings.BuildingName.hints.mandatory}"
+                                                                              columns="#{bindings.BuildingName.hints.displayWidth}"
+                                                                              maximumLength="#{bindings.BuildingName.hints.precision}"
+                                                                              shortDesc="#{bindings.BuildingName.hints.tooltip}"
+                                                                              id="it2"
+                                                                              binding="#{backingBeanScope.MABuildingPreviewBean.it2}"
+                                                                              readOnly="true">
+                                                                    <f:validator binding="#{bindings.BuildingName.validator}"/>
+                                                                </af:inputText>
+                                                                <af:inputText value="#{bindings.BuildingLocation.inputValue}"
+                                                                              label="#{bindings.BuildingLocation.hints.label}"
+                                                                              required="#{bindings.BuildingLocation.hints.mandatory}"
+                                                                              columns="#{bindings.BuildingLocation.hints.displayWidth}"
+                                                                              maximumLength="#{bindings.BuildingLocation.hints.precision}"
+                                                                              shortDesc="#{bindings.BuildingLocation.hints.tooltip}"
+                                                                              id="it3"
+                                                                              binding="#{backingBeanScope.MABuildingPreviewBean.it3}"
+                                                                              readOnly="true">
+                                                                    <f:validator binding="#{bindings.BuildingLocation.validator}"/>
+                                                                </af:inputText>
+                                                                <af:selectOneChoice value="#{bindings.BuildingType.inputValue}"
+                                                                                    label="#{bindings.BuildingType.label}"
+                                                                                    required="#{bindings.BuildingType.hints.mandatory}"
+                                                                                    shortDesc="#{bindings.BuildingType.hints.tooltip}"
+                                                                                    id="soc2"
+                                                                                    binding="#{backingBeanScope.MABuildingPreviewBean.soc2}"
+                                                                                    readOnly="true">
+                                                                    <f:selectItems value="#{bindings.BuildingType.items}"
+                                                                                   id="si2"
+                                                                                   binding="#{backingBeanScope.MABuildingPreviewBean.si2}"/>
+                                                                    <f:validator binding="#{bindings.BuildingType.validator}"/>
+                                                                </af:selectOneChoice>
+                                                                <af:selectOneChoice value="#{bindings.BuildingSubType.inputValue}"
+                                                                                    label="#{bindings.BuildingSubType.label}"
+                                                                                    required="#{bindings.BuildingSubType.hints.mandatory}"
+                                                                                    shortDesc="#{bindings.BuildingSubType.hints.tooltip}"
+                                                                                    id="soc3"
+                                                                                    binding="#{backingBeanScope.MABuildingPreviewBean.soc3}"
+                                                                                    readOnly="true">
+                                                                    <f:selectItems value="#{bindings.BuildingSubType.items}"
+                                                                                   id="si3"
+                                                                                   binding="#{backingBeanScope.MABuildingPreviewBean.si3}"/>
+                                                                    <f:validator binding="#{bindings.BuildingSubType.validator}"/>
+                                                                </af:selectOneChoice>
+                                                                <af:selectOneChoice value="#{bindings.Status.inputValue}"
+                                                                                    label="#{bindings.Status.label}"
+                                                                                    required="#{bindings.Status.hints.mandatory}"
+                                                                                    shortDesc="#{bindings.Status.hints.tooltip}"
+                                                                                    id="soc4"
+                                                                                    binding="#{backingBeanScope.MABuildingPreviewBean.soc4}"
+                                                                                    readOnly="true">
+                                                                    <f:selectItems value="#{bindings.Status.items}"
+                                                                                   id="si4"
+                                                                                   binding="#{backingBeanScope.MABuildingPreviewBean.si4}"/>
+                                                                    <f:validator binding="#{bindings.Status.validator}"/>
+                                                                </af:selectOneChoice>
+                                                                <af:inputDate value="#{bindings.StartServiceDate.inputValue}"
+                                                                              label="#{bindings.StartServiceDate.hints.label}"
+                                                                              required="#{bindings.StartServiceDate.hints.mandatory}"
+                                                                              columns="#{bindings.StartServiceDate.hints.displayWidth}"
+                                                                              shortDesc="#{bindings.StartServiceDate.hints.tooltip}"
+                                                                              id="id1"
+                                                                              binding="#{backingBeanScope.MABuildingPreviewBean.id1}"
+                                                                              readOnly="true">
+                                                                    <f:validator binding="#{bindings.StartServiceDate.validator}"/>
+                                                                    <af:convertDateTime pattern="#{bindings.StartServiceDate.format}"/>
+                                                                </af:inputDate>
+                                                                <af:inputDate value="#{bindings.EndServiceDate.inputValue}"
+                                                                              label="#{bindings.EndServiceDate.hints.label}"
+                                                                              required="#{bindings.EndServiceDate.hints.mandatory}"
+                                                                              columns="#{bindings.EndServiceDate.hints.displayWidth}"
+                                                                              shortDesc="#{bindings.EndServiceDate.hints.tooltip}"
+                                                                              id="id2"
+                                                                              binding="#{backingBeanScope.MABuildingPreviewBean.id2}"
+                                                                              readOnly="true">
+                                                                    <f:validator binding="#{bindings.EndServiceDate.validator}"/>
+                                                                    <af:convertDateTime pattern="#{bindings.EndServiceDate.format}"/>
+                                                                </af:inputDate>
+                                                            </af:group>
+                                                        </af:panelFormLayout>
+                                                    </af:gridCell>
+                                                    <af:gridCell marginStart="5px" width="50%" marginEnd="5px" id="gc2">
+                                                        <af:panelGridLayout id="pgl3"
+                                                                            binding="#{backingBeanScope.MABuildingPreviewBean.pgl3}">
+                                                            <af:gridRow marginTop="5px" height="auto" id="gr6"
+                                                                        binding="#{backingBeanScope.MABuildingPreviewBean.gr6}">
+                                                                <af:gridCell marginStart="5px" width="100%"
+                                                                             marginEnd="5px" id="gc11"
+                                                                             binding="#{backingBeanScope.MABuildingPreviewBean.gc11}">
+                                                                    <af:selectBooleanCheckbox value="#{bindings.AvailableForRentFlag.inputValue}"
+                                                                                              label="#{bindings.AvailableForRentFlag.label}"
+                                                                                              shortDesc="#{bindings.AvailableForRentFlag.hints.tooltip}"
+                                                                                              id="sbc1"
+                                                                                              binding="#{backingBeanScope.MABuildingPreviewBean.sbc1}"
+                                                                                              disabled="true"/>
+                                                                </af:gridCell>
+                                                            </af:gridRow>
+                                                            <af:gridRow marginTop="5px" height="auto" marginBottom="5px"
+                                                                        id="gr7"
+                                                                        binding="#{backingBeanScope.MABuildingPreviewBean.gr7}">
+                                                                <af:gridCell marginStart="5px" width="100%"
+                                                                             marginEnd="5px" id="gc12"
+                                                                             binding="#{backingBeanScope.MABuildingPreviewBean.gc12}">
+                                                                    <af:panelFormLayout id="pfl2"
+                                                                                        binding="#{backingBeanScope.MABuildingPreviewBean.pfl2}">
+                                                                        <af:selectOneChoice value="#{bindings.RentPaymentTermId.inputValue}"
+                                                                                            label="#{bindings.RentPaymentTermId.label}"
+                                                                                            required="#{bindings.RentPaymentTermId.hints.mandatory}"
+                                                                                            shortDesc="#{bindings.RentPaymentTermId.hints.tooltip}"
+                                                                                            readOnly="true" id="soc5"
+                                                                                            binding="#{backingBeanScope.MABuildingPreviewBean.soc5}">
+                                                                            <f:selectItems value="#{bindings.RentPaymentTermId.items}"
+                                                                                           id="si5"
+                                                                                           binding="#{backingBeanScope.MABuildingPreviewBean.si5}"/>
+                                                                            <f:validator binding="#{bindings.RentPaymentTermId.validator}"/>
+                                                                        </af:selectOneChoice>
+                                                                        <af:inputText value="#{bindings.RentAmount.inputValue}"
+                                                                                      label="#{bindings.RentAmount.hints.label}"
+                                                                                      required="#{bindings.RentAmount.hints.mandatory}"
+                                                                                      readOnly="true"
+                                                                                      columns="#{bindings.RentAmount.hints.displayWidth}"
+                                                                                      maximumLength="#{bindings.RentAmount.hints.precision}"
+                                                                                      shortDesc="#{bindings.RentAmount.hints.tooltip}"
+                                                                                      id="it18"
+                                                                                      binding="#{backingBeanScope.MABuildingPreviewBean.it18}">
+                                                                            <f:validator binding="#{bindings.RentAmount.validator}"/>
+                                                                            <af:convertNumber groupingUsed="false"
+                                                                                              pattern="#{bindings.RentAmount.format}"/>
+                                                                        </af:inputText>
+                                                                        <af:inputDate value="#{bindings.StartServiceDate1.inputValue}"
+                                                                                      readOnly="true"
+                                                                                      label="#{bindings.StartServiceDate1.hints.label}"
+                                                                                      required="#{bindings.StartServiceDate1.hints.mandatory}"
+                                                                                      columns="#{bindings.StartServiceDate1.hints.displayWidth}"
+                                                                                      shortDesc="#{bindings.StartServiceDate1.hints.tooltip}"
+                                                                                      id="id5"
+                                                                                      binding="#{backingBeanScope.MABuildingPreviewBean.id5}">
+                                                                            <f:validator binding="#{bindings.StartServiceDate1.validator}"/>
+                                                                            <af:convertDateTime pattern="#{bindings.StartServiceDate1.format}"/>
+                                                                        </af:inputDate>
+                                                                        <af:inputDate value="#{bindings.EndServiceDate1.inputValue}"
+                                                                                      label="#{bindings.EndServiceDate1.hints.label}"
+                                                                                      required="#{bindings.EndServiceDate1.hints.mandatory}"
+                                                                                      columns="#{bindings.EndServiceDate1.hints.displayWidth}"
+                                                                                      shortDesc="#{bindings.EndServiceDate1.hints.tooltip}"
+                                                                                      id="id6"
+                                                                                      binding="#{backingBeanScope.MABuildingPreviewBean.id6}"
+                                                                                      readOnly="true">
+                                                                            <f:validator binding="#{bindings.EndServiceDate1.validator}"/>
+                                                                            <af:convertDateTime pattern="#{bindings.EndServiceDate1.format}"/>
+                                                                        </af:inputDate>
+                                                                    </af:panelFormLayout>
+                                                                </af:gridCell>
+                                                            </af:gridRow>
+                                                        </af:panelGridLayout>
+                                                    </af:gridCell>
+                                                </af:gridRow>
+                                                <af:gridRow marginTop="5px" height="auto" id="gr2">
+                                                    <af:gridCell marginStart="5px" width="25%" id="gc3">
+                                                        <af:group id="g1"
+                                                                  binding="#{backingBeanScope.MABuildingPreviewBean.g1}">
+                                                            <af:inputText value="#{bindings.CreatedBy.inputValue}"
+                                                                          label="#{bindings.CreatedBy.hints.label}"
+                                                                          required="#{bindings.CreatedBy.hints.mandatory}"
+                                                                          columns="#{bindings.CreatedBy.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.CreatedBy.hints.precision}"
+                                                                          shortDesc="#{bindings.CreatedBy.hints.tooltip}"
+                                                                          id="it5"
+                                                                          binding="#{backingBeanScope.MABuildingPreviewBean.it5}"
+                                                                          readOnly="true">
+                                                                <f:validator binding="#{bindings.CreatedBy.validator}"/>
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.CreatedBy.format}"/>
+                                                            </af:inputText>
+                                                            <af:inputDate value="#{bindings.CreationDate.inputValue}"
+                                                                          label="#{bindings.CreationDate.hints.label}"
+                                                                          required="#{bindings.CreationDate.hints.mandatory}"
+                                                                          columns="#{bindings.CreationDate.hints.displayWidth}"
+                                                                          shortDesc="#{bindings.CreationDate.hints.tooltip}"
+                                                                          id="id3"
+                                                                          binding="#{backingBeanScope.MABuildingPreviewBean.id3}"
+                                                                          readOnly="true">
+                                                                <f:validator binding="#{bindings.CreationDate.validator}"/>
+                                                                <af:convertDateTime pattern="#{bindings.CreationDate.format}"/>
+                                                            </af:inputDate>
+                                                            <af:inputText value="#{bindings.LastUpdatedBy.inputValue}"
+                                                                          label="#{bindings.LastUpdatedBy.hints.label}"
+                                                                          required="#{bindings.LastUpdatedBy.hints.mandatory}"
+                                                                          columns="#{bindings.LastUpdatedBy.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.LastUpdatedBy.hints.precision}"
+                                                                          shortDesc="#{bindings.LastUpdatedBy.hints.tooltip}"
+                                                                          id="it6"
+                                                                          binding="#{backingBeanScope.MABuildingPreviewBean.it6}"
+                                                                          readOnly="true">
+                                                                <f:validator binding="#{bindings.LastUpdatedBy.validator}"/>
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.LastUpdatedBy.format}"/>
+                                                            </af:inputText>
+                                                            <af:inputDate value="#{bindings.LastUpdateDate.inputValue}"
+                                                                          label="#{bindings.LastUpdateDate.hints.label}"
+                                                                          required="#{bindings.LastUpdateDate.hints.mandatory}"
+                                                                          columns="#{bindings.LastUpdateDate.hints.displayWidth}"
+                                                                          shortDesc="#{bindings.LastUpdateDate.hints.tooltip}"
+                                                                          id="id4"
+                                                                          binding="#{backingBeanScope.MABuildingPreviewBean.id4}"
+                                                                          readOnly="true">
+                                                                <f:validator binding="#{bindings.LastUpdateDate.validator}"/>
+                                                                <af:convertDateTime pattern="#{bindings.LastUpdateDate.format}"/>
+                                                            </af:inputDate>
+                                                        </af:group>
+                                                    </af:gridCell>
+                                                    <af:gridCell marginStart="5px" width="50%" marginEnd="5px" id="gc4">
+                                                        <af:inputText value="#{bindings.Comments.inputValue}"
+                                                                      label="#{bindings.Comments.hints.label}"
+                                                                      required="#{bindings.Comments.hints.mandatory}"
+                                                                      columns="#{bindings.Comments.hints.displayWidth}"
+                                                                      maximumLength="#{bindings.Comments.hints.precision}"
+                                                                      shortDesc="#{bindings.Comments.hints.tooltip}"
+                                                                      id="it17"
+                                                                      binding="#{backingBeanScope.MABuildingPreviewBean.it17}"
+                                                                      readOnly="true">
+                                                            <f:validator binding="#{bindings.Comments.validator}"/>
+                                                        </af:inputText>
+                                                    </af:gridCell>
+                                                </af:gridRow>
+                                                <af:gridRow marginTop="5px" height="auto" id="gr3">
+                                                    <af:gridCell marginStart="5px" width="25%" id="gc5">
+                                                        <af:group id="g4"
+                                                                  binding="#{backingBeanScope.MABuildingPreviewBean.g4}">
+                                                            <af:inputText value="#{bindings.GroundArea.inputValue}"
+                                                                          label="#{bindings.GroundArea.hints.label}"
+                                                                          required="#{bindings.GroundArea.hints.mandatory}"
+                                                                          columns="#{bindings.GroundArea.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.GroundArea.hints.precision}"
+                                                                          shortDesc="#{bindings.GroundArea.hints.tooltip}"
+                                                                          id="it7"
+                                                                          binding="#{backingBeanScope.MABuildingPreviewBean.it7}"
+                                                                          readOnly="true">
+                                                                <f:validator binding="#{bindings.GroundArea.validator}"/>
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.GroundArea.format}"/>
+                                                            </af:inputText>
+                                                            <af:inputText value="#{bindings.BuildingArea.inputValue}"
+                                                                          label="#{bindings.BuildingArea.hints.label}"
+                                                                          required="#{bindings.BuildingArea.hints.mandatory}"
+                                                                          columns="#{bindings.BuildingArea.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.BuildingArea.hints.precision}"
+                                                                          shortDesc="#{bindings.BuildingArea.hints.tooltip}"
+                                                                          id="it8"
+                                                                          binding="#{backingBeanScope.MABuildingPreviewBean.it8}"
+                                                                          readOnly="true">
+                                                                <f:validator binding="#{bindings.BuildingArea.validator}"/>
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.BuildingArea.format}"/>
+                                                            </af:inputText>
+                                                            <af:inputText value="#{bindings.NoOfFloors.inputValue}"
+                                                                          label="#{bindings.NoOfFloors.hints.label}"
+                                                                          required="#{bindings.NoOfFloors.hints.mandatory}"
+                                                                          columns="#{bindings.NoOfFloors.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.NoOfFloors.hints.precision}"
+                                                                          shortDesc="#{bindings.NoOfFloors.hints.tooltip}"
+                                                                          id="it9"
+                                                                          binding="#{backingBeanScope.MABuildingPreviewBean.it9}"
+                                                                          readOnly="true">
+                                                                <f:validator binding="#{bindings.NoOfFloors.validator}"/>
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.NoOfFloors.format}"/>
+                                                            </af:inputText>
+                                                        </af:group>
+                                                    </af:gridCell>
+                                                    <af:gridCell marginStart="5px" width="50%" marginEnd="5px" id="gc6">
+                                                        <af:group id="g5"
+                                                                  binding="#{backingBeanScope.MABuildingPreviewBean.g5}">
+                                                            <af:inputText value="#{bindings.GroundPricePerMeter.inputValue}"
+                                                                          label="#{bindings.GroundPricePerMeter.hints.label}"
+                                                                          required="#{bindings.GroundPricePerMeter.hints.mandatory}"
+                                                                          columns="#{bindings.GroundPricePerMeter.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.GroundPricePerMeter.hints.precision}"
+                                                                          shortDesc="#{bindings.GroundPricePerMeter.hints.tooltip}"
+                                                                          id="it15"
+                                                                          binding="#{backingBeanScope.MABuildingPreviewBean.it15}"
+                                                                          readOnly="true">
+                                                                <f:validator binding="#{bindings.GroundPricePerMeter.validator}"/>
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.GroundPricePerMeter.format}"/>
+                                                            </af:inputText>
+                                                            <af:inputText value="#{bindings.BuildingPricePerMeter.inputValue}"
+                                                                          label="#{bindings.BuildingPricePerMeter.hints.label}"
+                                                                          required="#{bindings.BuildingPricePerMeter.hints.mandatory}"
+                                                                          columns="#{bindings.BuildingPricePerMeter.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.BuildingPricePerMeter.hints.precision}"
+                                                                          shortDesc="#{bindings.BuildingPricePerMeter.hints.tooltip}"
+                                                                          id="it16"
+                                                                          binding="#{backingBeanScope.MABuildingPreviewBean.it16}"
+                                                                          readOnly="true">
+                                                                <f:validator binding="#{bindings.BuildingPricePerMeter.validator}"/>
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.BuildingPricePerMeter.format}"/>
+                                                            </af:inputText>
+                                                        </af:group>
+                                                    </af:gridCell>
+                                                </af:gridRow>
+                                                <af:gridRow id="gr8"
+                                                            binding="#{backingBeanScope.MABuildingPreviewBean.gr8}">
+                                                    <af:gridCell id="gc13"
+                                                                 binding="#{backingBeanScope.MABuildingPreviewBean.gc13}">
+                                                        <af:group id="g2"
+                                                                  binding="#{backingBeanScope.MABuildingPreviewBean.g2}">
+                                                            <af:inputText value="#{bindings.Boundries.inputValue}"
+                                                                          label="#{bindings.Boundries.hints.label}"
+                                                                          required="#{bindings.Boundries.hints.mandatory}"
+                                                                          columns="#{bindings.Boundries.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.Boundries.hints.precision}"
+                                                                          shortDesc="#{bindings.Boundries.hints.tooltip}"
+                                                                          id="it10"
+                                                                          binding="#{backingBeanScope.MABuildingPreviewBean.it10}"
+                                                                          readOnly="true">
+                                                                <f:validator binding="#{bindings.Boundries.validator}"/>
+                                                            </af:inputText>
+                                                            <af:inputText value="#{bindings.NorthSide.inputValue}"
+                                                                          label="#{bindings.NorthSide.hints.label}"
+                                                                          required="#{bindings.NorthSide.hints.mandatory}"
+                                                                          columns="#{bindings.NorthSide.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.NorthSide.hints.precision}"
+                                                                          shortDesc="#{bindings.NorthSide.hints.tooltip}"
+                                                                          id="it11"
+                                                                          binding="#{backingBeanScope.MABuildingPreviewBean.it11}"
+                                                                          readOnly="true">
+                                                                <f:validator binding="#{bindings.NorthSide.validator}"/>
+                                                            </af:inputText>
+                                                            <af:inputText value="#{bindings.SouthSide.inputValue}"
+                                                                          label="#{bindings.SouthSide.hints.label}"
+                                                                          required="#{bindings.SouthSide.hints.mandatory}"
+                                                                          columns="#{bindings.SouthSide.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.SouthSide.hints.precision}"
+                                                                          shortDesc="#{bindings.SouthSide.hints.tooltip}"
+                                                                          id="it12"
+                                                                          binding="#{backingBeanScope.MABuildingPreviewBean.it12}"
+                                                                          readOnly="true">
+                                                                <f:validator binding="#{bindings.SouthSide.validator}"/>
+                                                            </af:inputText>
+                                                        </af:group>
+                                                    </af:gridCell>
+                                                    <af:gridCell id="gc14"
+                                                                 binding="#{backingBeanScope.MABuildingPreviewBean.gc14}">
+                                                        <af:group id="g3"
+                                                                  binding="#{backingBeanScope.MABuildingPreviewBean.g3}">
+                                                            <af:inputText value="#{bindings.WestSide.inputValue}"
+                                                                          label="#{bindings.WestSide.hints.label}"
+                                                                          required="#{bindings.WestSide.hints.mandatory}"
+                                                                          columns="#{bindings.WestSide.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.WestSide.hints.precision}"
+                                                                          shortDesc="#{bindings.WestSide.hints.tooltip}"
+                                                                          id="it14"
+                                                                          binding="#{backingBeanScope.MABuildingPreviewBean.it14}"
+                                                                          readOnly="true">
+                                                                <f:validator binding="#{bindings.WestSide.validator}"/>
+                                                            </af:inputText>
+                                                            <af:inputText value="#{bindings.EastSide.inputValue}"
+                                                                          label="#{bindings.EastSide.hints.label}"
+                                                                          required="#{bindings.EastSide.hints.mandatory}"
+                                                                          columns="#{bindings.EastSide.hints.displayWidth}"
+                                                                          maximumLength="#{bindings.EastSide.hints.precision}"
+                                                                          shortDesc="#{bindings.EastSide.hints.tooltip}"
+                                                                          id="it13"
+                                                                          binding="#{backingBeanScope.MABuildingPreviewBean.it13}"
+                                                                          readOnly="true">
+                                                                <f:validator binding="#{bindings.EastSide.validator}"/>
+                                                            </af:inputText>
+                                                        </af:group>
+                                                    </af:gridCell>
+                                                </af:gridRow>
+                                                <af:gridRow marginTop="5px" height="auto" id="gr4">
+                                                    <af:gridCell marginStart="5px" width="25%" id="gc7">
+                                                        <af:table value="#{bindings.MABuildingOwnerVO.collectionModel}"
+                                                                  var="row"
+                                                                  rows="#{bindings.MABuildingOwnerVO.rangeSize}"
+                                                                  emptyText="#{bindings.MABuildingOwnerVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                                  rowBandingInterval="0"
+                                                                  fetchSize="#{bindings.MABuildingOwnerVO.rangeSize}"
+                                                                  id="t1"
+                                                                  binding="#{backingBeanScope.MABuildingPreviewBean.t1}"
+                                                                  width="525" inlineStyle="height:196px;">
+                                                            <af:column headerText="#{bindings.MABuildingOwnerVO.hints.BuildingOwnerName.label}"
+                                                                       id="c1">
+                                                                <af:outputText value="#{row.BuildingOwnerName}"
+                                                                               shortDesc="#{bindings.MABuildingOwnerVO.hints.BuildingOwnerName.tooltip}"
+                                                                               id="ot1"/>
+                                                            </af:column>
+                                                            <af:column headerText="#{bindings.MABuildingOwnerVO.hints.ContractSubject.label}"
+                                                                       id="c2">
+                                                                <af:outputText value="#{row.ContractSubject}"
+                                                                               shortDesc="#{bindings.MABuildingOwnerVO.hints.ContractSubject.tooltip}"
+                                                                               id="ot2"/>
+                                                            </af:column>
+                                                            <af:column headerText="#{bindings.MABuildingOwnerVO.hints.ContractId.label}"
+                                                                       id="c3">
+                                                                <af:outputText value="#{row.ContractId}"
+                                                                               shortDesc="#{bindings.MABuildingOwnerVO.hints.ContractId.tooltip}"
+                                                                               id="ot3">
+                                                                    <af:convertNumber groupingUsed="false"
+                                                                                      pattern="#{bindings.MABuildingOwnerVO.hints.ContractId.format}"/>
+                                                                </af:outputText>
+                                                            </af:column>
+                                                            <af:column headerText="#{bindings.MABuildingOwnerVO.hints.ContractStartDate.label}"
+                                                                       id="c4">
+                                                                <af:outputText value="#{row.ContractStartDate}"
+                                                                               shortDesc="#{bindings.MABuildingOwnerVO.hints.ContractStartDate.tooltip}"
+                                                                               id="ot4">
+                                                                    <af:convertDateTime pattern="#{bindings.MABuildingOwnerVO.hints.ContractStartDate.format}"/>
+                                                                </af:outputText>
+                                                            </af:column>
+                                                            <af:column headerText="#{bindings.MABuildingOwnerVO.hints.ContractEndDate.label}"
+                                                                       id="c5">
+                                                                <af:outputText value="#{row.ContractEndDate}"
+                                                                               shortDesc="#{bindings.MABuildingOwnerVO.hints.ContractEndDate.tooltip}"
+                                                                               id="ot5">
+                                                                    <af:convertDateTime pattern="#{bindings.MABuildingOwnerVO.hints.ContractEndDate.format}"/>
+                                                                </af:outputText>
+                                                            </af:column>
+                                                        </af:table>
+                                                    </af:gridCell>
+                                                    <af:gridCell marginStart="5px" width="50%" marginEnd="5px"
+                                                                 id="gc8"/>
+                                                </af:gridRow>
+                                                <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr5">
+                                                    <af:gridCell marginStart="5px" width="25%" id="gc9">
+                                                        <af:table value="#{bindings.MABuildingAttachmentVO.collectionModel}"
+                                                                  var="row"
+                                                                  rows="#{bindings.MABuildingAttachmentVO.rangeSize}"
+                                                                  emptyText="#{bindings.MABuildingAttachmentVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                                  rowBandingInterval="0"
+                                                                  fetchSize="#{bindings.MABuildingAttachmentVO.rangeSize}"
+                                                                  id="t2"
+                                                                  binding="#{backingBeanScope.MABuildingPreviewBean.t2}"
+                                                                  width="524">
+                                                            <af:column headerText="#{bindings.MABuildingAttachmentVO.hints.FileContentType.label}"
+                                                                       id="c6">
+                                                                <af:outputText value="#{row.FileContentType}"
+                                                                               shortDesc="#{bindings.MABuildingAttachmentVO.hints.FileContentType.tooltip}"
+                                                                               id="ot6"/>
+                                                            </af:column>
+                                                            <af:column headerText="#{bindings.MABuildingAttachmentVO.hints.FileName.label}"
+                                                                       id="c7">
+                                                                <af:outputText value="#{row.FileName}"
+                                                                               shortDesc="#{bindings.MABuildingAttachmentVO.hints.FileName.tooltip}"
+                                                                               id="ot7"/>
+                                                            </af:column>
+                                                            <af:column headerText="#{bindings.MABuildingAttachmentVO.hints.UploadDate.label}"
+                                                                       id="c8">
+                                                                <af:outputText value="#{row.UploadDate}"
+                                                                               shortDesc="#{bindings.MABuildingAttachmentVO.hints.UploadDate.tooltip}"
+                                                                               id="ot8">
+                                                                    <af:convertDateTime pattern="#{bindings.MABuildingAttachmentVO.hints.UploadDate.format}"/>
+                                                                </af:outputText>
+                                                            </af:column>
+                                                            <af:column id="c9" headerText="#{bundle.Download}">
+                                                                <af:link text="#{bundle.Download}" id="l1">
+                                                                    <af:fileDownloadActionListener method="#{backingBeanScope.MABuildingPreviewBean.downloadBuildingFile}"/>
+                                                                </af:link>
+                                                            </af:column>
+                                                        </af:table>
+                                                    </af:gridCell>
+                                                    <af:gridCell marginStart="5px" width="50%" marginEnd="5px"
+                                                                 id="gc10"/>
+                                                </af:gridRow>
+                                            </af:panelGridLayout>
+                                        </f:facet>
+                                        <f:facet name="start"/>
+                                        <f:facet name="end"/>
+                                        <f:facet name="top"/>
+                                    </af:panelStretchLayout>
+                                    <af:panelGroupLayout id="pgl4"
+                                                         binding="#{backingBeanScope.MABuildingPreviewBean.pgl4}"
+                                                         layout="horizontal">
+                                        <af:toolbar id="t3" binding="#{backingBeanScope.MABuildingPreviewBean.t3}">
+                                            <af:link text="#{bundle.Back_to_Buildings}" id="l2"
+                                                     binding="#{backingBeanScope.MABuildingPreviewBean.l2}"
+                                                     action="backSrch"/>
+                                        </af:toolbar>
+                                    </af:panelGroupLayout>
+                                </af:panelGroupLayout>
+                            </af:showDetailItem>
+                        </af:panelTabbed>
+                    </f:facet>
+                    <f:facet name="header"/>
+                    <f:facet name="end"/>
+                    <f:facet name="start"/>
+                    <f:facet name="branding"/>
+                    <f:facet name="copyright"/>
+                    <f:facet name="status">
+                        <af:toolbar id="t4" binding="#{backingBeanScope.MABuildingPreviewBean.t4}">
+                            <af:button id="b1" binding="#{backingBeanScope.MABuildingPreviewBean.b1}"
+                                       actionListener="#{bindings.en_lang.execute}"
+                                       disabled="#{!bindings.en_lang.enabled}" partialSubmit="false"
+                                       shortDesc="#{bundle.English}" icon="/images/icons/english.png"/>
+                            <af:button id="b2" binding="#{backingBeanScope.MABuildingPreviewBean.b2}"
+                                       actionListener="#{bindings.ar_lang.execute}"
+                                       disabled="#{!bindings.ar_lang.enabled}" icon="/images/icons/arabic.png"
+                                       shortDesc="#{bundle.Arabic}" partialSubmit="false"/>
+                        </af:toolbar>
+                    </f:facet>
+                    <f:attribute name="startColumnSize" value="0"/>
+                    <f:attribute name="endColumnSize" value="0"/>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+    <!--oracle-jdev-comment:auto-binding-backing-bean-name:MABuildingPreviewBean-->
+</jsp:root>

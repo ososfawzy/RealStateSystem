@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application"
+             version="11.1.1.65.57" id="DataBindings" SeparateXMLFiles="false"
+             Package="ma.oracle.apps.cx.realestate" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adfm/dvt"
+             className="oracle.adfinternal.view.faces.dvt.model.binding.FacesBindingFactory"/>
+  </definitionFactories>
+  <pageMap>
+    <page path="/MAOpportunityPropertiesPG.jspx"
+          usageId="ma_oracle_apps_cx_realestate_MAOpportunityPropertiesPGPageDef"/>
+    <page path="/MAPropertyPG.jspx"
+          usageId="ma_oracle_apps_cx_realestate_MAPropertyPGPageDef"/>
+    <page path="/MACreatePropertyPG.jspx"
+          usageId="ma_oracle_apps_cx_realestate_MACreatePropertyPGPageDef"/>
+    <page path="/MALeaseCreationPG.jspx"
+          usageId="ma_oracle_apps_cx_realestate_MALeaseCreationPGPageDef"/>
+    <page path="/MALeaseSearchPG.jspx"
+          usageId="ma_oracle_apps_cx_realestate_MALeaseSearchPGPageDef"/>
+    <page path="PageFlow#CreateInsert"
+          usageId="ma_oracle_apps_cx_realestate_adfc_config___CreateInsertPageDef"/>
+    <page path="PageFlow#Commit"
+          usageId="ma_oracle_apps_cx_realestate_adfc_config___CommitPageDef"/>
+    <page path="PageFlow#CreateInsert1"
+          usageId="ma_oracle_apps_cx_realestate_adfc_config___CreateInsert1PageDef"/>
+    <page path="/MARSDashboardPG.jspx" usageId="ma_oracle_apps_cx_realestate_MARSDashboardPGPageDef"/>
+    <page path="/setup/MAServicesSetupPG.jspx" usageId="ma_oracle_apps_cx_realestate_MAServicesSetupPGPageDef"/>
+    <page path="/setup/MALookupsCreationPG.jspx" usageId="ma_oracle_apps_cx_realestate_MALookupsCreationPGPageDef"/>
+    <page path="/RSManagement/MAProjectBuildingPropertyPG.jspx"
+          usageId="ma_oracle_apps_cx_realestate_MAProjectBuildingPropertyPGPageDef"/>
+    <page path="/RSManagement/MAProjectBuildingPropertySrchPG.jspx"
+          usageId="ma_oracle_apps_cx_realestate_MAProjectBuildingPropertySrchPGPageDef"/>
+    <page path="/RSManagement/MAProjectPreviewPG.jspx"
+          usageId="ma_oracle_apps_cx_realestate_MAProjectPreviewPGPageDef"/>
+    <page path="/RSManagement/MABuildingPreviewPG.jspx"
+          usageId="ma_oracle_apps_cx_realestate_MABuildingPreviewPGPageDef"/>
+    <page path="/RSManagement/MAPropertyPreviewPG.jspx"
+          usageId="ma_oracle_apps_cx_realestate_MAPropertyPreviewPGPageDef"/>
+    <page path="/contractPayments/MAContractPaymentsPG.jspx"
+          usageId="ma_oracle_apps_cx_realestate_MAContractPaymentsPGPageDef"/>
+    <page path="/contractPayments/MAInstallmentPaymentsPG.jspx"
+          usageId="ma_oracle_apps_cx_realestate_MAInstallmentPaymentsPGPageDef"/>
+    <page path="/contracts/MAContractCreationPG.jspx"
+          usageId="ma_oracle_apps_cx_realestate_MAContractCreationPGPageDef"/>
+    <page path="/payments/MAPaymentCreationPG.jspx" usageId="ma_oracle_apps_cx_realestate_MAPaymentCreationPGPageDef"/>
+    <page path="/payments/MAPaymentsSearchPG.jspx" usageId="ma_oracle_apps_cx_realestate_MAPaymentsSearchPGPageDef"/>
+    <page path="/setup/MABuildingTypeSetupPG.jspx" usageId="ma_oracle_apps_cx_realestate_MABuildingTypeSetupPGPageDef"/>
+    <page path="/setup/MALookupsSearchPG.jspx" usageId="ma_oracle_apps_cx_realestate_MALookupsSearchPGPageDef"/>
+    <page path="/setup/MAPropertyTypeSetupPG.jspx" usageId="ma_oracle_apps_cx_realestate_MAPropertyTypeSetupPGPageDef"/>
+    <page path="/setup/MAServicesSetupSearchPG.jspx"
+          usageId="ma_oracle_apps_cx_realestate_MAServicesSetupSearchPGPageDef"/>
+    <page path="/RSManagement/MARSBuildingSearchPG.jspx"
+          usageId="ma_oracle_apps_cx_realestate_MARSBuildingSearchPGPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="ma_oracle_apps_cx_realestate_MAOpportunityPropertiesPGPageDef"
+          path="ma.oracle.apps.cx.realestate.pageDefs.MAOpportunityPropertiesPGPageDef"/>
+    <page id="ma_oracle_apps_cx_realestate_MAPropertyPGPageDef"
+          path="ma.oracle.apps.cx.realestate.pageDefs.MAPropertyPGPageDef"/>
+    <page id="ma_oracle_apps_cx_realestate_MACreatePropertyPGPageDef"
+          path="ma.oracle.apps.cx.realestate.pageDefs.MACreatePropertyPGPageDef"/>
+    <page id="ma_oracle_apps_cx_realestate_MALeaseCreationPGPageDef"
+          path="ma.oracle.apps.cx.realestate.pageDefs.MALeaseCreationPGPageDef"/>
+    <page id="ma_oracle_apps_cx_realestate_MALeaseSearchPGPageDef"
+          path="ma.oracle.apps.cx.realestate.pageDefs.MALeaseSearchPGPageDef"/>
+    <page id="ma_oracle_apps_cx_realestate_adfc_config___CreateInsertPageDef"
+          path="ma.oracle.apps.cx.realestate.pageDefs.adfc_config___CreateInsertPageDef"/>
+    <page id="ma_oracle_apps_cx_realestate_adfc_config___CommitPageDef"
+          path="ma.oracle.apps.cx.realestate.pageDefs.adfc_config___CommitPageDef"/>
+    <page id="ma_oracle_apps_cx_realestate_adfc_config___CreateInsert1PageDef"
+          path="ma.oracle.apps.cx.realestate.pageDefs.adfc_config___CreateInsert1PageDef"/>
+    <page id="ma_oracle_apps_cx_realestate_MARSDashboardPGPageDef"
+          path="ma.oracle.apps.cx.realestate.pageDefs.MARSDashboardPGPageDef"/>
+    <page id="ma_oracle_apps_cx_realestate_MAServicesSetupPGPageDef" path="setup.MAServicesSetupPGPageDef"/>
+    <page id="ma_oracle_apps_cx_realestate_MALookupsCreationPGPageDef" path="setup.MALookupsCreationPGPageDef"/>
+    <page id="ma_oracle_apps_cx_realestate_MAProjectBuildingPropertyPGPageDef"
+          path="RSManagement.MAProjectBuildingPropertyPGPageDef"/>
+    <page id="ma_oracle_apps_cx_realestate_MAProjectBuildingPropertySrchPGPageDef"
+          path="RSManagement.MAProjectBuildingPropertySrchPGPageDef"/>
+    <page id="ma_oracle_apps_cx_realestate_MAProjectPreviewPGPageDef" path="RSManagement.MAProjectPreviewPGPageDef"/>
+    <page id="ma_oracle_apps_cx_realestate_MABuildingPreviewPGPageDef" path="RSManagement.MABuildingPreviewPGPageDef"/>
+    <page id="ma_oracle_apps_cx_realestate_MAPropertyPreviewPGPageDef" path="RSManagement.MAPropertyPreviewPGPageDef"/>
+    <page id="ma_oracle_apps_cx_realestate_MAContractPaymentsPGPageDef"
+          path="contractPayments.MAContractPaymentsPGPageDef"/>
+    <page id="ma_oracle_apps_cx_realestate_MAInstallmentPaymentsPGPageDef"
+          path="contractPayments.MAInstallmentPaymentsPGPageDef"/>
+    <page id="ma_oracle_apps_cx_realestate_MAContractCreationPGPageDef" path="contracts.MAContractCreationPGPageDef"/>
+    <page id="ma_oracle_apps_cx_realestate_MAPaymentCreationPGPageDef" path="payments.MAPaymentCreationPGPageDef"/>
+    <page id="ma_oracle_apps_cx_realestate_MAPaymentsSearchPGPageDef" path="payments.MAPaymentsSearchPGPageDef"/>
+    <page id="ma_oracle_apps_cx_realestate_MABuildingTypeSetupPGPageDef" path="setup.MABuildingTypeSetupPGPageDef"/>
+    <page id="ma_oracle_apps_cx_realestate_MALookupsSearchPGPageDef" path="setup.MALookupsSearchPGPageDef"/>
+    <page id="ma_oracle_apps_cx_realestate_MAPropertyTypeSetupPGPageDef" path="setup.MAPropertyTypeSetupPGPageDef"/>
+    <page id="ma_oracle_apps_cx_realestate_MAServicesSetupSearchPGPageDef" path="setup.MAServicesSetupSearchPGPageDef"/>
+    <page id="ma_oracle_apps_cx_realestate_MARSBuildingSearchPGPageDef"
+          path="RSManagement.MARSBuildingSearchPGPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="MARealEstatePropertyAMDataControl"
+                     Package="ma.oracle.apps.cx.realestate.property.modules"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl"
+                     SupportsTransactions="true" SupportsFindMode="true"
+                     SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true"
+                     Configuration="MARealEstatePropertyAMLocal"
+                     syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+    <BC4JDataControl id="MARealEstateLeaseAMDataControl"
+                     Package="ma.oracle.apps.cx.realestate.lease.modules"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl"
+                     SupportsTransactions="true" SupportsFindMode="true"
+                     SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true"
+                     Configuration="MARealEstateLeaseAMLocal"
+                     syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>

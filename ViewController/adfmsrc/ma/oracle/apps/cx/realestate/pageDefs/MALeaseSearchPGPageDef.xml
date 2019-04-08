@@ -1,0 +1,754 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.65.57" id="MALeaseSearchPGPageDef"
+                Package="ma.oracle.apps.cx.realestate.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="MALeaseSearchVVO" RangeSize="25"
+              DataControl="MARealEstateLeaseAMDataControl"
+              id="MALeaseSearchVVOIterator"/>
+    <searchRegion Criteria="MALeaseSearchVVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="MALeaseSearchVVOIterator"
+                  id="MALeaseSearchVVOCriteriaQuery"/>
+    <iterator Binds="MARealEstateleaseVO" RangeSize="25"
+              DataControl="MARealEstateLeaseAMDataControl"
+              id="MARealEstateleaseVOIterator"/>
+    <iterator Binds="MARealEstateLeaseVVO" RangeSize="25"
+              DataControl="MARealEstateLeaseAMDataControl"
+              id="MARealEstateLeaseVVOIterator"/>
+    <iterator Binds="MATenantNamePopupVO" RangeSize="25"
+              DataControl="MARealEstateLeaseAMDataControl"
+              id="MATenantNamePopupVOIterator"/>
+    <iterator Binds="MATenantSupplierPopupVO" RangeSize="25"
+              DataControl="MARealEstateLeaseAMDataControl"
+              id="MATenantSupplierPopupVOIterator"/>
+    <iterator Binds="MARSParentLeasePopupVO" RangeSize="25"
+              DataControl="MARealEstateLeaseAMDataControl"
+              id="MARSParentLeasePopupVOIterator"/>
+    <iterator Binds="MALeaserInfoPopupVO" RangeSize="25"
+              DataControl="MARealEstateLeaseAMDataControl"
+              id="MALeaserInfoPopupVOIterator"/>
+    <iterator Binds="MAContactPersonPopupVO" RangeSize="25"
+              DataControl="MARealEstateLeaseAMDataControl"
+              id="MAContactPersonPopupVOIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="MALeaseSearchVVOIterator" id="MALeaseSearchVVO">
+      <nodeDefinition DefName="ma.oracle.apps.cx.realestate.lease.views.MALeaseSearchVVO"
+                      Name="MALeaseSearchVVO0">
+        <AttrNames>
+          <Item Value="LeaseSegment"/>
+          <Item Value="LeaseVersion"/>
+          <Item Value="Subject"/>
+          <Item Value="TenantName"/>
+          <Item Value="ContactPerson"/>
+          <Item Value="Phone"/>
+          <Item Value="EmailAddress"/>
+          <Item Value="OpportunityName"/>
+          <Item Value="LeaseType"/>
+          <Item Value="LeaseStatus"/>
+          <Item Value="ParentLease"/>
+          <Item Value="LeaseId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="MARealEstateleaseVOIterator" id="CreateInsert"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="MALeaseSearchVVOIterator" id="setCurrentRowWithKey"
+            RequiresUpdateModel="false" Action="setCurrentRowWithKey">
+      <NamedData NDName="rowKey" NDValue="LeaseSegment"
+                 NDType="java.lang.String"/>
+    </action>
+    <methodAction id="initLeaseQuery"
+                  InstanceName="MARealEstateLeaseAMDataControl.dataProvider"
+                  DataControl="MARealEstateLeaseAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="initLeaseQuery" IsViewObjectMethod="false"
+                  ReturnName="data.MARealEstateLeaseAMDataControl.methodResults.initLeaseQuery_MARealEstateLeaseAMDataControl_dataProvider_initLeaseQuery_result">
+      <NamedData NDName="leaseId" NDType="oracle.jbo.domain.Number"/>
+    </methodAction>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="LeaseSegment">
+      <AttrNames>
+        <Item Value="LeaseSegment"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator" id="Subject">
+      <AttrNames>
+        <Item Value="Subject"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator" id="LeaserName">
+      <AttrNames>
+        <Item Value="LeaserName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="LeaserAddress">
+      <AttrNames>
+        <Item Value="LeaserAddress"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="ContactPerson">
+      <AttrNames>
+        <Item Value="ContactPerson"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="ContactPhoneNumber">
+      <AttrNames>
+        <Item Value="ContactPhoneNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="ContactEmail">
+      <AttrNames>
+        <Item Value="ContactEmail"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="LeaseStatus">
+      <AttrNames>
+        <Item Value="LeaseStatus"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator" id="LeaseType">
+      <AttrNames>
+        <Item Value="LeaseType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="TreinnelPercentage">
+      <AttrNames>
+        <Item Value="TreinnelPercentage"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="ParentLease">
+      <AttrNames>
+        <Item Value="ParentLease"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator" id="StartDate">
+      <AttrNames>
+        <Item Value="StartDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator" id="EndDate">
+      <AttrNames>
+        <Item Value="EndDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="BookingExpiringOn">
+      <AttrNames>
+        <Item Value="BookingExpiringOn"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator" id="Increase">
+      <AttrNames>
+        <Item Value="Increase"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="IterationMonths">
+      <AttrNames>
+        <Item Value="IterationMonths"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="AutoCalculateFlag">
+      <AttrNames>
+        <Item Value="AutoCalculateFlag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="TenureMonths">
+      <AttrNames>
+        <Item Value="TenureMonths"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="LeaseTermsConditions">
+      <AttrNames>
+        <Item Value="LeaseTermsConditions"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="BillingFrequency">
+      <AttrNames>
+        <Item Value="BillingFrequency"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator" id="Water">
+      <AttrNames>
+        <Item Value="Water"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="Electricity">
+      <AttrNames>
+        <Item Value="Electricity"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator" id="Sanitation">
+      <AttrNames>
+        <Item Value="Sanitation"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator" id="Badge">
+      <AttrNames>
+        <Item Value="Badge"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator" id="Discount">
+      <AttrNames>
+        <Item Value="Discount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator" id="Currency">
+      <AttrNames>
+        <Item Value="Currency"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator" id="RentAmount">
+      <AttrNames>
+        <Item Value="RentAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="AdhockCharges">
+      <AttrNames>
+        <Item Value="AdhockCharges"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="GrossRentAmount">
+      <AttrNames>
+        <Item Value="GrossRentAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="DiscountAmount">
+      <AttrNames>
+        <Item Value="DiscountAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator" id="NetAmount">
+      <AttrNames>
+        <Item Value="NetAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="RenewalNoticeSent">
+      <AttrNames>
+        <Item Value="RenewalNoticeSent"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="ReceivedConfirmationDate">
+      <AttrNames>
+        <Item Value="ReceivedConfirmationDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="CustomerResponse">
+      <AttrNames>
+        <Item Value="CustomerResponse"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="ProposedYearlyRent">
+      <AttrNames>
+        <Item Value="ProposedYearlyRent"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator" id="VacantDate">
+      <AttrNames>
+        <Item Value="VacantDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="ExtendedDate">
+      <AttrNames>
+        <Item Value="ExtendedDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="TerminationNoticeSent">
+      <AttrNames>
+        <Item Value="TerminationNoticeSent"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="TerminationDate">
+      <AttrNames>
+        <Item Value="TerminationDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="TerminationReason">
+      <AttrNames>
+        <Item Value="TerminationReason"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="TerminationReasonDetails">
+      <AttrNames>
+        <Item Value="TerminationReasonDetails"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="AdminCharges">
+      <AttrNames>
+        <Item Value="AdminCharges"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="AdminChargesApprovalFlag">
+      <AttrNames>
+        <Item Value="AdminChargesApprovalFlag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator" id="Penality">
+      <AttrNames>
+        <Item Value="Penality"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="PenalityApprovalFlag">
+      <AttrNames>
+        <Item Value="PenalityApprovalFlag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator" id="RentRefund">
+      <AttrNames>
+        <Item Value="RentRefund"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="RentRefundApprovalFlag">
+      <AttrNames>
+        <Item Value="RentRefundApprovalFlag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator" id="RefundType">
+      <AttrNames>
+        <Item Value="RefundType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="LeaseVersion">
+      <AttrNames>
+        <Item Value="LeaseVersion"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARealEstateLeaseVVOIterator"
+                     id="RenewedContractsHistory">
+      <AttrNames>
+        <Item Value="RenewedContractsHistory"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MATenantNamePopupVOIterator" id="VendorName">
+      <AttrNames>
+        <Item Value="VendorName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MATenantNamePopupVOIterator" id="Segment1">
+      <AttrNames>
+        <Item Value="Segment1"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MATenantNamePopupVOIterator"
+                     id="VendorSiteCode">
+      <AttrNames>
+        <Item Value="VendorSiteCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MATenantNamePopupVOIterator"
+                     id="AddressLine1">
+      <AttrNames>
+        <Item Value="AddressLine1"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MATenantNamePopupVOIterator" id="City">
+      <AttrNames>
+        <Item Value="City"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MATenantNamePopupVOIterator" id="State">
+      <AttrNames>
+        <Item Value="State"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MATenantNamePopupVOIterator" id="Zip">
+      <AttrNames>
+        <Item Value="Zip"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MATenantNamePopupVOIterator" id="Country">
+      <AttrNames>
+        <Item Value="Country"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MATenantNamePopupVOIterator" id="Phone">
+      <AttrNames>
+        <Item Value="Phone"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MATenantSupplierPopupVOIterator"
+                     id="ContactPerson1">
+      <AttrNames>
+        <Item Value="ContactPerson"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MATenantSupplierPopupVOIterator"
+                     id="PrimaryPhoneNumber">
+      <AttrNames>
+        <Item Value="PrimaryPhoneNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MATenantSupplierPopupVOIterator"
+                     id="EmailAddress">
+      <AttrNames>
+        <Item Value="EmailAddress"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="LeaseSegment1">
+      <AttrNames>
+        <Item Value="LeaseSegment"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator" id="Subject1">
+      <AttrNames>
+        <Item Value="Subject"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="LeaserName1">
+      <AttrNames>
+        <Item Value="LeaserName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="LeaserAddress1">
+      <AttrNames>
+        <Item Value="LeaserAddress"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="ContactPerson2">
+      <AttrNames>
+        <Item Value="ContactPerson"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="ContactPhoneNumber1">
+      <AttrNames>
+        <Item Value="ContactPhoneNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="ContactEmail1">
+      <AttrNames>
+        <Item Value="ContactEmail"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="LeaseStatus1">
+      <AttrNames>
+        <Item Value="LeaseStatus"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="LeaseType1">
+      <AttrNames>
+        <Item Value="LeaseType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="TreinnelPercentage1">
+      <AttrNames>
+        <Item Value="TreinnelPercentage"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="ParentLease1">
+      <AttrNames>
+        <Item Value="ParentLease"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="StartDate1">
+      <AttrNames>
+        <Item Value="StartDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator" id="EndDate1">
+      <AttrNames>
+        <Item Value="EndDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="BookingExpiringOn1">
+      <AttrNames>
+        <Item Value="BookingExpiringOn"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="Increase1">
+      <AttrNames>
+        <Item Value="Increase"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="IterationMonths1">
+      <AttrNames>
+        <Item Value="IterationMonths"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="AutoCalculateFlag1">
+      <AttrNames>
+        <Item Value="AutoCalculateFlag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="TenureMonths1">
+      <AttrNames>
+        <Item Value="TenureMonths"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="LeaseTermsConditions1">
+      <AttrNames>
+        <Item Value="LeaseTermsConditions"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="BillingFrequency1">
+      <AttrNames>
+        <Item Value="BillingFrequency"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator" id="Water1">
+      <AttrNames>
+        <Item Value="Water"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="Electricity1">
+      <AttrNames>
+        <Item Value="Electricity"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="Sanitation1">
+      <AttrNames>
+        <Item Value="Sanitation"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator" id="Badge1">
+      <AttrNames>
+        <Item Value="Badge"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="Discount1">
+      <AttrNames>
+        <Item Value="Discount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="Currency1">
+      <AttrNames>
+        <Item Value="Currency"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="RentAmount1">
+      <AttrNames>
+        <Item Value="RentAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="AdhockCharges1">
+      <AttrNames>
+        <Item Value="AdhockCharges"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="GrossRentAmount1">
+      <AttrNames>
+        <Item Value="GrossRentAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="DiscountAmount1">
+      <AttrNames>
+        <Item Value="DiscountAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="NetAmount1">
+      <AttrNames>
+        <Item Value="NetAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="RenewalNoticeSent1">
+      <AttrNames>
+        <Item Value="RenewalNoticeSent"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="ReceivedConfirmationDate1">
+      <AttrNames>
+        <Item Value="ReceivedConfirmationDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="CustomerResponse1">
+      <AttrNames>
+        <Item Value="CustomerResponse"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="ProposedYearlyRent1">
+      <AttrNames>
+        <Item Value="ProposedYearlyRent"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="VacantDate1">
+      <AttrNames>
+        <Item Value="VacantDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="ExtendedDate1">
+      <AttrNames>
+        <Item Value="ExtendedDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="TerminationNoticeSent1">
+      <AttrNames>
+        <Item Value="TerminationNoticeSent"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="TerminationDate1">
+      <AttrNames>
+        <Item Value="TerminationDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="TerminationReason1">
+      <AttrNames>
+        <Item Value="TerminationReason"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="TerminationReasonDetails1">
+      <AttrNames>
+        <Item Value="TerminationReasonDetails"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="AdminCharges1">
+      <AttrNames>
+        <Item Value="AdminCharges"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="AdminChargesApprovalFlag1">
+      <AttrNames>
+        <Item Value="AdminChargesApprovalFlag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="Penality1">
+      <AttrNames>
+        <Item Value="Penality"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="PenalityApprovalFlag1">
+      <AttrNames>
+        <Item Value="PenalityApprovalFlag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="RentRefund1">
+      <AttrNames>
+        <Item Value="RentRefund"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="RentRefundApprovalFlag1">
+      <AttrNames>
+        <Item Value="RentRefundApprovalFlag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="RefundType1">
+      <AttrNames>
+        <Item Value="RefundType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="LeaseVersion1">
+      <AttrNames>
+        <Item Value="LeaseVersion"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MARSParentLeasePopupVOIterator"
+                     id="RenewedContractsHistory1">
+      <AttrNames>
+        <Item Value="RenewedContractsHistory"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MALeaserInfoPopupVOIterator" id="LeaserName2">
+      <AttrNames>
+        <Item Value="LeaserName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MALeaserInfoPopupVOIterator"
+                     id="LeaserAddress2">
+      <AttrNames>
+        <Item Value="LeaserAddress"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MAContactPersonPopupVOIterator"
+                     id="ContactPerson3">
+      <AttrNames>
+        <Item Value="ContactPerson"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MAContactPersonPopupVOIterator"
+                     id="ContactPhoneNumber2">
+      <AttrNames>
+        <Item Value="ContactPhoneNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MAContactPersonPopupVOIterator"
+                     id="ContactEmail2">
+      <AttrNames>
+        <Item Value="ContactEmail"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="en_lang" RequiresUpdateModel="true" Action="invokeMethod" MethodName="en_lang"
+                  IsViewObjectMethod="false" DataControl="MARealEstatePropertyAMDataControl"
+                  InstanceName="data.MARealEstatePropertyAMDataControl.dataProvider"
+                  ReturnName="data.MARealEstatePropertyAMDataControl.methodResults.en_lang_MARealEstatePropertyAMDataControl_dataProvider_en_lang_result"/>
+    <methodAction id="ar_lang" RequiresUpdateModel="true" Action="invokeMethod" MethodName="ar_lang"
+                  IsViewObjectMethod="false" DataControl="MARealEstatePropertyAMDataControl"
+                  InstanceName="data.MARealEstatePropertyAMDataControl.dataProvider"
+                  ReturnName="data.MARealEstatePropertyAMDataControl.methodResults.ar_lang_MARealEstatePropertyAMDataControl_dataProvider_ar_lang_result"/>
+  </bindings>
+</pageDefinition>

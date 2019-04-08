@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="windows-1256" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MALookupTypeToLookupValueVL"
+  Version="12.1.3.10.8"
+  InheritPersonalization="merge">
+  <ViewLinkDefEnd
+    Name="MALookupTypesVO"
+    Cardinality="1"
+    Source="true"
+    Owner="ma.oracle.apps.cx.realestate.setup.views.MALookupTypesVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="MALookupTypesVO"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ma.oracle.apps.cx.realestate.setup.views.MALookupTypesVO.LookupId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="MALookupValuesVO"
+    Cardinality="-1"
+    Owner="ma.oracle.apps.cx.realestate.setup.views.MALookupValuesVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="MALookupValuesVO"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ma.oracle.apps.cx.realestate.setup.views.MALookupValuesVO.LookupId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+</ViewLink>

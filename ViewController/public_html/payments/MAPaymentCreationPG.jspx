@@ -1,0 +1,630 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view beforePhase="#{backingBeanScope.MAPaymentCreationBean.beforePhase}">
+        <af:document title="#{bundle.Payment_CreationPG}" id="d1" binding="#{backingBeanScope.MAPaymentCreationBean.d1}">
+            <af:messages id="m1" binding="#{backingBeanScope.MAPaymentCreationBean.m1}"/>
+            <af:form id="f1" binding="#{backingBeanScope.MAPaymentCreationBean.f1}">
+                <af:pageTemplate viewId="#{pageFlowScope.Facet}" id="pt1">
+                    <f:facet name="center">
+                        <af:panelGroupLayout id="pgl1" binding="#{backingBeanScope.MAPaymentCreationBean.pgl1}"
+                                             layout="scroll">
+                            <af:panelHeader text="     " id="ph1"
+                                            binding="#{backingBeanScope.MAPaymentCreationBean.ph1}">
+                                <?audit suppress oracle.adf.faces.compreqtext?>
+                                <f:facet name="context"/>
+                                <f:facet name="menuBar"/>
+                                <f:facet name="toolbar">
+                                    <af:toolbar id="t1" binding="#{backingBeanScope.MAPaymentCreationBean.t1}">
+                                        <af:button text="#{bundle.Apply}" id="b1"
+                                                   binding="#{backingBeanScope.MAPaymentCreationBean.b1}"
+                                                   icon="/images/icons/save_ena.png"
+                                                   action="#{backingBeanScope.MAPaymentCreationBean.applyBtnAction}"/>
+                                        <af:button actionListener="#{bindings.Rollback.execute}" text="#{bundle.Cancel}" immediate="true" id="b2"
+                                                   binding="#{backingBeanScope.MAPaymentCreationBean.b2}"
+                                                   icon="/images/icons/rollback.png" action="BackPaymentSearch">
+                                            <af:resetActionListener/>
+                                        </af:button>
+                                    </af:toolbar>
+                                </f:facet>
+                                <af:panelBox text="#{bundle.Master_Details}" id="pb1"
+                                             binding="#{backingBeanScope.MAPaymentCreationBean.pb1}">
+                                    <af:panelFormLayout id="pfl1"
+                                                        binding="#{backingBeanScope.MAPaymentCreationBean.pfl1}">
+                                        <af:selectOneChoice value="#{bindings.PaymentType.inputValue}"
+                                                            label="#{bindings.PaymentType.label}"
+                                                            required="#{bindings.PaymentType.hints.mandatory}"
+                                                            shortDesc="#{bindings.PaymentType.hints.tooltip}" id="soc1"
+                                                            binding="#{backingBeanScope.MAPaymentCreationBean.soc1}"
+                                                            autoSubmit="true"
+                                                            valueChangeListener="#{backingBeanScope.MAPaymentCreationBean.paymentTypeAction}"
+                                                            disabled="#{bindings.IntAttribute10.inputValue !=null || bindings.IntAttribute11.inputValue !=null ?true:false}">
+                                            <f:selectItems value="#{bindings.PaymentType.items}" id="si1"
+                                                           binding="#{backingBeanScope.MAPaymentCreationBean.si1}"/>
+                                            <f:validator binding="#{bindings.PaymentType.validator}"/>
+                                        </af:selectOneChoice>
+                                    </af:panelFormLayout>
+                                </af:panelBox>
+                                <af:panelBox text="#{bundle.Installment_Payment_Terms}" id="pb2"
+                                             binding="#{backingBeanScope.MAPaymentCreationBean.pb2}">
+                                    <f:facet name="toolbar"/>
+                                    <af:panelFormLayout id="pfl2"
+                                                        binding="#{backingBeanScope.MAPaymentCreationBean.pfl2}">
+                                        <af:inputText value="#{bindings.RuleName.inputValue}"
+                                                      label="#{bindings.RuleName.hints.label}"
+                                                      required="#{bindings.RuleName.hints.mandatory}"
+                                                      columns="#{bindings.RuleName.hints.displayWidth}"
+                                                      maximumLength="#{bindings.RuleName.hints.precision}"
+                                                      shortDesc="#{bindings.RuleName.hints.tooltip}" id="it2"
+                                                      binding="#{backingBeanScope.MAPaymentCreationBean.it2}"
+                                                      partialTriggers="soc1">
+                                            <f:validator binding="#{bindings.RuleName.validator}"/>
+                                        </af:inputText>
+                                        <af:selectOneChoice value="#{bindings.Status.inputValue}"
+                                                            label="#{bindings.Status.label}"
+                                                            required="#{bindings.Status.hints.mandatory}"
+                                                            shortDesc="#{bindings.Status.hints.tooltip}" id="soc3"
+                                                            binding="#{backingBeanScope.MAPaymentCreationBean.soc3}"
+                                                            partialTriggers="soc1">
+                                            <f:selectItems value="#{bindings.Status.items}" id="si3"
+                                                           binding="#{backingBeanScope.MAPaymentCreationBean.si3}"/>
+                                            <f:validator binding="#{bindings.Status.validator}"/>
+                                        </af:selectOneChoice>
+                                        <af:inputText value="#{bindings.Years.inputValue}"
+                                                      label="#{bindings.Years.hints.label}"
+                                                      required="#{bindings.Years.hints.mandatory}"
+                                                      columns="#{bindings.Years.hints.displayWidth}"
+                                                      maximumLength="#{bindings.Years.hints.precision}"
+                                                      shortDesc="#{bindings.Years.hints.tooltip}" id="it5"
+                                                      binding="#{backingBeanScope.MAPaymentCreationBean.it5}"
+                                                      partialTriggers="soc1">
+                                            <f:validator binding="#{bindings.Years.validator}"/>
+                                            <af:convertNumber groupingUsed="false" pattern="#{bindings.Years.format}"/>
+                                        </af:inputText>
+                                        <af:panelLabelAndMessage label="#{bundle.Sales_Commission}" id="plam1"
+                                                                 binding="#{backingBeanScope.MAPaymentCreationBean.plam1}">
+                                            <af:panelGroupLayout id="pgl2"
+                                                                 binding="#{backingBeanScope.MAPaymentCreationBean.pgl2}"
+                                                                 layout="horizontal">
+                                                <af:inputText value="#{bindings.ValueOrPercentage.inputValue}"
+                                                              required="#{bindings.ValueOrPercentage.hints.mandatory}"
+                                                              columns="#{bindings.ValueOrPercentage.hints.displayWidth}"
+                                                              maximumLength="#{bindings.ValueOrPercentage.hints.precision}"
+                                                              shortDesc="#{bindings.ValueOrPercentage.hints.tooltip}"
+                                                              id="it4"
+                                                              binding="#{backingBeanScope.MAPaymentCreationBean.it4}"
+                                                              partialTriggers="soc1">
+                                                    <f:validator binding="#{bindings.ValueOrPercentage.validator}"/>
+                                                </af:inputText>
+                                                <af:inputText value="#{bindings.SalesCommission.inputValue}"
+                                                              required="#{bindings.SalesCommission.hints.mandatory}"
+                                                              columns="#{bindings.SalesCommission.hints.displayWidth}"
+                                                              maximumLength="#{bindings.SalesCommission.hints.precision}"
+                                                              shortDesc="#{bindings.SalesCommission.hints.tooltip}"
+                                                              id="it3"
+                                                              binding="#{backingBeanScope.MAPaymentCreationBean.it3}"
+                                                              partialTriggers="soc1">
+                                                    <f:validator binding="#{bindings.SalesCommission.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.SalesCommission.format}"/>
+                                                </af:inputText>
+                                            </af:panelGroupLayout>
+                                        </af:panelLabelAndMessage>
+                                        <af:selectOneChoice value="#{bindings.CalculationType.inputValue}"
+                                                            label="#{bindings.CalculationType.label}"
+                                                            required="#{bindings.CalculationType.hints.mandatory}"
+                                                            shortDesc="#{bindings.CalculationType.hints.tooltip}"
+                                                            id="soc2"
+                                                            binding="#{backingBeanScope.MAPaymentCreationBean.soc2}"
+                                                            partialTriggers="soc1">
+                                            <f:selectItems value="#{bindings.CalculationType.items}" id="si2"
+                                                           binding="#{backingBeanScope.MAPaymentCreationBean.si2}"/>
+                                            <f:validator binding="#{bindings.CalculationType.validator}"/>
+                                        </af:selectOneChoice>
+                                        <af:inputText value="#{bindings.Notes.inputValue}"
+                                                      label="#{bindings.Notes.hints.label}"
+                                                      required="#{bindings.Notes.hints.mandatory}" columns="50"
+                                                      maximumLength="#{bindings.Notes.hints.precision}"
+                                                      shortDesc="#{bindings.Notes.hints.tooltip}" id="it1"
+                                                      binding="#{backingBeanScope.MAPaymentCreationBean.it1}"
+                                                      partialTriggers="soc1" rows="6">
+                                            <f:validator binding="#{bindings.Notes.validator}"/>
+                                        </af:inputText>
+                                    </af:panelFormLayout>
+                                    <af:panelCollection id="pc1"
+                                                        binding="#{backingBeanScope.MAPaymentCreationBean.pc1}"
+                                                        inlineStyle="width:840px;">
+                                        <f:facet name="menus"/>
+                                        <f:facet name="toolbar">
+                                            <af:toolbar id="t3" binding="#{backingBeanScope.MAPaymentCreationBean.t3}">
+                                                <af:button
+                                                           text="#{bundle.New_Installment}" id="b3"
+                                                           binding="#{backingBeanScope.MAPaymentCreationBean.b3}"
+                                                           icon="/images/icons/new_ena.png" partialTriggers="::soc1"
+                                                           action="#{backingBeanScope.MAPaymentCreationBean.newInstallmentDetail}"/>
+                                                <af:popup childCreation="deferred" autoCancel="disabled" id="p1"
+                                                          binding="#{backingBeanScope.MAPaymentCreationBean.p1}"
+                                                          contentDelivery="lazyUncached">
+                                                    <af:dialog id="d2"
+                                                               binding="#{backingBeanScope.MAPaymentCreationBean.d2}"
+                                                               type="none" contentWidth="600" contentHeight="100"
+                                                               title="#{bundle.Confirmation_Message}">
+                                                        <f:facet name="buttonBar">
+                                                            <af:toolbar id="t6"
+                                                                        binding="#{backingBeanScope.MAPaymentCreationBean.t6}">
+                                                                <af:panelGroupLayout id="pgl6"
+                                                                                     binding="#{backingBeanScope.MAPaymentCreationBean.pgl6}"
+                                                                                     layout="horizontal"
+                                                                                     halign="right"
+                                                                                     inlineStyle="width:600px;">
+                                                                    <af:button text="#{bundle.Yes}" id="b5"
+                                                                               binding="#{backingBeanScope.MAPaymentCreationBean.b5}"
+                                                                               action="#{backingBeanScope.MAPaymentCreationBean.installmentConfirmationYesAction}"
+                                                                               partialSubmit="false"/>
+                                                                    <af:button text="#{bundle.No}" id="b6"
+                                                                               binding="#{backingBeanScope.MAPaymentCreationBean.b6}"
+                                                                               action="#{backingBeanScope.MAPaymentCreationBean.installmentConfirmationNoAction}"/>
+                                                                </af:panelGroupLayout>
+                                                            </af:toolbar>
+                                                        </f:facet>
+                                                        <af:outputText value="#{bundle.Instal_Confirmation_Message_Body}" id="ot1"
+                                                                       binding="#{backingBeanScope.MAPaymentCreationBean.ot1}"/>
+                                                    </af:dialog>
+                                                </af:popup>
+                                            </af:toolbar>
+                                        </f:facet>
+                                        <f:facet name="statusbar"/>
+                                        <af:table value="#{bindings.MAInstallmentPaymentTermsDetailsVO.collectionModel}"
+                                                  var="row"
+                                                  rows="#{bindings.MAInstallmentPaymentTermsDetailsVO.rangeSize}"
+                                                  emptyText="#{bindings.MAInstallmentPaymentTermsDetailsVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                  rowBandingInterval="0"
+                                                  selectedRowKeys="#{bindings.MAInstallmentPaymentTermsDetailsVO.collectionModel.selectedRow}"
+                                                  selectionListener="#{bindings.MAInstallmentPaymentTermsDetailsVO.collectionModel.makeCurrent}"
+                                                  rowSelection="single"
+                                                  fetchSize="#{bindings.MAInstallmentPaymentTermsDetailsVO.rangeSize}"
+                                                  id="t2" binding="#{backingBeanScope.MAPaymentCreationBean.t2}"
+                                                  partialTriggers="::b3">
+                                            <?audit suppress oracle.adf.faces.tableneedsrowheader?><?audit suppress oracle.adf.faces.compreqsummary?>
+                                            <af:column sortProperty="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.PaymentType.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.PaymentType.label}"
+                                                       id="c1" width="114">
+                                                <af:selectOneChoice value="#{row.bindings.PaymentType.inputValue}"
+                                                                    label="#{row.bindings.PaymentType.label}"
+                                                                    required="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.PaymentType.mandatory}"
+                                                                    shortDesc="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.PaymentType.tooltip}"
+                                                                    id="soc7"
+                                                                    disabled="#{bindings.PaymentType.inputValue=='Installment'?false:true}"
+                                                                    partialTriggers=":::soc1">
+                                                    <f:selectItems value="#{row.bindings.PaymentType.items}" id="si7"/>
+                                                    <f:validator binding="#{row.bindings.PaymentType.validator}"/>
+                                                </af:selectOneChoice>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.NumberOfInstallments.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.NumberOfInstallments.label}"
+                                                       id="c2" width="114">
+                                                <af:inputText value="#{row.bindings.NumberOfInstallments.inputValue}"
+                                                              label="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.NumberOfInstallments.label}"
+                                                              required="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.NumberOfInstallments.mandatory}"
+                                                              columns="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.NumberOfInstallments.displayWidth}"
+                                                              maximumLength="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.NumberOfInstallments.precision}"
+                                                              shortDesc="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.NumberOfInstallments.tooltip}"
+                                                              id="it8"
+                                                              disabled="#{bindings.PaymentType.inputValue=='Installment'?false:true}"
+                                                              partialTriggers=":::soc1">
+                                                    <f:validator binding="#{row.bindings.NumberOfInstallments.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.NumberOfInstallments.format}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.Repetition.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.Repetition.label}"
+                                                       id="c3" width="114">
+                                                <af:inputText value="#{row.bindings.Repetition.inputValue}"
+                                                              label="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.Repetition.label}"
+                                                              required="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.Repetition.mandatory}"
+                                                              columns="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.Repetition.displayWidth}"
+                                                              maximumLength="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.Repetition.precision}"
+                                                              shortDesc="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.Repetition.tooltip}"
+                                                              id="it13"
+                                                              disabled="#{bindings.PaymentType.inputValue=='Installment'?false:true}"
+                                                              partialTriggers=":::soc1">
+                                                    <f:validator binding="#{row.bindings.Repetition.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.Repetition.format}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.InstallMonths.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.InstallMonths.label}"
+                                                       id="c4" width="114">
+                                                <af:inputText value="#{row.bindings.InstallMonths.inputValue}"
+                                                              label="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.InstallMonths.label}"
+                                                              required="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.InstallMonths.mandatory}"
+                                                              columns="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.InstallMonths.displayWidth}"
+                                                              maximumLength="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.InstallMonths.precision}"
+                                                              shortDesc="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.InstallMonths.tooltip}"
+                                                              id="it15"
+                                                              disabled="#{bindings.PaymentType.inputValue=='Installment'?false:true}"
+                                                              partialTriggers=":::soc1">
+                                                    <f:validator binding="#{row.bindings.InstallMonths.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.InstallMonths.format}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.InstallYears.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.InstallYears.label}"
+                                                       id="c5" width="114">
+                                                <af:inputText value="#{row.bindings.InstallYears.inputValue}"
+                                                              label="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.InstallYears.label}"
+                                                              required="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.InstallYears.mandatory}"
+                                                              columns="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.InstallYears.displayWidth}"
+                                                              maximumLength="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.InstallYears.precision}"
+                                                              shortDesc="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.InstallYears.tooltip}"
+                                                              id="it16"
+                                                              disabled="#{bindings.PaymentType.inputValue=='Installment'?false:true}"
+                                                              partialTriggers=":::soc1">
+                                                    <f:validator binding="#{row.bindings.InstallYears.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.InstallYears.format}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.ValueBase.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.ValueBase.label}"
+                                                       id="c6" width="114">
+                                                <af:selectOneChoice value="#{row.bindings.ValueBase.inputValue}"
+                                                                    label="#{row.bindings.ValueBase.label}"
+                                                                    required="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.ValueBase.mandatory}"
+                                                                    shortDesc="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.ValueBase.tooltip}"
+                                                                    id="soc8"
+                                                                    disabled="#{bindings.PaymentType.inputValue=='Installment'?false:true}"
+                                                                    partialTriggers=":::soc1">
+                                                    <f:selectItems value="#{row.bindings.ValueBase.items}" id="si8"/>
+                                                    <f:validator binding="#{row.bindings.ValueBase.validator}"/>
+                                                </af:selectOneChoice>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.InstallmentValue.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.InstallmentValue.label}"
+                                                       id="c7" width="114">
+                                                <af:inputText value="#{row.bindings.InstallmentValue.inputValue}"
+                                                              label="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.InstallmentValue.label}"
+                                                              required="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.InstallmentValue.mandatory}"
+                                                              columns="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.InstallmentValue.displayWidth}"
+                                                              maximumLength="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.InstallmentValue.precision}"
+                                                              shortDesc="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.InstallmentValue.tooltip}"
+                                                              id="it17"
+                                                              disabled="#{bindings.PaymentType.inputValue=='Installment'?false:true}"
+                                                              partialTriggers=":::soc1">
+                                                    <f:validator binding="#{row.bindings.InstallmentValue.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.MAInstallmentPaymentTermsDetailsVO.hints.InstallmentValue.format}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                        </af:table>
+                                    </af:panelCollection>
+                                </af:panelBox>
+                                <af:panelBox text="#{bundle.Rent_Payments_Terms}" id="pb3"
+                                             binding="#{backingBeanScope.MAPaymentCreationBean.pb3}">
+                                    <f:facet name="toolbar"/>
+                                    <af:panelFormLayout id="pfl3"
+                                                        binding="#{backingBeanScope.MAPaymentCreationBean.pfl3}">
+                                        <af:inputText value="#{bindings.RentRuleName.inputValue}"
+                                                      label="#{bindings.RentRuleName.hints.label}"
+                                                      required="#{bindings.RentRuleName.hints.mandatory}"
+                                                      columns="#{bindings.RentRuleName.hints.displayWidth}"
+                                                      maximumLength="#{bindings.RentRuleName.hints.precision}"
+                                                      shortDesc="#{bindings.RentRuleName.hints.tooltip}" id="it12"
+                                                      binding="#{backingBeanScope.MAPaymentCreationBean.it12}"
+                                                      partialTriggers="soc1">
+                                            <f:validator binding="#{bindings.RentRuleName.validator}"/>
+                                        </af:inputText>
+                                        <af:selectOneChoice value="#{bindings.RentStatus.inputValue}"
+                                                            label="#{bindings.RentStatus.label}"
+                                                            required="#{bindings.RentStatus.hints.mandatory}"
+                                                            shortDesc="#{bindings.RentStatus.hints.tooltip}" id="soc6"
+                                                            binding="#{backingBeanScope.MAPaymentCreationBean.soc6}"
+                                                            partialTriggers="soc1">
+                                            <f:selectItems value="#{bindings.RentStatus.items}" id="si6"
+                                                           binding="#{backingBeanScope.MAPaymentCreationBean.si6}"/>
+                                            <f:validator binding="#{bindings.RentStatus.validator}"/>
+                                        </af:selectOneChoice>
+                                        <af:selectOneChoice value="#{bindings.DurationScale.inputValue}"
+                                                            label="#{bindings.DurationScale.label}"
+                                                            required="#{bindings.DurationScale.hints.mandatory}"
+                                                            shortDesc="#{bindings.DurationScale.hints.tooltip}"
+                                                            id="soc5"
+                                                            binding="#{backingBeanScope.MAPaymentCreationBean.soc5}"
+                                                            partialTriggers="soc1">
+                                            <f:selectItems value="#{bindings.DurationScale.items}" id="si5"
+                                                           binding="#{backingBeanScope.MAPaymentCreationBean.si5}"/>
+                                            <f:validator binding="#{bindings.DurationScale.validator}"/>
+                                        </af:selectOneChoice>
+                                        <af:selectOneChoice value="#{bindings.CalType.inputValue}"
+                                                            label="#{bindings.CalType.label}"
+                                                            required="#{bindings.CalType.hints.mandatory}"
+                                                            shortDesc="#{bindings.CalType.hints.tooltip}" id="soc4"
+                                                            binding="#{backingBeanScope.MAPaymentCreationBean.soc4}"
+                                                            partialTriggers="soc1">
+                                            <f:selectItems value="#{bindings.CalType.items}" id="si4"
+                                                           binding="#{backingBeanScope.MAPaymentCreationBean.si4}"/>
+                                            <f:validator binding="#{bindings.CalType.validator}"/>
+                                        </af:selectOneChoice>
+                                        <af:panelLabelAndMessage label="#{bundle.Sales_Commission}" id="plam2"
+                                                                 binding="#{backingBeanScope.MAPaymentCreationBean.plam2}">
+                                            <af:panelGroupLayout id="pgl3"
+                                                                 binding="#{backingBeanScope.MAPaymentCreationBean.pgl3}"
+                                                                 layout="horizontal">
+                                                <af:inputText value="#{bindings.IntAttribute1.inputValue}"
+                                                              required="#{bindings.IntAttribute1.hints.mandatory}"
+                                                              columns="#{bindings.IntAttribute1.hints.displayWidth}"
+                                                              maximumLength="#{bindings.IntAttribute1.hints.precision}"
+                                                              shortDesc="#{bindings.IntAttribute1.hints.tooltip}"
+                                                              id="it14"
+                                                              binding="#{backingBeanScope.MAPaymentCreationBean.it14}"
+                                                              partialTriggers="soc1">
+                                                    <f:validator binding="#{bindings.IntAttribute1.validator}"/>
+                                                </af:inputText>
+                                                <af:inputText value="#{bindings.Commission.inputValue}"
+                                                              required="#{bindings.Commission.hints.mandatory}"
+                                                              columns="#{bindings.Commission.hints.displayWidth}"
+                                                              maximumLength="#{bindings.Commission.hints.precision}"
+                                                              shortDesc="#{bindings.Commission.hints.tooltip}" id="it6"
+                                                              binding="#{backingBeanScope.MAPaymentCreationBean.it6}"
+                                                              partialTriggers="soc1">
+                                                    <f:validator binding="#{bindings.Commission.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.Commission.format}"/>
+                                                </af:inputText>
+                                            </af:panelGroupLayout>
+                                        </af:panelLabelAndMessage>
+                                        <af:panelGroupLayout id="pgl4"
+                                                             binding="#{backingBeanScope.MAPaymentCreationBean.pgl4}"
+                                                             layout="horizontal">
+                                            <af:selectBooleanCheckbox value="#{bindings.IncreasableFlag.inputValue}"
+                                                                      shortDesc="#{bindings.IncreasableFlag.hints.tooltip}"
+                                                                      id="sbc1"
+                                                                      binding="#{backingBeanScope.MAPaymentCreationBean.sbc1}"
+                                                                      text="#{bundle.Increasable}"
+                                                                      partialTriggers="soc1"/>
+                                            <af:inputText value="#{bindings.IntAttribute2.inputValue}"
+                                                          required="#{bindings.IntAttribute2.hints.mandatory}"
+                                                          columns="#{bindings.IntAttribute2.hints.displayWidth}"
+                                                          maximumLength="#{bindings.IntAttribute2.hints.precision}"
+                                                          shortDesc="#{bindings.IntAttribute2.hints.tooltip}" id="it7"
+                                                          binding="#{backingBeanScope.MAPaymentCreationBean.it7}"
+                                                          partialTriggers="soc1">
+                                                <f:validator binding="#{bindings.IntAttribute2.validator}"/>
+                                            </af:inputText>
+                                            <af:inputText value="#{bindings.IncreaseAmount.inputValue}"
+                                                          required="#{bindings.IncreaseAmount.hints.mandatory}"
+                                                          columns="#{bindings.IncreaseAmount.hints.displayWidth}"
+                                                          maximumLength="#{bindings.IncreaseAmount.hints.precision}"
+                                                          shortDesc="#{bindings.IncreaseAmount.hints.tooltip}" id="it9"
+                                                          binding="#{backingBeanScope.MAPaymentCreationBean.it9}"
+                                                          partialTriggers="soc1">
+                                                <f:validator binding="#{bindings.IncreaseAmount.validator}"/>
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.IncreaseAmount.format}"/>
+                                            </af:inputText>
+                                        </af:panelGroupLayout>
+                                        <af:panelLabelAndMessage label="#{bundle.Increase_Every}" id="plam3"
+                                                                 binding="#{backingBeanScope.MAPaymentCreationBean.plam3}">
+                                            <af:panelGroupLayout id="pgl5"
+                                                                 binding="#{backingBeanScope.MAPaymentCreationBean.pgl5}"
+                                                                 layout="horizontal">
+                                                <af:inputText value="#{bindings.IncreaseEvery.inputValue}"
+                                                              required="#{bindings.IncreaseEvery.hints.mandatory}"
+                                                              columns="#{bindings.IncreaseEvery.hints.displayWidth}"
+                                                              maximumLength="#{bindings.IncreaseEvery.hints.precision}"
+                                                              shortDesc="#{bindings.IncreaseEvery.hints.tooltip}"
+                                                              id="it10"
+                                                              binding="#{backingBeanScope.MAPaymentCreationBean.it10}"
+                                                              partialTriggers="soc1">
+                                                    <f:validator binding="#{bindings.IncreaseEvery.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.IncreaseEvery.format}"/>
+                                                </af:inputText>
+                                                <af:selectBooleanCheckbox value="#{bindings.YearlyFlag.inputValue}"
+                                                                          shortDesc="#{bindings.YearlyFlag.hints.tooltip}"
+                                                                          id="sbc2"
+                                                                          binding="#{backingBeanScope.MAPaymentCreationBean.sbc2}"
+                                                                          text="#{bundle.Yearly}"
+                                                                          partialTriggers="soc1"/>
+                                            </af:panelGroupLayout>
+                                        </af:panelLabelAndMessage>
+                                        <af:inputText value="#{bindings.RentNotes.inputValue}"
+                                                      label="#{bindings.RentNotes.hints.label}"
+                                                      required="#{bindings.RentNotes.hints.mandatory}" columns="50"
+                                                      maximumLength="#{bindings.RentNotes.hints.precision}"
+                                                      shortDesc="#{bindings.RentNotes.hints.tooltip}" id="it11"
+                                                      binding="#{backingBeanScope.MAPaymentCreationBean.it11}"
+                                                      partialTriggers="soc1" rows="6">
+                                            <f:validator binding="#{bindings.RentNotes.validator}"/>
+                                        </af:inputText>
+                                    </af:panelFormLayout>
+                                    <af:panelCollection id="pc2"
+                                                        binding="#{backingBeanScope.MAPaymentCreationBean.pc2}"
+                                                        inlineStyle="width:760px;">
+                                        <f:facet name="menus"/>
+                                        <f:facet name="toolbar">
+                                            <af:toolbar id="t5" binding="#{backingBeanScope.MAPaymentCreationBean.t5}">
+                                                <af:button
+                                                           text="#{bundle.New_Rent}" id="b4"
+                                                           binding="#{backingBeanScope.MAPaymentCreationBean.b4}"
+                                                           icon="/images/icons/new_ena.png"
+                                                           partialTriggers="::soc1"
+                                                           action="#{backingBeanScope.MAPaymentCreationBean.newRentDetail}"/>
+                                                <af:popup childCreation="deferred" autoCancel="disabled" id="p2"
+                                                          binding="#{backingBeanScope.MAPaymentCreationBean.p2}"
+                                                          contentDelivery="lazyUncached">
+                                                    <af:dialog id="d3"
+                                                               binding="#{backingBeanScope.MAPaymentCreationBean.d3}"
+                                                               title="#{bundle.Confirmation_Message}" contentWidth="600"
+                                                               contentHeight="100" type="none">
+                                                        <f:facet name="buttonBar">
+                                                            <af:toolbar id="t7"
+                                                                        binding="#{backingBeanScope.MAPaymentCreationBean.t7}">
+                                                                <af:panelGroupLayout id="pgl7"
+                                                                                     binding="#{backingBeanScope.MAPaymentCreationBean.pgl7}"
+                                                                                     layout="horizontal"
+                                                                                     halign="right"
+                                                                                     inlineStyle="width:600px;">
+                                                                    <af:button text="#{bundle.Yes}" id="b7"
+                                                                               binding="#{backingBeanScope.MAPaymentCreationBean.b7}"
+                                                                               action="#{backingBeanScope.MAPaymentCreationBean.rentConfirmationYesAction}"
+                                                                               partialSubmit="false"/>
+                                                                    <af:button text="#{bundle.No}" id="b8"
+                                                                               binding="#{backingBeanScope.MAPaymentCreationBean.b8}"
+                                                                               action="#{backingBeanScope.MAPaymentCreationBean.rentConfirmationNoAction}"/>
+                                                                </af:panelGroupLayout>
+                                                            </af:toolbar>
+                                                        </f:facet>
+                                                        <af:outputText value="#{bundle.Rent_Confirmation_Message_Body}"
+                                                                       binding="#{backingBeanScope.MAPaymentCreationBean.ot2}"/>
+                                                    </af:dialog>
+                                                </af:popup>
+                                            </af:toolbar>
+                                        </f:facet>
+                                        <f:facet name="statusbar"/>
+                                        <af:table value="#{bindings.MARentPaymentTermsDetailsVO.collectionModel}"
+                                                  var="row" rows="#{bindings.MARentPaymentTermsDetailsVO.rangeSize}"
+                                                  emptyText="#{bindings.MARentPaymentTermsDetailsVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                  rowBandingInterval="0"
+                                                  selectedRowKeys="#{bindings.MARentPaymentTermsDetailsVO.collectionModel.selectedRow}"
+                                                  selectionListener="#{bindings.MARentPaymentTermsDetailsVO.collectionModel.makeCurrent}"
+                                                  rowSelection="single"
+                                                  fetchSize="#{bindings.MARentPaymentTermsDetailsVO.rangeSize}" id="t4"
+                                                  binding="#{backingBeanScope.MAPaymentCreationBean.t4}"
+                                                  partialTriggers="::b4">
+                                            <?audit suppress oracle.adf.faces.tableneedsrowheader?><?audit suppress oracle.adf.faces.compreqsummary?><?audit suppress oracle.adf.faces.compreqsummary?>
+                                            <af:column sortProperty="#{bindings.MARentPaymentTermsDetailsVO.hints.PaymentType.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MARentPaymentTermsDetailsVO.hints.PaymentType.label}"
+                                                       id="c8" width="120">
+                                                <af:selectOneChoice value="#{row.bindings.PaymentType.inputValue}"
+                                                                    label="#{row.bindings.PaymentType.label}"
+                                                                    required="#{bindings.MARentPaymentTermsDetailsVO.hints.PaymentType.mandatory}"
+                                                                    shortDesc="#{bindings.MARentPaymentTermsDetailsVO.hints.PaymentType.tooltip}"
+                                                                    id="soc9">
+                                                    <f:selectItems value="#{row.bindings.PaymentType.items}" id="si9"/>
+                                                    <f:validator binding="#{row.bindings.PaymentType.validator}"/>
+                                                </af:selectOneChoice>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MARentPaymentTermsDetailsVO.hints.Repetition.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MARentPaymentTermsDetailsVO.hints.Repetition.label}"
+                                                       id="c9" width="120">
+                                                <af:selectOneChoice value="#{row.bindings.Repetition.inputValue}"
+                                                                    label="#{row.bindings.Repetition.label}"
+                                                                    required="#{bindings.MARentPaymentTermsDetailsVO.hints.Repetition.mandatory}"
+                                                                    shortDesc="#{bindings.MARentPaymentTermsDetailsVO.hints.Repetition.tooltip}"
+                                                                    id="soc10">
+                                                    <f:selectItems value="#{row.bindings.Repetition.items}" id="si10"/>
+                                                    <f:validator binding="#{row.bindings.Repetition.validator}"/>
+                                                </af:selectOneChoice>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MARentPaymentTermsDetailsVO.hints.RentDays.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MARentPaymentTermsDetailsVO.hints.RentDays.label}"
+                                                       id="c10" width="120">
+                                                <af:inputText value="#{row.bindings.RentDays.inputValue}"
+                                                              label="#{bindings.MARentPaymentTermsDetailsVO.hints.RentDays.label}"
+                                                              required="#{bindings.MARentPaymentTermsDetailsVO.hints.RentDays.mandatory}"
+                                                              columns="#{bindings.MARentPaymentTermsDetailsVO.hints.RentDays.displayWidth}"
+                                                              maximumLength="#{bindings.MARentPaymentTermsDetailsVO.hints.RentDays.precision}"
+                                                              shortDesc="#{bindings.MARentPaymentTermsDetailsVO.hints.RentDays.tooltip}"
+                                                              id="it18">
+                                                    <f:validator binding="#{row.bindings.RentDays.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.MARentPaymentTermsDetailsVO.hints.RentDays.format}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MARentPaymentTermsDetailsVO.hints.RentMonths.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MARentPaymentTermsDetailsVO.hints.RentMonths.label}"
+                                                       id="c11" width="120">
+                                                <af:inputText value="#{row.bindings.RentMonths.inputValue}"
+                                                              label="#{bindings.MARentPaymentTermsDetailsVO.hints.RentMonths.label}"
+                                                              required="#{bindings.MARentPaymentTermsDetailsVO.hints.RentMonths.mandatory}"
+                                                              columns="#{bindings.MARentPaymentTermsDetailsVO.hints.RentMonths.displayWidth}"
+                                                              maximumLength="#{bindings.MARentPaymentTermsDetailsVO.hints.RentMonths.precision}"
+                                                              shortDesc="#{bindings.MARentPaymentTermsDetailsVO.hints.RentMonths.tooltip}"
+                                                              id="it19">
+                                                    <f:validator binding="#{row.bindings.RentMonths.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.MARentPaymentTermsDetailsVO.hints.RentMonths.format}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MARentPaymentTermsDetailsVO.hints.ValueBase.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MARentPaymentTermsDetailsVO.hints.ValueBase.label}"
+                                                       id="c12" width="120">
+                                                <af:selectOneChoice value="#{row.bindings.ValueBase.inputValue}"
+                                                                    label="#{row.bindings.ValueBase.label}"
+                                                                    required="#{bindings.MARentPaymentTermsDetailsVO.hints.ValueBase.mandatory}"
+                                                                    shortDesc="#{bindings.MARentPaymentTermsDetailsVO.hints.ValueBase.tooltip}"
+                                                                    id="soc11">
+                                                    <f:selectItems value="#{row.bindings.ValueBase.items}" id="si11"/>
+                                                    <f:validator binding="#{row.bindings.ValueBase.validator}"/>
+                                                </af:selectOneChoice>
+                                            </af:column>
+                                            <af:column sortProperty="#{bindings.MARentPaymentTermsDetailsVO.hints.RentValue.name}"
+                                                       sortable="true"
+                                                       headerText="#{bindings.MARentPaymentTermsDetailsVO.hints.RentValue.label}"
+                                                       id="c13" width="120">
+                                                <af:inputText value="#{row.bindings.RentValue.inputValue}"
+                                                              label="#{bindings.MARentPaymentTermsDetailsVO.hints.RentValue.label}"
+                                                              required="#{bindings.MARentPaymentTermsDetailsVO.hints.RentValue.mandatory}"
+                                                              columns="#{bindings.MARentPaymentTermsDetailsVO.hints.RentValue.displayWidth}"
+                                                              maximumLength="#{bindings.MARentPaymentTermsDetailsVO.hints.RentValue.precision}"
+                                                              shortDesc="#{bindings.MARentPaymentTermsDetailsVO.hints.RentValue.tooltip}"
+                                                              id="it20">
+                                                    <f:validator binding="#{row.bindings.RentValue.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.MARentPaymentTermsDetailsVO.hints.RentValue.format}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                        </af:table>
+                                    </af:panelCollection>
+                                </af:panelBox>
+                            </af:panelHeader>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                    <f:facet name="header">
+                        <af:toolbar id="t8" binding="#{backingBeanScope.MAPaymentCreationBean.t8}">
+                            <af:link text="#{bundle.Home}" id="l1" binding="#{backingBeanScope.MAPaymentCreationBean.l1}"
+                                     action="home"/>
+                        </af:toolbar>
+                    </f:facet>
+                    <f:facet name="end"/>
+                    <f:facet name="start"/>
+                    <f:facet name="branding"/>
+                    <f:facet name="copyright"/>
+                    <f:facet name="status">
+                        <af:toolbar id="t9" binding="#{backingBeanScope.MAPaymentCreationBean.t9}">
+                            <af:button id="b9" binding="#{backingBeanScope.MAPaymentCreationBean.b9}"
+                                       actionListener="#{bindings.en_lang.execute}"
+                                       disabled="#{!bindings.en_lang.enabled}" partialSubmit="false"
+                                       shortDesc="#{bundle.English}" icon="/images/icons/english.png"/>
+                            <af:button id="b10"
+                                       binding="#{backingBeanScope.MAPaymentCreationBean.b10}"
+                                       actionListener="#{bindings.ar_lang.execute}"
+                                       disabled="#{!bindings.ar_lang.enabled}" icon="/images/icons/arabic.png"
+                                       shortDesc="#{bundle.Arabic}" partialSubmit="false"/>
+                        </af:toolbar>
+                    </f:facet>
+                    <f:attribute name="endColumnSize" value="0"/>
+                    <f:attribute name="startColumnSize" value="0"/>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+    <!--oracle-jdev-comment:auto-binding-backing-bean-name:MAPaymentCreationBean-->
+</jsp:root>

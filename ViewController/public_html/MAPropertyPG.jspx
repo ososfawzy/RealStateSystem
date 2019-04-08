@@ -1,0 +1,1160 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
+  <!--<c:set var="viewcontrollerBundle"
+         value="#{adfBundle['ma.oracle.apps.cx.realestate.ViewControllerBundle']}"/>-->
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view beforePhase="#{backingBeanScope.PropertyBean.beforePhase}">
+    <af:document id="d1" binding="#{backingBeanScope.PropertyBean.d1}"
+                 title="#{bundle.Property_View}">
+      <af:messages binding="#{backingBeanScope.PropertyBean.m1}" id="m1"/>
+      <af:form id="f1" binding="#{backingBeanScope.PropertyBean.f1}">
+      <af:pageTemplate viewId="#{pageFlowScope.Facet}" id="ptt1">
+                         <f:facet name="center">
+        <af:panelTabbed binding="#{backingBeanScope.PropertyBean.pt1}" id="pt1">
+          <af:showDetailItem text="#{bundle.Map_View}"
+                             binding="#{backingBeanScope.PropertyBean.sdi1}"
+                             id="sdi1">
+            <af:panelStretchLayout binding="#{backingBeanScope.PropertyBean.psl1}"
+                                   id="psl1" startWidth="1100" endWidth="0"
+                                   topHeight="0" bottomHeight="0px"
+                                   styleClass="AFStretchWidth" inlineStyle="height:700px;">
+              <f:facet name="bottom"/>
+              <f:facet name="center">
+                <af:panelStretchLayout binding="#{backingBeanScope.PropertyBean.psl2}"
+                                       id="psl2" styleClass="AFStrechWidth"
+                                       endWidth="0" startWidth="0"
+                                       bottomHeight="0px" topHeight="220px">
+                  <f:facet name="bottom"/>
+                  <f:facet name="center">
+                    <dvt:gauge id="gauge2"
+                               value="#{bindings.MATotalPropertiesVVO1.gaugeModel}"
+                               gaugeType="DIAL"
+                               binding="#{backingBeanScope.PropertyBean.gauge2}"
+                               shortDesc="#{bundle.Total_Properies}">
+                          <?audit suppress oracle.ide.xml.validation-warning?>
+                          <dvt:gaugeBackground>
+                        <dvt:specialEffects/>
+                      </dvt:gaugeBackground>
+                      <dvt:thresholdSet>
+                        <dvt:threshold text="#{bundle.Low}" fillColor="#d62800"/>
+                        <dvt:threshold text="#{bundle.Medium}" fillColor="#ffcf21"/>
+                        <dvt:threshold text="#{bundle.High}" fillColor="#84ae31"/>
+                      </dvt:thresholdSet>
+                      <dvt:gaugeFrame/>
+                      <dvt:indicator/>
+                      <dvt:indicatorBase/>
+                      <dvt:gaugePlotArea/>
+                      <dvt:tickLabel/>
+                      <dvt:tickMark/>
+                      <dvt:topLabel/>
+                      <dvt:bottomLabel/>
+                      <dvt:metricLabel position="LP_WITH_BOTTOM_LABEL"/>
+                    </dvt:gauge>
+                  </f:facet>
+                  <f:facet name="start"/>
+                  <f:facet name="end"/>
+                  <f:facet name="top">
+                    <dvt:gauge id="gauge1"
+                               value="#{bindings.MATotalOpporunitesVVO1.gaugeModel}"
+                               gaugeType="DIAL"
+                               binding="#{backingBeanScope.PropertyBean.gauge1}"
+                               shortDesc="#{bundle.Total_Opportunites}"
+                               inlineStyle="height:100.0%;">
+                          <?audit suppress oracle.ide.xml.validation-warning?>
+                          <dvt:gaugeBackground>
+                        <dvt:specialEffects/>
+                      </dvt:gaugeBackground>
+                      <dvt:thresholdSet>
+                        <dvt:threshold text="#{bundle.Low}" fillColor="#d62800"/>
+                        <dvt:threshold text="#{bundle.Medium}" fillColor="#ffcf21"/>
+                        <dvt:threshold text="#{bundle.High}" fillColor="#84ae31"/>
+                      </dvt:thresholdSet>
+                      <dvt:gaugeFrame/>
+                      <dvt:indicator/>
+                      <dvt:indicatorBase/>
+                      <dvt:gaugePlotArea/>
+                      <dvt:tickLabel/>
+                      <dvt:tickMark/>
+                      <dvt:topLabel/>
+                      <dvt:bottomLabel/>
+                      <dvt:metricLabel position="LP_WITH_BOTTOM_LABEL"/>
+                    </dvt:gauge>
+                  </f:facet>
+                </af:panelStretchLayout>
+              </f:facet>
+              <f:facet name="start">
+                    <af:panelGroupLayout id="pgl3" binding="#{backingBeanScope.PropertyBean.pgl3}" layout="scroll">
+                    <dvt:mapToolbar mapId="map" id="mt1" binding="#{backingBeanScope.PropertyBean.mt1}"/>
+                    <dvt:map id="map" startingX="19.92" mapServerConfigId="mapConfig2"
+                         baseMapName="ELOCATION.WORLD_MAP" mapZoom="0"
+                         inlineStyle="width:600px; height:375px;"
+                         startingY="23.77"
+                         binding="#{backingBeanScope.PropertyBean.map}"
+                         autoZoomThemeId="mapPointTheme1"
+                         copyrightText="#{bundle.Mashreq_Arabia}">
+                      <?audit suppress oracle.adf.dvt.acc-compreqsummary?>
+                      <dvt:mapPointTheme id="mapPointTheme1"
+                                     value="#{bindings.MAProertyMapVVO1.geoMapModel}"/>
+                </dvt:map>
+                    </af:panelGroupLayout>
+                    
+              </f:facet>
+              <f:facet name="end"/>
+              <f:facet name="top"/>
+            </af:panelStretchLayout>
+          </af:showDetailItem>
+          <af:showDetailItem text="#{bundle.Grid_View}"
+                             binding="#{backingBeanScope.PropertyBean.sdi2}"
+                             id="sdi2">
+            <f:facet name="toolbar"/>
+            <af:panelGroupLayout layout="vertical"
+                                 binding="#{backingBeanScope.PropertyBean.pgl1}"
+                                 id="pgl1">
+              <af:panelHeader text="#{bundle.Grid_View}"
+                              binding="#{backingBeanScope.PropertyBean.ph1}"
+                              id="ph1">
+                <af:query id="qryId1" headerText="#{bundle.Search}" disclosed="true"
+                          value="#{bindings.MAGridViewVVOCriteriaQuery.queryDescriptor}"
+                          model="#{bindings.MAGridViewVVOCriteriaQuery.queryModel}"
+                          queryListener="#{bindings.MAGridViewVVOCriteriaQuery.processQuery}"
+                          queryOperationListener="#{bindings.MAGridViewVVOCriteriaQuery.processQueryOperation}"
+                          resultComponentId="::pc1:resId1"
+                          binding="#{backingBeanScope.PropertyBean.qryId1}" saveQueryMode="hidden"/>
+              </af:panelHeader>
+              <af:panelCollection binding="#{backingBeanScope.PropertyBean.pc1}"
+                                  id="pc1" styleClass="AFStretchWidth">
+                <af:table value="#{bindings.MAGridViewVVO1.collectionModel}"
+                          var="row" rows="#{bindings.MAGridViewVVO1.rangeSize}"
+                          emptyText="#{bindings.MAGridViewVVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                          fetchSize="#{bindings.MAGridViewVVO1.rangeSize}"
+                          rowBandingInterval="1"
+                          selectedRowKeys="#{bindings.MAGridViewVVO1.collectionModel.selectedRow}"
+                          selectionListener="#{bindings.MAGridViewVVO1.collectionModel.makeCurrent}"
+                          rowSelection="single" id="resId1"
+                          binding="#{backingBeanScope.PropertyBean.resId1}"
+                          width="100%" columnStretching="last" summary="#{bundle.Grid_View}">
+                      <?audit suppress oracle.adf.faces.tableneedsrowheader?>
+                      <af:column id="c2" headerText="#{bundle.Delete}" align="center"
+                             width="30">
+                        <af:link id="cil1" icon="/images/icons/delete_ena.png"
+                                 action="#{backingBeanScope.PropertyBean.gridDelete}"
+                                 depressedIcon="/images/icons/delete_ena.png" hoverIcon="/images/icons/delete_ena.png"
+                                 shortDesc="#{bundle.Delete}"
+                                 disabled="#{ row.bindings.OccupationStatus.inputValue eq 'Occupied'}"
+                                 disabledIcon="/images/icons/delete_dis.png" text="#{bundle.link1}"/>
+                      </af:column>
+                  <af:column sortProperty="#{bindings.MAGridViewVVO1.hints.PropertyId.name}"
+                             sortable="false" headerText="#{bundle.PROPERTY_ID}" id="c1"
+                             rendered="false">
+                    <af:outputText value="#{row.PropertyId}" id="ot88">
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.MAGridViewVVO1.hints.PropertyId.format}"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MAGridViewVVO1.hints.PropertySegment.name}"
+                             sortable="true" headerText="#{bundle.PROPERTY_SEGMENT}"
+                             id="resId1c1">
+                    <af:commandLink id="ot1" text="#{row.PropertySegment}">
+                      <af:showPopupBehavior popupId="p2" triggerType="action"
+                                            align="afterStart"/>
+                      <af:popup id="p2" contentDelivery="lazyUncached">
+                        <af:dialog id="d3">
+                              <?audit suppress oracle.adf.faces.compreqtitle?>
+                              <af:panelFormLayout id="pfl2" maxColumns="3" rows="5">
+                            <af:panelLabelAndMessage label="#{bindings.PropertySegment.hints.label}"
+                                                     id="plam36">
+                              <af:outputText value="#{bindings.PropertySegment.inputValue}"
+                                             id="ot76"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.PropertyName.hints.label}"
+                                                     id="plam41">
+                              <af:outputText value="#{bindings.PropertyName.inputValue}"
+                                             id="ot75"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.BlockBuldingName.hints.label}"
+                                                     id="plam59">
+                              <af:outputText value="#{bindings.BlockBuldingName.inputValue}"
+                                             id="ot70"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.FloorNumber.hints.label}"
+                                                     id="plam35">
+                              <af:outputText value="#{bindings.FloorNumber.inputValue}"
+                                             id="ot65"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.PropertyStatus.hints.label}"
+                                                     id="plam37">
+                              <af:outputText value="#{bindings.PropertyStatus.inputValue}"
+                                             id="ot57"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.StartDate.hints.label}"
+                                                     id="plam47">
+                              <af:outputText value="#{bindings.StartDate.inputValue}"
+                                             id="ot67">
+                                <af:convertDateTime pattern="#{bindings.StartDate.format}"/>
+                              </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.EndDate.hints.label}"
+                                                     id="plam54">
+                              <af:outputText value="#{bindings.EndDate.inputValue}"
+                                             id="ot69">
+                                <af:convertDateTime pattern="#{bindings.EndDate.format}"/>
+                              </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.AvailableForRentFlag.hints.label}"
+                                                     id="plam44">
+                              <af:outputText value="#{bindings.AvailableForRentFlag.inputValue}"
+                                             id="ot74"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.UnitNumber.hints.label}"
+                                                     id="plam46">
+                              <af:outputText value="#{bindings.UnitNumber.inputValue}"
+                                             id="ot80"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.UnitSqMt.hints.label}"
+                                                     id="plam60">
+                              <af:outputText value="#{bindings.UnitSqMt.inputValue}"
+                                             id="ot61"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.NumberOfRooms.hints.label}"
+                                                     id="plam48">
+                              <af:outputText value="#{bindings.NumberOfRooms.inputValue}"
+                                             id="ot64">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.NumberOfRooms.format}"/>
+                              </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.NumberOfBathrooms.hints.label}"
+                                                     id="plam57">
+                              <af:outputText value="#{bindings.NumberOfBathrooms.inputValue}"
+                                             id="ot84">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.NumberOfBathrooms.format}"/>
+                              </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.NumberOfParkings.hints.label}"
+                                                     id="plam52">
+                              <af:outputText value="#{bindings.NumberOfParkings.inputValue}"
+                                             id="ot58">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.NumberOfParkings.format}"/>
+                              </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.DuplexFlag.hints.label}"
+                                                     id="plam45">
+                              <af:outputText value="#{bindings.DuplexFlag.inputValue}"
+                                             id="ot86"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.RentAmount.hints.label}"
+                                                     id="plam50">
+                              <af:outputText value="#{bindings.RentAmount.inputValue}"
+                                             id="ot59">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.RentAmount.format}"/>
+                              </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.Comments.hints.label}"
+                                                     id="plam61">
+                              <af:outputText value="#{bindings.Comments.inputValue}"
+                                             id="ot66"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.LastLeasedAmount.hints.label}"
+                                                     id="plam49">
+                              <af:outputText value="#{bindings.LastLeasedAmount.inputValue}"
+                                             id="ot77">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.LastLeasedAmount.format}"/>
+                              </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.PropertyCountry.hints.label}"
+                                                     id="plam62">
+                              <af:outputText value="#{bindings.PropertyCountry.inputValue}"
+                                             id="ot63"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.PropertySite.hints.label}"
+                                                     id="plam63">
+                              <af:outputText value="#{bindings.PropertySite.inputValue}"
+                                             id="ot134"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.CreatedBy.hints.label}"
+                                                     id="plam42">
+                              <af:outputText value="#{bindings.CreatedBy.inputValue}"
+                                             id="ot68">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.CreatedBy.format}"/>
+                              </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.CreationDate.hints.label}"
+                                                     id="plam55">
+                              <af:outputText value="#{bindings.CreationDate.inputValue}"
+                                             id="ot85">
+                                <af:convertDateTime pattern="#{bindings.CreationDate.format}"/>
+                              </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.LastUpdatedBy.hints.label}"
+                                                     id="plam51">
+                              <af:outputText value="#{bindings.LastUpdatedBy.inputValue}"
+                                             id="ot82">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.LastUpdatedBy.format}"/>
+                              </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.LastUpdateDate.hints.label}"
+                                                     id="plam56">
+                              <af:outputText value="#{bindings.LastUpdateDate.inputValue}"
+                                             id="ot71">
+                                <af:convertDateTime pattern="#{bindings.LastUpdateDate.format}"/>
+                              </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.TypeId.hints.label}"
+                                                     id="plam34">
+                              <af:outputText value="#{bindings.TypeId.inputValue}"
+                                             id="ot78">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.TypeId.format}"/>
+                              </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.ParentTypeId.hints.label}"
+                                                     id="plam39">
+                              <af:outputText value="#{bindings.ParentTypeId.inputValue}"
+                                             id="ot135">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.ParentTypeId.format}"/>
+                              </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.OwnerId.hints.label}"
+                                                     id="plam53">
+                              <af:outputText value="#{bindings.OwnerId.inputValue}"
+                                             id="ot79">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.OwnerId.format}"/>
+                              </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.ContractSegment.hints.label}"
+                                                     id="plam38">
+                              <af:outputText value="#{bindings.ContractSegment.inputValue}"
+                                             id="ot87"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.ContractSubject.hints.label}"
+                                                     id="plam58">
+                              <af:outputText value="#{bindings.ContractSubject.inputValue}"
+                                             id="ot73"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.ContractStartDate.hints.label}"
+                                                     id="plam64">
+                              <af:outputText value="#{bindings.ContractStartDate.inputValue}"
+                                             id="ot62">
+                                <af:convertDateTime pattern="#{bindings.ContractStartDate.format}"/>
+                              </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.ContractEndDate.hints.label}"
+                                                     id="plam109">
+                              <af:outputText value="#{bindings.ContractEndDate.inputValue}"
+                                             id="ot83">
+                                <af:convertDateTime pattern="#{bindings.ContractEndDate.format}"/>
+                              </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.PrecentageAmount.hints.label}"
+                                                     id="plam40">
+                              <af:outputText value="#{bindings.PrecentageAmount.inputValue}"
+                                             id="ot81">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.PrecentageAmount.format}"/>
+                              </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.ReceiptAmount.hints.label}"
+                                                     id="plam43">
+                              <af:outputText value="#{bindings.ReceiptAmount.inputValue}"
+                                             id="ot60">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.ReceiptAmount.format}"/>
+                              </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.SignatureAmount.hints.label}"
+                                                     id="plam108">
+                              <af:outputText value="#{bindings.SignatureAmount.inputValue}"
+                                             id="ot72">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.SignatureAmount.format}"/>
+                              </af:outputText>
+                            </af:panelLabelAndMessage>
+                          </af:panelFormLayout>
+                        </af:dialog>
+                      </af:popup>
+                    </af:commandLink>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MAGridViewVVO1.hints.PropertyName.name}"
+                             sortable="true" headerText="#{bundle.PROPERTY_NAME}"
+                             id="resId1c2">
+                    <af:outputText value="#{row.PropertyName}" id="ot3"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MAGridViewVVO1.hints.PropertyLocation.name}"
+                             sortable="true" headerText="#{bundle.PROPERTY_LOCATION}"
+                             id="resId1c3">
+                    <af:outputText value="#{row.PropertyLocation}" id="ot10"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MAGridViewVVO1.hints.BlockBuldingName.name}"
+                             sortable="true" headerText="#{bundle.BLOCK_BUILDING_NAME}"
+                             id="resId1c4">
+                    <af:outputText value="#{row.BlockBuldingName}" id="ot12"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MAGridViewVVO1.hints.SubPropertySegment.name}"
+                             sortable="true" headerText="#{bundle.SUB_PROPERTY_NAME}"
+                             id="resId1c5">
+                    <af:outputText id="ot6" value="#{row.SubPropertySegment}"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MAGridViewVVO1.hints.SubPropertyName.name}"
+                             sortable="true" headerText="#{bundle.SUB_PROPERTY_NAME}"
+                             id="resId1c6">
+                    <af:outputText id="ot2" value="#{row.SubPropertyName}"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MAGridViewVVO1.hints.ParentTypeName.name}"
+                             sortable="true" headerText="#{bundle.Parent_Type_Name}"
+                             id="resId1c7">
+                    <af:outputText value="#{row.ParentTypeName}" id="ot9"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MAGridViewVVO1.hints.SubTypeName.name}"
+                             sortable="true" headerText="#{bundle.Sub_Type_Name}"
+                             id="resId1c8">
+                    <af:outputText value="#{row.SubTypeName}" id="ot7"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MAGridViewVVO1.hints.OccupationStatus.name}"
+                             sortable="true" headerText="#{bundle.OCCUPATION_STATUS}"
+                             id="resId1c9">
+                    <af:outputText value="#{row.OccupationStatus}" id="ot5"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MAGridViewVVO1.hints.StartDate.name}"
+                             sortable="true" headerText="#{bundle.START_DATE}"
+                             id="resId1c10">
+                    <af:outputText value="#{row.StartDate}" id="ot11">
+                      <af:convertDateTime pattern="#{bindings.MAGridViewVVO1.hints.StartDate.format}"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MAGridViewVVO1.hints.EndDate.name}"
+                             sortable="true" headerText="#{bundle.END_DATE}"
+                             id="resId1c11">
+                    <af:outputText value="#{row.EndDate}" id="ot4">
+                      <af:convertDateTime pattern="#{bindings.MAGridViewVVO1.hints.EndDate.format}"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MAGridViewVVO1.hints.ServiceEndDate.name}"
+                             sortable="true" headerText="#{bundle.SERVICE_END_DATE}"
+                             id="resId1c12">
+                    <af:outputText value="#{row.ServiceEndDate}" id="ot8">
+                      <af:convertDateTime pattern="#{bindings.MAGridViewVVO1.hints.ServiceEndDate.format}"/>
+                    </af:outputText>
+                  </af:column>
+                </af:table>
+                <f:facet name="toolbar">
+                  <af:toolbar binding="#{backingBeanScope.PropertyBean.t1}"
+                              id="t1">
+                        <af:button text="#{bundle.Create}" binding="#{backingBeanScope.PropertyBean.cb1}" id="cb1"
+                                   action="Grid View Create"/>
+                        <af:button text="#{bundle.Edit}" binding="#{backingBeanScope.PropertyBean.cb2}" id="cb2"
+                                   actionListener="#{backingBeanScope.PropertyBean.cb2_actionListener}"
+                                   action="Grid View Edit"/>
+                        <af:button text="#{bundle.Export}" binding="#{backingBeanScope.PropertyBean.cb5}" id="cb5"
+                                   icon="/images/icons/print_ena.png">
+                          <af:exportCollectionActionListener exportedId="resId1" type="excelHTML"
+                                                             filename="Grid View.xls" title="#{bundle.Grid_View}"/>
+                        </af:button>
+                      </af:toolbar>
+                </f:facet>
+                <af:popup id="p1" contentDelivery="lazyUncached">
+                  <af:dialog id="d2">
+                        <?audit suppress oracle.adf.faces.compreqtitle?>
+                        <af:panelFormLayout id="pfl1" maxColumns="2"
+                                        styleClass="AFStretchWidth" rows="10">
+                      <af:panelLabelAndMessage label="#{bindings.PropertySegment.hints.label}"
+                                               id="plam14">
+                        <af:outputText value="#{bindings.PropertySegment.inputValue}"
+                                       id="ot52"/>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.PropertyName.hints.label}"
+                                               id="plam26">
+                        <af:outputText value="#{bindings.PropertyName.inputValue}"
+                                       id="ot24"/>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.BlockBuldingName.hints.label}"
+                                               id="plam23">
+                        <af:outputText value="#{bindings.BlockBuldingName.inputValue}"
+                                       id="ot39"/>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.FloorNumber.hints.label}"
+                                               id="plam30">
+                        <af:outputText value="#{bindings.FloorNumber.inputValue}"
+                                       id="ot34"/>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.PropertyStatus.hints.label}"
+                                               id="plam32">
+                        <af:outputText value="#{bindings.PropertyStatus.inputValue}"
+                                       id="ot26"/>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.StartDate.hints.label}"
+                                               id="plam1">
+                        <af:outputText value="#{bindings.StartDate.inputValue}"
+                                       id="ot32">
+                          <af:convertDateTime pattern="#{bindings.StartDate.format}"/>
+                        </af:outputText>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.EndDate.hints.label}"
+                                               id="plam22">
+                        <af:outputText value="#{bindings.EndDate.inputValue}"
+                                       id="ot44">
+                          <af:convertDateTime pattern="#{bindings.EndDate.format}"/>
+                        </af:outputText>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.AvailableForRentFlag.hints.label}"
+                                               id="plam28">
+                        <af:outputText value="#{bindings.AvailableForRentFlag.inputValue}"
+                                       id="ot53"/>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.UnitNumber.hints.label}"
+                                               id="plam4">
+                        <af:outputText value="#{bindings.UnitNumber.inputValue}"
+                                       id="ot55"/>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.UnitSqMt.hints.label}"
+                                               id="plam5">
+                        <af:outputText value="#{bindings.UnitSqMt.inputValue}"
+                                       id="ot33"/>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.NumberOfRooms.hints.label}"
+                                               id="plam27">
+                        <af:outputText value="#{bindings.NumberOfRooms.inputValue}"
+                                       id="ot27">
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.NumberOfRooms.format}"/>
+                        </af:outputText>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.NumberOfBathrooms.hints.label}"
+                                               id="plam7">
+                        <af:outputText value="#{bindings.NumberOfBathrooms.inputValue}"
+                                       id="ot46">
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.NumberOfBathrooms.format}"/>
+                        </af:outputText>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.NumberOfParkings.hints.label}"
+                                               id="plam2">
+                        <af:outputText value="#{bindings.NumberOfParkings.inputValue}"
+                                       id="ot47">
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.NumberOfParkings.format}"/>
+                        </af:outputText>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.DuplexFlag.hints.label}"
+                                               id="plam33">
+                        <af:outputText value="#{bindings.DuplexFlag.inputValue}"
+                                       id="ot50"/>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.RentAmount.hints.label}"
+                                               id="plam10">
+                        <af:outputText value="#{bindings.RentAmount.inputValue}"
+                                       id="ot37">
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.RentAmount.format}"/>
+                        </af:outputText>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.Comments.hints.label}"
+                                               id="plam20">
+                        <af:outputText value="#{bindings.Comments.inputValue}"
+                                       id="ot42"/>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.LastLeasedAmount.hints.label}"
+                                               id="plam8">
+                        <af:outputText value="#{bindings.LastLeasedAmount.inputValue}"
+                                       id="ot40">
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.LastLeasedAmount.format}"/>
+                        </af:outputText>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.PropertyCountry.hints.label}"
+                                               id="plam21">
+                        <af:outputText value="#{bindings.PropertyCountry.inputValue}"
+                                       id="ot45"/>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.PropertySite.hints.label}"
+                                               id="plam13">
+                        <af:outputText value="#{bindings.PropertySite.inputValue}"
+                                       id="ot31"/>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.CreatedBy.hints.label}"
+                                               id="plam15">
+                        <af:outputText value="#{bindings.CreatedBy.inputValue}"
+                                       id="ot54">
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.CreatedBy.format}"/>
+                        </af:outputText>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.CreationDate.hints.label}"
+                                               id="plam11">
+                        <af:outputText value="#{bindings.CreationDate.inputValue}"
+                                       id="ot41">
+                          <af:convertDateTime pattern="#{bindings.CreationDate.format}"/>
+                        </af:outputText>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.LastUpdatedBy.hints.label}"
+                                               id="plam17">
+                        <af:outputText value="#{bindings.LastUpdatedBy.inputValue}"
+                                       id="ot43">
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.LastUpdatedBy.format}"/>
+                        </af:outputText>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.LastUpdateDate.hints.label}"
+                                               id="plam29">
+                        <af:outputText value="#{bindings.LastUpdateDate.inputValue}"
+                                       id="ot51">
+                          <af:convertDateTime pattern="#{bindings.LastUpdateDate.format}"/>
+                        </af:outputText>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.ParentPropertyId.hints.label}"
+                                               id="plam12">
+                        <af:outputText value="#{bindings.ParentPropertyId.inputValue}"
+                                       id="ot49">
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.ParentPropertyId.format}"/>
+                        </af:outputText>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.TypeId.hints.label}"
+                                               id="plam9">
+                        <af:outputText value="#{bindings.TypeId.inputValue}"
+                                       id="ot30">
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.TypeId.format}"/>
+                        </af:outputText>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.OwnerId.hints.label}"
+                                               id="plam19">
+                        <af:outputText value="#{bindings.OwnerId.inputValue}"
+                                       id="ot29">
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.OwnerId.format}"/>
+                        </af:outputText>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.ContractSegment.hints.label}"
+                                               id="plam16">
+                        <af:outputText value="#{bindings.ContractSegment.inputValue}"
+                                       id="ot48"/>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.ContractSubject.hints.label}"
+                                               id="plam31">
+                        <af:outputText value="#{bindings.ContractSubject.inputValue}"
+                                       id="ot25"/>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.ContractStartDate.hints.label}"
+                                               id="plam25">
+                        <af:outputText value="#{bindings.ContractStartDate.inputValue}"
+                                       id="ot35">
+                          <af:convertDateTime pattern="#{bindings.ContractStartDate.format}"/>
+                        </af:outputText>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.ContractEndDate.hints.label}"
+                                               id="plam6">
+                        <af:outputText value="#{bindings.ContractEndDate.inputValue}"
+                                       id="ot56">
+                          <af:convertDateTime pattern="#{bindings.ContractEndDate.format}"/>
+                        </af:outputText>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.PrecentageAmount.hints.label}"
+                                               id="plam3">
+                        <af:outputText value="#{bindings.PrecentageAmount.inputValue}"
+                                       id="ot28">
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.PrecentageAmount.format}"/>
+                        </af:outputText>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.ReceiptAmount.hints.label}"
+                                               id="plam24">
+                        <af:outputText value="#{bindings.ReceiptAmount.inputValue}"
+                                       id="ot36">
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.ReceiptAmount.format}"/>
+                        </af:outputText>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.SignatureAmount.hints.label}"
+                                               id="plam18">
+                        <af:outputText value="#{bindings.SignatureAmount.inputValue}"
+                                       id="ot38">
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.SignatureAmount.format}"/>
+                        </af:outputText>
+                      </af:panelLabelAndMessage>
+                    </af:panelFormLayout>
+                  </af:dialog>
+                </af:popup>
+              </af:panelCollection>
+            </af:panelGroupLayout>
+          </af:showDetailItem>
+          <af:showDetailItem text="#{bundle.Generic_View}"
+                             binding="#{backingBeanScope.PropertyBean.sdi3}"
+                             id="sdi3">
+            <af:panelGroupLayout layout="vertical"
+                                 binding="#{backingBeanScope.PropertyBean.pgl2}"
+                                 id="pgl2">
+              <af:panelHeader text="#{bundle.Generic_View}"
+                              binding="#{backingBeanScope.PropertyBean.ph2}"
+                              id="ph2" styleClass="AFStretchWidth">
+                <af:query id="qryId2" headerText="#{bundle.Search}" disclosed="true"
+                          value="#{bindings.GenericViewVVOCriteriaQuery.queryDescriptor}"
+                          model="#{bindings.GenericViewVVOCriteriaQuery.queryModel}"
+                          queryListener="#{bindings.GenericViewVVOCriteriaQuery.processQuery}"
+                          queryOperationListener="#{bindings.GenericViewVVOCriteriaQuery.processQueryOperation}"
+                          resultComponentId="::pc2:resId2"
+                          binding="#{backingBeanScope.PropertyBean.qryId2}" saveQueryMode="hidden"/>
+              </af:panelHeader>
+              <af:panelCollection binding="#{backingBeanScope.PropertyBean.pc2}"
+                                  id="pc2" styleClass="AFStretchWidth">
+                <f:facet name="toolbar">
+                  <af:toolbar binding="#{backingBeanScope.PropertyBean.t2}"
+                              id="t2">
+                        <af:button text="#{bundle.Create}" binding="#{backingBeanScope.PropertyBean.cb3}" id="cb3"
+                                   action="Generic View Create"/>
+                        <af:button text="#{bundle.Edit}" binding="#{backingBeanScope.PropertyBean.cb4}" id="cb4"
+                                   attributeChangeListener="#{backingBeanScope.PropertyBean.cb4_attributeChangeListener}"
+                                   actionListener="#{backingBeanScope.PropertyBean.cb4_actionListener}"
+                                   action="Generic View Edit"/>
+                        <af:button text="#{bundle.Export}" binding="#{backingBeanScope.PropertyBean.cb6}" id="cb6"
+                                   icon="/images/icons/print_ena.png">
+                          <af:exportCollectionActionListener exportedId="resId2" type="excelHTML"
+                                                             filename="Generic View.xls" title="#{bundle.Generic_View}"/>
+                        </af:button>
+                      </af:toolbar>
+                </f:facet>
+                <af:table value="#{bindings.MAGenericViewVVO1.collectionModel}"
+                          var="row"
+                          rows="#{bindings.MAGenericViewVVO1.rangeSize}"
+                          emptyText="#{bindings.MAGenericViewVVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                          fetchSize="#{bindings.MAGenericViewVVO1.rangeSize}"
+                          rowBandingInterval="0"
+                          selectedRowKeys="#{bindings.MAGenericViewVVO1.collectionModel.selectedRow}"
+                          selectionListener="#{bindings.MAGenericViewVVO1.collectionModel.makeCurrent}"
+                          rowSelection="single" id="resId2"
+                          binding="#{backingBeanScope.PropertyBean.resId2}"
+                          width="100%" styleClass="AFStretchWidth" summary="#{bundle.Generic_View_Table}">
+                      <?audit suppress oracle.adf.faces.tableneedsrowheader?>
+                      <af:column sortProperty="#{bindings.MAGenericViewVVO1.hints.PropertyId.name}"
+                             sortable="true"
+                             headerText="#{bindings.MAGenericViewVVO1.hints.PropertyId.label}"
+                             id="resId2c1" rendered="false">
+                    <af:outputText value="#{row.PropertyId}" id="ot22">
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.MAGenericViewVVO1.hints.PropertyId.format}"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MAGenericViewVVO1.hints.OwnerId.name}"
+                             sortable="true"
+                             headerText="#{bindings.MAGenericViewVVO1.hints.OwnerId.label}"
+                             id="resId2c2" rendered="false">
+                    <af:outputText value="#{row.OwnerId}" id="ot19">
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.MAGenericViewVVO1.hints.OwnerId.format}"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MAGenericViewVVO1.hints.PropertySegment.name}"
+                             sortable="true"
+                             headerText="#{bundle.PROPERTY_SEGMENT}"
+                             id="resId2c3" align="center">
+                        <af:link id="ot18" text="#{row.PropertySegment}">
+                          <af:showPopupBehavior popupId="p3" triggerType="action" align="afterEnd"/>
+                        </af:link>
+                        <af:popup id="p3">
+                      <af:dialog id="d4" title="#{bundle.PROPERTY_SEGMENT}">
+                        <af:panelFormLayout id="pfl3" maxColumns="2" rows="10">
+                          <af:panelLabelAndMessage label="#{bindings.PropertySegment3.hints.label}"
+                                                   id="plam83">
+                            <af:outputText value="#{bindings.PropertySegment3.inputValue}"
+                                           id="ot100"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.PropertyName2.hints.label}"
+                                                   id="plam86">
+                            <af:outputText value="#{bindings.PropertyName2.inputValue}"
+                                           id="ot118"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.BlockBuldingName2.hints.label}"
+                                                   id="plam91">
+                            <af:outputText value="#{bindings.BlockBuldingName2.inputValue}"
+                                           id="ot108"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.FloorNumber2.hints.label}"
+                                                   id="plam81">
+                            <af:outputText value="#{bindings.FloorNumber2.inputValue}"
+                                           id="ot105"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.PropertyStatus2.hints.label}"
+                                                   id="plam69">
+                            <af:outputText value="#{bindings.PropertyStatus2.inputValue}"
+                                           id="ot120"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.StartDate2.hints.label}"
+                                                   id="plam90">
+                            <af:outputText value="#{bindings.StartDate2.inputValue}"
+                                           id="ot122">
+                              <af:convertDateTime pattern="#{bindings.StartDate2.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.EndDate2.hints.label}"
+                                                   id="plam68">
+                            <af:outputText value="#{bindings.EndDate2.inputValue}"
+                                           id="ot94">
+                              <af:convertDateTime pattern="#{bindings.EndDate2.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.AvailableForRentFlag2.hints.label}"
+                                                   id="plam73">
+                            <af:outputText value="#{bindings.AvailableForRentFlag2.inputValue}"
+                                           id="ot125"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.UnitNumber2.hints.label}"
+                                                   id="plam71">
+                            <af:outputText value="#{bindings.UnitNumber2.inputValue}"
+                                           id="ot115"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.UnitSqMt2.hints.label}"
+                                                   id="plam82">
+                            <af:outputText value="#{bindings.UnitSqMt2.inputValue}"
+                                           id="ot95"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.NumberOfRooms2.hints.label}"
+                                                   id="plam89">
+                            <af:outputText value="#{bindings.NumberOfRooms2.inputValue}"
+                                           id="ot106">
+                              <af:convertNumber groupingUsed="false"
+                                                pattern="#{bindings.NumberOfRooms2.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.NumberOfBathrooms2.hints.label}"
+                                                   id="plam75">
+                            <af:outputText value="#{bindings.NumberOfBathrooms2.inputValue}"
+                                           id="ot93">
+                              <af:convertNumber groupingUsed="false"
+                                                pattern="#{bindings.NumberOfBathrooms2.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.NumberOfParkings2.hints.label}"
+                                                   id="plam70">
+                            <af:outputText value="#{bindings.NumberOfParkings2.inputValue}"
+                                           id="ot101">
+                              <af:convertNumber groupingUsed="false"
+                                                pattern="#{bindings.NumberOfParkings2.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.DuplexFlag2.hints.label}"
+                                                   id="plam72">
+                            <af:outputText value="#{bindings.DuplexFlag2.inputValue}"
+                                           id="ot124"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.RentAmount2.hints.label}"
+                                                   id="plam98">
+                            <af:outputText value="#{bindings.RentAmount2.inputValue}"
+                                           id="ot121">
+                              <af:convertNumber groupingUsed="false"
+                                                pattern="#{bindings.RentAmount2.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.Comments2.hints.label}"
+                                                   id="plam78">
+                            <af:outputText value="#{bindings.Comments2.inputValue}"
+                                           id="ot109"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.LastLeasedAmount2.hints.label}"
+                                                   id="plam65">
+                            <af:outputText value="#{bindings.LastLeasedAmount2.inputValue}"
+                                           id="ot127">
+                              <af:convertNumber groupingUsed="false"
+                                                pattern="#{bindings.LastLeasedAmount2.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.PropertyCountry2.hints.label}"
+                                                   id="plam95">
+                            <af:outputText value="#{bindings.PropertyCountry2.inputValue}"
+                                           id="ot123"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.PropertyCity1.hints.label}"
+                                                   id="plam66">
+                            <af:outputText value="#{bindings.PropertyCity1.inputValue}"
+                                           id="ot116"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.PropertyRegion1.hints.label}"
+                                                   id="plam74">
+                            <af:outputText value="#{bindings.PropertyRegion1.inputValue}"
+                                           id="ot97"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.ContractId1.hints.label}"
+                                                   id="plam93">
+                            <af:outputText value="#{bindings.ContractId1.inputValue}"
+                                           id="ot126">
+                              <af:convertNumber groupingUsed="false"
+                                                pattern="#{bindings.ContractId1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.PropertySite2.hints.label}"
+                                                   id="plam76">
+                            <af:outputText value="#{bindings.PropertySite2.inputValue}"
+                                           id="ot102"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.CreatedBy2.hints.label}"
+                                                   id="plam94">
+                            <af:outputText value="#{bindings.CreatedBy2.inputValue}"
+                                           id="ot119">
+                              <af:convertNumber groupingUsed="false"
+                                                pattern="#{bindings.CreatedBy2.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.CreationDate2.hints.label}"
+                                                   id="plam92">
+                            <af:outputText value="#{bindings.CreationDate2.inputValue}"
+                                           id="ot117">
+                              <af:convertDateTime pattern="#{bindings.CreationDate2.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.LastUpdatedBy2.hints.label}"
+                                                   id="plam84">
+                            <af:outputText value="#{bindings.LastUpdatedBy2.inputValue}"
+                                           id="ot107">
+                              <af:convertNumber groupingUsed="false"
+                                                pattern="#{bindings.LastUpdatedBy2.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.LastUpdateDate2.hints.label}"
+                                                   id="plam99">
+                            <af:outputText value="#{bindings.LastUpdateDate2.inputValue}"
+                                           id="ot113">
+                              <af:convertDateTime pattern="#{bindings.LastUpdateDate2.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.TypeId2.hints.label}"
+                                                   id="plam101">
+                            <af:outputText value="#{bindings.TypeId2.inputValue}"
+                                           id="ot103">
+                              <af:convertNumber groupingUsed="false"
+                                                pattern="#{bindings.TypeId2.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.ParentTypeId1.hints.label}"
+                                                   id="plam67">
+                            <af:outputText value="#{bindings.ParentTypeId1.inputValue}"
+                                           id="ot104">
+                              <af:convertNumber groupingUsed="false"
+                                                pattern="#{bindings.ParentTypeId1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.ContractId2.hints.label}"
+                                                   id="plam80">
+                            <af:outputText value="#{bindings.ContractId2.inputValue}"
+                                           id="ot99">
+                              <af:convertNumber groupingUsed="false"
+                                                pattern="#{bindings.ContractId2.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.OwnerId1.hints.label}"
+                                                   id="plam97">
+                            <af:outputText value="#{bindings.OwnerId1.inputValue}"
+                                           id="ot96">
+                              <af:convertNumber groupingUsed="false"
+                                                pattern="#{bindings.OwnerId1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.ContractSegment1.hints.label}"
+                                                   id="plam96">
+                            <af:outputText value="#{bindings.ContractSegment1.inputValue}"
+                                           id="ot91"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.ContractSubject1.hints.label}"
+                                                   id="plam87">
+                            <af:outputText value="#{bindings.ContractSubject1.inputValue}"
+                                           id="ot112"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.ContractStartDate1.hints.label}"
+                                                   id="plam77">
+                            <af:outputText value="#{bindings.ContractStartDate1.inputValue}"
+                                           id="ot98">
+                              <af:convertDateTime pattern="#{bindings.ContractStartDate1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.ContractEndDate1.hints.label}"
+                                                   id="plam79">
+                            <af:outputText value="#{bindings.ContractEndDate1.inputValue}"
+                                           id="ot110">
+                              <af:convertDateTime pattern="#{bindings.ContractEndDate1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.PrecentageAmount1.hints.label}"
+                                                   id="plam88">
+                            <af:outputText value="#{bindings.PrecentageAmount1.inputValue}"
+                                           id="ot111">
+                              <af:convertNumber groupingUsed="false"
+                                                pattern="#{bindings.PrecentageAmount1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.ReceiptAmount1.hints.label}"
+                                                   id="plam85">
+                            <af:outputText value="#{bindings.ReceiptAmount1.inputValue}"
+                                           id="ot114">
+                              <af:convertNumber groupingUsed="false"
+                                                pattern="#{bindings.ReceiptAmount1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.SignatureAmount1.hints.label}"
+                                                   id="plam100">
+                            <af:outputText value="#{bindings.SignatureAmount1.inputValue}"
+                                           id="ot92">
+                              <af:convertNumber groupingUsed="false"
+                                                pattern="#{bindings.SignatureAmount1.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                        </af:panelFormLayout>
+                      </af:dialog>
+                    </af:popup>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MAGenericViewVVO1.hints.PropertyName.name}"
+                             sortable="true"
+                             headerText="#{bundle.PROPERTY_NAME}"
+                             id="resId2c4" align="center">
+                    <af:outputText value="#{row.PropertyName}" id="ot90"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MAGenericViewVVO1.hints.Owner.name}"
+                             sortable="true"
+                             headerText="#{bundle.Owner}"
+                             id="resId2c5" align="center">
+                        <af:link id="ot13" text="#{row.Owner}">
+                          <af:showPopupBehavior popupId="p4" triggerType="action" align="afterEnd"/>
+                        </af:link>
+                        <af:popup id="p4">
+                      <af:dialog id="d5" title="#{bundle.Owner}">
+                        <af:panelFormLayout id="pfl4">
+                          <af:panelLabelAndMessage label="#{bindings.OwnerId2.hints.label}"
+                                                   id="plam105">
+                            <af:outputText value="#{bindings.OwnerId2.inputValue}"
+                                           id="ot133">
+                              <af:convertNumber groupingUsed="false"
+                                                pattern="#{bindings.OwnerId2.format}"/>
+                            </af:outputText>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.FullName.hints.label}"
+                                                   id="plam102">
+                            <af:outputText value="#{bindings.FullName.inputValue}"
+                                           id="ot131"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.EmailAddress.hints.label}"
+                                                   id="plam103">
+                            <af:outputText value="#{bindings.EmailAddress.inputValue}"
+                                           id="ot130"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.MaritalStatus.hints.label}"
+                                                   id="plam106">
+                            <af:outputText value="#{bindings.MaritalStatus.inputValue}"
+                                           id="ot132"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.NationalIdentifier.hints.label}"
+                                                   id="plam104">
+                            <af:outputText value="#{bindings.NationalIdentifier.inputValue}"
+                                           id="ot129"/>
+                          </af:panelLabelAndMessage>
+                          <af:panelLabelAndMessage label="#{bindings.WorkTelephone.hints.label}"
+                                                   id="plam107">
+                            <af:outputText value="#{bindings.WorkTelephone.inputValue}"
+                                           id="ot128"/>
+                          </af:panelLabelAndMessage>
+                        </af:panelFormLayout>
+                      </af:dialog>
+                    </af:popup>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MAGenericViewVVO1.hints.ParentTypeName.name}"
+                             sortable="true"
+                             headerText="#{bundle.Parent_Type_Name}"
+                             id="resId2c6" align="center">
+                    <af:outputText value="#{row.ParentTypeName}" id="ot23"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MAGenericViewVVO1.hints.PropertyLocation.name}"
+                             sortable="true"
+                             headerText="#{bundle.PROPERTY_LOCATION}"
+                             id="resId2c7" align="center">
+                    <af:outputText value="#{row.PropertyLocation}" id="ot14"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MAGenericViewVVO1.hints.OccupationEq.name}"
+                             sortable="true"
+                             headerText="#{bundle.OCCUPATION_PERCENTAGE}"
+                             id="resId2c8" align="center">
+                    <af:outputText value="#{row.OccupationEq}" id="ot16">
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.MAGenericViewVVO1.hints.OccupationEq.format}"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MAGenericViewVVO1.hints.DemandEq.name}"
+                             sortable="true"
+                             headerText="#{bundle.Demand_Percentage}"
+                             id="resId2c9" align="center">
+                    <af:outputText value="#{row.DemandEq}" id="ot89">
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.MAGenericViewVVO1.hints.DemandEq.format}"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MAGenericViewVVO1.hints.ForecastEq.name}"
+                             sortable="true"
+                             headerText="#{bundle.Forecast_Percentage}"
+                             id="resId2c10" align="center">
+                    <af:outputText value="#{row.ForecastEq}" id="ot17">
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.MAGenericViewVVO1.hints.ForecastEq.format}"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MAGenericViewVVO1.hints.IdleEq.name}"
+                             sortable="true"
+                             headerText="#{bundle.Idle_Percentage}"
+                             id="resId2c11" align="center">
+                    <af:outputText value="#{row.IdleEq}" id="ot20">
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.MAGenericViewVVO1.hints.IdleEq.format}"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MAGenericViewVVO1.hints.StartDate.name}"
+                             sortable="true"
+                             headerText="#{bundle.START_DATE}"
+                             id="resId2c12" align="center">
+                    <af:outputText value="#{row.StartDate}" id="ot15">
+                      <af:convertDateTime pattern="#{bindings.MAGenericViewVVO1.hints.StartDate.format}"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.MAGenericViewVVO1.hints.EndDate.name}"
+                             sortable="true"
+                             headerText="#{bundle.END_DATE}"
+                             id="resId2c13" align="center">
+                    <af:outputText value="#{row.EndDate}" id="ot21"/>
+                  </af:column>
+                </af:table>
+              </af:panelCollection>
+            </af:panelGroupLayout>
+          </af:showDetailItem>
+        </af:panelTabbed>
+        </f:facet>
+                    <f:facet name="header">
+            <af:outputText value="#{bundle.PropertyManagement}" id="ot136" binding="#{backingBeanScope.PropertyBean.ot136}"/>
+          </f:facet>
+                    <f:facet name="end"/>
+                    <f:facet name="start"/>
+                    <f:facet name="branding"/>
+                    <f:facet name="copyright"/>
+                    <f:facet name="status">
+            <af:toolbar id="t3" binding="#{backingBeanScope.PropertyBean.t3}">
+              <af:button text="" id="b1" binding="#{backingBeanScope.PropertyBean.b1}"
+                         actionListener="#{bindings.en_lang.execute}" disabled="#{!bindings.en_lang.enabled}"
+                         partialSubmit="false" shortDesc="#{bundle.English}" icon="/images/icons/english.png"/>
+              <af:button id="b2" binding="#{backingBeanScope.PropertyBean.b2}"
+                         actionListener="#{bindings.ar_lang.execute}" disabled="#{!bindings.ar_lang.enabled}"
+                         partialSubmit="false" shortDesc="#{bundle.Arabic}" icon="/images/icons/arabic.png"/>
+              <af:link text="#{bundle.Home}" id="l1" binding="#{backingBeanScope.PropertyBean.l1}" action="home"/>
+            </af:toolbar>
+          </f:facet>
+                    <f:attribute name="endColumnSize" value="0"/>
+                    <f:attribute name="startColumnSize" value="0"/>
+                </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+  <!--oracle-jdev-comment:auto-binding-backing-bean-name:PropertyBean-->
+</jsp:root>
